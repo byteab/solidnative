@@ -58,9 +58,9 @@ talks to the app across the bridge.
 
 ## Docs
 
-- [Web](https://solid-native.com/packages/web): setting up a browser app, with Tailwind
-- [Native and web](https://solid-native.com/guide/native-and-web)
-- [Islands](https://solid-native.com/packages/web/islands)
+- [Web](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/web.md): setting up a browser app, with Tailwind
+- [Native and web](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/native-and-web.md)
+- [Islands](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/web/islands.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

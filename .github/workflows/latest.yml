@@ -36,13 +36,12 @@ jobs:
           - nx-ts-npm
           - nx-ts-pnpm
     steps:
-      - uses: actions/checkout@v7
-
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup
 
       - name: Start a local registry
         run: |
-          npx --yes verdaccio@6 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
+          npx --yes verdaccio@6.10.4 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
           for _ in $(seq 1 60); do curl -sf localhost:4873/-/ping > /dev/null && break; sleep 1; done
           # Publishing needs a user. Verdaccio creates one on this request and returns its token.
           token=$(curl -sf -XPUT -H 'Content-Type: application/json' \

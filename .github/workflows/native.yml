@@ -40,7 +40,7 @@ jobs:
       # C++ whose inputs changed since the cache was saved.
       USE_CCACHE: '1'
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup
 
       # The app's native half is most of the job's time; its JavaScript is a minute. So the app is
@@ -52,7 +52,7 @@ jobs:
         run: echo "hash=$(node scripts/ios-app.mjs fingerprint)" >> "$GITHUB_OUTPUT"
 
       - id: cached
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: ${{ runner.temp }}/app-cache
           key: canary-app-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
@@ -63,7 +63,7 @@ jobs:
         run: node scripts/ios-app.mjs rebundle "$RUNNER_TEMP/app-cache/canary.app" "$RUNNER_TEMP/canary.app"
 
       - if: steps.cached.outputs.cache-hit != 'true'
-        uses: hendrikmuhs/ccache-action@v1
+        uses: hendrikmuhs/ccache-action@5ebbd400eff9e74630f759d94ddd7b6c26299639 # v1.2.20
         with:
           key: ios-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: ios-
@@ -99,12 +99,12 @@ jobs:
           cp -R "$RUNNER_TEMP/app-cache/canary.app" "$RUNNER_TEMP/canary.app"
 
       - if: steps.cached.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: ${{ runner.temp }}/app-cache
           key: canary-app-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
 
-      - uses: actions/setup-java@v6
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: zulu
           java-version: 17
@@ -121,7 +121,7 @@ jobs:
 
       - name: Upload what Maestro saw
         if: failure()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: maestro-ios
           path: ${{ runner.temp }}/maestro
@@ -133,7 +133,7 @@ jobs:
     # The build, cold, is most of it; the emulator and the flow add about five minutes.
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup
 
       # The APK's native half is most of twenty minutes of C++; its JavaScript is one minute. So the
@@ -145,7 +145,7 @@ jobs:
         run: echo "hash=$(node scripts/android-apk.mjs fingerprint)" >> "$GITHUB_OUTPUT"
 
       - id: cached
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: ${{ runner.temp }}/apk-cache
           key: canary-apk-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
@@ -171,14 +171,13 @@ jobs:
           df -h "$GITHUB_WORKSPACE"
 
       - if: steps.rebundle.outcome != 'success'
-        uses: actions/setup-java@v6
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: zulu
           java-version: 17
 
       - if: steps.rebundle.outcome != 'success'
-        uses: gradle/actions/setup-gradle@v6
-
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
       - if: steps.rebundle.outcome != 'success'
         run: npx expo prebuild --platform android --clean
         working-directory: examples/canary
@@ -209,7 +208,7 @@ jobs:
           df -h "$GITHUB_WORKSPACE"
 
       - if: steps.rebundle.outcome != 'success'
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: ${{ runner.temp }}/apk-cache
           key: canary-apk-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
@@ -232,7 +231,7 @@ jobs:
       # a pop on the native stack, and a screen inside <safe-area-view>. A crash at launch fails
       # it, as does React Native's error screen or an unimplemented native view.
       - name: Launch it on an emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
         with:
           api-level: 34
           target: google_apis
@@ -245,7 +244,7 @@ jobs:
 
       - name: Upload what Maestro saw
         if: failure()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: maestro-android
           path: ${{ runner.temp }}/maestro

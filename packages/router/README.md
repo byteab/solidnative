@@ -47,7 +47,7 @@ export function App() {
 
 ## Docs
 
-- [Router](https://solid-native.com/packages/router)
+- [Router](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/router.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

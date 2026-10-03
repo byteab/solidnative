@@ -129,13 +129,13 @@ renderer is unchanged, so the native side of the ecosystem still works:
 
 ## Documentation
 
-- [Getting started](https://solid-native.com/guide/getting-started)
-- [Adding it to an existing app](https://solid-native.com/guide/manual-setup)
-- [Theming and Tailwind](https://solid-native.com/guide/theming)
-- [Build a form](https://solid-native.com/guide/forms)
-- [Deployment](https://solid-native.com/guide/deployment)
-- [How it compares](https://solid-native.com/guide/comparison)
-- [Known limitations](https://solid-native.com/guide/limitations)
+- [Getting started](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/getting-started.md)
+- [Adding it to an existing app](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/manual-setup.md)
+- [Theming and Tailwind](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/theming.md)
+- [Build a form](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/forms.md)
+- [Deployment](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/deployment.md)
+- [How it compares](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/comparison.md)
+- [Known limitations](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/limitations.md)
 - [Architecture](ARCHITECTURE.md) and [design decisions](docs/decisions.md)
 - [Performance](docs/performance.md)
 
@@ -206,7 +206,7 @@ behind each choice is in [docs/decisions.md](docs/decisions.md).
 
 solid-native is an experiment for exploration, not a production-ready framework, and APIs can change
 between `0.x` releases. The
-[known limitations](https://solid-native.com/guide/limitations) list every gap with its workaround.
+[known limitations](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/limitations.md) list every gap with its workaround.
 
 ## Contributing
 

@@ -14,11 +14,9 @@ concurrency:
   group: release
   cancel-in-progress: false
 
-permissions:
-  # The version commit, the tag, and the GitHub release.
-  contents: write
-  # npm provenance and trusted publishing.
-  id-token: write
+# Nothing by default: each job asks for what it needs. Only `publish` can mint the npm token, and it
+# runs no install and no repository code, so a compromised dependency in the build cannot publish.
+permissions: {}
 
 jobs:
   # Both native builds, on the commit being released, as every ready pull request and main has
@@ -26,6 +24,8 @@ jobs:
   native:
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/native.yml
+    permissions:
+      contents: read
 
   # CI's distribution check, plus the Nx generator in a fresh workspace with nx add. Too slow for
   # every push, and exactly what a release of the Nx plugin can break.
@@ -33,14 +33,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
-
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup
 
       - name: Start a local registry
         run: |
-          npx --yes verdaccio@6 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
+          npx --yes verdaccio@6.10.4 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
           for _ in $(seq 1 60); do curl -sf localhost:4873/-/ping > /dev/null && break; sleep 1; done
           token=$(curl -sf -XPUT -H 'Content-Type: application/json' \
             -d '{"name":"ci","password":"ci-password"}' \
@@ -52,20 +53,24 @@ jobs:
       - if: failure()
         run: cat verdaccio.log
 
-  release:
+  # Versions, builds and packs, then hands the tarballs and the version commit to the jobs below.
+  # It installs and runs everything, so it can neither publish nor push.
+  build:
     needs: [native, generators]
     if: github.ref == 'refs/heads/main'
     runs-on: macos-latest
+    permissions:
+      contents: read
     outputs:
       version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - uses: ./.github/actions/setup
-        with:
-          registry-url: https://registry.npmjs.org
 
       # The same gate CI runs, on exactly the commit being released.
       - run: npx nx run-many -t lint typecheck
@@ -75,12 +80,15 @@ jobs:
 
       - name: Version
         id: version
+        env:
+          # Through the environment, never interpolated into the script.
+          INPUT_VERSION: ${{ inputs.version }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Lockstep: every package and the template move to the same version, in one commit and
           # one tag. `--preid` only matters for a bump; an exact version already carries it.
-          npx nx release version '${{ inputs.version }}' --preid alpha
+          npx nx release version "$INPUT_VERSION" --preid alpha
           version=$(node -p "require('./packages/fabric/package.json').version")
           echo "version=$version" >> "$GITHUB_OUTPUT"
           # The version plans in .nx/version-plans become this release's CHANGELOG.md entry and are
@@ -94,13 +102,15 @@ jobs:
             echo "tag=latest" >> "$GITHUB_OUTPUT"
           fi
 
-      # `pnpm pack` is what turns `workspace:*` into the exact version; `npm publish` of the
-      # tarball is what speaks npm's OIDC for provenance and trusted publishing.
-      # The packages publish their `dist`: JavaScript and declarations, built by `tsc`.
+      # The packages publish their `dist`: JavaScript and declarations, built by `tsc`. No cache:
+      # what is published is built here, from this commit.
       - name: Build
-        run: npx nx run-many -t build -p '@solidnative/*'
+        run: npx nx run-many -t build -p '@solidnative/*' --skip-nx-cache
 
+      # `pnpm pack` is what turns `workspace:*` into the exact version.
       - name: Pack
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           mkdir -p .release
           # Exactly what `nx release` versioned, so the two lists cannot drift apart.
@@ -108,43 +118,84 @@ jobs:
             root=$(npx nx show project "$project" --json | jq -r .root)
             (cd "$root" && pnpm pack --pack-destination "$GITHUB_WORKSPACE/.release")
           done
+          # The version commit and tag, for the job that pushes them.
+          git bundle create .release/release.bundle HEAD "refs/tags/v$VERSION" ^origin/main
           ls .release
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release
+          path: .release
+          if-no-files-found: error
+
+  # Only Node and the tarballs: no checkout, no install, nothing from the repository runs here.
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      # npm provenance and trusted publishing.
+      id-token: write
+    steps:
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+          path: .release
 
       # No token: each package's trusted publisher on npmjs.com names this workflow, and npm
       # authenticates the publish through OIDC.
       - name: Publish
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+          TAG: ${{ needs.build.outputs.tag }}
         run: |
           for tarball in .release/*.tgz; do
             name=$(tar -xOzf "$tarball" package/package.json | jq -r .name)
             # Already there means an earlier run got this far: skip it, so running again with the
             # same exact version finishes a release that failed part way through.
-            if npm view "$name@${{ steps.version.outputs.version }}" version > /dev/null 2>&1; then
+            if npm view "$name@$VERSION" version > /dev/null 2>&1; then
               echo "already published: $name"
               continue
             fi
-            npm publish "$tarball" --provenance --access public --tag '${{ steps.version.outputs.tag }}'
+            npm publish "$tarball" --provenance --access public --tag "$TAG"
           done
 
+  # Pushes the version commit and tag once the packages are on npm, and makes the GitHub release.
+  push:
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+          path: .release
+
       - name: Push the version commit and tag
-        run: git push --follow-tags
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          git fetch .release/release.bundle "refs/tags/v$VERSION:refs/tags/v$VERSION"
+          git merge --ff-only "v$VERSION"
+          git push origin HEAD:main "refs/tags/v$VERSION"
 
       - name: GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.build.outputs.version }}
+          TAG: ${{ needs.build.outputs.tag }}
         run: |
           # This release's CHANGELOG.md entry, from its heading to the next release's.
-          awk '/^## /{n++} n==1' CHANGELOG.md | tail -n +2 > .release/notes.md
-          gh release create 'v${{ steps.version.outputs.version }}' \
-            --notes-file .release/notes.md \
-            ${{ steps.version.outputs.tag != 'latest' && '--prerelease' || '' }}
-
-  # The site goes live with the release it documents, built from the tag.
-  docs:
-    needs: release
-    uses: ./.github/workflows/docs.yml
-    with:
-      ref: v${{ needs.release.outputs.version }}
-    secrets: inherit
-    permissions:
-      contents: read
-      pull-requests: write
+          awk '/^## /{n++} n==1' CHANGELOG.md | tail -n +2 > notes.md
+          prerelease=()
+          [[ "$TAG" != latest ]] && prerelease=(--prerelease)
+          gh release create "v$VERSION" --notes-file notes.md "${prerelease[@]}"

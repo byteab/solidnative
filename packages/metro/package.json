@@ -51,7 +51,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "license": "MIT",
-  "homepage": "https://solid-native.com/packages/metro",
+  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro.md",
   "bugs": {
     "url": "https://github.com/byteab/solid-native/issues"
   },

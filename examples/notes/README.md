@@ -1,7 +1,7 @@
 # Notes
 
 An offline-first notes app: write and edit while offline, and every change syncs once there is a
-connection again, following the pattern in [Working offline](https://solid-native.com/guide/offline).
+connection again, following the pattern in [Working offline](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/offline.md).
 
 | Screen                                           | What it shows                                                                                                |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |

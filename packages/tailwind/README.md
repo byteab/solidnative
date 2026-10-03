@@ -77,10 +77,10 @@ own CLI, so there is no `@tailwindcss/cli` to install. The preset turns prefligh
 
 ## Docs
 
-- [Tailwind](https://solid-native.com/packages/tailwind), including
-  [Tailwind 3](https://solid-native.com/packages/tailwind#tailwind-3)
-- [Variants](https://solid-native.com/packages/tailwind/variants) and
-  [safe area and hairlines](https://solid-native.com/packages/tailwind/utilities)
+- [Tailwind](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind.md), including
+  [Tailwind 3](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind.md#tailwind-3)
+- [Variants](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind/variants.md) and
+  [safe area and hairlines](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind/utilities.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

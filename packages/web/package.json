@@ -116,7 +116,7 @@
     "typecheck:solid": "tsc -p solid-tests/tsconfig.json --noEmit"
   },
   "license": "MIT",
-  "homepage": "https://solid-native.com/packages/web",
+  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/web.md",
   "bugs": {
     "url": "https://github.com/byteab/solid-native/issues"
   },

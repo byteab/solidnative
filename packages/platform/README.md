@@ -54,7 +54,7 @@ There is no HTTP helper: Solid apps call React Native's `fetch` directly, and re
 
 ## Docs
 
-- [Platform](https://solid-native.com/packages/platform)
+- [Platform](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/platform.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

@@ -430,7 +430,7 @@
     "test": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts solid-tests/*.test.tsx"
   },
   "license": "MIT",
-  "homepage": "https://solid-native.com/packages/expo",
+  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/expo.md",
   "bugs": {
     "url": "https://github.com/byteab/solid-native/issues"
   },

@@ -22,6 +22,8 @@ overrides:
   # nx pins smol-toml 1.6.1, which a malformed TOML document can hang; 1.7.1
   # is the fix and a compatible minor.
   smol-toml: ^1.7.1
+  # @nx/devkit's minimatch resolves 5.0.9, which has the ReDoS advisories 5.0.12 fixes.
+  brace-expansion@>=4.0.0 <5.0.12: ^5.0.12
 
 # pnpm 10 blocks postinstall scripts unless a package is named here. Both of these build a native
 # binary and are the reason `nx` is fast; without them it falls back to a slower watcher and says
@@ -39,3 +41,7 @@ packageExtensions:
   nx:
     peerDependencies:
       typescript: '*'
+
+# A version must be a day old before pnpm resolves it: most compromised npm releases are caught and
+# pulled within hours. Minutes.
+minimumReleaseAge: 1440

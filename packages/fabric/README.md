@@ -44,10 +44,10 @@ const platform = nativePlatform(); // 'ios' | 'android'
 
 ## Docs
 
-- [Fabric](https://solid-native.com/packages/fabric)
-- [The CSS engine](https://solid-native.com/packages/fabric/css-engine),
-  [what CSS reaches a device](https://solid-native.com/packages/fabric/supported-css) and
-  [animation](https://solid-native.com/packages/fabric/animation)
+- [Fabric](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric.md)
+- [The CSS engine](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/css-engine.md),
+  [what CSS reaches a device](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/supported-css.md) and
+  [animation](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/animation.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

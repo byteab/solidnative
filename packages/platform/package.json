@@ -66,7 +66,7 @@
     "test:solid": "node --import ./solid-tests/compiled-register.mjs --import ./solid-tests/css-compiled-register.mjs --test solid-tests/*.test.ts"
   },
   "license": "MIT",
-  "homepage": "https://solid-native.com/packages/platform",
+  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/platform.md",
   "bugs": {
     "url": "https://github.com/byteab/solid-native/issues"
   },

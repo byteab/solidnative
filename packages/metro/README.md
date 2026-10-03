@@ -55,8 +55,8 @@ module.exports = withSolidNative(getDefaultConfig(__dirname), {
 
 ## Docs
 
-- [Metro](https://solid-native.com/packages/metro)
-- [Configuration](https://solid-native.com/packages/metro/configuration)
+- [Metro](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro.md)
+- [Configuration](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro/configuration.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
   [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
 

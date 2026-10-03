@@ -7,12 +7,11 @@ one version. `.github/workflows/release.yml` does it, run by hand from the Actio
 
 1. **Own the npm scope.** Create the `solidnative` organization on npmjs.com. Every package publishes
    as `@solidnative/*`, and a publish to a scope you do not own fails.
-2. **Publish a placeholder of each package.** npm only lets a trusted publisher be configured on a
-   package that already exists, so each one first went out by hand as an empty `0.0.1`.
+2. **Publish each package once by hand.** npm only lets a trusted publisher be configured on a
+   package that already exists. `0.1.1` went out this way, from a local build.
 3. **Configure trusted publishing** on each package's settings page on npmjs.com: GitHub Actions,
    owner `byteab`, repository `solid-native`, workflow `release.yml`. The release publishes
-   through OIDC and no npm token is stored anywhere. The first release must be above `0.0.1`:
-   `0.1.0`, or a `minor` bump.
+   through OIDC and no npm token is stored anywhere.
 
 ## Describing changes
 
@@ -36,7 +35,7 @@ plans said, not what the commit messages did. Refactors, tests and docs need no 
 ## Each release
 
 Run **Release** from the Actions tab, on `main`, once CI is green there. Its input is either an exact
-version (`0.1.0` for the first) or a bump. Releases are plain `0.x` versions on npm's `latest` tag,
+version or a bump. Releases are plain `0.x` versions on npm's `latest` tag,
 which is what `create-expo-app --template @solidnative/template` resolves: `minor` for a release with
 a breaking change, since under `0.x` a minor is the breaking bump, and `patch` otherwise.
 
@@ -50,16 +49,19 @@ as it does on every pull request. Beside it, the
 - `nx release version` writes the version to every package and the template, and
   `nx release changelog` turns the version plans into the `CHANGELOG.md` entry, then commits both
   as `Release <version>` and tags it `v<version>`.
-- `nx run-many -t build` compiles each package into its `dist` with `tsc`: JavaScript and
-  declarations, which its `publishConfig.exports` point at.
-- `pnpm pack` turns each `workspace:*` dependency into that exact version, and `npm publish`
-  publishes each tarball with provenance, on `latest`. A version with a prerelease suffix
+- `nx run-many -t build` compiles each package into its `dist` with `tsc`, without the Nx cache:
+  JavaScript and declarations, which its `publishConfig.exports` point at.
+- `pnpm pack` turns each `workspace:*` dependency into that exact version.
+- A separate `publish` job, the only one allowed to mint npm's OIDC token, takes the tarballs and
+  runs `npm publish` with provenance, on `latest`. It checks nothing out and installs nothing, so a
+  compromised dependency in the build cannot publish. A version with a prerelease suffix
   (`0.2.0-rc.0`) would go out under that suffix's dist-tag instead, so `latest` never moves to it.
-- The commit and tag are pushed, and a GitHub release is created with the changelog entry as its
-  notes.
-- The documentation site is built from the tag and deployed to production (`docs.yml`), so
-  solid-native.com documents what is on npm, not what is on `main`. A documentation-only fix can go
-  live sooner by running **Docs** by hand on `main`.
+- The `push` job pushes the commit and tag, and creates a GitHub release with the changelog entry
+  as its notes.
+
+The documentation site is not part of a release: `docs.yml` builds it on every pull request and
+deploys it to Cloudflare Pages only once the `CLOUDFLARE_ACCOUNT_ID` variable and
+`CLOUDFLARE_API_TOKEN` secret are set.
 
 If it fails before publishing, nothing has left the runner: fix it and run it again. If it fails part
 way through publishing, run it again with the same exact version (not a bump): packages already on

@@ -37,7 +37,7 @@ In a workspace whose root package is scoped, the project is `@org/mobile`.
 
 ## Docs
 
-- [Nx](https://solid-native.com/packages/nx)
+- [Nx](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/nx.md)
 - [Root README](https://github.com/byteab/solid-native/blob/main/README.md)
 
 ## License
