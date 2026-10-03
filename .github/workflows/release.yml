@@ -1,0 +1,150 @@
+name: Release
+
+# Run by hand from the Actions tab, on main, once CI is green there. See RELEASING.md.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'An exact version (0.1.0) or a bump (minor for a breaking change, patch otherwise)'
+        required: true
+        default: minor
+
+# One release at a time: two would race for the same version.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  # The version commit, the tag, and the GitHub release.
+  contents: write
+  # npm provenance and trusted publishing.
+  id-token: write
+
+jobs:
+  # Both native builds, on the commit being released, as every ready pull request and main has
+  # them: see native.yml.
+  native:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/native.yml
+
+  # CI's distribution check, plus the Nx generator in a fresh workspace with nx add. Too slow for
+  # every push, and exactly what a release of the Nx plugin can break.
+  generators:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup
+
+      - name: Start a local registry
+        run: |
+          npx --yes verdaccio@6 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
+          for _ in $(seq 1 60); do curl -sf localhost:4873/-/ping > /dev/null && break; sleep 1; done
+          token=$(curl -sf -XPUT -H 'Content-Type: application/json' \
+            -d '{"name":"ci","password":"ci-password"}' \
+            http://localhost:4873/-/user/org.couchdb.user:ci | jq -r .token)
+          echo "//localhost:4873/:_authToken=$token" >> ~/.npmrc
+
+      - run: node scripts/verify-publish.mjs --generators
+
+      - if: failure()
+        run: cat verdaccio.log
+
+  release:
+    needs: [native, generators]
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup
+        with:
+          registry-url: https://registry.npmjs.org
+
+      # The same gate CI runs, on exactly the commit being released.
+      - run: npx nx run-many -t lint typecheck
+      # The browser suites in `pnpm coverage` use the runner's installed Google Chrome.
+      - run: google-chrome --version
+      - run: pnpm coverage
+
+      - name: Version
+        id: version
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Lockstep: every package and the template move to the same version, in one commit and
+          # one tag. `--preid` only matters for a bump; an exact version already carries it.
+          npx nx release version '${{ inputs.version }}' --preid alpha
+          version=$(node -p "require('./packages/fabric/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          # The version plans in .nx/version-plans become this release's CHANGELOG.md entry and are
+          # deleted; the versions staged above go into the same `Release <version>` commit and tag.
+          npx nx release changelog "$version"
+          # A prerelease goes out under its own dist-tag, so `npm install` keeps resolving the last
+          # stable release (or nothing, before the first) instead of an alpha.
+          if [[ "$version" == *-* ]]; then
+            echo "tag=$(echo "$version" | sed -E 's/^[^-]+-([a-z]+).*/\1/')" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=latest" >> "$GITHUB_OUTPUT"
+          fi
+
+      # `pnpm pack` is what turns `workspace:*` into the exact version; `npm publish` of the
+      # tarball is what speaks npm's OIDC for provenance and trusted publishing.
+      # The packages publish their `dist`: JavaScript and declarations, built by `tsc`.
+      - name: Build
+        run: npx nx run-many -t build -p '@solid-native/*'
+
+      - name: Pack
+        run: |
+          mkdir -p .release
+          # Exactly what `nx release` versioned, so the two lists cannot drift apart.
+          for project in $(jq -r '.release.projects[]' nx.json); do
+            root=$(npx nx show project "$project" --json | jq -r .root)
+            (cd "$root" && pnpm pack --pack-destination "$GITHUB_WORKSPACE/.release")
+          done
+          ls .release
+
+      # No token: each package's trusted publisher on npmjs.com names this workflow, and npm
+      # authenticates the publish through OIDC.
+      - name: Publish
+        run: |
+          for tarball in .release/*.tgz; do
+            name=$(tar -xOzf "$tarball" package/package.json | jq -r .name)
+            # Already there means an earlier run got this far: skip it, so running again with the
+            # same exact version finishes a release that failed part way through.
+            if npm view "$name@${{ steps.version.outputs.version }}" version > /dev/null 2>&1; then
+              echo "already published: $name"
+              continue
+            fi
+            npm publish "$tarball" --provenance --access public --tag '${{ steps.version.outputs.tag }}'
+          done
+
+      - name: Push the version commit and tag
+        run: git push --follow-tags
+
+      - name: GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # This release's CHANGELOG.md entry, from its heading to the next release's.
+          awk '/^## /{n++} n==1' CHANGELOG.md | tail -n +2 > .release/notes.md
+          gh release create 'v${{ steps.version.outputs.version }}' \
+            --notes-file .release/notes.md \
+            ${{ steps.version.outputs.tag != 'latest' && '--prerelease' || '' }}
+
+  # The site goes live with the release it documents, built from the tag.
+  docs:
+    needs: release
+    uses: ./.github/workflows/docs.yml
+    with:
+      ref: v${{ needs.release.outputs.version }}
+    secrets: inherit
+    permissions:
+      contents: read
+      pull-requests: write

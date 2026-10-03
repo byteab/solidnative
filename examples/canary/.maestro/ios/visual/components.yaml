@@ -1,0 +1,11 @@
+# Components, as it draws: a screenshot compared with the one taken when it was last right.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open.yaml
+    env:
+      SCREEN: 'Components'
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: ../baselines/visual-components.png
+    thresholdPercentage: 97

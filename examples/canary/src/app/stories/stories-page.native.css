@@ -1,0 +1,53 @@
+.page {
+  flex: 1;
+  background-color: light-dark(white, black);
+}
+.tray {
+  flex-grow: 0;
+  margin-top: 8px;
+}
+.person {
+  align-items: center;
+  margin-right: 14px;
+  gap: 6px;
+}
+.ring {
+  padding: 3px;
+  border-radius: 40px;
+  background-image: linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7);
+}
+.seen .ring {
+  background-image: linear-gradient(
+    45deg,
+    light-dark(#d4d4d8, #3f3f46),
+    light-dark(#d4d4d8, #3f3f46)
+  );
+}
+.gap {
+  padding: 3px;
+  border-radius: 37px;
+  background-color: light-dark(white, black);
+}
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(160deg, var(--from), var(--to));
+}
+.initial {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+}
+.name {
+  color: light-dark(black, white);
+  font-size: 12px;
+}
+.hint {
+  margin: 24px 20px;
+  color: light-dark(oklch(0.5 0 0), oklch(0.7 0 0));
+  font-size: 14px;
+  line-height: 20px;
+}

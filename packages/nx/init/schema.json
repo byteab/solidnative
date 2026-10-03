@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "SolidNativeNxInit",
+  "title": "Set up solid-native",
+  "type": "object",
+  "properties": {
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Update package.json without installing.",
+      "default": false
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "description": "Leave the changed files unformatted.",
+      "default": false,
+      "x-priority": "internal"
+    },
+    "keepExistingVersions": {
+      "type": "boolean",
+      "description": "Passed by nx add. Existing versions are always kept.",
+      "default": true,
+      "x-priority": "internal"
+    },
+    "updatePackageScripts": {
+      "type": "boolean",
+      "description": "Passed by nx add. There are no package scripts to update.",
+      "x-priority": "internal"
+    }
+  }
+}

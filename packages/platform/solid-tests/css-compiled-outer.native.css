@@ -1,0 +1,18 @@
+:host {
+  --ink: red;
+  font-size: 17px;
+  padding: 12px;
+}
+
+.label {
+  color: var(--ink);
+  opacity: 0.4;
+}
+
+.label.active {
+  opacity: 0.9;
+}
+
+.label[data-hover] {
+  opacity: 0.6;
+}

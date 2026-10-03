@@ -1,0 +1,12 @@
+# Pushes a screen onto the native stack and checks it arrived with its own navigation bar.
+appId: ${APP_ID || 'host.exp.Exponent'}
+---
+- runFlow: subflows/open-canary.yaml
+# iOS joins a row's title and blurb into one label; Android keeps the title as its own text, and
+# lists only what is on screen. This matches both, and not the Navigation bar row below it.
+- scrollUntilVisible:
+    element: 'Navigation(, push.*)?'
+- tapOn: 'Navigation(, push.*)?'
+- tapOn: 'push.*'
+- assertVisible: 'Detail'
+- assertVisible: 'Done'

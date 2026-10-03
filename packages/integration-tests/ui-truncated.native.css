@@ -1,0 +1,17 @@
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.clip {
+  text-overflow: clip;
+}
+.none {
+  -webkit-line-clamp: unset;
+}

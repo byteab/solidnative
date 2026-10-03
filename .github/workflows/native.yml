@@ -1,0 +1,252 @@
+name: Native builds
+
+# The canary, prebuilt and compiled for both platforms: the one check that a native dependency, a
+# pod, or a Gradle setting still builds. On Android the release build is then launched on an
+# emulator and driven through a short Maestro flow, because an app that builds can still crash
+# the moment it opens: a runtime feature Hermes lacks, or a native module nobody linked.
+#
+# Both halves run on every pull request that is ready for review, on main, by hand, and when the
+# release workflow calls this before publishing. Each launches a release build, which carries its
+# bundle, and walks examples/canary/.maestro/release: iOS on a simulator, Android on an emulator.
+# Both are built to be quick: each app is kept by Expo's fingerprint of its native half, so a run
+# that changes only JavaScript puts a new bundle into the kept app; and a build that is needed is
+# one architecture, with a cache that carries the compiled C++ (ccache on iOS, Gradle's on
+# Android).
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    # Words alone cannot break a build or a launch.
+    paths-ignore:
+      - '**/*.md'
+      - 'apps/documentation/**'
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ios:
+    if: github.event.pull_request.draft != true
+    runs-on: macos-latest
+    # The build, cold, is most of it; with a cached app, the bundle, simulator and flow are a few
+    # minutes.
+    timeout-minutes: 40
+    env:
+      # Read by the generated Podfile: pods are built through ccache, so a run recompiles only the
+      # C++ whose inputs changed since the cache was saved.
+      USE_CCACHE: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+
+      # The app's native half is most of the job's time; its JavaScript is a minute. So the app is
+      # cached by Expo's fingerprint of everything native, and a run whose fingerprint has been
+      # built before puts today's bundle into that app rather than building it again. See
+      # examples/canary/scripts/ios-app.mjs.
+      - id: fingerprint
+        working-directory: examples/canary
+        run: echo "hash=$(node scripts/ios-app.mjs fingerprint)" >> "$GITHUB_OUTPUT"
+
+      - id: cached
+        uses: actions/cache/restore@v5
+        with:
+          path: ${{ runner.temp }}/app-cache
+          key: canary-app-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
+
+      - name: Put today's bundle into the cached app
+        if: steps.cached.outputs.cache-hit == 'true'
+        working-directory: examples/canary
+        run: node scripts/ios-app.mjs rebundle "$RUNNER_TEMP/app-cache/canary.app" "$RUNNER_TEMP/canary.app"
+
+      - if: steps.cached.outputs.cache-hit != 'true'
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ios-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: ios-
+          max-size: 2G
+
+      # `ios/` and `android/` are generated, not committed. Prebuild also installs the pods.
+      - if: steps.cached.outputs.cache-hit != 'true'
+        run: npx expo prebuild --platform ios --clean
+        working-directory: examples/canary
+
+      # A simulator build needs no signing, which is what makes this runnable without secrets.
+      # Release, so the bundle is in the app and it launches with no Metro, as a user's does.
+      - name: Build for the simulator
+        if: steps.cached.outputs.cache-hit != 'true'
+        working-directory: examples/canary/ios
+        run: |
+          # One architecture: arm64, the simulator on every current Mac. The generic destination
+          # otherwise compiles every pod twice, once more for Intel.
+          xcodebuild -workspace canary.xcworkspace -scheme canary -configuration Release \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build | tail -n 50
+          exit "${PIPESTATUS[0]}"
+
+      - if: steps.cached.outputs.cache-hit != 'true'
+        run: ccache --show-stats
+
+      - name: Keep the app for runs with the same native half
+        if: steps.cached.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/app-cache"
+          cp -R examples/canary/ios/build/Build/Products/Release-iphonesimulator/canary.app "$RUNNER_TEMP/app-cache/"
+          cp -R "$RUNNER_TEMP/app-cache/canary.app" "$RUNNER_TEMP/canary.app"
+
+      - if: steps.cached.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v5
+        with:
+          path: ${{ runner.temp }}/app-cache
+          key: canary-app-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL https://get.maestro.mobile.dev | MAESTRO_VERSION=2.10.0 bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      # The same flows the Android half walks, on a simulator created for the run.
+      - name: Launch it on a simulator
+        run: >
+          ./examples/canary/scripts/smoke-ios.sh "$RUNNER_TEMP/canary.app" "$RUNNER_TEMP/maestro"
+
+      - name: Upload what Maestro saw
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: maestro-ios
+          path: ${{ runner.temp }}/maestro
+          if-no-files-found: ignore
+
+  android:
+    if: github.event.pull_request.draft != true
+    runs-on: ubuntu-latest
+    # The build, cold, is most of it; the emulator and the flow add about five minutes.
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+
+      # The APK's native half is most of twenty minutes of C++; its JavaScript is one minute. So the
+      # APK is cached by Expo's fingerprint of everything native, and a run whose fingerprint has
+      # been built before puts today's bundle into that APK rather than building it again. See
+      # examples/canary/scripts/android-apk.mjs.
+      - id: fingerprint
+        working-directory: examples/canary
+        run: echo "hash=$(node scripts/android-apk.mjs fingerprint)" >> "$GITHUB_OUTPUT"
+
+      - id: cached
+        uses: actions/cache/restore@v5
+        with:
+          path: ${{ runner.temp }}/apk-cache
+          key: canary-apk-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
+
+      # Exits 3 when the app's images changed, which are compiled into the APK's resources and
+      # cannot be swapped like the bundle; the build below runs then instead.
+      - id: rebundle
+        if: steps.cached.outputs.cache-hit == 'true'
+        continue-on-error: true
+        working-directory: examples/canary
+        run: >
+          node scripts/android-apk.mjs rebundle
+          "$RUNNER_TEMP/apk-cache/canary.apk" "$RUNNER_TEMP/apk-cache/assets.json"
+          "$RUNNER_TEMP/apk-cache/debug.keystore" "$RUNNER_TEMP/canary.apk"
+
+      # The emulator's userdata partition needs more disk than the runner has left, build or no
+      # build, so the toolchains the runner ships and this job never uses (.NET, Haskell, CodeQL,
+      # Swift, Boost) go first.
+      - name: Free disk space for the emulator
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL \
+            /usr/share/swift /usr/local/share/boost
+          df -h "$GITHUB_WORKSPACE"
+
+      - if: steps.rebundle.outcome != 'success'
+        uses: actions/setup-java@v6
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - if: steps.rebundle.outcome != 'success'
+        uses: gradle/actions/setup-gradle@v6
+
+      - if: steps.rebundle.outcome != 'success'
+        run: npx expo prebuild --platform android --clean
+        working-directory: examples/canary
+
+      - name: Assemble a release build
+        if: steps.rebundle.outcome != 'success'
+        working-directory: examples/canary/android
+        # Without the release lint: it analyses every library's sources for fatal issues, half a
+        # minute of the build, and none of that code is ours to fix.
+        run: >
+          ./gradlew assembleRelease --build-cache -x lintVitalRelease
+          -PreactNativeArchitectures=x86_64
+          -Dorg.gradle.jvmargs="-Xmx6g -XX:MaxMetaspaceSize=1g"
+
+      # What a later run needs to reuse this build: the APK, the key it is signed with, and the
+      # list of assets it ships, which is what decides whether a bundle can be swapped into it.
+      - name: Keep the APK, drop the build's intermediates
+        if: steps.rebundle.outcome != 'success'
+        run: |
+          mkdir -p "$RUNNER_TEMP/apk-cache"
+          cp examples/canary/android/app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/canary.apk"
+          cp "$RUNNER_TEMP/canary.apk" "$RUNNER_TEMP/apk-cache/canary.apk"
+          cp examples/canary/android/app/debug.keystore "$RUNNER_TEMP/apk-cache/debug.keystore"
+          (cd examples/canary && node scripts/android-apk.mjs assets "$RUNNER_TEMP/apk-cache/assets.json")
+          ./examples/canary/android/gradlew -p examples/canary/android --stop
+          find examples/canary/android node_modules/.pnpm -type d \
+            \( -path '*/android/build' -o -path '*/android/app/build' -o -name .cxx \) -prune -exec rm -rf {} +
+          df -h "$GITHUB_WORKSPACE"
+
+      - if: steps.rebundle.outcome != 'success'
+        uses: actions/cache/save@v5
+        with:
+          path: ${{ runner.temp }}/apk-cache
+          key: canary-apk-${{ runner.os }}-${{ steps.fingerprint.outputs.hash }}
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL https://get.maestro.mobile.dev | MAESTRO_VERSION=2.10.0 bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      # Hardware acceleration: without KVM the emulator is software-emulated and takes minutes
+      # to boot, where with it this is well under one.
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      # Launches the APK and walks examples/canary/.maestro/release: the first screen, a push and
+      # a pop on the native stack, and a screen inside <safe-area-view>. A crash at launch fails
+      # it, as does React Native's error screen or an unimplemented native view.
+      - name: Launch it on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          # A boot that has not finished in three minutes will not.
+          emulator-boot-timeout: 180
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot
+          script: ./examples/canary/scripts/smoke-android.sh "$RUNNER_TEMP/canary.apk" "$RUNNER_TEMP/maestro"
+
+      - name: Upload what Maestro saw
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: maestro-android
+          path: ${{ runner.temp }}/maestro
+          if-no-files-found: ignore

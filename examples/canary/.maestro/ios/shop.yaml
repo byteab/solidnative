@@ -1,0 +1,18 @@
+# Shop: a product with sizes waits for one, goes in the basket, and the basket steps it.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Shop
+- tapOn: 'Merino Crew, .*'
+- assertVisible: 'Choose a size'
+- tapOn: 'Size M'
+- tapOn: 'Add to basket'
+- assertVisible: 'Added to basket'
+- tapOn: 'Shop'
+- tapOn: 'Basket, 1 items'
+- assertVisible: '.* away from free delivery'
+- tapOn: 'One more Merino Crew'
+- assertVisible: 'Free delivery unlocked'
+- tapOn: 'Close'

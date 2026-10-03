@@ -1,0 +1,19 @@
+# Calendar: the add button puts an event on the chosen day's timeline, and the month steps on.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Calendar
+- tapOn: 'Add event at 10:00'
+- scrollUntilVisible:
+    element: 'New event, 10:00 to 11:00'
+    direction: DOWN
+- scrollUntilVisible:
+    element: 'Next month'
+    direction: UP
+- tapOn: 'Next month'
+# The title is the month after this one, worked out here rather than fixed, so the flow runs in
+# any month.
+- evalScript: ${const names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; const now = new Date(); const next = new Date(now.getFullYear(), now.getMonth() + 1, 1); output.next = names[next.getMonth()] + ' ' + next.getFullYear()}
+- assertVisible: ${output.next}

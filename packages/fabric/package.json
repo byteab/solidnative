@@ -1,0 +1,57 @@
+{
+  "name": "@solid-native/fabric",
+  "version": "0.1.1",
+  "description": "solid-native's engine: a retained view tree committed to React Native's Fabric, with events, the responder system and a CSS cascade.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "renderer",
+    "css"
+  ],
+  "type": "module",
+  "main": "src/index.ts",
+  "nx": {
+    "tags": [
+      "scope:fabric",
+      "layer:runtime"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/fabric",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/fabric"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    }
+  }
+}

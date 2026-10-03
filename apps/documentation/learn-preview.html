@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Preview</title>
+    <!--
+      The phone's screen, and nothing else: the lesson page draws the device around it. Tailwind's
+      browser build writes its own stylesheet into this head; see src/learn/preview/tailwind.ts.
+    -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #fff;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        font-size: 14px;
+        color: #000;
+      }
+      html.platform-android body {
+        font-family: Roboto, system-ui, sans-serif;
+      }
+      #screen {
+        position: relative;
+        height: 100%;
+      }
+      .app-root {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .xray {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .xray-box {
+        position: fixed;
+        box-sizing: border-box;
+        outline: 1px solid rgb(236 72 153 / 0.85);
+        outline-offset: -1px;
+      }
+      .xray-box > span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 3px;
+        font:
+          9px/1.4 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        color: #fff;
+        background: rgb(219 39 119 / 0.9);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="screen"></div>
+    <script type="module" src="./src/learn/preview/frame.ts"></script>
+  </body>
+</html>

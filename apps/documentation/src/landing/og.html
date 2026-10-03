@@ -1,0 +1,182 @@
+<!doctype html>
+<!--
+  Source of apps/documentation/public/og.png (1280 x 640). Render with headless Chrome from this
+  directory: see README.md.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: Geist;
+        src: url(../../public/fonts/geist-latin.woff2) format('woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: GeistMono;
+        src: url(../../public/fonts/geist-mono-latin.woff2) format('woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: Instrument;
+        src: url(../../public/fonts/instrument-sans-latin.woff2) format('woff2');
+        font-weight: 400 700;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        width: 1280px;
+        height: 640px;
+        overflow: hidden;
+        position: relative;
+        background:
+          radial-gradient(closest-side at 78% 46%, rgb(77 130 255 / 0.22), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.06) 1px, transparent 0) 0 0 / 24px
+            24px,
+          #0a0a0b;
+        color: #f4f4f5;
+        font-family: Geist, sans-serif;
+      }
+      .brand {
+        position: absolute;
+        left: 80px;
+        top: 72px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font:
+          600 30px/1 Instrument,
+          sans-serif;
+        letter-spacing: -0.01em;
+      }
+      .brand svg {
+        width: 52px;
+        height: 52px;
+      }
+      h1 {
+        position: absolute;
+        left: 80px;
+        top: 188px;
+        margin: 0;
+        font:
+          600 80px/1 Instrument,
+          sans-serif;
+        letter-spacing: -0.035em;
+      }
+      .rule {
+        position: absolute;
+        left: 76px;
+        top: 352px;
+      }
+      p {
+        position: absolute;
+        left: 80px;
+        top: 384px;
+        margin: 0;
+        width: 520px;
+        font-size: 25px;
+        line-height: 1.42;
+        color: #a9acb5;
+      }
+      .foot {
+        position: absolute;
+        left: 80px;
+        bottom: 72px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .url {
+        font:
+          500 22px GeistMono,
+          monospace;
+        color: #e4e4e7;
+      }
+      .pill {
+        font:
+          600 15px Geist,
+          sans-serif;
+        letter-spacing: 0.06em;
+        color: #7aa2ff;
+        border: 1.5px solid rgb(91 140 255 / 0.55);
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+      .phone {
+        position: absolute;
+        width: 280px;
+        height: 606px;
+        border-radius: 46px;
+        background: #0b0b0d;
+        padding: 10px;
+        box-shadow:
+          0 0 0 1.5px #9a9aa2,
+          0 0 0 3.5px #2c2c31,
+          0 30px 60px -20px rgb(0 0 0 / 0.8);
+        box-sizing: border-box;
+      }
+      .phone img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 36px;
+        display: block;
+      }
+      .back {
+        left: 760px;
+        top: 140px;
+        transform: rotate(8deg);
+        filter: brightness(0.92);
+      }
+      .front {
+        left: 945px;
+        top: 86px;
+        transform: rotate(8deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="f" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#4a7dff" />
+            <stop offset="1" stop-color="#1e4fd6" />
+          </linearGradient>
+        </defs>
+        <path d="M16 0C27.2 0 32 4.8 32 16S27.2 32 16 32 0 27.2 0 16 4.8 0 16 0Z" fill="url(#f)" />
+        <rect
+          x="10"
+          y="6"
+          width="12"
+          height="20"
+          rx="3.5"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2"
+        />
+        <circle cx="16" cy="16" r="3.75" fill="#fff" />
+      </svg>
+      solid-native
+    </div>
+    <h1>Build native apps<br />with Solid.</h1>
+    <svg class="rule" width="420" height="16" viewBox="0 0 420 16" aria-hidden="true">
+      <path
+        d="M4 10C90 4 210 3 300 6s90 4 112 2"
+        fill="none"
+        stroke="#4d82ff"
+        stroke-width="4"
+        stroke-linecap="round"
+      />
+    </svg>
+    <p>Solid components rendered as real iOS and Android views. Powered by Expo.</p>
+    <div class="foot"><span class="url">solid-native.com</span><span class="pill">ALPHA</span></div>
+    <div class="phone back">
+      <img src="../../public/showcase/fitness-android-light.webp" alt="" />
+    </div>
+    <div class="phone front"><img src="../../public/showcase/player-ios-light.webp" alt="" /></div>
+  </body>
+</html>

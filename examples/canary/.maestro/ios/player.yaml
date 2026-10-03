@@ -1,0 +1,16 @@
+# Player: a record plays into the mini player, which opens the full player; the transport steps and repeat toggles.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Player
+- tapOn: 'So What by Miles Davis'
+- assertVisible: 'Now playing, So What'
+- tapOn: 'Now playing, So What'
+- assertVisible: 'Position, .*'
+# The tones are seconds long, so the queue may have moved on: only the transport is asserted.
+- tapOn: 'Next'
+- assertVisible: 'Now playing, .*|Naima|Blue in Green'
+- tapOn: '(Pause|Play)'
+- tapOn: 'Repeat'

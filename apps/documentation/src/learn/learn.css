@@ -1,0 +1,213 @@
+/*
+ * The course's own rules: the lesson workspace, its buttons, the editor's colours and the phone
+ * drawn around the preview (scoped to `learn-lesson-preview`).
+ *
+ * Imported by `styles.css`, so they sit in the site's one stylesheet and share its tokens. What
+ * the learner's app looks like is decided inside the preview frame, which this sheet never reaches.
+ */
+
+:root {
+  --code-keyword: #cf222e;
+  --code-string: #0a3069;
+  --code-number: #0550ae;
+  --code-comment: #677079;
+  --code-type: #953800;
+  --code-function: #8250df;
+  --code-tag: #116329;
+  --code-attribute: #0550ae;
+}
+
+.dark {
+  --code-keyword: #ff7b72;
+  --code-string: #a5d6ff;
+  --code-number: #79c0ff;
+  --code-comment: #8b949e;
+  --code-type: #ffa657;
+  --code-function: #d2a8ff;
+  --code-tag: #7ee787;
+  --code-attribute: #79c0ff;
+}
+
+/*
+ * Three columns that fill the window under the header: the steps, the editor, the phone. Below
+ * a laptop's width they stack, and the page scrolls instead of each column.
+ */
+.learn-workspace {
+  display: grid;
+  height: calc(100dvh - 4rem);
+  grid-template-columns: minmax(18rem, 25rem) minmax(0, 1fr) minmax(19rem, 29rem);
+}
+
+.learn-steps,
+.learn-editor {
+  border-right: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 1100px) {
+  .learn-workspace {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .learn-steps,
+  .learn-editor {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .learn-editor {
+    height: 70vh;
+  }
+
+  .learn-phone {
+    height: 90vh;
+  }
+}
+
+.learn-prose {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.learn-prose pre.shiki {
+  font-size: 0.75rem;
+  padding: 0.625rem 0.75rem;
+}
+
+.learn-button {
+  display: inline-flex;
+  height: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-default);
+  padding: 0 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  transition:
+    color 150ms,
+    border-color 150ms,
+    background-color 150ms;
+}
+
+.learn-button:hover:not(:disabled) {
+  color: var(--fg-primary);
+  border-color: var(--border-strong);
+}
+
+.learn-button:disabled {
+  opacity: 0.4;
+}
+
+.learn-button-small {
+  height: 1.75rem;
+  padding: 0 0.625rem;
+  font-size: 0.75rem;
+}
+
+.learn-button-primary {
+  border-color: transparent;
+  background-color: var(--fg-primary);
+  color: var(--surface-page);
+}
+
+.learn-button-primary:hover:not(:disabled) {
+  color: var(--surface-page);
+  background-color: color-mix(in srgb, var(--fg-primary) 85%, transparent);
+}
+
+/* The phone `lesson-preview.tsx` draws: an iPhone, or a Pixel with `device-android`. */
+learn-lesson-preview .device {
+  border-radius: 60px;
+  background: #0c0c0e;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08) inset,
+    0 30px 60px -20px rgb(0 0 0 / 0.45),
+    0 0 0 1px var(--border-default);
+}
+learn-lesson-preview .device-android {
+  border-radius: 44px;
+}
+learn-lesson-preview .device-screen {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 48px;
+  background: #fff;
+}
+learn-lesson-preview .device-android .device-screen {
+  border-radius: 32px;
+}
+learn-lesson-preview .device-dark .device-screen {
+  background: #000;
+}
+learn-lesson-preview .device-status {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 5;
+  display: flex;
+  height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 34px 0 44px;
+  font:
+    600 16px/1 -apple-system,
+    system-ui,
+    sans-serif;
+  color: #000;
+  pointer-events: none;
+}
+learn-lesson-preview .device-android .device-status {
+  height: 28px;
+  padding: 0 20px;
+  font:
+    500 13px/1 Roboto,
+    system-ui,
+    sans-serif;
+}
+learn-lesson-preview .device-dark .device-status {
+  color: #fff;
+}
+learn-lesson-preview .device-status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+learn-lesson-preview .device-camera {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  z-index: 6;
+  width: 124px;
+  height: 36px;
+  border-radius: 18px;
+  background: #000;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+learn-lesson-preview .device-android .device-camera {
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+}
+learn-lesson-preview .device-home {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 5;
+  width: 136px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgb(0 0 0 / 0.8);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+learn-lesson-preview .device-android .device-home {
+  bottom: 6px;
+  width: 108px;
+  height: 4px;
+}
+learn-lesson-preview .device-dark .device-home {
+  background: rgb(255 255 255 / 0.8);
+}

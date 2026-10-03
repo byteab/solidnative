@@ -1,0 +1,13 @@
+# Navigation bar: opens by its deep link, draws no error screen, and shows what it is.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open-link.yaml
+    env:
+      PATH: header
+- assertVisible: 'Header'
+- scrollUntilVisible:
+    element: 'Starred:.*'
+    timeout: 10000
+- scroll
+- runFlow: ../../subflows/no-error-screen.yaml

@@ -1,0 +1,17 @@
+# Stories: slides move on by themselves as each progress bar's animation ends, on into the next
+# story, and closing marks what was watched as seen. Nothing here is timed: a step can take longer
+# than a slide lasts, since the bars redraw every frame, so stepping by taps is left to the unit
+# tests and this only waits for what must eventually happen.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Stories
+- tapOn: 'Kofi, new'
+- assertVisible: 'Close'
+- extendedWaitUntil:
+    visible: 'Forty miles'
+    timeout: 30000
+- tapOn: 'Close'
+- assertVisible: 'Kofi, seen'

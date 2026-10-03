@@ -1,0 +1,8 @@
+.row {
+  gap: 6px;
+}
+.label {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 600;
+}

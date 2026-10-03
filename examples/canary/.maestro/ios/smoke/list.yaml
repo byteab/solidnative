@@ -1,0 +1,10 @@
+# Virtual list: opens by its deep link, draws no error screen, and shows what it is.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open-link.yaml
+    env:
+      PATH: list
+- assertVisible: 'Virtual list'
+- scroll
+- runFlow: ../../subflows/no-error-screen.yaml

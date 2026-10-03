@@ -1,0 +1,97 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ],
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/eslint.config.mjs",
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/tsconfig.published.json",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/**/*.test.tsx",
+      "!{projectRoot}/solid-tests/**/*",
+      "!{projectRoot}/fixtures/**/*"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "lint": {
+      "cache": true,
+      "inputs": ["default", "sharedGlobals"]
+    },
+    "typecheck": {
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
+    },
+    "check-bundle": {
+      "cache": true,
+      "inputs": ["production", "^production"]
+    }
+  },
+  "release": {
+    "projects": [
+      "@solid-native/components",
+      "@solid-native/device",
+      "@solid-native/expo",
+      "@solid-native/fabric",
+      "@solid-native/icons",
+      "@solid-native/metro",
+      "@solid-native/nx",
+      "@solid-native/platform",
+      "@solid-native/router",
+      "@solid-native/tailwind",
+      "@solid-native/testing",
+      "@solid-native/web",
+      "@solid-native/template"
+    ],
+    "projectsRelationship": "fixed",
+    "releaseTag": {
+      "pattern": "v{version}"
+    },
+    "version": {
+      "currentVersionResolver": "disk",
+      "preserveLocalDependencyProtocols": true,
+      "git": {
+        "commit": false,
+        "tag": false,
+        "stageChanges": true
+      }
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "file": "{workspaceRoot}/CHANGELOG.md",
+        "createRelease": false
+      },
+      "projectChangelogs": false,
+      "git": {
+        "commit": true,
+        "tag": true,
+        "commitMessage": "Release {version}"
+      }
+    },
+    "versionPlans": true
+  },
+  "nxCloudId": "6abb5fba2c583b288bd24377"
+}

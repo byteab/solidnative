@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.published.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "@solid-native/platform/solid"
+  },
+  "include": [
+    "../src/solid.ts",
+    "../src/solid/**/*.ts",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "../src/views.ts"
+  ],
+  "exclude": []
+}

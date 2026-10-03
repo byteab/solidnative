@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.published.json",
+  "include": ["src"],
+  "exclude": ["**/*.generated.ts"]
+}

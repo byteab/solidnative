@@ -1,0 +1,36 @@
+{
+  "name": "solid-native",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "lint": "nx run-many -t lint",
+    "typecheck": "nx run-many -t typecheck",
+    "test": "nx run-many -t test",
+    "check:bundle": "nx run canary:check-bundle",
+    "affected": "nx affected -t lint typecheck test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "coverage": "node scripts/coverage.mjs --min 95",
+    "coverage:report": "node scripts/coverage.mjs --report",
+    "export": "nx run-many -t export --parallel=1"
+  },
+  "dependencies": {
+    "solid-js": "1.9.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@nx/eslint": "^23.2.1",
+    "@nx/eslint-plugin": "^23.2.1",
+    "@types/node": "^26.6.3",
+    "eslint": "^10.11.0",
+    "nx": "^23.2.1",
+    "prettier": "^3.9.9",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,88 @@
+/*
+ * Component CSS in its own file, compiled at build time - the other half of the styling story
+ * alongside Tailwind (see send.ts in the wallet example for the same split).
+ */
+
+.row {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .row {
+    background-color: #18181b;
+  }
+}
+
+.checkbox {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border-width: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* A small satisfying pop when a habit is checked off. */
+.mark {
+  animation: pop 320ms ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.body {
+  flex: 1;
+  gap: 3px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #18181b;
+}
+
+.name.done {
+  color: #a1a1aa;
+}
+
+@media (prefers-color-scheme: dark) {
+  .name {
+    color: #fafafa;
+  }
+  .name.done {
+    color: #71717a;
+  }
+}
+
+.streak {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.streak-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f97316;
+}
+
+.streak-label.muted {
+  color: #a1a1aa;
+  font-weight: 400;
+}

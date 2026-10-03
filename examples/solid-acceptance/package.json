@@ -1,0 +1,48 @@
+{
+  "name": "solid-acceptance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The starter template, extended into the Solid acceptance app: stack and tabs, a long list, motion and a form.",
+  "main": "src/main.solid.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import @solid-native/testing/register --test \"src/**/*.test.ts\"",
+    "test:worker": "node --conditions=worker --conditions=development --import @solid-native/testing/register --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@solid-native/components": "workspace:*",
+    "@solid-native/device": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/metro": "workspace:*",
+    "@solid-native/platform": "workspace:*",
+    "@solid-native/router": "workspace:*",
+    "expo": "~57.0.20",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-worklets": "0.10.1",
+    "solid-js": "1.9.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@solid-native/tailwind": "workspace:*",
+    "@solid-native/testing": "workspace:*",
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "~19.2.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3"
+  },
+  "nx": {
+    "tags": [
+      "scope:solid-acceptance",
+      "layer:app"
+    ]
+  }
+}

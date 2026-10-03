@@ -1,0 +1,19 @@
+.list {
+  height: 320px;
+  background-color: var(--card-inset);
+  border-radius: 8px;
+}
+
+.list-item {
+  color: var(--text);
+  font-size: 15px;
+  padding: 10px 12px;
+}
+
+.list-header {
+  color: var(--text-strong);
+  font-size: 15px;
+  font-weight: 700;
+  background-color: var(--card);
+  padding: 14px 12px;
+}

@@ -1,0 +1,15 @@
+# Wallet: the currency switch converts every amount, and a tapped day says what was spent.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Wallet
+- assertVisible: '£.*'
+- tapOn: 'EUR'
+- assertVisible: '€.*'
+- tapOn: 'GBP'
+- scrollUntilVisible:
+    element: 'Where it went'
+    direction: DOWN
+- assertVisible: 'Bills'

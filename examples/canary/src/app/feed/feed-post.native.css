@@ -1,0 +1,35 @@
+.post {
+  background-color: var(--card);
+  padding: 14px;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.byline {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.author {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 15px;
+}
+.photo {
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--card-inset);
+}
+.actions {
+  flex-direction: row;
+  gap: 18px;
+}
+.action {
+  padding: 6px 0;
+}
+.action-label {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+.on {
+  color: var(--accent);
+}

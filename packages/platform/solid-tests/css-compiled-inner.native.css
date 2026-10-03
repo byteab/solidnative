@@ -1,0 +1,9 @@
+:host {
+  --ink: blue;
+  font-size: 23px;
+}
+
+.label {
+  color: var(--ink);
+  opacity: 0.7;
+}

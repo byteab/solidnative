@@ -1,0 +1,12 @@
+# A native modal opens over the screen and closes again.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Modal
+- tapOn: 'open modal'
+- assertVisible: 'A native modal'
+- tapOn: 'close'
+- assertNotVisible: 'A native modal'
+- assertVisible: 'open modal'

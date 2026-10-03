@@ -1,0 +1,15 @@
+/*
+ * The app's Tailwind entry.
+ *
+ * Theme and utilities, not `tailwindcss` itself: the third thing that import brings is preflight,
+ * which is a browser reset - `html`, `::before`, `-webkit-text-size-adjust` - and means nothing
+ * here. The preset adds the platform variants Tailwind cannot infer.
+ *
+ * Scanned from the screens alone: the tests' `row-1` test IDs would otherwise generate a grid
+ * utility.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css' source(none);
+@import '@solid-native/tailwind/native.css';
+@source './app';
+@source not './app/**/*.test.ts';

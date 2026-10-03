@@ -1,0 +1,29 @@
+.screen {
+  flex: 1;
+  gap: 8px;
+  padding: 16px 20px;
+  padding-top: calc(var(--safe-area-inset-top, 0px) + 16px);
+  background-color: #f4f4f5;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.summary {
+  color: #71717a;
+}
+
+.habit {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.status {
+  color: #71717a;
+}

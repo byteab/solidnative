@@ -1,0 +1,81 @@
+{
+  "name": "@solid-native/device",
+  "version": "0.1.1",
+  "description": "Solid device services for native iOS and Android: keyboard, screen, color scheme, app state, accessibility, hardware back and deep links.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "keyboard",
+    "deep-links",
+    "accessibility"
+  ],
+  "type": "module",
+  "main": "src/solid.ts",
+  "dependencies": {
+    "@solid-native/fabric": "workspace:*"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.86.0",
+    "solid-js": "^1.9.15"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "nx": {
+    "tags": [
+      "scope:device",
+      "layer:device"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p solid-tests/tsconfig.json --noEmit",
+    "test": "pnpm run test:solid",
+    "test:solid": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/device",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/device"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "solid-js": "1.9.15",
+    "@solid-native/platform": "workspace:*"
+  },
+  "exports": {
+    ".": "./src/solid.ts",
+    "./package.json": "./package.json",
+    "./solid": "./src/solid.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid.js",
+    "types": "dist/solid.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./package.json": "./package.json",
+      "./solid": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      }
+    }
+  }
+}

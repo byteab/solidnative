@@ -1,0 +1,16 @@
+# The navigation bar: an action item that changes the page, and a title that goes large and back.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Navigation bar
+- assertVisible: 'no'
+- tapOn: 'Star this page'
+- assertVisible: 'yes'
+- tapOn: 'large title'
+- assertVisible: 'inline title'
+- tapOn: 'inline title'
+- assertVisible: 'large title'
+- tapOn: 'hide the hairline'
+- assertVisible: 'show the hairline'

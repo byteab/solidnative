@@ -1,0 +1,16 @@
+# Tabs: a native tab bar, where a tab keeps its own stack while another is shown.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Tabs
+- assertVisible: 'Library'
+- tapOn: 'Kind of Blue'
+- assertVisible: 'Kind of Blue'
+- tapOn: 'Search'
+- tapOn: 'Profile'
+- tapOn: 'Library'
+# The pushed album is still there: the tab was detached, not destroyed.
+- assertVisible: 'Kind of Blue'
+- runFlow: ../subflows/no-error-screen.yaml

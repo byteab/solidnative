@@ -1,0 +1,30 @@
+/*
+ * Open Props is tokens, not classes, so on its own it gives the corpus nothing to apply. This is
+ * the stylesheet somebody using it actually writes: a handful of components spelled entirely in
+ * its custom properties, which is where a token that cannot be read on device would show.
+ */
+.op-card {
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  background-color: var(--gray-0);
+  color: var(--gray-9);
+  box-shadow: var(--shadow-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-3);
+}
+
+.op-media {
+  aspect-ratio: var(--ratio-widescreen);
+  inline-size: var(--size-content-2);
+  border: var(--border-size-2) solid var(--indigo-7);
+}
+
+.op-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  padding-inline: var(--size-4);
+  font-weight: var(--font-weight-7);
+  letter-spacing: var(--font-letterspacing-2);
+}

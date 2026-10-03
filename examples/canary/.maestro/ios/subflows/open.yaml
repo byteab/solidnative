@@ -1,0 +1,25 @@
+# Opens one canary screen from a freshly launched release build, by its title on the home screen.
+# `SCREEN` is the title; iOS joins a row's title and blurb into one label, which the pattern allows.
+appId: dev.solidnative.canary
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: 'Solid Native'
+    timeout: 30000
+# Brought to the middle of the screen: a row scrolled up under the translucent bar counts as on
+# screen, but a tap there lands on the bar.
+- runFlow:
+    when:
+      notVisible: '${SCREEN}(, .*)?'
+    commands:
+      - scrollUntilVisible:
+          element: '${SCREEN}(, .*)?'
+          centerElement: true
+          timeout: 60000
+# A tap on a list still moving from the search would only stop it.
+- waitForAnimationToEnd
+- tapOn:
+    text: '${SCREEN}(, .*)?'
+    retryTapIfNoChange: true
+- runFlow: ../../subflows/no-error-screen.yaml

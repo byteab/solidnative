@@ -1,0 +1,1422 @@
+{
+  "catalogues": {
+    "layout": {
+      "literals": [
+        "Direction",
+        "Column is the default here, not row.",
+        "flexDirection: row",
+        "Three boxes left to right.",
+        "flexDirection: column",
+        "The default. Nothing has to ask for it.",
+        "row-reverse",
+        "Order flips, and so does which edge flex-start means.",
+        "Main axis",
+        "justifyContent, along the direction.",
+        "space-between",
+        "space-around",
+        "center",
+        "Cross axis",
+        "alignItems, across the direction.",
+        "stretch",
+        "The default: children fill the cross axis unless they say otherwise.",
+        "center",
+        "flex-end",
+        "alignSelf overrides it",
+        "The middle box opts out of the row's alignItems.",
+        "Growing and shrinking",
+        "flex: 1 shares the space",
+        "Each takes an equal share of what is left.",
+        "Different flex values",
+        "Two to one: the first takes twice the remaining space.",
+        "flexShrink is 0 here, not 1",
+        "The web shrinks by default and this does not, so a row of wide children overflows rather than squeezing. The second row asks to shrink.",
+        "Wrapping and gaps",
+        "flexWrap: wrap",
+        "rowGap and columnGap",
+        "Different spacing on each axis, with no margins involved.",
+        "Out of flow",
+        "position: absolute",
+        "Positioned against the nearest parent, which here is the grey stage.",
+        "Inset shorthand",
+        "All four edges at once: the child fills its parent with a margin.",
+        "zIndex",
+        "The magenta box is written first and still paints on top.",
+        "Sizing",
+        "aspectRatio",
+        "A width and a ratio; the height follows. Useful where an image's size is not known.",
+        "Percentages",
+        "Resolved during native layout, against the parent.",
+        "min and max",
+        "The box wants 500 wide and is capped, then floored by minHeight.",
+        "Overflow",
+        "overflow: hidden",
+        "The child is larger than the parent and is clipped, including the rounded corner."
+      ],
+      "stages": 22
+    },
+    "typography": {
+      "literals": [
+        "Size and weight",
+        "A type scale",
+        "Weights",
+        "Native maps these onto the family's real cuts; a family with no medium cut will round to the nearest it has.",
+        "Italic",
+        "Spacing",
+        "lineHeight",
+        "Left is default, right is 30. Compare the gap between wrapped lines.",
+        "letterSpacing",
+        "Alignment and truncation",
+        "textAlign",
+        "numberOfLines",
+        "Truncation happens in native layout, so the ellipsis lands where the platform would put it rather than where a JavaScript guess would.",
+        "ellipsizeMode: head",
+        "Decoration and transform",
+        "textDecorationLine",
+        "textTransform",
+        "Applied by the platform, so it follows the locale's casing rules rather than JavaScript's.",
+        "Nesting",
+        "Text inside text inherits and continues the same line.",
+        "Inherited style",
+        "The inner spans keep the outer size and only change what they name.",
+        "A view cannot be text",
+        "The pill is a view inside text, which native lays out as an inline block. It does not inherit the font.",
+        "Selection and interaction",
+        "selectable",
+        "Long-press to select. Off by default, because on native it changes what a long-press means.",
+        "A tap handler on text"
+      ],
+      "stages": 14
+    },
+    "surfaces": {
+      "literals": [
+        "Borders",
+        "Width, colour, style",
+        "One edge at a time",
+        "Per-side widths and colours, which is how a divider or a leading accent is drawn.",
+        "A hairline",
+        "The thinnest line the screen can draw. Beside the 1px rule below it, it should be visibly finer on a 2x or 3x screen.",
+        "Corners",
+        "borderRadius",
+        "Per-corner",
+        "The four corners take different radii, which is how a sheet or a chat bubble is shaped.",
+        "Depth",
+        "Shadow",
+        "iOS draws the offset, radius and opacity; Android maps it onto an elevation, so the two are close rather than identical.",
+        "opacity",
+        "Applies to the whole subtree, including text inside it.",
+        "Transforms",
+        "Drawn transformed; the layout is unchanged.",
+        "rotate",
+        "scale",
+        "translate",
+        "The gap it leaves is the space it still occupies in the layout.",
+        "Order matters",
+        "Rotate-then-translate and translate-then-rotate land in different places.",
+        "Backgrounds",
+        "A gradient",
+        "Compiled from CSS into the structure Fabric expects, not a library.",
+        "A tinted overlay",
+        "A translucent view over content, which is the ordinary way to dim something.",
+        "Feedback",
+        "Pressed state",
+        "A press changes the style through a signal; there is no CSS :active on a native view."
+      ],
+      "stages": 14
+    },
+    "css-engine": {
+      "literals": [
+        "Units",
+        "px and rem",
+        "rem is 16px, the web default. Native has no root font size to read, so one is chosen rather than guessed at.",
+        "Percentages",
+        "Resolved during native layout against the parent, not at build time.",
+        "Viewport units",
+        "vw and vh are the window, and they follow it: rotate the simulator and these change without anything re-rendering.",
+        "em, against the font size in scope",
+        "The inner box is 2em of the text around it, so it grows with the paragraph rather than with the root.",
+        "Custom properties",
+        "A token, and a rule that beats it",
+        "Both boxes read --brand. The second also carries a more specific rule, which has to win - a token is resolved late, and late is not the same as important.",
+        "Arithmetic around one",
+        "calc() and max() over a token are folded at build time into a scale, an offset and a floor, so the device never sees an expression.",
+        "Media queries",
+        "prefers-color-scheme",
+        "Switch the simulator between light and dark: this repaints with no code involved, because the engine re-resolves the cascade when the condition changes.",
+        "width",
+        "Rotate the device. The engine keeps the conditions in step through watchConditions, which an app calls once next to mount.",
+        "Motion",
+        "transition",
+        "The property is eased on the JS thread and committed per frame. Tap to move it; tap again mid-flight and it carries on from where it had got to rather than snapping back.",
+        "@keyframes",
+        "A named animation, running on repeat. Compiled to the same commits a transition makes, so nothing here is a native animation driver.",
+        "Inheritance",
+        "What crosses a boundary and what does not",
+        "Colour and font size inherit down through views to the text inside them; a border does not, because native has no notion of inheriting one."
+      ],
+      "stages": 11
+    }
+  },
+  "tailwindClasses": [
+    "screen",
+    "flex-row flex-wrap items-center gap-5 p-2",
+    "size-10 rounded-md bg-white ring-2 ring-blue-500",
+    "size-10 rounded-md bg-white text-green-600 ring-4",
+    "bg-zinc-800 p-2",
+    "size-8 rounded-md bg-zinc-800 ring-2 ring-blue-500 ring-offset-4 ring-offset-white",
+    "size-10 rounded-md bg-white ring-4 ring-rose-500 ring-inset",
+    "size-10 rounded-md bg-white shadow-lg ring-2 ring-blue-500",
+    "size-10 rounded-md bg-white shadow-lg shadow-red-500",
+    "hint",
+    "flex-row items-center gap-4",
+    "h-12 w-20 border border-zinc-400",
+    "size-6 translate-x-6 translate-y-3 bg-blue-500",
+    "h-8 w-24 border border-zinc-400",
+    "h-8 w-12 translate-x-1/2 bg-green-500",
+    "size-10 rotate-x-45 ios:skew-x-12 bg-purple-500",
+    "size-10 scale-x-50 scale-y-75 bg-amber-500",
+    "hint",
+    "flex-row flex-wrap items-start gap-4",
+    "flex-row space-x-3 border border-zinc-400",
+    "size-6 bg-sky-500",
+    "size-6 bg-sky-500",
+    "size-6 bg-sky-500",
+    "flex-row-reverse space-x-3 space-x-reverse border border-zinc-400",
+    "size-6 bg-teal-400",
+    "size-6 bg-teal-600",
+    "size-6 bg-teal-800",
+    "w-20 divide-y-2 divide-dashed divide-red-500 border border-zinc-400",
+    "h-5",
+    "h-5",
+    "h-5",
+    "flex-row divide-x-4 divide-blue-500 border border-zinc-400",
+    "size-6 bg-amber-200",
+    "size-6 bg-amber-200",
+    "hint",
+    "flex-row items-center gap-5",
+    "size-10 border-x-4 border-l-2 border-red-500 border-l-blue-500 bg-white",
+    "size-10 border-4 border-hidden border-x bg-amber-200",
+    "text-shadow-xs text-shadow-red-500",
+    "text-2xl font-bold",
+    "text-lg tabular-nums oldstyle-nums",
+    "hint",
+    "flex-row flex-wrap items-center gap-5 p-2",
+    "size-10 bg-blue-500 brightness-50",
+    "size-10 bg-blue-500 android:grayscale",
+    "size-10 bg-blue-500 android:blur-sm",
+    "size-10 bg-white android:drop-shadow-lg android:drop-shadow-red-500",
+    "h-10 w-24 bg-linear-to-r from-red-500 via-blue-500 to-green-500",
+    "hint"
+  ],
+  "pluralRules": {
+    "en-GB": {
+      "0": "other",
+      "1": "one",
+      "2": "other",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "one",
+      "-0.5": "other",
+      "0.1": "other",
+      "0.5": "other",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "other"
+    },
+    "de-DE": {
+      "0": "other",
+      "1": "one",
+      "2": "other",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "one",
+      "-0.5": "other",
+      "0.1": "other",
+      "0.5": "other",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "other"
+    },
+    "fr-FR": {
+      "0": "one",
+      "1": "one",
+      "2": "other",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "many",
+      "2000000": "many",
+      "-2000000": "many",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "one",
+      "-0.5": "one",
+      "0.1": "one",
+      "0.5": "one",
+      "1.1": "one",
+      "2.25": "other",
+      "1e+21": "many",
+      "1e-7": "one"
+    },
+    "ar-EG": {
+      "0": "zero",
+      "1": "one",
+      "2": "two",
+      "3": "few",
+      "10": "few",
+      "11": "many",
+      "99": "many",
+      "100": "other",
+      "103": "few",
+      "111": "many",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "other",
+      "-0.5": "other",
+      "0.1": "other",
+      "0.5": "other",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "other"
+    },
+    "he-IL": {
+      "0": "other",
+      "1": "one",
+      "2": "two",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "two",
+      "-1": "one",
+      "-0.5": "one",
+      "0.1": "one",
+      "0.5": "one",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "other"
+    },
+    "hi-IN": {
+      "0": "one",
+      "1": "one",
+      "2": "other",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "other",
+      "-0.5": "one",
+      "0.1": "one",
+      "0.5": "one",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "one"
+    },
+    "ja-JP": {
+      "0": "other",
+      "1": "other",
+      "2": "other",
+      "3": "other",
+      "10": "other",
+      "11": "other",
+      "99": "other",
+      "100": "other",
+      "103": "other",
+      "111": "other",
+      "1000000": "other",
+      "2000000": "other",
+      "-2000000": "other",
+      "-100": "other",
+      "-11": "other",
+      "-2": "other",
+      "-1": "other",
+      "-0.5": "other",
+      "0.1": "other",
+      "0.5": "other",
+      "1.1": "other",
+      "2.25": "other",
+      "1e+21": "other",
+      "1e-7": "other"
+    }
+  },
+  "routes": [
+    {
+      "path": "",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "feed",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "chat",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "world",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "notes",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "notes/:id",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "stories",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "stories/view",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "shop",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "shop/basket",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "shop/:id",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "settings",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "settings/:section",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "wallet",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "calendar",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "kanban",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "ride",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "player",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "player/now",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "ride/where",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "browse",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "inbox",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "orders",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "orders/:id",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "field-notes",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "stress",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "overlays",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "overlays/sheet",
+      "lazy": true,
+      "guarded": false,
+      "data": {
+        "sheet": true
+      }
+    },
+    {
+      "path": "auth/login",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "auth/code",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "account",
+      "lazy": true,
+      "guarded": true
+    },
+    {
+      "path": "account/settings",
+      "lazy": true,
+      "guarded": true,
+      "data": {
+        "settings": true
+      }
+    },
+    {
+      "path": "account/orders",
+      "lazy": true,
+      "guarded": true
+    },
+    {
+      "path": "photos",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "photos/:index",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "queue",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "search-demo",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "search-demo/:id",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects/:pid",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects/:pid/new",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects/:pid/tasks/:tid",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects/:pid/tasks/:tid/edit",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "projects/:pid/tasks/:tid/comments/:cid",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "people/:uid",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "keyboard",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "keyboard/sheet",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "application",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "primitives",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "text",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "css",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "tailwind",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "layout",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "typography",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "surfaces",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "scrolling",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "verify",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "css-engine",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "expo-ui",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "native-views",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "forms",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "gestures",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "list",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "components",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "modal",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "navigation",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "detail",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "sheet",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "header",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/header",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/item/:id",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/modal",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/broken",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/text",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/rtl",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/dates",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/defer",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "regressions/hidden-modal",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "animation",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "icons",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "device",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "native-gestures",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "worklets",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "tabs",
+      "lazy": true,
+      "guarded": false,
+      "children": [
+        {
+          "path": "",
+          "pathMatch": "full",
+          "redirectTo": "library",
+          "lazy": false,
+          "guarded": false
+        },
+        {
+          "path": "library",
+          "lazy": true,
+          "guarded": false,
+          "children": [
+            {
+              "path": "",
+              "lazy": true,
+              "guarded": false
+            },
+            {
+              "path": ":album",
+              "lazy": true,
+              "guarded": false
+            }
+          ]
+        },
+        {
+          "path": "search",
+          "lazy": true,
+          "guarded": false
+        },
+        {
+          "path": "profile",
+          "lazy": true,
+          "guarded": false
+        }
+      ]
+    },
+    {
+      "path": "expo",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "maps",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "language-model",
+      "lazy": true,
+      "guarded": false
+    },
+    {
+      "path": "dom-components",
+      "lazy": true,
+      "guarded": false
+    }
+  ],
+  "settings": {
+    "GROUPS": [
+      [
+        {
+          "id": "airplane",
+          "title": "Airplane Mode",
+          "icon": "Plane",
+          "tint": "#ff9500",
+          "toggle": "airplane"
+        },
+        {
+          "id": "wifi",
+          "title": "Wi-Fi",
+          "icon": "Wifi",
+          "tint": "#007aff",
+          "to": "wifi",
+          "keywords": "network internet"
+        },
+        {
+          "id": "bluetooth",
+          "title": "Bluetooth",
+          "icon": "Bluetooth",
+          "tint": "#007aff",
+          "to": "bluetooth"
+        },
+        {
+          "id": "battery",
+          "title": "Battery",
+          "icon": "BatteryFull",
+          "tint": "#34c759",
+          "to": "battery"
+        }
+      ],
+      [
+        {
+          "id": "notifications",
+          "title": "Notifications",
+          "icon": "Bell",
+          "tint": "#ff3b30",
+          "to": "notifications"
+        },
+        {
+          "id": "sounds",
+          "title": "Sounds & Haptics",
+          "icon": "Volume2",
+          "tint": "#ff2d55",
+          "to": "sounds"
+        },
+        {
+          "id": "focus",
+          "title": "Focus",
+          "icon": "Moon",
+          "tint": "#5856d6",
+          "to": "focus",
+          "keywords": "do not disturb"
+        }
+      ],
+      [
+        {
+          "id": "general",
+          "title": "General",
+          "icon": "Settings",
+          "tint": "#8e8e93",
+          "to": "general",
+          "keywords": "about version"
+        },
+        {
+          "id": "accessibility",
+          "title": "Accessibility",
+          "icon": "Accessibility",
+          "tint": "#0a84ff",
+          "to": "accessibility"
+        },
+        {
+          "id": "display",
+          "title": "Display & Brightness",
+          "icon": "Sun",
+          "tint": "#0a84ff",
+          "to": "display",
+          "keywords": "dark mode appearance text size bold"
+        }
+      ],
+      [
+        {
+          "id": "privacy",
+          "title": "Privacy & Security",
+          "icon": "Hand",
+          "tint": "#0a84ff",
+          "to": "privacy"
+        },
+        {
+          "id": "passcode",
+          "title": "Face ID & Passcode",
+          "icon": "Lock",
+          "tint": "#34c759",
+          "to": "passcode"
+        }
+      ]
+    ],
+    "ROWS": [
+      {
+        "id": "airplane",
+        "title": "Airplane Mode",
+        "icon": "Plane",
+        "tint": "#ff9500",
+        "toggle": "airplane"
+      },
+      {
+        "id": "wifi",
+        "title": "Wi-Fi",
+        "icon": "Wifi",
+        "tint": "#007aff",
+        "to": "wifi",
+        "keywords": "network internet"
+      },
+      {
+        "id": "bluetooth",
+        "title": "Bluetooth",
+        "icon": "Bluetooth",
+        "tint": "#007aff",
+        "to": "bluetooth"
+      },
+      {
+        "id": "battery",
+        "title": "Battery",
+        "icon": "BatteryFull",
+        "tint": "#34c759",
+        "to": "battery"
+      },
+      {
+        "id": "notifications",
+        "title": "Notifications",
+        "icon": "Bell",
+        "tint": "#ff3b30",
+        "to": "notifications"
+      },
+      {
+        "id": "sounds",
+        "title": "Sounds & Haptics",
+        "icon": "Volume2",
+        "tint": "#ff2d55",
+        "to": "sounds"
+      },
+      {
+        "id": "focus",
+        "title": "Focus",
+        "icon": "Moon",
+        "tint": "#5856d6",
+        "to": "focus",
+        "keywords": "do not disturb"
+      },
+      {
+        "id": "general",
+        "title": "General",
+        "icon": "Settings",
+        "tint": "#8e8e93",
+        "to": "general",
+        "keywords": "about version"
+      },
+      {
+        "id": "accessibility",
+        "title": "Accessibility",
+        "icon": "Accessibility",
+        "tint": "#0a84ff",
+        "to": "accessibility"
+      },
+      {
+        "id": "display",
+        "title": "Display & Brightness",
+        "icon": "Sun",
+        "tint": "#0a84ff",
+        "to": "display",
+        "keywords": "dark mode appearance text size bold"
+      },
+      {
+        "id": "privacy",
+        "title": "Privacy & Security",
+        "icon": "Hand",
+        "tint": "#0a84ff",
+        "to": "privacy"
+      },
+      {
+        "id": "passcode",
+        "title": "Face ID & Passcode",
+        "icon": "Lock",
+        "tint": "#34c759",
+        "to": "passcode"
+      }
+    ],
+    "NETWORKS": [
+      {
+        "name": "Morgan Home",
+        "strength": 3,
+        "secured": true
+      },
+      {
+        "name": "BT-Hub-7F2A",
+        "strength": 2,
+        "secured": true
+      },
+      {
+        "name": "Cafe Nero Guest",
+        "strength": 2,
+        "secured": false
+      },
+      {
+        "name": "SKY9C1D0",
+        "strength": 1,
+        "secured": true
+      }
+    ],
+    "search": {
+      "wi": [
+        {
+          "id": "wifi",
+          "title": "Wi-Fi",
+          "icon": "Wifi",
+          "tint": "#007aff",
+          "to": "wifi",
+          "keywords": "network internet"
+        }
+      ],
+      "dark mode": [
+        {
+          "id": "display",
+          "title": "Display & Brightness",
+          "icon": "Sun",
+          "tint": "#0a84ff",
+          "to": "display",
+          "keywords": "dark mode appearance text size bold"
+        }
+      ],
+      "  ": [],
+      "network internet": [
+        {
+          "id": "wifi",
+          "title": "Wi-Fi",
+          "icon": "Wifi",
+          "tint": "#007aff",
+          "to": "wifi",
+          "keywords": "network internet"
+        }
+      ],
+      "general about": [
+        {
+          "id": "general",
+          "title": "General",
+          "icon": "Settings",
+          "tint": "#8e8e93",
+          "to": "general",
+          "keywords": "about version"
+        }
+      ],
+      "NOT DISTURB": [
+        {
+          "id": "focus",
+          "title": "Focus",
+          "icon": "Moon",
+          "tint": "#5856d6",
+          "to": "focus",
+          "keywords": "do not disturb"
+        }
+      ],
+      "zebra": []
+    }
+  },
+  "wallet": {
+    "CARDS": [
+      {
+        "id": "everyday",
+        "name": "Everyday",
+        "last4": "4821",
+        "holder": "A. Morgan",
+        "tone": "#7c3aed"
+      },
+      {
+        "id": "travel",
+        "name": "Travel",
+        "last4": "0917",
+        "holder": "A. Morgan",
+        "tone": "#0d9488"
+      },
+      {
+        "id": "saver",
+        "name": "Saver",
+        "last4": "3360",
+        "holder": "A. Morgan",
+        "tone": "#e11d48"
+      }
+    ],
+    "CURRENCIES": ["GBP", "EUR", "USD", "JPY"],
+    "TRANSACTIONS": [
+      {
+        "id": "t1",
+        "merchant": "Borough Market",
+        "category": "food",
+        "amount": -1840,
+        "daysAgo": 0
+      },
+      {
+        "id": "t2",
+        "merchant": "TfL",
+        "category": "transport",
+        "amount": -290,
+        "daysAgo": 0
+      },
+      {
+        "id": "t3",
+        "merchant": "Salary",
+        "category": "income",
+        "amount": 312500,
+        "daysAgo": 1
+      },
+      {
+        "id": "t4",
+        "merchant": "Oxfam Books",
+        "category": "shopping",
+        "amount": -650,
+        "daysAgo": 1
+      },
+      {
+        "id": "t5",
+        "merchant": "Thames Water",
+        "category": "bills",
+        "amount": -3420,
+        "daysAgo": 2
+      },
+      {
+        "id": "t6",
+        "merchant": "Pret",
+        "category": "food",
+        "amount": -745,
+        "daysAgo": 2
+      },
+      {
+        "id": "t7",
+        "merchant": "Uber",
+        "category": "transport",
+        "amount": -1320,
+        "daysAgo": 3
+      },
+      {
+        "id": "t8",
+        "merchant": "Uniqlo",
+        "category": "shopping",
+        "amount": -4999,
+        "daysAgo": 4
+      },
+      {
+        "id": "t9",
+        "merchant": "Dishoom",
+        "category": "food",
+        "amount": -5260,
+        "daysAgo": 5
+      },
+      {
+        "id": "t10",
+        "merchant": "Octopus Energy",
+        "category": "bills",
+        "amount": -8900,
+        "daysAgo": 6
+      },
+      {
+        "id": "t11",
+        "merchant": "Lime",
+        "category": "transport",
+        "amount": -380,
+        "daysAgo": 6
+      }
+    ],
+    "RATES": {
+      "GBP": 1,
+      "EUR": 1.17,
+      "USD": 1.27,
+      "JPY": 188
+    },
+    "CATEGORY_NAMES": {
+      "food": "Food",
+      "transport": "Transport",
+      "shopping": "Shopping",
+      "bills": "Bills",
+      "income": "Income"
+    },
+    "CATEGORY_TONES": {
+      "food": "#f97316",
+      "transport": "#0ea5e9",
+      "shopping": "#d946ef",
+      "bills": "#64748b",
+      "income": "#16a34a"
+    },
+    "dailySpend": [9280, 5260, 4999, 1320, 4165, 650, 2130],
+    "shares": [
+      {
+        "category": "bills",
+        "pence": 12320,
+        "share": 0.4431017119838872
+      },
+      {
+        "category": "food",
+        "pence": 7845,
+        "share": 0.28215364695727235
+      },
+      {
+        "category": "shopping",
+        "pence": 5649,
+        "share": 0.20317220543806647
+      },
+      {
+        "category": "transport",
+        "pence": 1990,
+        "share": 0.07157243562077399
+      }
+    ],
+    "money": {
+      "GBP 1840": "£18.40",
+      "GBP -290": "-£2.90",
+      "GBP 0": "£0.00",
+      "GBP 824615": "£8,246.15",
+      "EUR 1840": "€21.53",
+      "EUR -290": "-€3.39",
+      "EUR 0": "€0.00",
+      "EUR 824615": "€9,648.00",
+      "USD 1840": "US$23.37",
+      "USD -290": "-US$3.68",
+      "USD 0": "US$0.00",
+      "USD 824615": "US$10,472.61",
+      "JPY 1840": "JP¥3,459",
+      "JPY -290": "-JP¥545",
+      "JPY 0": "JP¥0",
+      "JPY 824615": "JP¥1,550,276"
+    }
+  },
+  "stressRowsSha256": "fd558eca2975d98cbf11fd07b1166b05b3a23a908b88197a8433db813c9f7816",
+  "world": {
+    "LOCALES": [
+      {
+        "tag": "en-GB",
+        "name": "English",
+        "direction": "ltr",
+        "currency": "GBP",
+        "messages": {
+          "zero": "No new messages",
+          "one": "# new message",
+          "other": "# new messages"
+        }
+      },
+      {
+        "tag": "de-DE",
+        "name": "Deutsch",
+        "direction": "ltr",
+        "currency": "EUR",
+        "messages": {
+          "one": "# neue Nachricht",
+          "other": "# neue Nachrichten"
+        }
+      },
+      {
+        "tag": "fr-FR",
+        "name": "Français",
+        "direction": "ltr",
+        "currency": "EUR",
+        "messages": {
+          "one": "# nouveau message",
+          "many": "# de nouveaux messages",
+          "other": "# nouveaux messages"
+        }
+      },
+      {
+        "tag": "ar-EG",
+        "name": "العربية",
+        "direction": "rtl",
+        "currency": "EGP",
+        "messages": {
+          "zero": "لا توجد رسائل جديدة",
+          "one": "رسالة جديدة واحدة",
+          "two": "رسالتان جديدتان",
+          "few": "# رسائل جديدة",
+          "many": "# رسالة جديدة",
+          "other": "# رسالة جديدة"
+        }
+      },
+      {
+        "tag": "he-IL",
+        "name": "עברית",
+        "direction": "rtl",
+        "currency": "ILS",
+        "messages": {
+          "one": "הודעה חדשה אחת",
+          "two": "שתי הודעות חדשות",
+          "other": "# הודעות חדשות"
+        }
+      },
+      {
+        "tag": "hi-IN",
+        "name": "हिन्दी",
+        "direction": "ltr",
+        "currency": "INR",
+        "messages": {
+          "one": "# नया संदेश",
+          "other": "# नए संदेश"
+        }
+      },
+      {
+        "tag": "ja-JP",
+        "name": "日本語",
+        "direction": "ltr",
+        "currency": "JPY",
+        "messages": {
+          "other": "新着メッセージ #件"
+        }
+      }
+    ],
+    "SCRIPTS": [
+      {
+        "label": "A word longer than the line",
+        "text": "Donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft"
+      },
+      {
+        "label": "Chinese, no spaces to break at",
+        "text": "敏捷的棕色狐狸跳过了那只懒狗，然后又跑回了森林里去找它的朋友们。"
+      },
+      {
+        "label": "Thai, no spaces between words",
+        "text": "สุนัขจิ้งจอกสีน้ำตาลกระโดดข้ามสุนัขขี้เกียจ"
+      },
+      {
+        "label": "Emoji made of several",
+        "text": "👩‍👩‍👧‍👦 🏳️‍🌈 🧑🏽‍🚀 👍🏿 🇬🇧 🫶🏼"
+      },
+      {
+        "label": "Combining marks stacked up",
+        "text": "Z̷̢̛a̶̧͝l̵̨̛g̸̡͝o̴̢͠ t̷̨̕e̵̢͝x̶̧̕t̸̨͝"
+      },
+      {
+        "label": "Right to left and left to right in one line",
+        "text": "Order #1234 شكراً لك, see you at 10:30 غداً"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+.toolbar {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  min-height: 48px;
+}
+.grow {
+  flex: 1;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.current {
+  background-color: var(--card-inset);
+}
+.chip-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.pager {
+  flex: 1;
+}
+.list {
+  flex: 1;
+}

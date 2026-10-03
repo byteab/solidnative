@@ -1,0 +1,19 @@
+# Overlays: a toast above the screen, a loading cover that clears, and a toast above a sheet.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Overlays
+- tapOn: 'Show a toast'
+- assertVisible: 'Shown above the screen'
+- tapOn: 'Load for a moment'
+- extendedWaitUntil:
+    visible: 'Loaded'
+    timeout: 5000
+- tapOn: 'Open a sheet'
+- tapOn: 'Show a toast'
+# The sheet is modal to accessibility, so the toast above it is checked by how it looks.
+- assertScreenshot:
+    path: baselines/overlays-sheet-toast.png
+    thresholdPercentage: 97

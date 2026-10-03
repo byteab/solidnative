@@ -1,0 +1,47 @@
+.header {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 22px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.count {
+  font-size: 14px;
+  font-weight: 600;
+  color: #71717a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: #fafafa;
+  }
+  .count {
+    color: #a1a1aa;
+  }
+}
+
+.track {
+  height: 12px;
+  border-radius: 6px;
+  background-color: #e4e4e7;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .track {
+    background-color: #27272a;
+  }
+}
+
+.fill {
+  height: 12px;
+  border-radius: 6px;
+  background-color: #22c55e;
+  transition: width 420ms ease-out;
+}

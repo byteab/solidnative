@@ -1,0 +1,135 @@
+.u-px {
+  width: 64px;
+  height: 22px;
+  border-radius: 6px;
+  background-color: rgb(59, 110, 245);
+}
+.u-rem {
+  width: 4rem;
+  height: 22px;
+  border-radius: 6px;
+  background-color: rgb(47, 191, 159);
+}
+.u-pct {
+  width: 40%;
+  height: 22px;
+  border-radius: 6px;
+  background-color: rgb(200, 60, 160);
+}
+.u-vw {
+  width: 50vw;
+  height: 4vh;
+  border-radius: 6px;
+  background-color: rgb(59, 110, 245);
+}
+
+.em-host {
+  font-size: 18px;
+  gap: 6px;
+  padding-bottom: 8px;
+}
+.em-large {
+  font-size: 28px;
+}
+.em-text {
+  color: var(--text);
+  font-size: 1em;
+}
+.em-box {
+  width: 2em;
+  height: 12px;
+  border-radius: 4px;
+  background-color: rgb(47, 191, 159);
+}
+
+.tinted {
+  height: 26px;
+  border-radius: 6px;
+  background-color: var(--accent);
+}
+.override {
+  background-color: rgb(200, 60, 160);
+}
+.computed {
+  width: calc(var(--gap) * 8);
+  height: max(var(--gap), 20px);
+  border-radius: 6px;
+  background-color: rgb(59, 110, 245);
+}
+
+.scheme {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgb(255, 226, 150);
+}
+.scheme-label {
+  color: rgb(20, 20, 26);
+}
+@media (prefers-color-scheme: dark) {
+  .scheme {
+    background-color: rgb(50, 50, 62);
+  }
+  .scheme-label {
+    color: rgb(240, 240, 245);
+  }
+}
+
+.wide {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgb(90, 60, 140);
+}
+.wide-label {
+  color: rgb(255, 255, 255);
+}
+@media (min-width: 500px) {
+  .wide {
+    background-color: rgb(47, 191, 159);
+  }
+}
+
+.track {
+  height: 44px;
+  justify-content: center;
+}
+.slider {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgb(59, 110, 245);
+  transition: transform 400ms ease-in-out;
+}
+.slider-end {
+  transform: translateX(180px);
+}
+
+.pulse {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgb(200, 60, 160);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+}
+
+.inherits {
+  color: var(--accent);
+  font-size: 17px;
+  gap: 4px;
+  border-left-width: 3px;
+  border-left-color: rgb(59, 110, 245);
+  padding-left: 10px;
+}

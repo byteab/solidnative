@@ -1,0 +1,87 @@
+name: Docs
+
+# The documentation site on Cloudflare Pages. Production is what was last released: release.yml
+# calls this with the release tag, so the site never documents code that is not on npm yet. Every
+# pull request gets a preview of its own, linked from a comment on the pull request that each push
+# updates. Run it by hand on main to deploy production on its own: a documentation-only fix before
+# the next release, or, with a tag as `ref`, a released version again.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_call:
+    inputs:
+      ref:
+        description: The commit to build, the release tag
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The tag or commit to build (empty for the branch it runs on)
+        type: string
+        required: false
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    # A pull request from a fork has no secrets to deploy with; a draft is not ready to look at.
+    if: >-
+      github.event.pull_request.draft != true &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+
+      - uses: ./.github/actions/setup
+
+      # The build prerenders every page in a headless Chromium.
+      - run: pnpm --filter documentation exec playwright install --with-deps --only-shell chromium
+
+      # The site reads the compiler's own sources for its live previews, so it is built in the
+      # workspace rather than from published packages.
+      - run: pnpm nx build documentation
+
+      # The branch decides the kind of deployment: the production branch (main, set on the
+      # project) is the site itself, and any other is a preview at <branch>.<project>.pages.dev.
+      # Wrangler runs through npx: the Cloudflare action installs it into the workspace root,
+      # which pnpm refuses.
+      - id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_OUTPUT_FILE_DIRECTORY: ${{ runner.temp }}/wrangler
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          npx -y wrangler@4 pages deploy apps/documentation/dist --project-name=solid-native \
+            --branch="$BRANCH" --commit-hash="$SHA"
+          jq -r 'select(.type == "pages-deploy-detailed") | "url=\(.url)\nalias=\(.alias // "")"' \
+            "$WRANGLER_OUTPUT_FILE_DIRECTORY"/*.json >> "$GITHUB_OUTPUT"
+
+      - name: Link the preview from the pull request
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          URL: ${{ steps.deploy.outputs.url }}
+          ALIAS: ${{ steps.deploy.outputs.alias }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          body="**Docs preview:** ${ALIAS:-$URL}"$'\n\n'"This commit: $URL ($SHA)"$'\n\n'"<!-- docs-preview -->"
+          existing=$(gh api "repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" \
+            --jq '[.[] | select(.body | contains("<!-- docs-preview -->"))][0].id // empty')
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -f body="$body" > /dev/null
+          else
+            gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --body "$body"
+          fi

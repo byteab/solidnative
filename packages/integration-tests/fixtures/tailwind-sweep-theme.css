@@ -1,0 +1,49 @@
+/*
+ * An app's own theme, utilities and variants, in the sweep's entry beside Tailwind's: every kind of
+ * thing an app adds to Tailwind, so what it adds is swept as Tailwind's own is. Tailwind's design
+ * system lists what these generate, so each colour here is every colour utility, each spacing is
+ * every spacing utility, and each variant is tried on the variant probes.
+ */
+@theme {
+  --color-brand: oklch(0.62 0.19 255);
+  --color-brand-soft: #ff00ff80;
+  --spacing-gutter: 18px;
+  --font-display: 'Avenir Next', system-ui, sans-serif;
+  --text-huge: 3.5rem;
+  --text-huge--line-height: 1.1;
+  --radius-pill: 999px;
+  --breakpoint-3xl: 100rem;
+  --shadow-soft: 0 2px 6px rgb(0 0 0 / 0.2);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+}
+
+/* A static utility native has, and one it does not. */
+@utility content-auto {
+  content-visibility: auto;
+}
+@utility card-frame {
+  border-width: 1px;
+  border-radius: var(--radius-pill);
+  padding: var(--spacing-gutter);
+}
+
+/* A functional utility, reading the theme and a bare number. */
+@utility gutter-* {
+  padding-inline: --value(--spacing-*);
+  padding-inline: calc(var(--spacing) * --value(integer));
+}
+
+/* A variant on an ancestor class, and one on an ancestor attribute. */
+@custom-variant pocket (&:where(.pocket, .pocket *));
+@custom-variant midnight (&:where([data-theme='midnight'], [data-theme='midnight'] *));

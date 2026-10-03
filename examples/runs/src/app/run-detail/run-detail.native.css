@@ -1,0 +1,147 @@
+.screen {
+  flex: 1;
+  background-color: #f4f4f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .screen {
+    background-color: #000000;
+  }
+}
+
+.missing {
+  align-items: center;
+  justify-content: center;
+}
+
+.map {
+  height: 260px;
+}
+
+.summary {
+  flex-direction: row;
+  padding: 20px 16px;
+}
+
+.stat {
+  flex: 1;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  font-variant: tabular-nums;
+  color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .stat-value {
+    color: #fafafa;
+  }
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #a1a1aa;
+  text-transform: uppercase;
+}
+
+.section-title {
+  padding: 0 16px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #71717a;
+  text-transform: uppercase;
+}
+
+.splits {
+  margin: 0 16px 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .splits {
+    background-color: #18181b;
+  }
+}
+
+.split {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom-width: 1px;
+  border-bottom-color: #f4f4f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .split {
+    border-bottom-color: #27272a;
+  }
+}
+
+.split:last-child {
+  border-bottom-width: 0;
+}
+
+.split-index {
+  width: 32px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .split-index {
+    color: #fafafa;
+  }
+}
+
+.split-bar-track {
+  flex: 1;
+  height: 6px;
+  margin: 0 12px;
+  border-radius: 3px;
+  background-color: #f4f4f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .split-bar-track {
+    background-color: #27272a;
+  }
+}
+
+.split-bar-fill {
+  height: 6px;
+  border-radius: 3px;
+  background-color: #ff5a36;
+}
+
+.split-pace {
+  width: 56px;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant: tabular-nums;
+  text-align: right;
+  color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .split-pace {
+    color: #fafafa;
+  }
+}
+
+.export {
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}

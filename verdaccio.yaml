@@ -1,0 +1,21 @@
+# A local registry for `scripts/verify-publish.mjs`. Nothing here reaches npmjs.
+storage: ./.verdaccio/storage
+auth:
+  htpasswd:
+    file: ./.verdaccio/htpasswd
+    max_users: 10
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+packages:
+  '@solid-native/*':
+    access: $all
+    publish: $authenticated
+    # So `scripts/verify-publish.mjs` can replace the `0.0.0` an earlier run left here.
+    unpublish: $authenticated
+    # Deliberately no uplink: these have to come from here, so a package that failed to publish
+    # cannot be quietly satisfied by the real registry and pass the check anyway.
+  '**':
+    access: $all
+    proxy: npmjs
+log: { type: stdout, format: pretty, level: warn }

@@ -1,0 +1,11 @@
+# Opens one canary screen by its deep link, `canary://${PATH}`, in a freshly launched release build.
+appId: dev.solidnative.canary
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: 'Solid Native'
+    timeout: 30000
+- openLink: canary://${PATH}
+- waitForAnimationToEnd
+- runFlow: ../../subflows/no-error-screen.yaml

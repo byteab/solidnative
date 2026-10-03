@@ -1,0 +1,23 @@
+# Opens a canary link, as `openLink` does, and confirms it on iOS: a simulator asks before it hands
+# a custom scheme to an app ("Open in canary?"), the first time and not after, and waits there until
+# something answers. Android opens it straight away, so nothing is tapped there.
+#
+# `LINK` is the link, `canary://navigation` say; `SHOWS` is text on the screen it opens.
+appId: ${APP_ID || 'dev.solidnative.canary'}
+---
+- openLink: ${LINK}
+# On iOS the dialog or the screen comes first, and either can take a while on a loaded machine, so
+# the subflow waits for whichever it is, and answers the dialog if that is what came. A link that
+# opens neither fails here rather than a step later.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: 'Open|${SHOWS}'
+          timeout: 30000
+      - runFlow:
+          when:
+            visible: 'Open'
+          commands:
+            - tapOn: 'Open'

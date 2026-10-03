@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Flock",
+    "slug": "flock-example",
+    "scheme": "flock",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "dev.solidnative.flock" },
+    "android": { "package": "dev.solidnative.flock" }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "name": "@solid-native/platform",
+  "version": "0.1.1",
+  "description": "solid-native's Solid renderer: mounts a Solid application onto React Native's Fabric.",
+  "keywords": [
+    "solid",
+    "solid-js",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "renderer"
+  ],
+  "type": "module",
+  "main": "src/solid.ts",
+  "exports": {
+    ".": "./src/solid.ts",
+    "./solid": "./src/solid.ts",
+    "./solid/jsx-runtime": "./src/solid/jsx-runtime.ts",
+    "./package.json": "./package.json",
+    "./solid/dev-reload": "./src/solid/dev-reload.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid.js",
+    "types": "dist/solid.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./solid": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./solid/jsx-runtime": {
+        "types": "./dist/solid/jsx-runtime.d.ts",
+        "default": "./dist/solid/jsx-runtime.js"
+      },
+      "./package.json": "./package.json",
+      "./solid/dev-reload": {
+        "types": "./dist/solid/dev-reload.d.ts",
+        "default": "./dist/solid/dev-reload.js"
+      }
+    }
+  },
+  "dependencies": {
+    "@solid-native/fabric": "workspace:*"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.15"
+  },
+  "nx": {
+    "tags": [
+      "scope:platform",
+      "layer:adapter"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p solid-tests/tsconfig.json --noEmit && tsc -p solid-tests/compiled-tsconfig.json --noEmit && tsc -p solid-tests/css-compiled-tsconfig.json --noEmit && tsc -p solid-tests/reload-tsconfig.json --noEmit",
+    "typecheck:solid": "tsc -p solid-tests/tsconfig.json --noEmit && tsc -p solid-tests/compiled-tsconfig.json --noEmit && tsc -p solid-tests/css-compiled-tsconfig.json --noEmit && tsc -p solid-tests/reload-tsconfig.json --noEmit",
+    "test": "pnpm run test:solid",
+    "test:solid": "node --import ./solid-tests/compiled-register.mjs --import ./solid-tests/css-compiled-register.mjs --test solid-tests/*.test.ts"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/platform",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/platform"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@solid-native/metro": "workspace:*",
+    "solid-js": "1.9.15"
+  }
+}

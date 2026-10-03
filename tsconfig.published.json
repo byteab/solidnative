@@ -1,0 +1,12 @@
+{
+  "//": "The settings every published package compiles under: the strictest a new workspace starts with, such as Nx's TypeScript preset's noUnusedLocals. Typechecking the source under them keeps what the packages ship clean for any app that consumes it.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "isolatedModules": true
+  }
+}

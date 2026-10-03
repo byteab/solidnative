@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    // The root map still names `dist/index.d.ts` for device, whose Solid entry is `dist/solid.d.ts`.
+    "paths": {
+      "@solid-native/fabric": ["../fabric/dist/index.d.ts"],
+      "@solid-native/fabric/*": ["../fabric/dist/*.d.ts"],
+      "@solid-native/device": ["../device/dist/solid.d.ts"],
+      "@solid-native/device/*": ["../device/dist/*.d.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/jsdom-env.ts"]
+}

@@ -1,0 +1,73 @@
+.toolbar {
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 12px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.transcript-frame {
+  flex: 1;
+  overflow: hidden;
+}
+.transcript {
+  flex: 1;
+}
+.typing-slot {
+  min-height: 8px;
+}
+.typing {
+  padding: 6px 16px;
+}
+.history-edge {
+  padding: 16px;
+  align-items: center;
+}
+.jump {
+  position: absolute;
+  right: 16px;
+  bottom: 88px;
+  padding: 8px 14px;
+  border-radius: 18px;
+  background-color: var(--accent);
+}
+.jump-label {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+.composer {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 8px 12px;
+  padding-bottom: 8px;
+  border-top-width: 1px;
+  border-top-color: var(--line);
+  background-color: var(--screen);
+}
+.compose-field {
+  flex: 1;
+  max-height: 120px;
+  font-size: 16px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  background-color: var(--card);
+}
+.send {
+  padding: 10px 6px;
+}
+.send-label {
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 700;
+}
+.idle {
+  color: var(--text-muted);
+}

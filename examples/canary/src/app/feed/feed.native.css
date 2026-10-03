@@ -1,0 +1,56 @@
+.toolbar {
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 12px 4px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.stats {
+  padding: 0 12px 6px;
+}
+.list {
+  flex: 1;
+}
+.centre {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.footer {
+  padding: 24px;
+  align-items: center;
+  gap: 10px;
+}
+.pill {
+  position: absolute;
+  top: 64px;
+  align-self: center;
+  padding: 8px 16px;
+  border-radius: 18px;
+  background-color: var(--accent);
+}
+.pill-label {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+.toast {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 32px;
+  padding: 14px;
+  border-radius: 12px;
+  background-color: rgb(40, 40, 48);
+}
+.toast-label {
+  color: rgb(255, 255, 255);
+}

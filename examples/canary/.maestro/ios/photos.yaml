@@ -1,0 +1,14 @@
+# The photo viewer: a thumbnail opens full screen, pages sideways, and Done comes back.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Photo viewer
+- tapOn: 'Photo 1'
+- assertVisible: 'Done'
+- swipe:
+    direction: LEFT
+- assertVisible: 'Photo 2'
+- tapOn: 'Done'
+- assertVisible: 'Photos'

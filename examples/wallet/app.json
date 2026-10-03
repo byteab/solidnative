@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Wallet",
+    "slug": "wallet-example",
+    "scheme": "wallet",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "dev.solidnative.wallet" },
+    "android": { "package": "dev.solidnative.wallet" }
+  }
+}

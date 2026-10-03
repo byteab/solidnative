@@ -1,0 +1,84 @@
+/*
+ * What Tailwind does not know about a phone.
+ *
+ *   @import "tailwindcss/theme.css";
+ *   @import "tailwindcss/utilities.css";
+ *   @import "@solid-native/tailwind/native.css";
+ *
+ * `active:` needs nothing added: it lands on the `:active` the engine already tracks. Everything
+ * that is not about the input device lives in `shared.css`, which this imports - the safe-area
+ * and hairline utilities, and the platform, disabled and dark variants. What is left here is the
+ * four variants where having a pointer, or not, changes the answer.
+ *
+ * `web.css` is the counterpart, and the two files are worth reading side by side: the difference
+ * between them is the whole of what this platform is missing and what it has instead.
+ */
+@import './shared.css';
+
+/*
+ * `hover:` is the pressed state, or a real hover where there is a pointer.
+ *
+ * `:hover` is dropped with a build warning here and always will be: it is a pseudo-class the
+ * matcher has no way to answer. But a hover style and a press style answer the same design question - what does this
+ * look like while the user is engaging with it - and class strings written for the web ask it with
+ * `hover:`. Pointing the variant at `:active`, which the engine sets on the touched view and its
+ * ancestors, is what lets those strings port unedited.
+ *
+ * `data-hover` is for the one device with a pointer: an iPad with a trackpad or a mouse, which
+ * sends React Native's pointer events. Nothing sets it for you; a component that listens for
+ * those events can. `press:` and `hovered:` say one half each, for code that would rather be
+ * precise than portable.
+ */
+@custom-variant hover (&:active, &[data-hover]);
+@custom-variant press (&:active);
+@custom-variant hovered (&[data-hover]);
+
+/*
+ * `focus-visible:` is `focus:`, and both match the state attribute as well as the pseudo-class.
+ *
+ * The web distinction exists to keep a focus ring off a control someone clicked, and there is no
+ * clicking here: focus arrives from a keyboard, a remote or an assistive technology, all of which
+ * are exactly the cases the ring is for. `:focus-visible` is also dropped with a build warning,
+ * and shadcn puts one on every interactive control, so without this nothing ports.
+ *
+ * `data-focus` is there because focus lands on the control and the ring belongs on the box around
+ * it. A text field is the native view that takes focus; the border, the radius and the padding are
+ * on a view wrapping it, and that view can only know it is focused because the primitive told it.
+ * The same idea as `hovered:` matching `data-hover`.
+ */
+@custom-variant focus-visible (&:focus, &[data-focus]);
+@custom-variant focus (&:focus, &[data-focus]);
+
+/*
+ * `font-mono`, which named a font neither platform has.
+ *
+ * Tailwind's `--font-mono` is a CSS stack beginning `ui-monospace`, and this compiler takes the
+ * first family from a stack because React Native's `fontFamily` is one name, not a list. So
+ * `font-mono` reached the device as `fontFamily: "ui-monospace"` - a CSS generic keyword that
+ * exists on neither iOS nor Android - and every device silently fell back to the system font.
+ * `ui-chart`'s tooltip and three story pages ask for it and none of them got it.
+ *
+ * Three lines rather than one, because there is no single name both platforms have:
+ *
+ * `Courier New` is the floor. It is a real font on both, so `font-mono` means something even in
+ * an app that never sets a platform class on its root. That matters more than it looks: the
+ * alternative was a rule that works only if the app remembered something, which is the same
+ * silent failure in a new shape.
+ *
+ * The two platform rules then upgrade it to the font each platform actually uses for code -
+ * Menlo on iOS, and Android's own `monospace` alias, which maps to Roboto Mono. They win on
+ * specificity, two classes against one.
+ *
+ * The web keeps Tailwind's full stack: `web.css` does not import this, and a browser resolves
+ * `ui-monospace` correctly on its own.
+ */
+@theme {
+  --font-mono: 'Courier New';
+}
+
+.platform-ios .font-mono {
+  font-family: Menlo;
+}
+.platform-android .font-mono {
+  font-family: monospace;
+}

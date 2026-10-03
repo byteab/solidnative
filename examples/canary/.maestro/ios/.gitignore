@@ -1,0 +1,4 @@
+.recording/
+*.recording.yaml
+# What a failed assertScreenshot writes beside its baseline.
+baselines/*_diff.png

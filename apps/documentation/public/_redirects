@@ -1,0 +1,8 @@
+# Cloudflare Pages reads this from the root of the build output; Vite copies it there from public/.
+# Pages that moved, so links to their old addresses still land.
+/guide/shipping /guide/deployment 301
+/guide/localisation /guide/localization 301
+/guide/localisation-extraction /guide/localization-extraction 301
+/guide/localisation-loading /guide/localization-loading 301
+/guide/localisation-switching /guide/localization-switching 301
+/guide/localisation-formatting /guide/localization-formatting 301

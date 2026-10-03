@@ -1,0 +1,7 @@
+:host {
+  background-color: rgb(0, 0, 255);
+}
+.card {
+  background-color: rgb(255, 0, 0);
+  --tint: rgb(0, 0, 255);
+}

@@ -1,0 +1,5 @@
+.screen {
+  flex: 1;
+  padding: 16px 20px;
+  padding-top: calc(var(--safe-area-inset-top, 0px) + 16px);
+}

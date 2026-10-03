@@ -1,0 +1,8 @@
+.body-field {
+  min-height: 120px;
+}
+.actions {
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-end;
+}

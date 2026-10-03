@@ -1,0 +1,43 @@
+# Account asks for a sign-in first: a wrong password says so, then the right one and the code
+# sign in and land on the account.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Account
+- assertVisible: 'Sign in'
+- tapOn: 'Email.*'
+- inputText: 'ada@example.com'
+- tapOn: 'Password.*'
+- inputText: 'wrong'
+- tapOn:
+    text: 'Sign in'
+    below: 'Password.*'
+- assertVisible: 'That password is not right.'
+- tapOn: 'Password.*'
+- eraseText: 10
+- inputText: 'correct horse'
+- tapOn:
+    text: 'Sign in'
+    below: 'Password.*'
+# iOS offers to save the password it saw typed, which hides the screen from accessibility.
+- extendedWaitUntil:
+    visible: 'Not Now'
+    timeout: 5000
+    optional: true
+- tapOn:
+    text: 'Not Now'
+    optional: true
+- assertVisible: 'Enter the code'
+- tapOn: 'Code.*'
+- inputText: '000000'
+- tapOn: 'Continue'
+- assertVisible: 'That code is not right.'
+- tapOn: 'Code.*'
+- eraseText: 6
+- inputText: '123456'
+- tapOn: 'Continue'
+- assertVisible: 'Signed in as ada@example.com'
+- tapOn: 'Sign out'
+- assertVisible: 'Sign in'

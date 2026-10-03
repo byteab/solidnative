@@ -1,0 +1,85 @@
+/*
+ * The same preset, for a browser.
+ *
+ *   @import "tailwindcss/theme.css";
+ *   @import "tailwindcss/utilities.css";
+ *   @import "@solid-native/tailwind/web.css";
+ *
+ * `native.css` is the counterpart, and the two are worth reading side by side: what differs
+ * between them is the whole of what each platform has and the other does not. Everything else -
+ * the safe-area and hairline utilities, the platform, disabled and dark variants - is in
+ * `shared.css`, which both import.
+ *
+ * The point of this file is that a class string written once works on both. `hover:bg-accent` on
+ * a shadcn button means the same design intent in both places and resolves to whatever that
+ * platform can actually observe.
+ */
+@import './shared.css';
+
+/*
+ * `hover:` is a real hover here, and still the pressed state as well.
+ *
+ * The native preset points this at `:active` because a phone has no pointer, and at `data-hover`
+ * because an iPad with a trackpad does. A browser has `:hover` for real, so it leads - but the
+ * other two stay, and that is deliberate rather than defensive. `:active` is what a touchscreen
+ * laptop or a phone browser gives you, where `:hover` either never fires or fires and sticks after
+ * a tap. Keeping all three means a class string behaves the same on a desktop browser, a tablet
+ * browser and a phone, without the component knowing which it is on.
+ *
+ * `hovered:` gains `:hover`, so the precise spellings stay precise on a platform that can tell the
+ * two apart.
+ */
+@custom-variant hover (&:hover, &:active, &[data-hover]);
+@custom-variant press (&:active);
+@custom-variant hovered (&:hover, &[data-hover]);
+
+/*
+ * `focus-visible:` is the real thing here, which is the distinction native cannot make.
+ *
+ * The native preset aliases it to `:focus`, because there is no clicking on a phone: focus only
+ * ever arrives from a keyboard, a remote or an assistive technology, which are exactly the cases
+ * a ring is for. A browser has mice, so the distinction is real again and the browser's own
+ * heuristic is better than anything this could reimplement.
+ *
+ * `data-focus` is kept in both. Focus lands on the control and the ring belongs on the box around
+ * it: a text field is the element that takes focus, while the border, the radius and the padding
+ * are on a wrapper, and that wrapper can only know it is focused because the primitive told it.
+ * `:focus-within` would cover the wrapper case natively here, but not the one where the two
+ * elements are siblings rather than nested, so the attribute stays as the general answer.
+ */
+@custom-variant focus-visible (&:focus-visible, &[data-focus]);
+@custom-variant focus (&:focus, &[data-focus]);
+
+/*
+ * Where the shared utilities get their numbers from on this platform.
+ *
+ * The safe-area and hairline utilities in `shared.css` read custom properties, which is what lets
+ * them be shared at all: on native the values arrive at runtime from `<safe-area-provider>` and
+ * `deviceTokens()`, and here they come from the browser's own `env()` and a resolution query.
+ * Neither side needs to know about the other.
+ *
+ * `env()` returns nothing outside a viewport-fit page, and the fallbacks in `shared.css` are
+ * already `0px`, so a page that never opted in is unaffected rather than broken.
+ */
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+}
+
+/*
+ * A hairline is one physical pixel, which is what a native divider is and what `shared.css`'s
+ * utilities are named after. A browser's `1px` is one *CSS* pixel, so on a 2x display the line a
+ * design asked to be as thin as possible is drawn twice as thick as it should be.
+ */
+@media (min-resolution: 2dppx) {
+  :root {
+    --hairline: 0.5px;
+  }
+}
+@media (min-resolution: 3dppx) {
+  :root {
+    --hairline: 0.33px;
+  }
+}

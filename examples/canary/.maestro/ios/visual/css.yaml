@@ -1,0 +1,11 @@
+# CSS, as it draws: a screenshot compared with the one taken when it was last right.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open.yaml
+    env:
+      SCREEN: 'CSS'
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: ../baselines/visual-css.png
+    thresholdPercentage: 97

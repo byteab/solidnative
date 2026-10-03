@@ -1,0 +1,19 @@
+# The application form: applying with nothing filled in says what is missing, and a field typed
+# into clears its message.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Application form
+- scrollUntilVisible:
+    element: 'Apply'
+- tapOn: 'Apply'
+- scrollUntilVisible:
+    element: 'Enter your first name'
+    direction: UP
+- tapOn: 'First name.*'
+- inputText: 'Ada'
+- tapOn: 'Last name.*'
+- assertNotVisible: 'Enter your first name'
+- runFlow: ../subflows/no-error-screen.yaml

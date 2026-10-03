@@ -1,0 +1,1086 @@
+/*
+ * The landing page: an engineering notebook, ink on white, with a blue accent.
+ *
+ * Imported by `styles.css`, so the prerendered page is styled on its first paint. The class names
+ * are the landing page's own and nothing in the documentation uses them. The palette and fonts
+ * are Tailwind tokens in `styles.css`; everything here is the drawing and the choreography.
+ *
+ * Nothing is tied to scroll position. The hero draws itself in once on load, sections rise into
+ * place once as they arrive (`reveal.ts`), and a stroke's ink reads `--draw`. Under reduced motion
+ * everything is simply there, finished.
+ */
+/*
+ * The three faces, Latin only, served from `public/fonts` under stable names so `index.html` can
+ * preload the two the hero needs on its first paint. Each is OFL-licensed; the licence sits beside
+ * it. They came from the `@fontsource-variable` packages of the same names - to update one, copy
+ * the new `*-latin-*-normal.woff2` over it.
+ */
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  src: url(/fonts/instrument-sans-latin.woff2) format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/geist-latin.woff2) format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/geist-mono-latin.woff2) format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.landing {
+  --paper: var(--color-paper);
+  --ink: var(--color-ink);
+  --graphite: var(--color-graphite);
+  --accent: var(--color-brand);
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --sheet-shadow: 0 1px 0 rgb(0 0 0 / 0.06), 0 12px 28px -18px rgb(0 0 0 / 0.35);
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.landing ::selection {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.landing-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.02;
+  font-stretch: 96%;
+}
+
+.landing-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand-ink);
+}
+
+.landing-prose {
+  max-width: 40rem;
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Inline code in prose. In :where() so a sheet or a command strip can take the chip off. */
+.landing :where(code:not(.shiki code)) {
+  font-family: var(--font-code);
+  font-size: 0.88em;
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+/* Code that is already on a sheet or in a command strip needs no chip of its own. */
+.landing pre code,
+.landing .code-sheet code,
+.landing .landing-command code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* ------------------------------------------------------------------------------------ Ink */
+
+/*
+ * A stroke that is drawn in rather than faded in. Every path using these carries
+ * `pathLength="1"`, so a dash of 1 is the whole line whatever its real length.
+ */
+.ink-draw,
+.ink-graphite,
+.ink-accent {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--draw, 1));
+}
+
+/*
+ * A stroke in an SVG stretched to its box (`preserveAspectRatio="none"`): kept at its width with
+ * a non-scaling stroke, which a dash of `pathLength` units cannot survive - Chrome measures the
+ * dash in screen units then - so it is revealed with a wipe instead of inked with a dash.
+ */
+.ink-stretch {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: none;
+  clip-path: inset(0 calc((1 - var(--draw, 1)) * 100%) 0 0);
+}
+
+.ink-stretch.is-vertical {
+  clip-path: inset(0 0 calc((1 - var(--draw, 1)) * 100%) 0);
+}
+
+.ink-draw {
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+
+.ink-graphite {
+  stroke: var(--graphite);
+  stroke-width: 0.8;
+  opacity: 0.55;
+}
+
+.ink-accent {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+/* ------------------------------------------------------------------------------------ Actions */
+
+.landing-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  border-radius: 0.6rem;
+  font-weight: 550;
+  font-size: 0.9375rem;
+  transition:
+    transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 160ms;
+}
+
+.landing-button:active {
+  transform: translateY(1px);
+}
+
+.landing-button[data-kind='primary'] {
+  background: var(--ink);
+  color: var(--color-paper-light);
+  box-shadow: 3px 3px 0 var(--accent);
+}
+
+/*
+ * The primary button is a block standing on its blue shadow: it lifts off it under the pointer and
+ * presses down into it on a click, so the shadow is where the button goes.
+ */
+.landing-button[data-kind='primary']:hover {
+  background: color-mix(in srgb, var(--ink) 86%, var(--paper));
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--accent);
+}
+
+.landing-button[data-kind='primary']:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--accent);
+  transition-duration: 60ms;
+}
+
+.landing-button[data-kind='secondary'] {
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+}
+
+.landing-button[data-kind='secondary']:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+/*
+ * Focus: charcoal ring with a blue offset, on everything focusable. Designed, not the browser's,
+ * and never removed.
+ */
+.landing :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 6px;
+}
+
+.landing-link {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.landing-link:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* The link that ends a section: "Learn more" and an arrow that moves on towards the guide. */
+.landing-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 550;
+}
+
+.landing-more svg {
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.landing-more:hover svg {
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------------------------------ Command */
+
+.landing-command {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  border: 1.5px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+  border-radius: 0.6rem;
+  background: var(--color-paper-light);
+  padding: 0.35rem 0.35rem 0.35rem 0.9rem;
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+}
+
+.landing-command code {
+  all: unset;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.landing-command-copy {
+  flex-shrink: 0;
+  min-width: 2.75rem;
+  min-height: 2.25rem;
+  padding: 0 0.7rem;
+  border-radius: 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 550;
+}
+
+.landing-command-copy:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+/* ------------------------------------------------------------------------------------ Code sheet */
+
+.code-sheet {
+  position: relative;
+  border-radius: 0.5rem;
+  background: var(--color-paper-light);
+  box-shadow: var(--sheet-shadow);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+/* Crop marks at two corners, the way a sheet from a print shop arrives. */
+.code-sheet::before,
+.code-sheet::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: color-mix(in srgb, var(--ink) 35%, transparent);
+  pointer-events: none;
+}
+
+.code-sheet::before {
+  top: -9px;
+  left: -9px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.code-sheet::after {
+  bottom: -9px;
+  right: -9px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+.code-sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem 0.2rem;
+  font-size: 0.75rem;
+  color: var(--graphite);
+}
+
+.code-sheet-file {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.code-sheet-file::before {
+  content: '';
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 0.05rem;
+}
+
+.code-sheet-body {
+  overflow: auto;
+  padding: 0.25rem 0 1rem;
+  scrollbar-width: thin;
+}
+
+.code-sheet-body .shiki {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+  font-size: inherit;
+}
+
+.code-sheet-body .shiki code {
+  display: block;
+  min-width: max-content;
+  padding: 0 1rem;
+  font-family: var(--font-code);
+}
+
+.code-sheet-body .shiki span {
+  color: var(--shiki-light) !important;
+}
+
+/* The page follows the site's theme, so its code does too. */
+.dark .code-sheet-body .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+.code-sheet-body .line {
+  position: relative;
+  display: inline-block;
+  min-width: 100%;
+  padding-left: 0.6rem;
+  margin-left: -0.6rem;
+  border-radius: 3px;
+  transition: background-color 220ms;
+}
+
+.code-sheet-body .line.is-lit {
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.code-sheet-body .line.is-lit::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  bottom: 0.35em;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+/* ------------------------------------------------------------------------------------ Devices */
+
+/* A second capture laid over a phone's first, for a section to crossfade to. */
+.device-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/*
+ * A device shown from the top only: the part of the screen that matters, at a size its text can
+ * be read, fading out where the rest of the phone would be.
+ */
+.device-crop {
+  overflow: hidden;
+  /* Room inside the crop for the phone's edge, side buttons and shadow: only its bottom is cut. */
+  padding: 5% 5% 0;
+  aspect-ratio: 300 / calc(620 * var(--crop, 0.5));
+  mask-image: linear-gradient(to bottom, #000 72%, transparent);
+}
+
+.device-label {
+  margin-top: 0.9rem;
+  text-align: center;
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+/* ------------------------------------------------------------------------------------ Header */
+
+/*
+ * Fixed rather than sticky: iOS Safari runs its top bar into a fixed header's background, but
+ * leaves a band and a hairline above a sticky one. The host keeps the header's height in the flow.
+ */
+landing-header {
+  display: block;
+  height: calc(4rem + 1px);
+}
+
+.landing-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 220ms,
+    border-color 220ms;
+}
+
+.landing-header[data-solid='true'] {
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+}
+
+.landing-header[data-ruled='true'] {
+  background: var(--color-paper);
+  border-bottom-color: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.landing-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-paper);
+  padding: 1rem var(--gutter) 2rem;
+}
+
+/* ------------------------------------------------------------------------------------ Hero */
+
+.hero-intro .hero-rise {
+  animation: landing-rise 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+
+/*
+ * Text resolves from faint ink rather than from nothing. Beyond looking like ink settling, it
+ * keeps the text painted from the first frame: an element at opacity 0 is not a paint as far as
+ * Largest Contentful Paint is concerned, so rising from 0 pushed LCP back to when the client took
+ * over the prerendered page.
+ */
+@keyframes landing-rise {
+  from {
+    opacity: 0.22;
+    transform: translateY(0.3em);
+  }
+}
+
+/* Construction first, ink second, colour last - the sequence settles by about 1.4s. */
+.hero-intro .hero-thread {
+  animation: landing-draw 520ms cubic-bezier(0.4, 0, 0.2, 1) 760ms both;
+}
+
+.hero-intro .hero-thread.ink-stretch {
+  animation: landing-wipe 520ms cubic-bezier(0.4, 0, 0.2, 1) 760ms both;
+}
+
+@keyframes landing-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes landing-draw {
+  from {
+    --draw: 0;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes landing-uncover {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ------------------------------------------------------------------------------------ Sections */
+
+/*
+ * One entry of the features list: its number, then the feature and what it is. Full height, so
+ * the dashed rule under each entry lines up across its row.
+ */
+.contents-entry {
+  height: 100%;
+  display: grid;
+  align-content: start;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ink) 25%, transparent);
+}
+
+/* The Tailwind section's setup: three imports, the preset's own line marked. */
+.setup-body {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: var(--graphite);
+}
+
+.setup-body .is-ours {
+  color: var(--color-brand-ink);
+}
+
+/* The Expo cards' drawings: ink strokes, one blue accent. */
+.expo-glyph {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.expo-glyph .glyph-ink,
+.expo-glyph .glyph-accent {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.expo-glyph .glyph-ink {
+  stroke: var(--ink);
+}
+
+.expo-glyph .glyph-accent {
+  stroke: var(--accent);
+}
+
+.expo-glyph .glyph-accent-fill {
+  fill: var(--accent);
+}
+
+/*
+ * The hot-reload section's edit, playing on a ten-second loop: the old word is deleted and the new
+ * one typed, the file is saved, and the device crossfades from the capture before the edit to the
+ * one after it, with the count unchanged. The three steps beside it light in time. It is a loop,
+ * not a scroll effect; under reduced motion it rests on the finished edit.
+ */
+.hot-demo {
+  --hot-loop: 10s;
+}
+
+.hot-code {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  overflow-x: auto;
+  color: var(--ink);
+}
+
+.hot-dim {
+  color: var(--graphite);
+}
+
+.hot-line {
+  border-radius: 3px;
+  animation: hot-line var(--hot-loop) infinite;
+}
+
+.hot-old,
+.hot-new {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  white-space: nowrap;
+  color: var(--color-brand-ink);
+}
+
+.hot-old {
+  width: 6ch;
+  animation: hot-old var(--hot-loop) infinite;
+}
+
+.hot-new {
+  width: 0;
+  animation: hot-new var(--hot-loop) infinite;
+}
+
+.hot-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--ink);
+  animation: hot-caret 1s steps(1) infinite;
+}
+
+.hot-saved {
+  color: var(--color-go);
+  opacity: 0;
+  animation: hot-saved var(--hot-loop) infinite;
+}
+
+.hot-demo .device-shot.is-swap {
+  opacity: 0;
+  animation: hot-swap var(--hot-loop) infinite;
+}
+
+.hot-step {
+  color: var(--graphite);
+  animation: var(--hot-loop) infinite;
+}
+
+.hot-step-number {
+  border-color: currentColor;
+}
+
+.hot-step[data-step='1'] {
+  animation-name: hot-step-1;
+}
+
+.hot-step[data-step='2'] {
+  animation-name: hot-step-2;
+}
+
+.hot-step[data-step='3'] {
+  animation-name: hot-step-3;
+}
+
+@keyframes hot-old {
+  0%,
+  20% {
+    width: 6ch;
+    animation-timing-function: steps(6, end);
+  }
+  32%,
+  94% {
+    width: 0;
+  }
+  96%,
+  100% {
+    width: 6ch;
+  }
+}
+
+@keyframes hot-new {
+  0%,
+  34% {
+    width: 0;
+    animation-timing-function: steps(10, end);
+  }
+  46%,
+  94% {
+    width: 10ch;
+  }
+  96%,
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes hot-line {
+  0%,
+  47% {
+    background: transparent;
+  }
+  50% {
+    background: rgb(17 112 79 / 0.14);
+  }
+  70%,
+  100% {
+    background: transparent;
+  }
+}
+
+@keyframes hot-saved {
+  0%,
+  47% {
+    opacity: 0;
+  }
+  50%,
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hot-swap {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  56%,
+  90% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hot-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* A step reads as current, in ink, while its part of the loop plays; its number follows. */
+@keyframes hot-step-1 {
+  0%,
+  18% {
+    color: var(--ink);
+  }
+  22%,
+  100% {
+    color: var(--graphite);
+  }
+}
+
+@keyframes hot-step-2 {
+  0%,
+  18% {
+    color: var(--graphite);
+  }
+  22%,
+  48% {
+    color: var(--ink);
+  }
+  52%,
+  100% {
+    color: var(--graphite);
+  }
+}
+
+@keyframes hot-step-3 {
+  0%,
+  48% {
+    color: var(--graphite);
+  }
+  52%,
+  92% {
+    color: var(--ink);
+  }
+  96%,
+  100% {
+    color: var(--graphite);
+  }
+}
+
+/*
+ * The reveal: a block rises into place the first time it scrolls into view, once, and is then
+ * left alone - a trigger, not a scroll-linked animation. Only under `.reveal-armed`, which
+ * `reveal.ts` puts on the root once the page has booted, so the prerendered page shows
+ * everything. `--i` staggers a row's items.
+ */
+.reveal {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+.reveal-armed .reveal:not(.is-shown) {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+/* ------------------------------------------------------------------------------------ Reduced motion */
+
+/*
+ * The finished drawing, all at once: every stroke inked, nothing pinned, no tilt, and only the
+ * short opacity changes that help a reader see what changed.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .hot-demo * {
+    animation: none !important;
+  }
+
+  .hot-demo .hot-old {
+    width: 0;
+  }
+
+  .hot-demo .hot-new {
+    width: 10ch;
+  }
+
+  .hot-demo .device-shot.is-swap,
+  .hot-demo .hot-saved {
+    opacity: 1;
+  }
+
+  .hot-demo .hot-step {
+    color: var(--ink);
+  }
+
+  .landing *,
+  .landing *::before,
+  .landing *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/*
+ * The hero's three phones, fanned: the music player forward in the middle, the bank and the
+ * fitness tracker turned away behind it. Everything is a share of the fan's width, so it keeps
+ * its shape from a phone screen to a desktop one. The pointer tilts the whole fan (see
+ * `hero.ts`); nothing moves on touch or under reduced motion.
+ */
+.hero-fan {
+  --tx: 0deg;
+  --ty: 0deg;
+  position: relative;
+  aspect-ratio: 1 / 1.1;
+  width: min(100%, 40rem);
+  margin-inline: auto;
+  perspective: 1800px;
+}
+
+.hero-fan-inner {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(var(--tx)) rotateX(var(--ty));
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 4% 0 8%;
+  background:
+    radial-gradient(
+      closest-side at 50% 48%,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent
+    ),
+    radial-gradient(closest-side at 22% 40%, rgb(124 58 237 / 0.14), transparent),
+    radial-gradient(closest-side at 80% 60%, rgb(16 185 129 / 0.1), transparent);
+  filter: blur(8px);
+}
+
+.hero-phone {
+  position: absolute;
+  top: 50%;
+  width: 41%;
+  transform-origin: 50% 70%;
+}
+
+.hero-phone[data-slot='left'] {
+  left: 3%;
+  z-index: 1;
+  transform: translateY(-46%) rotate(-8deg);
+}
+
+.hero-phone[data-slot='centre'] {
+  left: 28.5%;
+  width: 43%;
+  z-index: 3;
+  transform: translateY(-53%);
+}
+
+.hero-phone[data-slot='right'] {
+  right: 3%;
+  z-index: 2;
+  transform: translateY(-43%) rotate(8deg);
+}
+
+/* On load, the phones rise into place, the centre one first. */
+.hero-intro .hero-phone {
+  animation: hero-phone-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-intro .hero-phone[data-slot='centre'] {
+  animation-delay: 0.15s;
+}
+.hero-intro .hero-phone[data-slot='left'],
+.hero-intro .hero-phone[data-slot='right'] {
+  animation-delay: 0.35s;
+}
+
+@keyframes hero-phone-in {
+  from {
+    opacity: 0;
+    translate: 0 2.5rem;
+  }
+}
+
+.hero-fan-caption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fan-inner {
+    transition: none;
+  }
+}
+
+/*
+ * Scrollbars on the page's code: thin, a translucent ink thumb on a clear track, so they follow
+ * the theme. The standard properties for Chrome and Firefox, the prefixed ones for Safari.
+ */
+.landing :is(.code-sheet-body, .setup-body, .hot-code, pre) {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink) 22%, transparent) transparent;
+}
+
+.landing :is(.code-sheet-body, .setup-body, .hot-code, pre)::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.landing :is(.code-sheet-body, .setup-body, .hot-code, pre)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.landing :is(.code-sheet-body, .setup-body, .hot-code, pre)::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 22%, transparent) padding-box;
+}
+
+.landing :is(.code-sheet-body, .setup-body, .hot-code, pre)::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ink) 38%, transparent) padding-box;
+}
+
+/* ------------------------------------------------------------------------------------ Phone */
+
+/* The phone around every capture (`phone.tsx`): metal edge, bezel, buttons, shadow. */
+landing-phone .phone {
+  position: relative;
+  padding: 3.6%;
+  border-radius: 15% / 7%;
+  background: #0b0b0d;
+  /* The metal edge: a lit rim over a dark band, then the drop shadows that lift it off the page. */
+  box-shadow:
+    0 0 0 1.5px #9a9aa2,
+    0 0 0 3.5px #2c2c31,
+    0 0 0 4.5px #5c5c63,
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 2px 3px rgb(0 0 0 / 0.25),
+    0 24px 48px -16px rgb(16 12 40 / 0.35),
+    0 60px 90px -44px rgb(16 12 40 / 0.35);
+}
+landing-phone .phone[data-platform='android'] {
+  padding: 3%;
+  border-radius: 11% / 5.2%;
+  box-shadow:
+    0 0 0 2px #1a1a1d,
+    0 0 0 3.5px #45454b,
+    inset 0 0 0 1px rgb(255 255 255 / 0.05),
+    0 2px 3px rgb(0 0 0 / 0.25),
+    0 24px 48px -16px rgb(16 12 40 / 0.35),
+    0 60px 90px -44px rgb(16 12 40 / 0.35);
+}
+landing-phone .phone-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12.5% / 5.8%;
+  background: #000;
+}
+landing-phone .phone[data-platform='android'] .phone-screen {
+  border-radius: 9% / 4.1%;
+}
+landing-phone .phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+landing-phone .phone-camera {
+  position: absolute;
+  top: 1.6%;
+  left: 50%;
+  width: 3.2%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2a2a36, #050507 70%);
+  box-shadow: 0 0 0 1.5px #111;
+}
+landing-phone .phone-button {
+  position: absolute;
+  width: 1.2%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #4a4a50, #8e8e96, #4a4a50);
+}
+landing-phone .phone-button.is-action {
+  left: -1.8%;
+  top: 15%;
+  height: 4%;
+}
+landing-phone .phone-button.is-volume-up {
+  left: -1.8%;
+  top: 22%;
+  height: 7%;
+}
+landing-phone .phone-button.is-volume-down {
+  left: -1.8%;
+  top: 31%;
+  height: 7%;
+}
+landing-phone .phone-button.is-power {
+  right: -1.8%;
+  top: 24%;
+  height: 11%;
+}
+landing-phone .phone[data-platform='android'] .phone-button.is-action,
+landing-phone .phone[data-platform='android'] .phone-button.is-volume-down {
+  display: none;
+}
+landing-phone .phone[data-platform='android'] .phone-button.is-volume-up {
+  left: auto;
+  right: -1.6%;
+  top: 30%;
+  height: 10%;
+}
+landing-phone .phone[data-platform='android'] .phone-button.is-power {
+  top: 18%;
+  height: 6%;
+}

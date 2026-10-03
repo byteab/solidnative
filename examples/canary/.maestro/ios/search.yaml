@@ -1,0 +1,14 @@
+# Search: a query in the bar narrows the catalogue as it is typed, and a scope narrows it further.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Search
+- tapOn: 'Artists, albums, songs'
+- inputText: 'nina'
+- assertVisible: 'Nina Simone.*'
+- assertNotVisible: 'Miles Davis.*'
+- tapOn: 'Artists'
+- assertVisible: 'Nina Simone.*'
+- runFlow: ../subflows/no-error-screen.yaml

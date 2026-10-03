@@ -1,0 +1,6 @@
+.probe {
+  background-color: var(--card-inset);
+  padding: 12px;
+  border-radius: 8px;
+  gap: 6px;
+}

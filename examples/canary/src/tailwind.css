@@ -1,0 +1,11 @@
+/*
+ * The canary's Tailwind entry, for the one screen that uses it: `src/app/tailwind`.
+ *
+ * Scanned there alone, so its utilities are the only ones generated. The rest of the canary
+ * styles itself with its own sheet, and a utility generated from a word elsewhere would reach
+ * every element with that class.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css' source(none);
+@import '@solid-native/tailwind/native.css';
+@source './app/tailwind';

@@ -1,0 +1,216 @@
+:host {
+  --accent: oklch(0.55 0.22 275);
+  --ink: light-dark(oklch(0.2 0.02 275), oklch(0.96 0.01 275));
+  --soft: light-dark(oklch(0.55 0.02 275), oklch(0.7 0.02 275));
+  --surface: light-dark(white, oklch(0.22 0.02 275));
+}
+.page {
+  flex: 1;
+  background-color: light-dark(oklch(0.975 0.006 275), oklch(0.15 0.02 275));
+}
+.month {
+  margin: 4px 12px 16px;
+  padding: 12px 8px 8px;
+  border-radius: 24px;
+  background-color: var(--surface);
+  box-shadow: 0 12px 30px -18px light-dark(rgba(30, 27, 75, 0.35), black);
+}
+.nav {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 8px;
+}
+.month-name {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+}
+.step {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  align-items: center;
+  justify-content: center;
+  background-color: oklch(from var(--accent) l c h / 0.1);
+}
+.step:active {
+  background-color: oklch(from var(--accent) l c h / 0.22);
+}
+.step-glyph {
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: -3px;
+}
+.weekdays,
+.week {
+  flex-direction: row;
+}
+.weekday {
+  width: calc(100% / 7);
+  text-align: center;
+  color: var(--soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+.weekday:nth-child(n + 6) {
+  color: oklch(from var(--accent) l c calc(h + 60));
+}
+.day {
+  width: calc(100% / 7);
+  align-items: center;
+  padding: 4px 0;
+}
+.day:nth-child(n + 6) .day-number {
+  color: oklch(from var(--accent) l c calc(h + 60));
+}
+.day-disc {
+  width: 38px;
+  height: 38px;
+  border-radius: 19px;
+  align-items: center;
+  justify-content: center;
+}
+.day-number {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.outside {
+  opacity: 0.3;
+}
+.today .day-disc {
+  box-shadow: 0 0 0 2px var(--accent) inset;
+}
+.today .day-number {
+  color: var(--accent);
+  font-weight: 800;
+}
+.chosen .day-disc {
+  background-image: linear-gradient(
+    140deg,
+    oklch(from var(--accent) calc(l + 0.08) c calc(h - 20)),
+    var(--accent)
+  );
+  box-shadow: 0 6px 14px -6px oklch(from var(--accent) l c h / 0.7);
+}
+.chosen .day-number,
+.chosen.today .day-number {
+  color: white;
+  font-weight: 800;
+}
+.dots {
+  flex-direction: row;
+  gap: 3px;
+  height: 6px;
+  margin-top: 3px;
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 3px;
+  background-color: var(--tone);
+}
+.day-head {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px 8px;
+}
+.day-title {
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.add {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  transition: scale 120ms ease-out;
+}
+.add:active {
+  scale: 0.94;
+}
+.add-label {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+.timeline {
+  margin: 0 12px 60px 64px;
+}
+.hour {
+  position: absolute;
+  left: -56px;
+  right: 0;
+  top: calc((var(--at) - 420) * 64px / 60 - 8px);
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.hour-label {
+  width: 44px;
+  text-align: right;
+  color: var(--soft);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.hour-line {
+  flex: 1;
+  height: 1px;
+  background-color: light-dark(rgba(30, 27, 75, 0.08), rgba(255, 255, 255, 0.08));
+}
+.event {
+  position: absolute;
+  top: calc((var(--start) - 420) * 64px / 60 + 1px);
+  height: calc((var(--end) - var(--start)) * 64px / 60 - 2px);
+  padding: 1px 8px;
+  overflow: hidden;
+  border-radius: 10px;
+  border-left-width: 3px;
+  border-color: var(--tone);
+  background-color: light-dark(
+    oklch(from var(--tone) 0.94 calc(c * 0.25) h),
+    oklch(from var(--tone) 0.3 calc(c * 0.5) h)
+  );
+}
+.event-title {
+  color: light-dark(oklch(from var(--tone) 0.35 c h), oklch(from var(--tone) 0.9 calc(c * 0.5) h));
+  font-size: 13px;
+  font-weight: 700;
+}
+.event-time {
+  color: light-dark(
+    oklch(from var(--tone) 0.5 calc(c * 0.7) h),
+    oklch(from var(--tone) 0.78 calc(c * 0.4) h)
+  );
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.draft {
+  --tone: var(--accent);
+  opacity: 0.85;
+  border-style: dashed;
+  border-width: 1.5px;
+  border-left-width: 3px;
+}
+.now {
+  position: absolute;
+  left: -6px;
+  right: 0;
+  height: 2px;
+  top: calc((var(--now) - 420) * 64px / 60 - 1px);
+  background-color: oklch(0.63 0.24 25);
+}
+.now-dot {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: oklch(0.63 0.24 25);
+}

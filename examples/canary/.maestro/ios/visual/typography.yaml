@@ -1,0 +1,11 @@
+# Typography, as it draws: a screenshot compared with the one taken when it was last right.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open.yaml
+    env:
+      SCREEN: 'Typography'
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: ../baselines/visual-typography.png
+    thresholdPercentage: 97

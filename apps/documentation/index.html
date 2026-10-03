@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The browser's own chrome follows the site's two grounds. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0b" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Version numbers and dates in the docs are not phone numbers. -->
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+    <meta name="apple-mobile-web-app-title" content="solid-native" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- The router's History API URLs, and every relative asset, resolve against this. -->
+    <base href="/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!--
+      Title and description only - a sane default for `pnpm dev`, where nothing has prerendered
+      yet, and for the instant before `src/seo.ts` runs on any served page. Canonical, Open Graph,
+      Twitter and structured data are not given static defaults here, because every one of those
+      is per-page and `seo.ts` creates its own tag for each the first time it runs; a static copy
+      here would only be a second, stale tag once it did. `build/prerender.ts` reads all of it
+      back out of a settled page - including this title and description, once `seo.ts` has
+      overwritten them - so every built page ends up with exactly one of each.
+    -->
+    <title>solid-native - Build native apps with Solid</title>
+    <meta
+      name="description"
+      content="Build iOS and Android apps with Solid, powered by Expo: Solid components rendered as real native views, with a real CSS engine, Tailwind and native navigation."
+    />
+    <!--
+      Before first paint, so a reader who chose dark does not get a white flash on every
+      navigation. The same `dark` class drives the site's own chrome tokens (`styles.css`) and every
+      live example's palette, which is why there is only one of these.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('solid-native-docs-theme');
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch {
+          /* Private browsing refuses localStorage; the system preference still applies below. */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- The docs shell is an ordinary Solid DOM application; see src/main.tsx. -->
+    <app-root></app-root>
+    <script type="module" src="./src/main.tsx"></script>
+  </body>
+</html>

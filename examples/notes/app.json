@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Notes",
+    "slug": "notes-example",
+    "scheme": "notes",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "dev.solidnative.notes" },
+    "android": { "package": "dev.solidnative.notes" }
+  }
+}

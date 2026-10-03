@@ -1,0 +1,30 @@
+# Navigation: every way a screen arrives, and the way back from each.
+appId: dev.solidnative.canary
+---
+# By its deep link: the home list is long enough that centring its row scrolls it under the bar.
+- runFlow:
+    file: subflows/open-link.yaml
+    env:
+      PATH: navigation
+# Push stacks the detail on top, with its own bar; its back button returns.
+- tapOn: 'push.*'
+- assertVisible: 'Detail'
+- tapOn: 'Back'
+- assertVisible: 'Navigation'
+# Present as a sheet, then close it.
+- tapOn: 'present as a sheet.*'
+- assertVisible: 'Presented'
+- tapOn: 'Close'
+- assertNotVisible: 'Presented'
+# Full screen has Close as its only way out.
+- tapOn: 'present full screen.*'
+- assertVisible: 'Presented'
+- tapOn: 'Close'
+- assertVisible: 'Navigation'
+# Replace supersedes this screen: back from it skips Navigation.
+- tapOn: 'replace.*'
+- assertVisible: 'Detail'
+# Navigation is gone from the stack, so the back button names the screen before it.
+- tapOn: 'Solid Native'
+- assertVisible: 'Solid Native'
+- runFlow: ../subflows/no-error-screen.yaml

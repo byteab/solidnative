@@ -1,0 +1,22 @@
+# The chat: a message sent with the keyboard up lands on top of the composer, a scroll up through
+# the transcript leaves the keyboard up, and nothing is drawn frosted over the transcript.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Chat
+- assertVisible: 'Sam replies'
+- tapOn: 'Message.*'
+- inputText: 'Hello from Maestro'
+- tapOn: 'Send'
+- assertVisible: 'Hello from Maestro'
+# Reading back through the transcript: the finger moves down, and the keyboard stays.
+- swipe:
+    start: 50%, 30%
+    end: 50%, 45%
+    duration: 600
+- assertScreenshot:
+    path: baselines/chat-after-send.png
+    thresholdPercentage: 97
+- runFlow: ../subflows/no-error-screen.yaml

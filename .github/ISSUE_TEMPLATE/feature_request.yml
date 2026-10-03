@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest something for an @solid-native/* package
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        solid-native is in alpha and its surface is still small on purpose. A request that says
+        what you're trying to build is easier to act on than one that jumps straight to an API.
+
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      description: Which @solid-native/* package this is about, if you know, e.g. @solid-native/router
+      placeholder: '@solid-native/router'
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The app-level problem, not the API you imagine solving it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What have you tried?
+      description: How you're working around this today, if anything, and where it falls short.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: An API sketch or approach, if you have one. Optional.

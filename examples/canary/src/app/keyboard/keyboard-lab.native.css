@@ -1,0 +1,25 @@
+.page {
+  flex: 1;
+}
+.section {
+  color: var(--text-strong);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+.carousel-card {
+  width: 260px;
+  align-items: stretch;
+  gap: 8px;
+}
+.dock {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-top-width: 1px;
+  border-top-color: var(--line);
+}
+.dock-field {
+  flex: 1;
+}

@@ -1,0 +1,8 @@
+# Fails on anything React Native draws in place of the app: the full-screen error of a debug
+# build, and the grey box a view with no native component behind it renders as.
+appId: ${APP_ID || 'dev.solidnative.canary'}
+---
+- assertNotVisible: '.*Unimplemented component.*'
+- assertNotVisible: 'Uncaught Error'
+- assertNotVisible: 'Render Error'
+- assertNotVisible: '.*Unable to load script.*'

@@ -1,0 +1,28 @@
+.banner {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: var(--card);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.warn {
+  background-color: var(--card-inset);
+}
+.toggle-row,
+.compose,
+.actions {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.toggle-row {
+  justify-content: space-between;
+}
+.grow {
+  flex: 1;
+}
+.note {
+  align-items: stretch;
+  gap: 8px;
+}

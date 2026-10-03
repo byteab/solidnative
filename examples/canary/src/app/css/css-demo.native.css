@@ -1,0 +1,198 @@
+:host {
+  gap: 18px;
+}
+
+.section {
+  gap: 6px;
+}
+.section-title {
+  color: var(--success);
+  font-size: 15px;
+  font-weight: 700;
+}
+.row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cap {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+text {
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* ---- selectors ---- */
+#by-id {
+  color: var(--success);
+}
+.sel .descendant {
+  color: var(--success);
+}
+.sel > .child {
+  color: var(--success);
+}
+.sel .nested .descendant-only {
+  color: var(--danger);
+}
+[data-flag] {
+  color: var(--success);
+}
+[data-kind='alpha'] {
+  color: var(--success);
+}
+[data-kind^='be'] {
+  color: var(--success);
+}
+.pick:is(.one, .two) {
+  color: var(--success);
+}
+.pick:not(.one, .two) {
+  color: var(--danger);
+}
+.pick:where(.one) {
+  font-style: italic;
+}
+
+/* ---- cascade ---- */
+.cascade {
+  color: var(--danger);
+}
+.cascade.wins {
+  color: var(--success);
+}
+.later {
+  color: var(--danger);
+}
+.later {
+  color: var(--success);
+}
+.shout {
+  color: var(--success) !important;
+}
+.shout-loser {
+  color: var(--danger);
+}
+
+/* ---- inheritance ---- */
+.inherits {
+  color: var(--success);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* ---- tokens, defined in the app's global sheet ---- */
+.token-swatch {
+  background-color: var(--accent);
+  width: 34px;
+  height: 18px;
+  border-radius: 4px;
+}
+.token-local {
+  --accent: #7fd18a;
+}
+.token-fallback {
+  color: var(--nope, #7fd18a);
+}
+
+/* ---- media queries ---- */
+.media-note {
+  color: var(--danger);
+}
+@media (min-width: 300px) {
+  .media-note {
+    color: var(--success);
+  }
+}
+@media (orientation: portrait) {
+  .portrait-only {
+    color: var(--success);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .scheme {
+    color: var(--success);
+  }
+}
+
+/* ---- pseudo-state ---- */
+.press {
+  background-color: var(--card);
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+.press:active {
+  background-color: var(--success);
+}
+.off {
+  color: var(--text-muted);
+}
+.off:disabled {
+  color: var(--danger);
+}
+.input {
+  border-width: 1px;
+  border-color: var(--card);
+  border-radius: 8px;
+  padding: 8px;
+  color: var(--text-strong);
+}
+.input:focus {
+  border-color: var(--success);
+}
+
+/* ---- units ---- */
+.u-px {
+  width: 40px;
+}
+.u-rem {
+  width: 2.5rem;
+}
+.u-pct {
+  width: 25%;
+}
+.u-em {
+  font-size: 16px;
+  width: 3em;
+}
+.u-vw {
+  width: 12vw;
+}
+.u-calc {
+  width: calc(2rem + 8px);
+}
+.bar {
+  height: 12px;
+  background-color: #3b6ef5;
+  border-radius: 3px;
+}
+
+/* ---- properties ---- */
+.panel {
+  background-color: var(--card);
+  border: 2px solid #3b6ef5;
+  border-radius: 8px;
+  padding: 8px 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+.tilted {
+  transform: rotate(-6deg) scale(0.95);
+}
+.struck {
+  text-decoration: line-through solid;
+  text-decoration-color: var(--danger);
+}
+.fonted {
+  font: bold 16px/1.4 system-ui;
+}
+.shadowed-text {
+  text-shadow: 0 1px 3px #3b6ef5;
+}
+.logical {
+  padding-inline: 12px;
+  background-color: var(--card);
+}

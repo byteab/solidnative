@@ -1,0 +1,14 @@
+# Signal forms: a required field with a minimum length validates as it is typed, dropping nothing.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Signal forms
+- tapOn: 'name'
+- inputText: 'ab'
+- assertVisible: '1 validation error\(s\)'
+- inputText: 'cdefgh'
+- assertVisible: 'valid'
+# The model preview, not the field: only the JSON has the quotes.
+- assertVisible: '.*"name":"abcdefgh".*'

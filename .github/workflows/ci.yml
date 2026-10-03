@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  # Not on a draft: it runs once the pull request is marked ready, and on every push after that.
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+# `actions: read` is what nx-set-shas needs to find the last green run on main; without it the
+# step fails with "Resource not accessible by integration" and so does the job.
+permissions:
+  contents: read
+  actions: read
+
+# A newer push to the same branch makes the older run pointless.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event.pull_request.draft != true
+    # Linux, not macOS: nothing here needs a Mac (Node, a headless Chromium and a Metro bundle), and
+    # a macOS minute bills as ten. The native builds, which do need one, are in native.yml.
+    runs-on: ubuntu-latest
+    # A few minutes when healthy; a hung step otherwise bills until GitHub's six-hour limit.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Nx compares against the merge base, which needs more than a shallow clone.
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup
+
+      # Formatting is checked for the whole tree rather than per project: it is not a task graph
+      # and it takes under a second.
+      - run: pnpm run format:check
+
+      - uses: nrwl/nx-set-shas@v5
+
+      # Through Nx, always: `@nx/enforce-module-boundaries` needs the project graph and skips
+      # itself with only a warning when there is none, which is silent enforcement of nothing.
+      # The template is a project too, so this is also what typechecks the starter.
+      - name: Lint and typecheck what changed
+        run: npx nx affected -t lint typecheck --parallel=3
+
+      # What the packages publish, so a change that only the compiler rejects fails here. The
+      # documentation is the one build that is not a package, and its own workflow builds it.
+      - name: Build the packages that changed
+        run: npx nx affected -t build --exclude=documentation
+
+      # The browser suites (`packages/web/solid-tests/*-browser.mjs`, run by `pnpm coverage`
+      # below) drive the installed Google Chrome through Playwright (`channel: 'chrome'`) and never
+      # download a browser. GitHub's Ubuntu runners ship Chrome; this fails early if one does not.
+      - name: Check Chrome is installed
+        run: google-chrome --version
+
+      # Every suite, always, rather than what changed: the floor is on the merged number, and a
+      # change in one package moves the coverage of another.
+      - name: Test, with the coverage floor
+        run: pnpm coverage
+
+      # Builds a real release bundle and asserts the compiler, the HMR wiring and the component
+      # CSS all stayed out of it. Minutes rather than seconds, so it only runs when something it
+      # depends on actually changed.
+      - name: Check the release bundle
+        run: npx nx affected -t check-bundle
+
+  # Which parts of the tree a pull request touched, for the jobs that only matter to some of it.
+  # A push to main runs everything regardless.
+  changes:
+    if: github.event.pull_request.draft != true && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      published: ${{ steps.filter.outputs.published }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            published:
+              - 'packages/**'
+              - '!packages/integration-tests/**'
+              - '!packages/**/*.md'
+              - 'template/**'
+              - 'scripts/verify-publish.mjs'
+              - 'verdaccio.yaml'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'tsconfig*.json'
+
+  # What nothing else checks: that the packages publish, find each other by version through a
+  # registry, that `create-expo-app --template` gives an app that typechecks and bundles, and that a
+  # browser app on `@solid-native/web` renders. Only when something it publishes could have changed:
+  # a pull request to the docs or the canary alone has nothing new to publish.
+  distribution:
+    needs: changes
+    if: >-
+      always() && github.event.pull_request.draft != true &&
+      (github.event_name != 'pull_request' || needs.changes.outputs.published == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup
+
+      - name: Start a local registry
+        run: |
+          npx --yes verdaccio@6 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
+          for _ in $(seq 1 60); do curl -sf localhost:4873/-/ping > /dev/null && break; sleep 1; done
+          # Publishing needs a user. Verdaccio creates one on this request and returns its token.
+          token=$(curl -sf -XPUT -H 'Content-Type: application/json' \
+            -d '{"name":"ci","password":"ci-password"}' \
+            http://localhost:4873/-/user/org.couchdb.user:ci | jq -r .token)
+          echo "//localhost:4873/:_authToken=$token" >> ~/.npmrc
+
+      # `--web` checks a browser app on `@solid-native/web` in Chromium, through this workspace's
+      # Playwright.
+      - run: pnpm --filter @solid-native/web exec playwright install --with-deps chromium
+
+      - run: node scripts/verify-publish.mjs --web
+
+      - if: failure()
+        run: cat verdaccio.log

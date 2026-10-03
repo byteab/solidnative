@@ -1,0 +1,18 @@
+# Types into a real UITextField / EditText and reads back what createForm made of it.
+#
+# The one thing the fake-Fabric tests cannot show: that characters typed on a keyboard arrive,
+# in order, through the native change events and the eventCount echo.
+appId: ${APP_ID || 'host.exp.Exponent'}
+---
+- runFlow: subflows/open-canary.yaml
+# On iOS a feature row is one accessibility element whose label joins its title and blurb; on
+# Android the title is its own text, and only what is on screen is listed. This matches both.
+- scrollUntilVisible:
+    element: 'Signal forms(, .*)?'
+- tapOn: 'Signal forms(, .*)?'
+- assertVisible: '.*validation error.*'
+# The field has no label of its own; its placeholder is what the accessibility tree reports.
+- tapOn: 'name'
+- inputText: 'Ada Lovelace'
+- assertVisible: 'valid'
+- assertVisible: '.*"name":"Ada Lovelace".*'

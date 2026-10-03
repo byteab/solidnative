@@ -1,0 +1,5 @@
+# The canary's flows against its iOS release build on a booted simulator: `pnpm e2e:ios`.
+flows:
+  - '*'
+  - 'smoke/*'
+  - 'visual/*'

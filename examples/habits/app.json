@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Habits",
+    "slug": "habits-example",
+    "scheme": "habits",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "dev.solidnative.habits" },
+    "android": { "package": "dev.solidnative.habits" }
+  }
+}

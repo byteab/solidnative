@@ -1,0 +1,188 @@
+:host {
+  --accent: oklch(0.58 0.2 265);
+  --ink: oklch(0.2 0.02 265);
+  --soft: oklch(0.55 0.02 265);
+}
+.sheet {
+  flex: 1;
+  padding: 28px 16px 16px;
+  gap: 12px;
+  background-image: linear-gradient(180deg, oklch(0.985 0.005 265), oklch(0.95 0.015 265));
+}
+.heading {
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+.field {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border-width: 1px;
+  border-color: color-mix(in oklch, var(--accent) 25%, white);
+  background-color: white;
+  font-size: 17px;
+  color: var(--ink);
+}
+.field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--accent) 22%, transparent);
+}
+.places {
+  flex: 1;
+}
+.place {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom-width: 1px;
+  border-bottom-color: color-mix(in oklch, var(--ink) 8%, transparent);
+}
+.place:active {
+  background-color: color-mix(in oklch, var(--accent) 8%, transparent);
+}
+.pin {
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in oklch, var(--accent) 35%, white),
+    var(--accent)
+  );
+}
+.pin-glyph {
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+}
+.place-text {
+  flex: 1;
+}
+.place-name {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+}
+.place-area {
+  color: var(--soft);
+  font-size: 13px;
+}
+.hint {
+  color: var(--soft);
+  font-size: 14px;
+}
+.option {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  transition: scale 160ms ease-out;
+}
+.option:active {
+  scale: 0.98;
+}
+.chosen {
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 10px 24px -10px color-mix(in oklch, var(--accent) 60%, transparent);
+}
+.option-name {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+}
+.grow {
+  flex: 1;
+}
+.price {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.request {
+  margin-top: 4px;
+  padding: 16px;
+  border-radius: 16px;
+  align-items: center;
+  background-image: linear-gradient(
+    120deg,
+    var(--accent),
+    color-mix(in oklch, var(--accent) 55%, oklch(0.7 0.2 330))
+  );
+  box-shadow: 0 14px 28px -12px color-mix(in oklch, var(--accent) 80%, transparent);
+  transition: scale 160ms cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+.request:active {
+  scale: 0.97;
+}
+.request-label {
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.quiet {
+  padding: 14px;
+  align-items: center;
+}
+.quiet-label {
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+}
+.danger-label {
+  color: oklch(0.58 0.22 25);
+  font-size: 16px;
+  font-weight: 700;
+}
+.driver {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  background-color: white;
+  box-shadow: 0 10px 26px -12px rgba(15, 23, 42, 0.3);
+}
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(135deg, oklch(0.75 0.15 60), oklch(0.6 0.2 20));
+  box-shadow:
+    0 0 0 3px white,
+    0 0 0 5px color-mix(in oklch, var(--accent) 40%, transparent);
+}
+.avatar-initial {
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+}
+.pulse {
+  width: 72px;
+  height: 72px;
+  align-self: center;
+  border-radius: 36px;
+  background-color: color-mix(in oklch, var(--accent) 20%, transparent);
+  animation: pulse 1200ms ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  from {
+    scale: 0.7;
+    opacity: 0.9;
+  }
+  to {
+    scale: 1.25;
+    opacity: 0.25;
+  }
+}

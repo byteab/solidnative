@@ -1,0 +1,47 @@
+.screen,
+.page {
+  flex: 1;
+  background-color: light-dark(oklch(0.97 0.012 90), oklch(0.16 0.01 90));
+}
+.card {
+  margin: 0 16px 12px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background-color: light-dark(white, oklch(0.23 0.01 90));
+  box-shadow: 0 6px 16px -12px light-dark(rgba(60, 40, 0, 0.4), black);
+}
+.card:first-child {
+  margin-top: 8px;
+}
+.title {
+  color: light-dark(oklch(0.22 0.02 80), oklch(0.95 0.01 90));
+  font-size: 17px;
+  font-weight: 700;
+}
+.preview {
+  margin-top: 4px;
+  color: light-dark(oklch(0.5 0.02 80), oklch(0.7 0.01 90));
+  font-size: 14px;
+  line-height: 19px;
+}
+.date {
+  color: oklch(0.62 0.15 70);
+  font-weight: 700;
+}
+.new {
+  position: absolute;
+  right: 20px;
+  bottom: 34px;
+  width: 58px;
+  height: 58px;
+  border-radius: 29px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(145deg, oklch(0.82 0.16 85), oklch(0.7 0.17 60));
+  box-shadow: 0 14px 24px -10px oklch(0.6 0.17 60 / 0.7);
+}
+.new-glyph {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}

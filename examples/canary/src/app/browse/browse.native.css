@@ -1,0 +1,39 @@
+.toolbar {
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 12px 4px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.list {
+  flex: 1;
+}
+.heading-row {
+  padding: 10px 16px 6px;
+  background-color: var(--screen);
+}
+.section {
+  color: var(--text-strong);
+  font-size: 20px;
+  font-weight: 700;
+}
+.pill {
+  position: absolute;
+  bottom: 32px;
+  align-self: center;
+  padding: 8px 18px;
+  border-radius: 18px;
+  background-color: var(--accent);
+}
+.pill-label {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}

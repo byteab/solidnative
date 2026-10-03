@@ -1,0 +1,28 @@
+.screen {
+  flex: 1;
+  justify-content: center;
+  padding: 32px;
+  background-image: linear-gradient(135deg, #4f46e5, #c026d3);
+}
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.lede {
+  margin-top: 12px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.button {
+  margin-top: 40px;
+  padding: 16px;
+  border-radius: 999px;
+  background-color: #ffffff;
+}
+.label {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4338ca;
+}

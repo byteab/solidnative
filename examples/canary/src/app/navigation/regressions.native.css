@@ -1,0 +1,24 @@
+.rtl {
+  direction: rtl;
+}
+.row {
+  flex-direction: row;
+  gap: 8px;
+}
+.box {
+  padding: 8px;
+  background-color: #ddeeff;
+}
+.line {
+  margin-top: 8px;
+  background-color: #eeeeee;
+}
+.start {
+  text-align: start;
+}
+.end {
+  text-align: end;
+}
+.left {
+  text-align: left;
+}

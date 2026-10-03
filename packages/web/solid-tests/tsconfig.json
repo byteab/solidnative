@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.published.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "module": "preserve",
+    "moduleResolution": "bundler"
+  },
+  "include": ["./**/*.ts", "./**/*.tsx", "../src/solid/**/*.ts"],
+  "exclude": []
+}

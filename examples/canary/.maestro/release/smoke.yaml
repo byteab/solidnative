@@ -1,0 +1,85 @@
+# Does the built app start, and reach a second screen? CI runs this against the release build it
+# has just compiled, so a crash at launch fails the pull request rather than reaching a user.
+#
+# It launches the installed app itself, not Expo Go: Expo Go carries its own native modules, so a
+# module the app forgot to depend on works there and nowhere else. Run it against a release build
+# (`pnpm --filter canary release:android`), which needs no Metro:
+#
+#     maestro test examples/canary/.maestro/release
+#
+# A release build that throws at startup closes, and nothing below is ever visible. A debug build
+# shows the error screen instead, which the assertNotVisible lines catch. Either way it fails.
+appId: ${APP_ID || 'dev.solidnative.canary'}
+---
+- launchApp:
+    clearState: true
+    stopApp: true
+- extendedWaitUntil:
+    visible: 'Solid Native'
+    timeout: 30000
+- runFlow: ../subflows/no-error-screen.yaml
+
+# The native stack, from react-native-screens: push a screen and pop it with its header item.
+# By deep link: the home list is longer than a scroll reliably reaches.
+- runFlow:
+    file: ../subflows/follow-link.yaml
+    env:
+      LINK: canary://navigation
+      SHOWS: 'push.*'
+- extendedWaitUntil:
+    visible: 'push.*'
+    timeout: 30000
+- tapOn:
+    text: 'push.*'
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: 'Detail'
+    timeout: 15000
+- tapOn:
+    text: 'Done'
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: 'reset to home.*'
+    timeout: 15000
+- tapOn:
+    text: 'reset to home.*'
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: 'Solid Native'
+    timeout: 15000
+- runFlow: ../subflows/no-error-screen.yaml
+
+# <safe-area-view>, from react-native-safe-area-context: a native module an app has to depend on
+# itself, and the one a generated app once crashed on. The search tab's content sits inside one.
+- runFlow:
+    file: ../subflows/follow-link.yaml
+    env:
+      LINK: canary://tabs
+      SHOWS: 'Library'
+# Each step waits for what it acts on, and a tap that changed nothing is tried again: a CI
+# simulator under load has taken half a minute to open a link, and a tap on a tab bar that was
+# still settling switched nothing.
+- extendedWaitUntil:
+    visible: 'Library'
+    timeout: 30000
+- tapOn:
+    text: 'Search'
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: 'Type something, then switch tabs'
+    timeout: 15000
+- runFlow: ../subflows/no-error-screen.yaml
+
+# Tailwind utilities that combine on one element, among them an Android-only drop shadow with a
+# colour class: a value native refuses closes a release build here, and the hint is never shown.
+# The first hint, which is on screen on the smallest phone: the whole screen renders at once, so a
+# refused value further down closes the app just the same.
+- runFlow:
+    file: ../subflows/follow-link.yaml
+    env:
+      LINK: canary://tailwind
+      SHOWS: 'Rings: a colour.*'
+- extendedWaitUntil:
+    visible: 'Rings: a colour.*'
+    timeout: 30000
+- runFlow: ../subflows/no-error-screen.yaml

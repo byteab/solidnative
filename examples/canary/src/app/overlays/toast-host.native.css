@@ -1,0 +1,22 @@
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.toast {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 48px;
+  padding: 14px;
+  border-radius: 12px;
+  background-color: rgb(40, 40, 48);
+}
+.toast-label {
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,16 @@
+# Everywhere: the stepper changes every locale's plural, and a save is said.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Everywhere
+- assertVisible: '3 new messages'
+- tapOn: 'More'
+- assertVisible: '4 new messages'
+- assertVisible: '٤ رسائل جديدة'
+- scrollUntilVisible:
+    element: 'Save draft'
+    direction: DOWN
+- tapOn: 'Save draft'
+- assertVisible: 'Saved once'

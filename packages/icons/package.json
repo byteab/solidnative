@@ -1,0 +1,76 @@
+{
+  "name": "@solid-native/icons",
+  "version": "0.1.1",
+  "description": "SVG icon strings, such as lucide-static, rendered as native react-native-svg shapes from Solid.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "icons",
+    "lucide",
+    "svg"
+  ],
+  "type": "module",
+  "main": "src/solid.ts",
+  "dependencies": {
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/platform": "workspace:*",
+    "@solid-native/components": "workspace:*"
+  },
+  "peerDependencies": {
+    "react-native-svg": ">=15",
+    "solid-js": "^1.9.15"
+  },
+  "nx": {
+    "tags": [
+      "scope:icons",
+      "layer:view-extension"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p solid-tests/tsconfig.json --noEmit",
+    "test": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/icons",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/icons"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "solid-js": "1.9.15"
+  },
+  "exports": {
+    ".": "./src/solid.ts",
+    "./package.json": "./package.json",
+    "./solid": "./src/solid.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid.js",
+    "types": "dist/solid.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./package.json": "./package.json",
+      "./solid": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      }
+    }
+  }
+}

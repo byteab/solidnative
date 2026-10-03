@@ -1,0 +1,13 @@
+# Keyboard lab: opens by its deep link, draws no error screen, and shows what it is.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open-link.yaml
+    env:
+      PATH: keyboard
+- assertVisible: 'Keyboard'
+- scrollUntilVisible:
+    element: 'Edit a note in a sheet.*'
+    timeout: 10000
+- scroll
+- runFlow: ../../subflows/no-error-screen.yaml

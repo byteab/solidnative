@@ -1,0 +1,25 @@
+# Mail on iOS: a row swipes with the system's own actions, and Archive moves the message.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Mail
+- assertVisible: 'Inbox \(103\)'
+- swipe:
+    from: 'Ada, Lunch on Friday\? 0.*'
+    direction: LEFT
+- tapOn: 'Archive'
+- assertVisible: 'Archive \(18\)'
+- assertVisible: 'Inbox \(102\)'
+# Delete, from the same swipe, once the archived row has gone.
+- waitForAnimationToEnd
+- swipe:
+    from: 'Grace, The quarterly numbers 1.*'
+    direction: LEFT
+- tapOn: 'Delete'
+- assertVisible: 'Inbox \(101\)'
+- assertNotVisible: 'Grace, The quarterly numbers 1.*'
+# The chips change folder.
+- tapOn: 'Archive \(18\)'
+- assertVisible: 'Ada, Lunch on Friday\? 0.*'

@@ -1,0 +1,71 @@
+.track {
+  height: 64px;
+  justify-content: center;
+  background-color: var(--card-inset);
+  border-radius: 12px;
+}
+
+.swatches {
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.swatch {
+  width: 80px;
+  height: 60px;
+  border-radius: 12px;
+  background-color: rgb(59, 110, 245);
+  opacity: 1;
+  transition:
+    background-color 500ms ease-in-out,
+    opacity 500ms linear;
+}
+
+/* A second one whose width transitions too, to show layout easing rather than just paint. */
+.swatch.wide {
+  transition: all 500ms ease-out;
+}
+
+.swatch.on {
+  background-color: rgb(240, 90, 60);
+  opacity: 0.35;
+}
+
+.swatch.wide.on {
+  width: 160px;
+}
+
+.leaver {
+  padding: 16px;
+  border-radius: 10px;
+  align-items: center;
+  background-color: var(--card);
+  opacity: 1;
+  transition: opacity 450ms ease-in;
+}
+
+/* Presence leave holds the element in the tree until this transition ends. */
+.leaver.leaving {
+  opacity: 0;
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+     * Presence enter needs an animation, not a transition: Presence adds the enter class after the
+     * element has already committed once, so a transition would have nothing to move from, while
+     * an animation plays from its own first frame.
+     */
+.leaver.arriving {
+  animation: arrive 400ms ease-out;
+}

@@ -1,0 +1,21 @@
+# Notes: a new note, a shortcut that makes a checklist, return carrying it on, and reading mode.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Notes
+- tapOn: 'New note'
+- tapOn: 'Title'
+- inputText: 'Groceries'
+- tapOn: 'Paragraph 1.*'
+- inputText: '[] Milk'
+# The shortcut made a checklist item, and return carries the list on.
+- assertVisible: 'Checklist 1.*'
+- pressKey: Enter
+- assertVisible: 'Checklist 2.*'
+- inputText: 'Eggs'
+- tapOn: 'Done'
+- assertVisible: 'Milk'
+- assertVisible: 'Eggs'
+- takeScreenshot: notes-read

@@ -1,0 +1,116 @@
+.screen {
+  flex: 1;
+  background-color: #f4f4f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .screen {
+    background-color: #000000;
+  }
+}
+
+.missing {
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  padding: 20px;
+  gap: 24px;
+}
+
+.header-button {
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.streak-card {
+  align-items: center;
+  gap: 4px;
+  padding: 28px 16px;
+  border-radius: 24px;
+}
+
+.streak-count {
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.streak-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-title {
+    color: #fafafa;
+  }
+}
+
+.grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cell {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background-color: #e4e4e7;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cell {
+    background-color: #27272a;
+  }
+}
+
+.cell.today {
+  border-width: 2px;
+  border-color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cell.today {
+    border-color: #fafafa;
+  }
+}
+
+.delete {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .delete {
+    background-color: #18181b;
+  }
+}
+
+.delete-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e11d48;
+}
+
+.empty-body {
+  color: #71717a;
+}

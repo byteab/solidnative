@@ -1,0 +1,51 @@
+{
+  "name": "flock-example",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/main.solid.ts",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "export": "expo export --platform ios --platform android --output-dir dist"
+  },
+  "dependencies": {
+    "@expo/ui": "~57.0.16",
+    "@solid-native/components": "workspace:*",
+    "@solid-native/device": "workspace:*",
+    "@solid-native/expo": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/icons": "workspace:*",
+    "@solid-native/platform": "workspace:*",
+    "@solid-native/router": "workspace:*",
+    "expo": "~57.0.20",
+    "expo-glass-effect": "~57.0.4",
+    "expo-haptics": "~57.0.2",
+    "expo-modules-core": "~57.0.15",
+    "expo-symbols": "~57.0.3",
+    "expo-system-ui": "~57.0.4",
+    "lucide-static": "^1.48.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "solid-js": "1.9.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@solid-native/metro": "workspace:*",
+    "@solid-native/tailwind": "workspace:*",
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/react": "~19.2.4",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3"
+  },
+  "nx": {
+    "tags": [
+      "scope:flock-example",
+      "layer:app"
+    ]
+  }
+}

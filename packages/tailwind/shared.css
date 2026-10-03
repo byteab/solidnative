@@ -1,0 +1,203 @@
+/*
+ * The half of the preset that is the same wherever it runs.
+ *
+ * Split out when the web host arrived, because most of this file never depended on the platform
+ * in the first place: the safe-area and hairline utilities read custom properties, so all that
+ * changes between a phone and a browser is who sets those properties, and the platform, disabled
+ * and dark variants are class and attribute selectors that mean the same thing anywhere.
+ *
+ * What genuinely differs lives in `native.css` and `web.css`, which each import this and then add
+ * their own answers for `hover:`, `press:`, `hovered:` and `focus-visible:`. Those four are where
+ * the two platforms actually disagree, and the disagreement is real rather than cosmetic: one has
+ * a pointer and the other mostly does not.
+ *
+ * Not imported directly by an app. Import `native.css` or `web.css`.
+ */
+
+/*
+ * The platform, which Tailwind cannot infer. Put the class on the root of the app -
+ *
+ *   <view [class]="'platform-' + platform" style="flex: 1">
+ *
+ * with `platform` from `nativePlatform()` on native, or `platform-web` on the web, and `ios:`,
+ * `android:` and `web:` all work everywhere beneath it. A variant whose class is never present
+ * compiles and never matches, which is exactly what a shared class string wants: `ios:pt-2` on a
+ * web page is not an error, it is simply not an iPhone.
+ *
+ * Written as `(.platform-ios &)` rather than Tailwind's usual `(&:where(.platform-ios *))`, which
+ * puts a combinator inside `:where()`; the native compiler refuses that, and a plain descendant
+ * selector says the same thing in a form both engines have always matched.
+ */
+@custom-variant ios (.platform-ios &);
+@custom-variant android (.platform-android &);
+@custom-variant web (.platform-web &);
+/** Either of the two native platforms, for a rule that is about not being a browser. */
+@custom-variant native (.platform-ios &, .platform-android &);
+
+/*
+ * `disabled:` follows the state attribute, not the pseudo-class.
+ *
+ * `:disabled` compiles to a test for a `disabled` prop on the node, and there is never one: a
+ * primitive's `disabled` is a component prop, consumed by the component, so it reaches the
+ * accessibility state and nothing else. `data-disabled` is what a primitive publishes, and both
+ * selectors are kept so a host primitive that really does carry the prop still matches.
+ */
+@custom-variant disabled (&[data-disabled], &:disabled);
+
+/*
+ * `dark:` follows a class, seeded from the OS.
+ *
+ * Tailwind's own `dark:` is `@media (prefers-color-scheme: dark)`, which the engine answers and
+ * keeps in step with the system. That is one variant short of what a theme needs: a design system
+ * ships its dark palette as `.dark { --background: ... }`, and an app wants a switcher that can
+ * disagree with the OS. A class does both - put `dark` on the root and everything beneath it
+ * flips, whatever the system thinks.
+ *
+ * Bind it from `ColorScheme` and the default behaviour is unchanged:
+ *
+ *   <view [class]="scheme.colorScheme()" style="flex: 1">
+ *
+ * `.dark &` rather than `&:is(.dark *)`, for the same reason as the platform variants above: the
+ * compiler refuses a combinator inside `:is()`, and a descendant selector says it plainly.
+ */
+@custom-variant dark (.dark &);
+
+/*
+ * The safe area, as utilities.
+ *
+ * `pb-safe` is the inset on its own; `pb-safe-4` is the inset plus the padding the design wanted
+ * anyway, which is what a layout above the home indicator almost always means; `min-pb-safe-4` is
+ * whichever of the two is larger, for a design that already had a padding and only needs it to
+ * grow on a device with an indicator.
+ *
+ * The values arrive at runtime, from `<safe-area-provider>`, as custom properties on the root -
+ * so they change on rotation without a rebuild, and a `:root` rule in the app's own sheet still
+ * overrides them. `env()` is the same idea on the web; this is not spelt `env()` because there is
+ * no CSS parser on device, and a custom property is something the cascade already carries.
+ */
+
+@utility p-safe {
+  padding-top: var(--safe-area-inset-top, 0px);
+  padding-right: var(--safe-area-inset-right, 0px);
+  padding-bottom: var(--safe-area-inset-bottom, 0px);
+  padding-left: var(--safe-area-inset-left, 0px);
+}
+@utility px-safe {
+  padding-right: var(--safe-area-inset-right, 0px);
+  padding-left: var(--safe-area-inset-left, 0px);
+}
+@utility py-safe {
+  padding-top: var(--safe-area-inset-top, 0px);
+  padding-bottom: var(--safe-area-inset-bottom, 0px);
+}
+@utility pt-safe {
+  padding-top: var(--safe-area-inset-top, 0px);
+}
+@utility pr-safe {
+  padding-right: var(--safe-area-inset-right, 0px);
+}
+@utility pb-safe {
+  padding-bottom: var(--safe-area-inset-bottom, 0px);
+}
+@utility pl-safe {
+  padding-left: var(--safe-area-inset-left, 0px);
+}
+
+@utility mt-safe {
+  margin-top: var(--safe-area-inset-top, 0px);
+}
+@utility mr-safe {
+  margin-right: var(--safe-area-inset-right, 0px);
+}
+@utility mb-safe {
+  margin-bottom: var(--safe-area-inset-bottom, 0px);
+}
+@utility ml-safe {
+  margin-left: var(--safe-area-inset-left, 0px);
+}
+
+/* The inset, plus a step off the spacing scale. */
+@utility pt-safe-* {
+  padding-top: calc(var(--safe-area-inset-top, 0px) + --spacing(--value(integer)));
+}
+@utility pb-safe-* {
+  padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + --spacing(--value(integer)));
+}
+@utility mt-safe-* {
+  margin-top: calc(var(--safe-area-inset-top, 0px) + --spacing(--value(integer)));
+}
+@utility mb-safe-* {
+  margin-bottom: calc(var(--safe-area-inset-bottom, 0px) + --spacing(--value(integer)));
+}
+
+/* Whichever is larger: the inset, or the step. */
+@utility min-pt-safe-* {
+  padding-top: max(var(--safe-area-inset-top, 0px), --spacing(--value(integer)));
+}
+@utility min-pb-safe-* {
+  padding-bottom: max(var(--safe-area-inset-bottom, 0px), --spacing(--value(integer)));
+}
+
+/*
+ * The hairline: the thinnest line the screen can draw.
+ *
+ * Tailwind's `border` is 1px, which is what a browser means by a thin line and what a 3x phone
+ * draws as three physical pixels. A native divider is one physical pixel - a third of a point -
+ * so `border-b-hairline` is the class a list separator wants. The number comes from React Native
+ * at startup, through `deviceTokens()`, and the 1px fallback is what a screen with no answer
+ * would have drawn anyway.
+ *
+ * `border-style: solid` alongside the width, and it is not decoration. React Native has no such
+ * property - a border width alone draws a line - but CSS defaults `border-style` to `none`, and a
+ * width with no style computes to `0px`. Tailwind's own `border` utilities carry a style of their
+ * own, and its preflight sets one globally, but this project deliberately does not import
+ * preflight because it is a browser reset that means nothing on a phone. So these utilities, and
+ * only these, drew nothing at all on the web: every table row separator, every accordion divider,
+ * every sheet and drawer edge, invisible, with the class present and correct on the element.
+ *
+ * The shorthand rather than `border-bottom-style`, because the compiler maps the shorthand and
+ * refuses the longhand. That is also why `border-width: 0` comes with it: a style of `solid` on
+ * all four sides makes the three this utility does not name fall back to CSS's initial `medium`,
+ * which is 3px, so a one-sided hairline came out as a box with three fat edges. Zero them, then
+ * name the one.
+ */
+
+/*
+ * A hairline as a size, not only as a border.
+ *
+ * A separator is a view with a height rather than a border, and one point is three physical pixels
+ * on a 3x screen where a native divider is one. Same number as the border utilities below, from
+ * the same token.
+ */
+@utility h-hairline {
+  height: var(--hairline, 1px);
+}
+@utility w-hairline {
+  width: var(--hairline, 1px);
+}
+
+@utility border-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-width: var(--hairline, 1px);
+}
+@utility border-t-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-top-width: var(--hairline, 1px);
+}
+@utility border-r-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-right-width: var(--hairline, 1px);
+}
+@utility border-b-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: var(--hairline, 1px);
+}
+@utility border-l-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-left-width: var(--hairline, 1px);
+}

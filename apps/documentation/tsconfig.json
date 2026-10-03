@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["node", "vite/client"]
+  },
+  "extends": "../../tsconfig.base.json",
+  "include": ["."],
+  "exclude": ["dist", "src/learn/lessons"]
+}

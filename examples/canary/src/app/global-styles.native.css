@@ -1,0 +1,135 @@
+/*
+ * The canary's palette: light, and dark when the system says so. The native bars read the
+ * same colours from palette.ts, because a prop cannot read these.
+ */
+:root {
+  --screen: rgb(244, 244, 247);
+  --card: rgb(255, 255, 255);
+  --card-inset: rgb(232, 232, 238);
+  --line: rgb(214, 214, 222);
+  --text-strong: rgb(16, 16, 20);
+  --text: rgb(58, 58, 68);
+  --text-muted: rgb(108, 108, 120);
+  --success: rgb(28, 128, 56);
+  --danger: rgb(200, 44, 44);
+  --accent: rgb(59, 110, 245);
+  --gap: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --screen: rgb(16, 16, 20);
+    --card: rgb(42, 42, 51);
+    --card-inset: rgb(28, 28, 36);
+    --line: rgb(58, 58, 70);
+    --text-strong: rgb(255, 255, 255);
+    --text: rgb(200, 200, 208);
+    --text-muted: rgb(108, 108, 120);
+    --success: rgb(127, 209, 138);
+    --danger: rgb(255, 107, 107);
+  }
+}
+
+/* What every page is made of. The layout-only pieces are in screen-styles.ts. */
+.screen {
+  flex: 1;
+  background-color: var(--screen);
+}
+.heading {
+  color: var(--text-strong);
+  font-size: 24px;
+  font-weight: 600;
+}
+.body {
+  color: var(--text);
+  font-size: 16px;
+}
+.hint {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.strong {
+  color: var(--text-strong);
+  font-weight: 700;
+}
+.card {
+  background-color: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  align-items: center;
+}
+.button {
+  background-color: var(--accent);
+  padding: 14px;
+  border-radius: 10px;
+  align-items: center;
+}
+.button-label {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+/* On the accent both modes want white, and the grey hint has no contrast left. */
+.button .button-label {
+  color: rgb(255, 255, 255);
+}
+.hint-on-accent {
+  color: rgb(201, 216, 255);
+  font-size: 13px;
+}
+/* A text field on a page: the card's colour, with the page's text. */
+.field {
+  border-width: 1px;
+  border-color: var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text-strong);
+}
+.success {
+  color: var(--success);
+}
+.danger {
+  color: var(--danger);
+}
+
+/*
+ * The three CSS features nothing had ever rendered. Each fails silently when it is wrong -
+ * a selector that matches nothing, a colour that resolves to nothing, a gradient that
+ * paints nothing - so each is written here to be looked at rather than asserted about.
+ */
+
+/* Structural selectors. Only elements count: not text, and not the @for anchor. */
+.verify-row {
+  padding: 10px;
+  background-color: var(--card-inset);
+}
+.verify-row:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.verify-row:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.verify-row:nth-child(odd) {
+  background-color: var(--card);
+}
+
+/* A colour the system defines, which already tracks dark mode and contrast settings. */
+.verify-platform-color {
+  color: platform-color(label);
+  font-size: 16px;
+}
+
+/* A straight edge reaches native as an angle; only the corners are keywords. */
+.verify-gradient {
+  height: 64px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, rgb(59, 110, 245), rgb(200, 60, 160));
+}
+
+/* The thinnest line the screen can draw: a third of a point at 3x, not one. */
+.verify-hairline {
+  border-bottom-width: var(--hairline);
+  border-bottom-color: var(--text-muted);
+}

@@ -1,0 +1,190 @@
+.page {
+  flex: 1;
+  background-color: light-dark(oklch(0.97 0.008 265), oklch(0.17 0.02 265));
+}
+.summary {
+  margin: 8px 16px 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background-image:
+    radial-gradient(circle at 85% 0%, rgba(255, 255, 255, 0.35) 0%, transparent 55%),
+    linear-gradient(135deg, oklch(0.55 0.2 265), oklch(0.6 0.2 320));
+  box-shadow: 0 16px 28px -14px oklch(0.55 0.2 290 / 0.6);
+}
+.summary-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.summary-value {
+  margin-top: 4px;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  font-variant-numeric: tabular-nums;
+}
+.meter {
+  height: 8px;
+  margin-top: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.meter-fill {
+  height: 8px;
+  border-radius: 4px;
+  background-color: white;
+  transition: width 300ms ease-out;
+}
+.board {
+  flex-grow: 0;
+}
+.column {
+  width: 290px;
+  margin-right: 14px;
+  padding: 12px;
+  border-radius: 22px;
+  border-width: 1.5px;
+  border-color: transparent;
+  background-color: light-dark(
+    oklch(from var(--tone) 0.95 calc(c * 0.12) h),
+    oklch(from var(--tone) 0.23 calc(c * 0.2) h)
+  );
+  transition:
+    background-color 180ms ease-out,
+    border-color 180ms ease-out;
+}
+.target {
+  border-color: var(--tone);
+  background-color: oklch(from var(--tone) l c h / 0.18);
+}
+.head {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--tone);
+  box-shadow: 0 0 0 4px oklch(from var(--tone) l c h / 0.22);
+}
+.name {
+  flex: 1;
+  color: light-dark(
+    oklch(from var(--tone) calc(l - 0.12) c h),
+    oklch(from var(--tone) calc(l + 0.22) calc(c * 0.7) h)
+  );
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.count {
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  align-items: center;
+  background-color: oklch(from var(--tone) l c h / 0.16);
+}
+.count-label {
+  color: light-dark(oklch(from var(--tone) calc(l - 0.1) c h), white);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.rail {
+  height: 4px;
+  margin: 10px 4px 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: oklch(from var(--tone) l c h / 0.14);
+}
+.rail-fill {
+  height: 4px;
+  background-image: linear-gradient(90deg, var(--tone), oklch(from var(--tone) l c calc(h + 50)));
+  transition: width 240ms ease-out;
+}
+.slot + .slot {
+  margin-top: 10px;
+}
+.empty {
+  padding: 22px;
+  border-radius: 16px;
+  border-width: 1.5px;
+  border-style: dashed;
+  border-color: oklch(from var(--tone) l c h / 0.35);
+  align-items: center;
+}
+.empty-label {
+  color: oklch(from var(--tone) l c h / 0.8);
+  font-size: 13px;
+  font-weight: 600;
+}
+.bar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 28px;
+  padding: 14px;
+  gap: 10px;
+  border-radius: 22px;
+  background-color: light-dark(rgba(255, 255, 255, 0.96), oklch(0.26 0.02 265 / 0.96));
+  box-shadow: 0 18px 36px -14px rgba(15, 23, 42, 0.45);
+}
+.bar-title {
+  color: light-dark(oklch(0.25 0.02 265), white);
+  font-size: 14px;
+  font-weight: 700;
+}
+.bar-row {
+  flex-direction: row;
+  gap: 8px;
+}
+.move {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 12px;
+  align-items: center;
+  background-image: linear-gradient(
+    135deg,
+    var(--tone),
+    oklch(from var(--tone) calc(l - 0.08) c calc(h + 25))
+  );
+  transition: scale 120ms ease-out;
+}
+.move:active {
+  scale: 0.95;
+}
+.move-label {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+.ghost {
+  position: absolute;
+  width: 262px;
+  padding: 14px;
+  border-radius: 16px;
+  border-width: 1.5px;
+  border-color: var(--tag);
+  background-color: light-dark(white, oklch(0.3 0.02 265));
+  box-shadow: 0 28px 44px -16px oklch(from var(--tag) calc(l - 0.2) c h / 0.6);
+  rotate: 2.5deg;
+  scale: 1.04;
+}
+.ghost-title {
+  color: light-dark(oklch(0.22 0.02 265), white);
+  font-size: 16px;
+  font-weight: 700;
+}
+.ghost-meta {
+  margin-top: 6px;
+  color: oklch(from var(--tag) l c h);
+  font-size: 13px;
+  font-weight: 600;
+}

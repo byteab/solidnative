@@ -1,0 +1,36 @@
+.line {
+  padding: 3px 12px;
+  align-items: flex-start;
+}
+.mine {
+  align-items: flex-end;
+}
+.bubble {
+  max-width: 78%;
+  border-radius: 18px;
+  padding: 8px 12px;
+  gap: 6px;
+}
+.in {
+  background-color: var(--card);
+}
+.out {
+  background-color: var(--accent);
+}
+.picture {
+  width: 220px;
+  border-radius: 12px;
+  background-color: var(--card-inset);
+}
+.words {
+  color: var(--text-strong);
+  font-size: 16px;
+}
+.words-out {
+  color: rgb(255, 255, 255);
+}
+.state {
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 2px 4px;
+}

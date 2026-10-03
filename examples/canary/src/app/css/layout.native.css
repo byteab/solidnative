@@ -1,0 +1,12 @@
+.relative-box {
+  height: 96px;
+  background-color: var(--card);
+  border-radius: 8px;
+}
+
+.clip-round {
+  height: 70px;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--card);
+}

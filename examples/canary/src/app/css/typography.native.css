@@ -1,0 +1,17 @@
+.ink {
+  color: var(--text-strong);
+}
+.soft {
+  color: var(--text);
+}
+.muted {
+  color: var(--text-muted);
+}
+.link {
+  color: var(--accent);
+}
+@media (prefers-color-scheme: dark) {
+  .link {
+    color: rgb(111, 155, 255);
+  }
+}

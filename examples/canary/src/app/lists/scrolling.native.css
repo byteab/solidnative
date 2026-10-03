@@ -1,0 +1,11 @@
+.strip {
+  height: 110px;
+  background-color: var(--card-inset);
+  border-radius: 8px;
+}
+
+.bar {
+  height: 26px;
+  border-radius: 6px;
+  background-color: var(--card);
+}

@@ -1,0 +1,71 @@
+{
+  "name": "@solid-native/metro",
+  "version": "0.1.1",
+  "description": "Metro config preset and transformer for solid-native on Solid: Solid's native JSX transform, build-time CSS compiler, icon inlining and clean reload.",
+  "keywords": [
+    "solid",
+    "solidjs",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "metro",
+    "bundler",
+    "css"
+  ],
+  "type": "commonjs",
+  "main": "solid-config.cjs",
+  "exports": {
+    ".": "./solid-config.cjs",
+    "./package.json": "./package.json",
+    "./solid-*.cjs": "./solid-*.cjs",
+    "./css/*.cjs": "./css/*.cjs",
+    "./dom-component.cjs": "./dom-component.cjs",
+    "./inline-icons.cjs": "./inline-icons.cjs"
+  },
+  "dependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/plugin-transform-typescript": "7.29.7",
+    "@jridgewell/trace-mapping": "^0.3.25",
+    "babel-preset-solid": "1.9.15",
+    "lightningcss": "^1.30.2"
+  },
+  "peerDependencies": {
+    "@expo/metro-config": "*"
+  },
+  "peerDependenciesMeta": {
+    "@expo/metro-config": {
+      "optional": true
+    }
+  },
+  "nx": {
+    "tags": [
+      "scope:metro",
+      "layer:build"
+    ]
+  },
+  "scripts": {
+    "test": "node --test solid-*.test.cjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/metro",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/metro"
+  },
+  "files": [
+    "*.cjs",
+    "!*.test.cjs",
+    "css/*.cjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

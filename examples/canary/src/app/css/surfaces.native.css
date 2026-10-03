@@ -1,0 +1,13 @@
+.tile {
+  background-color: var(--card);
+}
+
+.edge {
+  border-bottom-color: var(--line);
+}
+
+/* On a coloured fill, which is the same in either appearance. */
+.on-colour {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}

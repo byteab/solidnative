@@ -1,0 +1,18 @@
+.bar {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 8px;
+}
+.action {
+  color: var(--accent);
+  font-size: 17px;
+}
+.notes {
+  min-height: 110px;
+}
+.toggle {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

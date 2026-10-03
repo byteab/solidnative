@@ -1,0 +1,229 @@
+/*
+ * The grouped list both settings pages are made of: inset cards of rows, a coloured tile, and a
+ * separator that starts after the tile, as iOS draws it. Rounded corners come from the card and
+ * the separators from :not(:last-child), so a row needs no idea where in its group it is.
+ */
+:host {
+  --ground: light-dark(oklch(0.955 0.004 270), black);
+  --card: light-dark(white, oklch(0.21 0.005 270));
+  --ink: light-dark(black, white);
+  --soft: light-dark(oklch(0.55 0.01 270), oklch(0.68 0.01 270));
+  --rule: light-dark(oklch(0.88 0.004 270), oklch(0.32 0.005 270));
+}
+.page {
+  flex: 1;
+  background-color: var(--ground);
+}
+.group {
+  margin: 0 16px 28px;
+  border-radius: 26px;
+  overflow: hidden;
+  background-color: var(--card);
+}
+.caption {
+  margin: 0 32px 7px;
+  color: var(--soft);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+.footnote {
+  margin: -20px 32px 28px;
+  color: var(--soft);
+  font-size: 13px;
+  line-height: 18px;
+}
+.row {
+  flex-direction: row;
+  align-items: center;
+  min-height: 52px;
+  padding-left: 16px;
+}
+.row:active {
+  background-color: light-dark(oklch(0.9 0.004 270), oklch(0.3 0.005 270));
+}
+.tile {
+  width: 30px;
+  height: 30px;
+  margin-right: 14px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    180deg,
+    oklch(from var(--tint) calc(l + 0.06) c h),
+    var(--tint)
+  );
+}
+.body {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+  padding-right: 16px;
+  gap: 8px;
+}
+.row:not(:last-child) .body {
+  border-bottom-width: var(--hairline, 0.5px);
+  border-bottom-color: var(--rule);
+}
+.title {
+  flex: 1;
+  color: var(--ink);
+  font-size: 17px;
+}
+.value {
+  color: var(--soft);
+  font-size: 17px;
+}
+.chevron {
+  color: light-dark(oklch(0.75 0.005 270), oklch(0.45 0.005 270));
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: -2px;
+}
+
+.top {
+  margin-top: 16px;
+}
+.top-caption {
+  margin-top: 24px;
+}
+.check {
+  margin-left: -4px;
+}
+.bars {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.bar {
+  width: 4px;
+  border-radius: 1px;
+  background-color: var(--ink);
+}
+.bar:nth-child(1) {
+  height: 5px;
+}
+.bar:nth-child(2) {
+  height: 9px;
+}
+.bar:nth-child(3) {
+  height: 14px;
+}
+.strength-1 .bar:nth-child(n + 2),
+.strength-2 .bar:nth-child(3) {
+  opacity: 0.2;
+}
+.appearance {
+  padding-top: 18px;
+}
+.modes {
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 14px;
+  border-bottom-width: var(--hairline, 0.5px);
+  border-bottom-color: var(--rule);
+  margin-left: 16px;
+}
+.mode {
+  align-items: center;
+  gap: 8px;
+}
+.phone {
+  width: 76px;
+  height: 150px;
+  padding: 12px 8px;
+  gap: 8px;
+  border-radius: 16px;
+  border-width: 3px;
+  border-color: transparent;
+}
+.chosen .phone {
+  border-color: #007aff;
+}
+.light {
+  background-image: linear-gradient(180deg, oklch(0.98 0.005 250), oklch(0.9 0.02 250));
+}
+.dark {
+  background-image: linear-gradient(180deg, oklch(0.3 0.03 270), oklch(0.12 0.02 270));
+}
+.phone-bar {
+  height: 16px;
+  border-radius: 5px;
+  background-color: oklch(0.6 0.15 250 / 0.6);
+}
+.phone-line {
+  height: 6px;
+  border-radius: 3px;
+  background-color: light-dark(oklch(0.7 0.01 270 / 0.5), oklch(0.8 0.01 270 / 0.4));
+}
+.dark .phone-line {
+  background-color: oklch(0.8 0.01 270 / 0.35);
+}
+.short {
+  width: 60%;
+}
+.mode-name {
+  color: var(--ink);
+  font-size: 15px;
+}
+.radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  border-width: 1.5px;
+  border-color: var(--rule);
+  align-items: center;
+  justify-content: center;
+}
+.chosen .radio {
+  border-color: #007aff;
+  background-color: #007aff;
+}
+.radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: transparent;
+}
+.chosen .radio-dot {
+  background-color: white;
+}
+.slider-row {
+  padding-right: 16px;
+  gap: 12px;
+}
+.slider {
+  flex: 1;
+}
+.small-a {
+  color: var(--ink);
+  font-size: 13px;
+}
+.big-a {
+  color: var(--ink);
+  font-size: 22px;
+}
+.bold {
+  font-weight: 700;
+}
+.preview {
+  margin: -12px 32px 28px;
+  color: var(--soft);
+}
+.placeholder {
+  align-items: center;
+  margin-top: 120px;
+  gap: 6px;
+}
+.placeholder-title {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+}
+.placeholder-hint {
+  color: var(--soft);
+  font-size: 15px;
+}

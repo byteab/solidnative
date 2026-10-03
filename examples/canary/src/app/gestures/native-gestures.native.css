@@ -1,0 +1,7 @@
+.field-area {
+  height: 220px;
+  border-radius: 12px;
+  background-color: var(--card-inset);
+  align-items: center;
+  justify-content: center;
+}

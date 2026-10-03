@@ -1,0 +1,16 @@
+/*
+ * The Tailwind half of the CSS corpus: a large, representative class set built by the real CLI.
+ *
+ * `source(none)` stops the CLI scanning this package for class names. Without it the build would
+ * depend on whatever the test files happen to mention, and the drop report would change every time
+ * somebody wrote a comment. Everything it builds is named below instead.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css' source(none);
+@import '@solid-native/tailwind/native.css';
+
+@source inline("{,-}{p,px,py,pt,pr,pb,pl,m,mx,my,mt,mr,mb,ml,gap,gap-x,gap-y,inset,inset-x,top,left,w,h,size,min-w,max-w,min-h,translate-x,translate-y}-{0,0.5,1,2,3,4,6,8,12,16,px,full,1/2}");
+@source inline("{bg,text,border,ring,outline,shadow,decoration,accent,fill,from,via,to}-{red,blue,slate,emerald,amber}-{50,500,950}{,/50}");
+@source inline("{text,font,leading,tracking,rounded,border,shadow,opacity,z,aspect,rotate,scale,skew-x,blur,brightness,duration,ease,delay,max-w,basis}-{xs,sm,md,lg,xl,2xl,none,full,tight,wide,bold,mono,video,square,0,1,2,4,10,45,50,95,100,200,in-out}");
+@source inline("{flex,inline-flex,hidden,block,grid,contents,flex-row,flex-col,flex-wrap,items-center,items-start,justify-between,justify-center,self-end,grow,shrink-0,flex-1,flex-none,order-1,relative,absolute,fixed,sticky,overflow-hidden,overflow-x-auto,truncate,uppercase,italic,underline,line-through,no-underline,text-center,text-right,rounded-full,border-dashed,border-t,border-b-2,grayscale,drop-shadow-md,transition,transition-colors,animate-spin,animate-pulse,cursor-pointer,select-none,pointer-events-none,bg-linear-to-r,mix-blend-multiply,backdrop-blur,sr-only,object-cover,whitespace-nowrap,break-words,line-clamp-2,columns-2,space-x-4,divide-y,container,pb-safe,h-hairline}");
+@source inline("{sm,md,lg,dark,active,focus,disabled,hover,first,last,odd,group-hover,peer-checked,aria-selected,data-open}:{p-4,bg-red-500,flex}");

@@ -1,0 +1,11 @@
+{
+  "extends": "./compiled-tsconfig.json",
+  "include": [
+    "../src/solid.ts",
+    "../src/solid/**/*.ts",
+    "./css-compiled*.ts",
+    "./css-compiled*.tsx",
+    "./fake-fabric.ts"
+  ],
+  "exclude": []
+}

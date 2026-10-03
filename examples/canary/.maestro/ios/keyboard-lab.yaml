@@ -1,0 +1,20 @@
+# The keyboard lab: a note edited in a sheet refuses to save without a title, then saves.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Keyboard lab
+- tapOn: 'Edit a note in a sheet'
+- assertVisible: 'Note'
+- tapOn: 'Save'
+- assertVisible: 'Give the note a title'
+- tapOn: 'Title.*'
+- inputText: 'Groceries'
+- tapOn: 'Save'
+- assertVisible: 'Saved: .*Groceries.*'
+- tapOn: 'Email.*'
+- inputText: 'ada@example.com'
+- tapOn: 'Amount.*'
+- inputText: '12'
+- runFlow: ../subflows/no-error-screen.yaml

@@ -1,0 +1,206 @@
+/* What every shop screen shares: its palette, the star rating, and prices with a sale beside them. */
+:host {
+  --ink: light-dark(oklch(0.2 0.02 60), oklch(0.96 0.01 60));
+  --soft: light-dark(oklch(0.52 0.02 60), oklch(0.72 0.02 60));
+  --ground: light-dark(oklch(0.975 0.008 80), oklch(0.15 0.01 60));
+  --surface: light-dark(white, oklch(0.22 0.01 60));
+  --sale: oklch(0.6 0.22 25);
+  --gold: oklch(0.82 0.16 85);
+}
+.stars {
+  /* Positioned, so the fill's percentage is of the stars and not of whatever is positioned above. */
+  position: relative;
+  flex-direction: row;
+  width: 80px;
+}
+/* Each star in a box of its own, so a share of the row is that share of the stars. */
+.star-row {
+  flex-direction: row;
+  width: 80px;
+}
+.star {
+  width: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: light-dark(oklch(0.88 0.01 60), oklch(0.35 0.01 60));
+}
+.gold .star {
+  color: var(--gold);
+}
+/* The filled stars over the empty ones, cut to the rating by the width of the box that holds them. */
+.stars-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.price-row {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+.price {
+  color: var(--ink);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.on-sale {
+  color: var(--sale);
+}
+.was {
+  color: var(--soft);
+  text-decoration-line: line-through;
+  text-decoration-color: var(--sale);
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet {
+  flex: 1;
+  background-color: var(--ground);
+}
+.head {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* Nothing in a sheet; the status bar's height when the basket is opened as a screen. */
+  padding: calc(env(safe-area-inset-top) + 20px) 20px 10px;
+}
+.title {
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 900;
+}
+.close-label {
+  color: var(--sale);
+  font-size: 17px;
+  font-weight: 700;
+}
+.lines {
+  flex: 1;
+}
+.meter-block {
+  margin: 6px 20px 16px;
+  gap: 8px;
+}
+.meter-label {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.meter {
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: light-dark(oklch(0.9 0.01 60), oklch(0.3 0.01 60));
+}
+.meter-fill {
+  height: 8px;
+  border-radius: 4px;
+  background-image: linear-gradient(90deg, oklch(0.72 0.17 150), oklch(0.62 0.17 165));
+  transition: width 300ms ease-out;
+}
+.line {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0 16px 10px;
+  padding: 12px;
+  border-radius: 18px;
+  background-color: var(--surface);
+}
+.thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    160deg,
+    oklch(from var(--tone) 0.92 calc(c * 0.35) h),
+    oklch(from var(--tone) 0.8 calc(c * 0.6) h)
+  );
+}
+.thumb-glyph {
+  font-size: 32px;
+}
+.line-text {
+  flex: 1;
+  gap: 2px;
+}
+.line-name {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+.line-size {
+  color: var(--soft);
+  font-size: 13px;
+}
+.stepper {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background-color: light-dark(oklch(0.94 0.01 60), oklch(0.28 0.01 60));
+}
+.step {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+}
+.step-label {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+}
+.quantity {
+  min-width: 20px;
+  text-align: center;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.totals {
+  margin: 10px 20px 40px;
+  gap: 8px;
+}
+.total-row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.total-name,
+.total-value {
+  color: var(--soft);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.grand {
+  padding-top: 10px;
+  border-top-width: 1px;
+  border-top-color: light-dark(oklch(0.9 0.01 60), oklch(0.3 0.01 60));
+}
+.grand .total-name,
+.grand .total-value {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+}
+.empty {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.empty-glyph {
+  font-size: 56px;
+}
+.empty-label {
+  color: var(--soft);
+  font-size: 17px;
+}

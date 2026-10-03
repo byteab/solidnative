@@ -1,0 +1,99 @@
+{
+  "name": "@solid-native/testing",
+  "version": "0.1.1",
+  "description": "Test solid-native Solid components in Node with no simulator: a fake Fabric, Testing Library queries and events, and node:test and Vitest integration.",
+  "keywords": [
+    "solid",
+    "solidjs",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "testing",
+    "testing-library",
+    "vitest",
+    "node-test"
+  ],
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./register": "./register.mjs",
+    "./vitest": {
+      "types": "./vitest.d.mts",
+      "default": "./vitest.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./register": "./register.mjs",
+      "./vitest": {
+        "types": "./vitest.d.mts",
+        "default": "./vitest.mjs"
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "dependencies": {
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/metro": "workspace:*",
+    "@solid-native/platform": "workspace:*"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.15",
+    "vite": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "vitest": "^4.0.8 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@solid-native/components": "workspace:*",
+    "solid-js": "1.9.15",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
+  },
+  "nx": {
+    "tags": [
+      "scope:testing",
+      "layer:testing"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import ./register.mjs --test \"src/**/*.test.ts\" \"src/**/*.test.tsx\" && vitest run"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/testing",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/testing"
+  },
+  "files": [
+    "dist",
+    "register.mjs",
+    "compile.mjs",
+    "vitest.mjs",
+    "vitest.d.mts"
+  ]
+}

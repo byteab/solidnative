@@ -1,0 +1,13 @@
+/*
+ * The word-count bar's own bottom padding, clear of the home indicator - as a CSS custom
+ * property rather than a nested <safe-area-view>, so keyboard-avoiding-view sees one honest
+ * bottom edge to pad against instead of two components each trying to keep clear of it. With the
+ * keyboard up the bar sits on the keyboard, and there is no home indicator to clear.
+ */
+.bottom-bar {
+  padding-bottom: var(--safe-area-inset-bottom, 8px);
+}
+
+.bottom-bar.keyboard-up {
+  padding-bottom: 8px;
+}

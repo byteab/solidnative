@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Music",
+    "slug": "music-example",
+    "scheme": "music",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "dev.solidnative.music" },
+    "android": { "package": "dev.solidnative.music" }
+  }
+}

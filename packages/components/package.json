@@ -1,0 +1,135 @@
+{
+  "name": "@solid-native/components",
+  "version": "0.1.1",
+  "description": "Solid components for native iOS and Android: view, text, image, pressable, scroll-view, virtual-list, text-input and the rest of React Native's set.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "components",
+    "ui"
+  ],
+  "type": "module",
+  "main": "src/solid.ts",
+  "exports": {
+    ".": "./src/solid.ts",
+    "./animations": {
+      "browser": "./src/solid/animations-web.ts",
+      "default": "./src/solid/animations.ts"
+    },
+    "./gestures": "./src/solid/gestures.ts",
+    "./reanimated": "./src/solid/reanimated.ts",
+    "./package.json": "./package.json",
+    "./solid": "./src/solid.ts",
+    "./solid/animations": {
+      "browser": "./src/solid/animations-web.ts",
+      "default": "./src/solid/animations.ts"
+    },
+    "./solid/reanimated": "./src/solid/reanimated.ts",
+    "./solid/gestures": "./src/solid/gestures.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid.js",
+    "types": "dist/solid.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./animations": {
+        "types": "./dist/solid/animations.d.ts",
+        "browser": "./dist/solid/animations-web.js",
+        "default": "./dist/solid/animations.js"
+      },
+      "./gestures": {
+        "types": "./dist/solid/gestures.d.ts",
+        "default": "./dist/solid/gestures.js"
+      },
+      "./reanimated": {
+        "types": "./dist/solid/reanimated.d.ts",
+        "default": "./dist/solid/reanimated.js"
+      },
+      "./package.json": "./package.json",
+      "./solid": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./solid/animations": {
+        "types": "./dist/solid/animations.d.ts",
+        "browser": "./dist/solid/animations-web.js",
+        "default": "./dist/solid/animations.js"
+      },
+      "./solid/reanimated": {
+        "types": "./dist/solid/reanimated.d.ts",
+        "default": "./dist/solid/reanimated.js"
+      },
+      "./solid/gestures": {
+        "types": "./dist/solid/gestures.d.ts",
+        "default": "./dist/solid/gestures.js"
+      }
+    }
+  },
+  "dependencies": {
+    "@solid-native/device": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/platform": "workspace:*"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.86.0",
+    "react-native-gesture-handler": "^2.32.0",
+    "react-native-reanimated": "^4.5.1",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-keyboard-controller": "^1.21.9",
+    "solid-js": "^1.9.15"
+  },
+  "nx": {
+    "tags": [
+      "scope:components",
+      "layer:ui"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p solid-tests/tsconfig.json --noEmit",
+    "test": "pnpm run test:solid",
+    "test:solid": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/components",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    },
+    "react-native-gesture-handler": {
+      "optional": true
+    },
+    "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-safe-area-context": {
+      "optional": true
+    },
+    "react-native-keyboard-controller": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/components"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "solid-js": "1.9.15"
+  }
+}

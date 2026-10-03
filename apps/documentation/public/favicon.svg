@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The site mark, drawn by src/landing/mark.tsx: keep the two in step. -->
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a7dff"/>
+      <stop offset="1" stop-color="#1e4fd6"/>
+    </linearGradient>
+  </defs>
+  <path d="M16 0C27.2 0 32 4.8 32 16S27.2 32 16 32 0 27.2 0 16 4.8 0 16 0Z" fill="url(#f)"/>
+  <rect x="10" y="6" width="12" height="20" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/>
+  <circle cx="16" cy="16" r="3.75" fill="#fff"/>
+</svg>

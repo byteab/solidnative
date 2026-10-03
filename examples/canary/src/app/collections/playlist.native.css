@@ -1,0 +1,46 @@
+.toolbar {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px;
+}
+.chip {
+  padding: 6px 10px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+.filter {
+  margin: 0 12px 8px;
+}
+.list {
+  flex: 1;
+}
+.section {
+  height: 36px;
+  padding: 10px 16px 0;
+  color: var(--text-strong);
+  font-weight: 700;
+}
+.track {
+  height: 52px;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  background-color: var(--card);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--line);
+}
+.grow {
+  flex: 1;
+}
+.action {
+  color: var(--accent);
+  font-weight: 600;
+  padding: 8px 2px;
+}

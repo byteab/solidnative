@@ -1,0 +1,98 @@
+name: Bug report
+description: Report a problem with an @solid-native/* package
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        solid-native is in alpha. Thanks for taking the time to report a problem - a minimal
+        reproduction is the single most useful thing you can include.
+
+  - type: input
+    id: versions
+    attributes:
+      label: '@solid-native/* versions'
+      description: The package(s) affected and their versions, e.g. `@solid-native/platform@0.1.0-alpha.3`
+      placeholder: '@solid-native/platform@0.1.0-alpha.3, @solid-native/router@0.1.0-alpha.3'
+    validations:
+      required: true
+
+  - type: input
+    id: expo-rn-versions
+    attributes:
+      label: Expo SDK and React Native versions
+      placeholder: 'Expo SDK 57, React Native 0.86.3'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - iOS
+        - Android
+        - Web
+        - More than one
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: 'iOS 18.1 / Android 15'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: build-type
+    attributes:
+      label: Expo Go or development build
+      options:
+        - Expo Go
+        - Development build
+        - Production/release build
+    validations:
+      required: true
+
+  - type: dropdown
+    id: release-debug
+    attributes:
+      label: Release or debug
+      options:
+        - Debug
+        - Release
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: >
+        A link to a repo or snack that reproduces the issue with as little else in it as possible,
+        or step-by-step instructions if a repo isn't practical.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Metro/Expo output, a stack trace, or device logs. This will be formatted as code automatically.
+      render: shell

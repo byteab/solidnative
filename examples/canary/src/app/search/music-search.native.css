@@ -1,0 +1,60 @@
+.scopes {
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 16px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-on {
+  background-color: var(--accent);
+}
+.chip-label {
+  color: var(--text-strong);
+  font-size: 13px;
+}
+.chip-on .chip-label {
+  color: rgb(255, 255, 255);
+}
+.suggestions {
+  padding: 8px 16px;
+  gap: 6px;
+  background-color: var(--card);
+}
+.suggestion {
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0;
+}
+.grow {
+  flex: 1;
+}
+.list {
+  flex: 1;
+}
+.heading-row {
+  height: 40px;
+  padding: 16px 16px 4px;
+  color: var(--text-strong);
+  font-weight: 700;
+}
+.result {
+  height: 60px;
+  padding: 8px 16px;
+  justify-content: center;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--line);
+}
+.status {
+  height: 60px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.action {
+  color: var(--accent);
+  font-weight: 600;
+}

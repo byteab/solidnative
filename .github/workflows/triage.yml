@@ -1,0 +1,37 @@
+name: Triage
+
+# Labels a new issue from what its form says: a `pkg:` label for every @solid-native/* package it
+# names, and a `platform:` label when the bug report picks a single platform.
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          # Through the environment, never interpolated into the script: the body is anyone's text.
+          BODY: ${{ github.event.issue.body }}
+          NUMBER: ${{ github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          labels=$(gh label list --repo "$REPO" --limit 200 --json name --jq '.[].name')
+          add=()
+          for name in $(grep -oE '@solid-native/[a-z-]+' <<< "$BODY" | sort -u | cut -d/ -f2); do
+            grep -qx "pkg: $name" <<< "$labels" && add+=("pkg: $name")
+          done
+          platform=$(awk '/^### Platform/{getline; getline; print; exit}' <<< "$BODY")
+          case "$platform" in
+            iOS) add+=("platform: ios") ;;
+            Android) add+=("platform: android") ;;
+            Web) add+=("platform: web") ;;
+          esac
+          for label in "${add[@]}"; do
+            gh issue edit "$NUMBER" --repo "$REPO" --add-label "$label"
+          done

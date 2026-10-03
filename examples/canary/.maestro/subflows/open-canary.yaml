@@ -1,0 +1,28 @@
+# Opens the canary in Expo Go, served by the Metro that `pnpm start` runs on this machine.
+#
+# Expo Go is one app hosting many projects, so there is no bundle of ours to launch: the flow
+# restarts Expo Go, so the canary opens on its first screen rather than wherever the last flow
+# left it, then opens the project's URL in it. Against a development build, replace everything
+# below with `- launchApp` and pass `-e APP_ID=dev.solidnative.canary`.
+#
+# A subflow, kept out of the top level so `maestro test .maestro` does not run it as a test.
+#
+# `METRO` is the URL the device reaches Metro at, and `APP_ID` is Expo Go's id. The defaults are
+# right for the iOS simulator. On the Android emulator Expo Go is `host.exp.exponent`, lowercase,
+# and the host is 10.0.2.2: pass `-e APP_ID=host.exp.exponent -e METRO=exp://10.0.2.2:8081`.
+appId: ${APP_ID || 'host.exp.Exponent'}
+---
+- stopApp
+- launchApp
+# Expo Go on Android drops a link that arrives while it is still starting, and stays on its own
+# home screen.
+- waitForAnimationToEnd
+# Retried as insurance against the same drop on a slow start.
+- retry:
+    maxRetries: 2
+    commands:
+      - openLink: ${METRO || 'exp://127.0.0.1:8081'}
+      # The first open bundles the app, which takes a while on a cold Metro.
+      - extendedWaitUntil:
+          visible: 'Solid Native'
+          timeout: 60000

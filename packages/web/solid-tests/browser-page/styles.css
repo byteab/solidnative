@@ -1,0 +1,12 @@
+/*
+ * The stylesheet the browser checks run against: Tailwind's theme and utilities, the platform
+ * preset, and `reset.css` imported into `base` rather than injected unlayered by `mount`, so the
+ * reset stays below every utility.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+@import '@solid-native/tailwind/web.css';
+@import '../../src/reset.css' layer(base);
+
+/* The fixtures' class strings live beside the tests, outside this page's directory. */
+@source '..';

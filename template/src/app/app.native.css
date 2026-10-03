@@ -1,0 +1,31 @@
+.screen {
+  flex: 1;
+  background-color: #101014;
+}
+.body {
+  flex: 1;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+.title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+}
+.hint {
+  color: #8b8b96;
+  font-size: 15px;
+}
+.button {
+  align-items: center;
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 10px;
+  background-color: #3b6ef5;
+}
+.label {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}

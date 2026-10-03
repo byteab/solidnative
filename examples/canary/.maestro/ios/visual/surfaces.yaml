@@ -1,0 +1,11 @@
+# Surfaces, as it draws: a screenshot compared with the one taken when it was last right.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open.yaml
+    env:
+      SCREEN: 'Surfaces'
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: ../baselines/visual-surfaces.png
+    thresholdPercentage: 97

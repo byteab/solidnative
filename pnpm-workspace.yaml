@@ -1,0 +1,41 @@
+packages:
+  - 'packages/*'
+  - 'examples/*'
+  - 'apps/*'
+  - 'template'
+
+# A native module must exist exactly once in a build: two copies of Reanimated is two copies of
+# its native side, and the second one silently does nothing. pnpm auto-installs peer dependencies,
+# so `packages/components` would otherwise resolve its own - these are the versions Expo SDK 57
+# bundles, and they are what `expo install --check` verifies against.
+overrides:
+  react: 19.2.3
+  react-native: 0.86.3
+  react-native-reanimated: 4.5.1
+  react-native-worklets: 0.10.1
+  react-native-gesture-handler: 2.32.0
+  react-native-safe-area-context: 5.7.0
+  react-native-svg: 15.15.4
+  # react-native ships 0.84.5; `metro-resolver: ^0.84.5` in the tests would
+  # otherwise resolve 0.84.6 and fork thirteen metro packages into two copies.
+  metro-resolver: 0.84.5
+  # nx pins smol-toml 1.6.1, which a malformed TOML document can hang; 1.7.1
+  # is the fix and a compatible minor.
+  smol-toml: ^1.7.1
+
+# pnpm 10 blocks postinstall scripts unless a package is named here. Both of these build a native
+# binary and are the reason `nx` is fast; without them it falls back to a slower watcher and says
+# nothing about why.
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - nx
+
+# Nx reads tsconfig files through TypeScript's JavaScript API, and finds `typescript` through
+# pnpm's hidden hoist rather than a dependency of its own. Expo's packages auto-install TypeScript 7
+# as an optional peer, which has no JavaScript API, and once it outnumbers 5.9 the hoist points at
+# it and lint fails inside Nx (`readConfigFile is not a function`). A declared peer resolves to the
+# root's instead.
+packageExtensions:
+  nx:
+    peerDependencies:
+      typescript: '*'

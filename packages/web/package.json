@@ -1,0 +1,133 @@
+{
+  "name": "@solid-native/web",
+  "version": "0.1.1",
+  "description": "A browser host for solid-native: the same Solid components, rendered into the DOM instead of native views.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "web",
+    "dom"
+  ],
+  "type": "module",
+  "main": "src/solid/index.ts",
+  "exports": {
+    ".": "./src/solid/index.ts",
+    "./web-view": "./src/solid/web-view.ts",
+    "./jsx-runtime": "./src/solid/jsx-runtime.ts",
+    "./reset.css": "./src/reset.css",
+    "./vite": {
+      "types": "./solid-vite.d.mts",
+      "default": "./solid-vite.mjs"
+    },
+    "./package.json": "./package.json",
+    "./solid/web-view": "./src/solid/web-view.ts",
+    "./solid": "./src/solid/index.ts",
+    "./solid/vite": {
+      "types": "./solid-vite.d.mts",
+      "default": "./solid-vite.mjs"
+    },
+    "./solid/jsx-runtime": "./src/solid/jsx-runtime.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid/index.js",
+    "types": "dist/solid/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid/index.d.ts",
+        "default": "./dist/solid/index.js"
+      },
+      "./web-view": {
+        "types": "./dist/solid/web-view.d.ts",
+        "default": "./dist/solid/web-view.js"
+      },
+      "./jsx-runtime": {
+        "types": "./dist/solid/jsx-runtime.d.ts",
+        "default": "./dist/solid/jsx-runtime.js"
+      },
+      "./reset.css": "./dist/reset.css",
+      "./vite": {
+        "types": "./solid-vite.d.mts",
+        "default": "./solid-vite.mjs"
+      },
+      "./package.json": "./package.json",
+      "./solid/web-view": {
+        "types": "./dist/solid/web-view.d.ts",
+        "default": "./dist/solid/web-view.js"
+      },
+      "./solid": {
+        "types": "./dist/solid/index.d.ts",
+        "default": "./dist/solid/index.js"
+      },
+      "./solid/vite": {
+        "types": "./solid-vite.d.mts",
+        "default": "./solid-vite.mjs"
+      },
+      "./solid/jsx-runtime": {
+        "types": "./dist/solid/jsx-runtime.d.ts",
+        "default": "./dist/solid/jsx-runtime.js"
+      }
+    }
+  },
+  "dependencies": {
+    "@solid-native/device": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/metro": "workspace:*"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.15",
+    "vite": ">=8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@solid-native/components": "workspace:*",
+    "@solid-native/icons": "workspace:*",
+    "@solid-native/tailwind": "workspace:*",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/jsdom": "^27.0.0",
+    "jsdom": "^27.0.0",
+    "playwright": "^1.63.0",
+    "solid-js": "1.9.15",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.1"
+  },
+  "nx": {
+    "tags": [
+      "scope:web",
+      "layer:ui"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && cp src/reset.css dist/",
+    "typecheck": "tsc -p tsconfig.json --noEmit && pnpm typecheck:solid",
+    "test": "pnpm test:solid",
+    "test:solid": "node --import ./solid-tests/register.mjs --test solid-tests/web-view.test.ts solid-tests/lifecycle.test.mjs && pnpm test:solid:host",
+    "test:solid:host": "node --import ./solid-tests/host-register.mjs --test \"src/*.test.ts\" solid-tests/host.test.mjs solid-tests/host-updates.test.mjs solid-tests/controls.test.ts solid-tests/interaction.test.ts solid-tests/styles.test.ts solid-tests/embed.test.ts solid-tests/defer.test.ts && node --test solid-tests/browser-build.test.mjs",
+    "test:browser": "node --test solid-tests/layout-browser.mjs && node solid-tests/host-browser.mjs",
+    "typecheck:solid": "tsc -p solid-tests/tsconfig.json --noEmit"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/web",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "files": [
+    "dist",
+    "solid-vite.mjs",
+    "solid-vite.d.mts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/web"
+  }
+}

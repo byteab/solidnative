@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "SolidNativeNxApplication",
+  "title": "Native Solid application",
+  "type": "object",
+  "properties": {
+    "directory": {
+      "type": "string",
+      "description": "Where the app goes, relative to the workspace root: apps/mobile.",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Which directory should the app be created in?"
+    },
+    "name": {
+      "type": "string",
+      "description": "The project name. Defaults to the directory's last segment.",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags for the project."
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Write the files without installing.",
+      "default": false
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "description": "Leave the generated files unformatted.",
+      "default": false,
+      "x-priority": "internal"
+    }
+  },
+  "required": ["directory"]
+}

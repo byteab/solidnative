@@ -1,0 +1,52 @@
+.screen {
+  flex: 1;
+  background-color: #f4f4f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .screen {
+    background-color: #000000;
+  }
+}
+
+.content {
+  padding: 20px;
+  gap: 20px;
+}
+
+.list {
+  gap: 10px;
+}
+
+.add {
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty {
+  align-items: center;
+  gap: 4px;
+  padding: 48px 0;
+}
+
+.empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #18181b;
+}
+
+.empty-body {
+  font-size: 14px;
+  color: #71717a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .empty-title {
+    color: #fafafa;
+  }
+  .empty-body {
+    color: #a1a1aa;
+  }
+}

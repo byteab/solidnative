@@ -1,0 +1,184 @@
+[
+  {
+    "name": "specificity: a class beats a type",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "specificity: an id beats two classes",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "specificity: two classes beat one",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "source order decides at equal specificity",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "source order is by rule, not by which class is listed first",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "important beats a later, more specific rule",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "an attribute selector weighs the same as a class",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "attribute equality",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "attribute prefix, suffix and substring",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgb(2, 0, 0)"
+    }
+  },
+  {
+    "name": "attribute word match with a tilde",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "attribute dash match",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "where contributes no specificity",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "is takes its most specific argument",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "not takes its argument specificity and excludes",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgb(2, 0, 0)"
+    }
+  },
+  {
+    "name": "not with several arguments excludes if any matches",
+    "expected": {
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "inheritance: the nearest ancestor wins",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "inheritance: a value of its own beats anything inherited",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "background-color does not inherit",
+    "expected": {
+      "color": "rgb(0, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "descendant matches any depth, child only one",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a combinator that only matches on a further ancestor",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a custom property resolves to the nearest definition",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a custom property crosses elements that define nothing",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a custom property falls back when undefined",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a defined custom property beats the fallback",
+    "expected": {
+      "color": "rgb(1, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "a translucent colour reads back as the browser prints it",
+    "expected": {
+      "color": "rgba(1, 0, 0, 0.5)",
+      "background-color": "rgba(2, 0, 0, 0.3)"
+    }
+  },
+  {
+    "name": "a custom property is itself subject to the cascade",
+    "expected": {
+      "color": "rgb(2, 0, 0)",
+      "background-color": "rgba(0, 0, 0, 0)"
+    }
+  }
+]

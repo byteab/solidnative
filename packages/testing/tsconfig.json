@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.published.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "@solid-native/platform/solid",
+    // The gesture and animation libraries are not installed here: tests import them by name, as
+    // an app does, and get the stand-ins the register resolves them to. This types them the same.
+    "paths": {
+      "react-native-gesture-handler": ["./src/gesture-handler.ts"],
+      "react-native-reanimated": ["./src/reanimated-library.ts"],
+      "react-native-worklets": ["./src/worklets-library.ts"]
+    }
+  },
+  "include": ["src", "*.d.mts", "vitest.config.ts"]
+}

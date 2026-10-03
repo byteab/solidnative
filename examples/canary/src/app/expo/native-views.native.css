@@ -1,0 +1,21 @@
+.backdrop {
+  padding: 24px;
+  border-radius: 24px;
+  background-image: linear-gradient(135deg, #5e5ce6, #ff375f);
+}
+.row {
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.orb {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.apple {
+  height: 48px;
+  align-self: stretch;
+}

@@ -1,0 +1,28 @@
+# The feed: a post saves and unsaves, and scrolling a long way keeps loading.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Feed
+- extendedWaitUntil:
+    visible: 'Bookmark'
+    timeout: 10000
+- tapOn:
+    text: 'Bookmark'
+    index: 0
+- assertVisible: 'Remove bookmark'
+- tapOn: 'Remove bookmark'
+- swipe:
+    start: 50%, 85%
+    end: 50%, 15%
+    duration: 150
+- swipe:
+    start: 50%, 85%
+    end: 50%, 15%
+    duration: 150
+- waitForAnimationToEnd
+- assertVisible:
+    text: 'Bookmark'
+    index: 0
+- runFlow: ../subflows/no-error-screen.yaml

@@ -1,0 +1,22 @@
+# Browse: a genre's heading stays pinned at the top while its shelves scroll under it, a slow
+# drag and a fast fling alike.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Browse
+- tapOn: 'Jump to Gospel'
+- assertVisible: 'Gospel'
+# Past where the heading sits in the list: without pinning it has scrolled away.
+- swipe:
+    start: 50%, 70%
+    end: 50%, 55%
+    duration: 1500
+- assertVisible: 'Gospel'
+- swipe:
+    start: 50%, 80%
+    end: 50%, 40%
+    duration: 200
+- waitForAnimationToEnd
+- runFlow: ../subflows/no-error-screen.yaml

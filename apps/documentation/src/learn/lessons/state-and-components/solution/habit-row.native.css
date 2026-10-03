@@ -1,0 +1,16 @@
+.habit {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.habit:active {
+  background-color: #e4e4e7;
+}
+
+.status {
+  color: #71717a;
+}

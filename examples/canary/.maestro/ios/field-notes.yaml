@@ -1,0 +1,17 @@
+# Field notes: a note added in airplane mode waits to send, and sends once the network is back.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Field notes
+- tapOn: 'Airplane mode'
+- tapOn: 'New note.*'
+- inputText: 'Offline note'
+- tapOn: 'Add'
+- assertVisible: 'Offline note'
+- assertVisible: 'Waiting to send'
+- tapOn: 'Airplane mode'
+- extendedWaitUntil:
+    notVisible: 'Waiting to send'
+    timeout: 10000

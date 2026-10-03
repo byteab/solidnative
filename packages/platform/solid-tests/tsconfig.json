@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.published.json",
+  "include": ["../src/solid.ts", "../src/solid/**/*.ts", "./**/*.ts"],
+  "exclude": [
+    "./compiled-*.ts",
+    "./compiled-*.tsx",
+    "./css-compiled*.ts",
+    "./css-compiled*.tsx",
+    "./reload-*.ts",
+    "./reload-*.tsx"
+  ]
+}

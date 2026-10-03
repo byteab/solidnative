@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["*.cjs", "*/*.cjs", "*.test.ts", "*/*.test.ts"],
+  "exclude": ["files"],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false
+  }
+}

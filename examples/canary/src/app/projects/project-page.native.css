@@ -1,0 +1,63 @@
+.action {
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 600;
+}
+.filters {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+.chip-on {
+  background-color: var(--accent);
+}
+.chip-label {
+  color: var(--text-strong);
+  font-size: 13px;
+}
+.chip-on .chip-label {
+  color: rgb(255, 255, 255);
+}
+.count {
+  margin-left: auto;
+}
+.list {
+  flex: 1;
+}
+.task {
+  height: 56px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--line);
+  background-color: var(--card);
+}
+.check {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  border-width: 2px;
+  border-color: var(--line);
+  align-items: center;
+  justify-content: center;
+}
+.tick {
+  color: var(--accent);
+  font-weight: 700;
+}
+.task-title {
+  flex: 1;
+  padding: 16px 0;
+}
+.done {
+  color: var(--text-muted);
+  text-decoration-line: line-through;
+}

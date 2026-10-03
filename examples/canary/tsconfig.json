@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.published.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "@solid-native/platform/solid",
+    "module": "preserve",
+    "moduleResolution": "bundler"
+  },
+  "include": ["src", "solid-tests"]
+}

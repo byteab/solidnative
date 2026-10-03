@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Runs",
+    "slug": "runs-example",
+    "scheme": "runs",
+    "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "dev.solidnative.runs",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Runs uses your location to track your route, distance and pace while you run."
+      }
+    },
+    "android": {
+      "package": "dev.solidnative.runs"
+    },
+    "plugins": [
+      [
+        "expo-maps",
+        {
+          "requestLocationPermission": true,
+          "locationPermission": "Allow $(PRODUCT_NAME) to show where you are on the map"
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,536 @@
+/*
+ * The site's one stylesheet: the Tailwind build every live example runs on, plus the chrome
+ * around it.
+ *
+ * Every live example on this site is a real `@solid-native/components` Solid component rendered
+ * through `@solid-native/web/solid`, so it needs the same Tailwind preset and the same React Native
+ * layout reset an app would give it. An example styled differently from an app would be a
+ * picture of a different framework.
+ *
+ * The tokens below - `--primary`, `--muted` and the rest - are this site's own, sized to what the
+ * examples on this page actually use rather than carried in from a component library. A real app
+ * defines its own palette the same way, under whatever names it likes.
+ */
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+@import '@solid-native/tailwind/web.css';
+
+/*
+ * Preflight, which a plain React Native tree does not need and this page does.
+ *
+ * `reset.css` (imported below) is a reset for a React Native tree, not a browser one: preflight is
+ * a browser reset, and a page that is nothing but a React Native tree has no `<ul>`, `<a>` or
+ * `<button>` for it to reset. This page has all three, in its own chrome, and without preflight the
+ * sidebar comes out as a bulleted list of blue underlined links - the browser's 1996 defaults
+ * showing through.
+ *
+ * It lands before the React Native reset and both are in `base`, so where the two disagree about
+ * an element this page creates, the React Native one wins - which is the right way round, since
+ * every rule in it is scoped to `[data-rn]` and therefore only ever speaks about a node this
+ * platform made.
+ */
+@import 'tailwindcss/preflight.css' layer(base);
+@import '@solid-native/web/reset.css' layer(base);
+
+/*
+ * The landing page's own sheet, in the main bundle rather than the landing route's chunk: the
+ * prerendered home page has to be styled on its first paint, not once its JavaScript arrives.
+ * Its class names are the landing page's own, and its fonts download only where a landing class
+ * uses them. See `landing/landing.css`.
+ */
+@import './landing/landing.css';
+
+/* The course's workspace, buttons and editor colours. See `learn/learn.css`. */
+@import './learn/learn.css';
+
+/*
+ * Two rules from the React Native reset, moved off `body` and onto the React Native subtree.
+ *
+ * `reset.css` puts the font stack, the 14px text size and a full-height root on `html` and `body`,
+ * and it is right to: in `examples/web` the whole page *is* a React Native tree, so the document
+ * root and the app root are the same thing. Here they are not. This page is a document with
+ * several small React Native trees embedded in it, and a rule on `body` would set the docs' own
+ * paragraphs to React Native's 14px default and make the article as tall as the viewport instead
+ * of as tall as it is.
+ *
+ * Both properties are inherited, so moving them to `[data-rn-root]` - the marker the browser host
+ * stamps on each island - reproduces exactly what they were for, and reaches exactly the elements they
+ * were meant to reach. The attribute selector also outranks the bare `body` one, so the order
+ * these two blocks land in does not matter.
+ *
+ * `height` is not inherited and is not moved: an island sizes itself to its example rather than to
+ * the page, and `doc-example` gives it the box to fill.
+ */
+@layer base {
+  html,
+  body {
+    height: auto;
+  }
+
+  /*
+   * iOS: no text inflation when a phone turns to landscape, no grey flash over a tapped link, and
+   * form controls and scrollbars drawn for the theme the reader chose rather than the system's.
+   */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  /* iOS zooms the page into any text field under 16px when it takes focus. */
+  @media (pointer: coarse) {
+    input,
+    textarea,
+    select,
+    .cm-content {
+      font-size: max(16px, 1em);
+    }
+  }
+
+  body {
+    font-family: var(--font-docs-sans);
+    font-size: 0.9375rem;
+    font-feature-settings:
+      'liga' 1,
+      'calt' 1;
+    text-rendering: optimizeLegibility;
+    background-color: var(--surface-page);
+    color: var(--fg-primary);
+  }
+
+  /*
+   * The chrome's icons (`icon.tsx`): a box `1em` square unless `size` sets `--icon-size`, and
+   * the SVG filling it.
+   */
+  svg-icon {
+    display: inline-block;
+    width: var(--icon-size, 1em);
+    height: var(--icon-size, 1em);
+    line-height: initial;
+    vertical-align: initial;
+    overflow: hidden;
+  }
+
+  svg-icon > svg {
+    width: inherit;
+    height: inherit;
+    vertical-align: inherit;
+  }
+
+  [data-rn-root] {
+    font-family: var(
+      --font-sans,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
+    font-size: 14px;
+  }
+}
+
+/*
+ * The chrome's palette, which is deliberately not the examples' `--primary`/`--muted`/`--border`
+ * set defined below.
+ *
+ * If the site's own header and sidebar drew from the same tokens as a live example, retuning one
+ * for an example would silently restyle the documentation about it, and an example on a
+ * `bg-secondary` panel would be invisible against a page that was also `bg-secondary`. So the
+ * chrome has its own names, sitting beside the examples' rather than over them.
+ *
+ * `.dark` on the root element switches both sets at once, which is the point of using one class
+ * for both.
+ */
+:root {
+  /* The landing page's faces, so the docs and the home page read as one site. */
+  --font-docs-sans:
+    'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-docs-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-docs-display: 'Instrument Sans Variable', var(--font-docs-sans);
+
+  /* The brand blue: 6.7:1 on white, so it can carry small text as well as marks. */
+  --brand: #1e4fd6;
+  --surface-page: #ffffff;
+  --surface-raised: #f7f8f8;
+  --surface-sunken: #f2f3f5;
+  --surface-code: #fbfbfc;
+  --border-subtle: rgb(9 9 11 / 0.07);
+  --border-default: rgb(9 9 11 / 0.1);
+  --border-strong: rgb(9 9 11 / 0.16);
+  --fg-primary: #18181b;
+  --fg-secondary: #52525b;
+  --fg-tertiary: #71717a;
+  --fg-quaternary: #a1a1aa;
+
+  /*
+   * A small palette for the live examples, distinct from the chrome tokens above. This site has no
+   * component library to inherit a theme from, so these are the handful of names a styled control -
+   * a button, a switch, a badge - actually reaches for, sized to what the examples on this page use
+   * and nothing more. An app building its own controls defines a palette the same way, under
+   * whatever names and values it likes.
+   */
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: rgb(9 9 11 / 0.1);
+}
+
+/*
+ * The dark surfaces stack upwards rather than downwards. On a white page a raised panel is a
+ * shade darker than the page; on a near-black one it has to be a shade lighter, or the panel and
+ * its border both disappear. Written as translucent white for that reason: it composes with
+ * whatever it lands on instead of needing a value per depth.
+ */
+.dark {
+  /* A lighter blue for the dark page: 6.3:1 on its near-black. */
+  --brand: #5b8cff;
+  --surface-page: #0a0a0b;
+  --surface-raised: rgb(255 255 255 / 0.035);
+  --surface-sunken: rgb(0 0 0 / 0.25);
+  --surface-code: #0e0e11;
+  --border-subtle: rgb(255 255 255 / 0.07);
+  --border-default: rgb(255 255 255 / 0.1);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --fg-primary: #f4f4f5;
+  --fg-secondary: #c9cbd1;
+  --fg-tertiary: #8b8f98;
+  --fg-quaternary: #63666d;
+
+  --primary: #e4e4e7;
+  --primary-foreground: #18181b;
+  --secondary: rgb(255 255 255 / 0.08);
+  --secondary-foreground: #f4f4f5;
+  --muted: rgb(255 255 255 / 0.06);
+  --muted-foreground: #a1a1aa;
+  --border: rgb(255 255 255 / 0.12);
+}
+
+/*
+ * The landing page's palette and type, as Tailwind tokens. The landing page alone uses them; the
+ * documentation chrome keeps the tokens above. See `landing/landing.css`.
+ *
+ * The page is white, and `paper-light` is the faint grey of a sheet or band laid on it (the names
+ * are from when the page was cream). `brand` is 5.4:1 on white, for large text, strokes and
+ * fills, and white on it is the same; small blue text uses `brand-ink`, 6.7:1. `go` is 6.1:1.
+ */
+@theme {
+  --color-paper: #ffffff;
+  --color-paper-light: #fafafa;
+  --color-ink: #171817;
+  --color-graphite: #686962;
+  --color-brand: #2a5cf0;
+  --color-brand-ink: #1e4fd6;
+  --color-go: #11704f;
+
+  --font-display: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-code: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/*
+ * The same palette in the dark theme, which the site's toggle sets on the root: near-black paper
+ * matching the docs, light ink, and the blues lifted: `brand` is 5.6:1 on it and small blue text
+ * (`brand-ink`) 6.3:1.
+ */
+.dark {
+  --color-paper: #0a0a0b;
+  --color-paper-light: #141416;
+  --color-ink: #f4f4f5;
+  --color-graphite: #9a9ba3;
+  --color-brand: #4d82ff;
+  --color-brand-ink: #5b8cff;
+  --color-go: #3ecf8e;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-surface: var(--surface-page);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-code: var(--surface-code);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg-primary);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-tertiary: var(--fg-tertiary);
+  --color-fg-quaternary: var(--fg-quaternary);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+}
+
+/*
+ * The prose styles, written out rather than pulled from a typography plugin.
+ *
+ * `@tailwindcss/typography` would be one more dependency for a set of rules this site wants to
+ * control anyway: the headings carry anchors, the code blocks are Shiki's, and the tables are
+ * API reference tables with their own column rhythm. Everything below applies inside `.prose`
+ * only, so nothing here can reach an example.
+ */
+.prose {
+  color: var(--fg-secondary);
+  line-height: 1.7;
+  /* A long identifier breaks rather than widening a phone's page. */
+  overflow-wrap: anywhere;
+}
+
+/*
+ * A page is a list of blocks, and a prose block is a `<div>` holding the paragraphs `marked`
+ * produced (see `doc-content.tsx`), so the rhythm has to be declared one level deeper as well.
+ * Without the second selector the gaps land between the blocks and not between the paragraphs
+ * inside them, which reads as one long run of text with a hole in the middle of it.
+ */
+.prose > * + *,
+.prose > div > * + * {
+  margin-top: 1rem;
+}
+
+/* The first paragraph of a block still needs air under the heading the block before it ended on. */
+.prose > div + div > *:first-child {
+  margin-top: 1rem;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--fg-primary);
+  font-family: var(--font-docs-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 6rem;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  margin-top: 2rem;
+}
+
+.prose h4 {
+  font-size: 0.9375rem;
+  margin-top: 1.5rem;
+}
+
+/* Links as the landing page draws them: ink, with a blue underline that fills in on hover. */
+.prose a {
+  color: var(--fg-primary);
+  font-weight: 510;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--brand) 55%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition:
+    color 150ms,
+    text-decoration-color 150ms;
+}
+
+.prose a:hover {
+  color: var(--brand);
+  text-decoration-color: var(--brand);
+}
+
+.prose strong {
+  color: var(--fg-primary);
+  font-weight: 590;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li::marker {
+  color: var(--fg-quaternary);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.375rem;
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--border-strong);
+  padding-left: 1rem;
+  color: var(--fg-tertiary);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-block: 2rem;
+}
+
+/* Inline code, which is not inside a `pre` and must not pick up Shiki's block styling. */
+.prose :not(pre) > code {
+  font-family: var(--font-docs-mono);
+  font-size: 0.85em;
+  color: var(--fg-primary);
+  background-color: color-mix(in srgb, var(--fg-primary) 6%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.3125rem;
+  white-space: nowrap;
+}
+
+/* On a phone an unbroken code span can be wider than the screen, so it wraps there. */
+@media (max-width: 40rem) {
+  .prose :not(pre) > code {
+    white-space: normal;
+  }
+}
+
+.prose h1 :not(pre) > code,
+.prose h2 :not(pre) > code,
+.prose h3 :not(pre) > code {
+  font-size: 0.9em;
+  font-weight: inherit;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  display: block;
+  overflow-x: auto;
+  /* A table scrolls on its own, so its words keep whole rather than breaking to fit. */
+  overflow-wrap: normal;
+}
+
+.prose th {
+  text-align: left;
+  font-weight: 590;
+  color: var(--fg-tertiary);
+  background-color: var(--surface-raised);
+}
+
+.prose th,
+.prose td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.prose td code,
+.prose th code {
+  white-space: normal;
+}
+
+/*
+ * Shiki emits both palettes as custom properties per token, so switching theme is a change of
+ * which variable wins rather than a re-highlight of every block on the page.
+ */
+.shiki {
+  font-family: var(--font-docs-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.625rem;
+  padding: 0.875rem 1.125rem;
+  overflow-x: auto;
+  background-color: var(--surface-code) !important;
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+/*
+ * Every scrolling region inside the page - code blocks, the sidebar, wide tables, the course's
+ * editor and panes - gets the landing page's code-sheet scrollbar: thin, no track, a rounded
+ * thumb in the text colour that darkens on hover. `:where()` keeps it at no specificity, so
+ * `.scrollbar-hover` below still wins, and the page's own scrollbar stays the platform's.
+ * `scrollbar-*` is what Chrome and Firefox read; Safari only reads the prefixed pseudo-elements.
+ */
+:where(body *) {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--fg-primary) 22%, transparent) transparent;
+}
+
+:where(body *:not(.scrollbar-hover))::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+:where(body *:not(.scrollbar-hover))::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:where(body *:not(.scrollbar-hover))::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fg-primary) 22%, transparent) padding-box;
+}
+
+:where(body *:not(.scrollbar-hover))::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--fg-primary) 38%, transparent) padding-box;
+}
+
+/* The scrollbar appears when the region is hovered, which is what an overlay scrollbar does. */
+.scrollbar-hover {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-hover:hover {
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/*
+ * Inline code outside `.prose` - in a page written as a component rather than as markdown. Same
+ * treatment as the prose rule so the two never look like different kinds of code.
+ */
+.doc-code {
+  font-family: var(--font-docs-mono);
+  font-size: 0.85em;
+  color: var(--fg-primary);
+  background-color: color-mix(in srgb, var(--fg-primary) 6%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.3125rem;
+  white-space: nowrap;
+}

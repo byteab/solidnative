@@ -1,0 +1,19 @@
+# The task manager: a project, one of its tasks, and an edit in a sheet that every screen shows.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Task manager
+- assertVisible: 'Projects'
+- tapOn: 'Launch.*'
+- tapOn: 'Review onboarding.*'
+- tapOn: 'Edit'
+- tapOn: 'Title.*'
+- eraseText: 30
+- inputText: 'Ship the beta'
+- tapOn: 'Save'
+- assertVisible: 'Ship the beta'
+- tapOn: 'Launch'
+- assertVisible: 'Ship the beta.*'
+- runFlow: ../subflows/no-error-screen.yaml

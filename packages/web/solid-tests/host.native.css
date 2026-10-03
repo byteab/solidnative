@@ -1,0 +1,17 @@
+:host {
+  padding: 12px;
+}
+.label {
+  color: rgb(20, 40, 60);
+}
+.row > .label {
+  font-weight: 700;
+}
+.label::before {
+  content: 'scope';
+}
+@media (min-width: 600px) {
+  .row {
+    gap: 20px;
+  }
+}

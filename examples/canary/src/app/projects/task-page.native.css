@@ -1,0 +1,17 @@
+.row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.actions {
+  flex-direction: row;
+  gap: 10px;
+}
+.comment {
+  align-items: flex-start;
+}
+.section {
+  color: var(--text-strong);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 8px;
+}

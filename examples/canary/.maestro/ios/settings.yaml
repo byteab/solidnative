@@ -1,0 +1,19 @@
+# Settings: a search finds a row, Display's picker darkens the whole app, and Airplane Mode turns
+# Wi-Fi off in the list.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Settings
+- tapOn: 'Airplane Mode'
+- assertVisible: 'Wi-Fi, Off'
+- tapOn: 'Airplane Mode'
+- assertVisible: 'Wi-Fi, Morgan Home'
+- tapOn: 'Search'
+- inputText: 'dark'
+- tapOn: 'Display & Brightness.*'
+- tapOn: 'Dark'
+- assertVisible: 'Dark'
+- takeScreenshot: settings-dark
+- tapOn: 'Automatic'

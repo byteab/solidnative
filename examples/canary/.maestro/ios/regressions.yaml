@@ -1,0 +1,48 @@
+# The navigation regressions, each one a bug that once shipped.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Stress regressions
+# A header behind an @if takes the whole bar away and brings it back.
+- tapOn: 'Header behind an if.*'
+- assertVisible: 'Header shown'
+- tapOn: 'Hide the header'
+- assertNotVisible: 'Header shown'
+- tapOn: 'Show the header'
+- assertVisible: 'Header shown'
+- tapOn:
+    id: 'header-back'
+# Each Next is a new screen.
+- tapOn: 'Detail to detail.*'
+- assertVisible: 'Item 1'
+- tapOn: 'Next'
+- assertVisible: 'Item 2'
+# The back button names the screen it goes back to.
+- tapOn: 'Item 1'
+- assertVisible: 'Next'
+- tapOn: 'Regressions'
+# A page that throws pushes nothing, and says so.
+- tapOn: 'A page that throws.*'
+- assertVisible: '.*Failures: 1.*'
+# A modal with visible false leaves the screen usable.
+- tapOn: 'Hidden modal.*'
+- tapOn: 'Taps: 0'
+- assertVisible: 'Taps: 1'
+- tapOn: 'Show the modal'
+- tapOn: 'Close'
+- tapOn: 'Taps: 1'
+- assertVisible: 'Taps: 2'
+- tapOn: 'Regressions'
+# Defer loads its block on interaction.
+- tapOn: 'Defer triggers.*'
+- tapOn: 'Press to load'
+- assertVisible: 'Loaded on interaction'
+- tapOn: 'Regressions'
+# A screen pushed from a modal shows over it.
+- tapOn: 'Push from a modal.*'
+- assertVisible: 'A modal with no stack'
+- tapOn: 'Push Item 1'
+- assertVisible: 'Item 1'
+- runFlow: ../subflows/no-error-screen.yaml

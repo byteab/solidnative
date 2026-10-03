@@ -1,0 +1,13 @@
+# DOM components: opens by its deep link, draws no error screen, and shows what it is.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open-link.yaml
+    env:
+      PATH: dom-components
+- assertVisible: 'DOM components'
+- scrollUntilVisible:
+    element: 'Change name.*'
+    timeout: 10000
+- scroll
+- runFlow: ../../subflows/no-error-screen.yaml

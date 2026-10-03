@@ -1,0 +1,15 @@
+# Cloudflare Pages reads this from the root of the build output; Vite copies it there from public/.
+#
+# The course's preview frame is sandboxed without allow-same-origin, so its origin is opaque and
+# every module, chunk and WebAssembly file it loads from here is a cross-origin request. See
+# src/learn/protocol.ts. vite.config.ts sends the same header in development and preview.
+#
+# Every file under /assets has a content hash in its name, so a new build is a new URL and the old
+# one can be cached for good.
+/assets/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts keep stable names (index.html preloads them by path), so they revalidate after a day.
+/fonts/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

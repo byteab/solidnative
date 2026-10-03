@@ -1,0 +1,105 @@
+/* The API table's own sheet; scoped under its host tag. See `api-reference.tsx`. */
+api-reference .api {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+api-reference .api-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+api-reference .api-name {
+  font-weight: 600;
+}
+api-reference .api-kind {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+api-reference .api-package {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+api-reference .api-import {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+api-reference .api-import > code {
+  color: var(--foreground);
+}
+api-reference .api-summary {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+api-reference .api-group {
+  margin: 0;
+  padding: 0.75rem 1rem 0.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+api-reference .api-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(8rem, 1fr) minmax(0, 2fr);
+  gap: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
+  border-top: 1px solid var(--border);
+  align-items: baseline;
+}
+api-reference .api-row-method {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem;
+}
+/* A long type or signature wraps inside its own cell rather than running into the next one. */
+api-reference .api-row > * {
+  min-width: 0;
+}
+api-reference .api-cell-name code,
+api-reference .api-cell-type code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* One column on a phone: three columns of two words each is not a table, it is confetti. */
+@media (max-width: 720px) {
+  api-reference .api-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+api-reference .api-required {
+  margin-left: 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  color: var(--destructive);
+}
+api-reference .api-cell-doc {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+api-reference .api-empty,
+api-reference .api-missing {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}

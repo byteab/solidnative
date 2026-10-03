@@ -1,0 +1,16 @@
+# Kanban: a tapped card is moved to another column from the bar that appears.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Kanban
+- assertVisible: 'Backlog, 3 cards'
+- tapOn: 'Onboarding illustrations, .*'
+- tapOn: 'Move to Review'
+- assertVisible: 'Backlog, 2 cards'
+- assertNotVisible: 'Move to Review'
+# Review is the third column, off the right of the screen until the board scrolls.
+- scrollUntilVisible:
+    element: 'Review, 3 cards'
+    direction: RIGHT

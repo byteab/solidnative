@@ -1,0 +1,16 @@
+# The queue: bulk changes to a keyed list, and a filter typed over it.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: subflows/open-link.yaml
+    env:
+      PATH: queue
+- tapOn: 'Reverse'
+- tapOn: 'Shuffle'
+- tapOn: 'Sort'
+- tapOn: 'Insert 3'
+- tapOn: 'Delete 10'
+- tapOn: 'Filter.*'
+- inputText: '#1'
+- assertVisible: '.*#1.*'
+- runFlow: ../subflows/no-error-screen.yaml

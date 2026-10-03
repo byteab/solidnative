@@ -1,0 +1,10 @@
+# Queue: opens by its deep link, draws no error screen, and shows what it is.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open-link.yaml
+    env:
+      PATH: queue
+- assertVisible: 'Queue'
+- scroll
+- runFlow: ../../subflows/no-error-screen.yaml

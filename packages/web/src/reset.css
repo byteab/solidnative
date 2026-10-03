@@ -1,0 +1,282 @@
+/*
+ * The layout reset: React Native's flex defaults, applied to every element this package creates,
+ * so the same compiled class string lays out the same way on both platforms.
+ *
+ * A browser's flex defaults and Yoga's are not the same default. Without this, `flex-row` on a
+ * `<view>` behaves identically on both platforms (it sets `flex-direction` explicitly either
+ * way), but a `<view>` with *no* flex properties set at all does not: Yoga starts every node at
+ * `display: flex; flex-direction: column; align-items: stretch; flex-shrink: 0`, and a browser
+ * starts a `<view>` (an unknown element, like any other) at `display: inline; flex-shrink: 1`
+ * when it becomes a flex item at all. A `w-full` row of boxes that relies on a browser's own
+ * `flex-shrink: 1` to shrink to fit its container needs an explicit `flex-1` on native, because
+ * Yoga does not shrink for free - this stylesheet is what makes the *web* class string agree with
+ * that same layout too, rather than only native - a class string that only lays out right on one
+ * of the two platforms has quietly failed the point of sharing it.
+ *
+ * `react-native-web`'s own reset is worth reading as prior art (it solves the same problem this
+ * one does), but this is written from this project's own assumptions rather than copied from it:
+ * it targets `[data-rn]`, the marker `elements.ts` puts on every node this package creates
+ * (`data-rn="<template name>"`) rather than the tag itself, because two elements - `text-input`
+ * and `switch` - commit as a real `<textarea>`/`<input>` rather than their own tag (see
+ * `elements.ts`'s doc comment for why), and a tag selector would miss them.
+ *
+ * `box-sizing: border-box` matches Yoga, where a node's `width`/`height` already includes its
+ * border and padding; a browser's default (`content-box`) does not.
+ *
+ * `<text>` is excluded from the flex reset on purpose. RN's `Text` lays out its content as text -
+ * wrapping, inline runs for a nested `<text>` - not as a flex container, and giving it
+ * `display: flex` would stop it wrapping at all (a flex row does not wrap text mid-run the way
+ * inline layout does). `display: inline` is the flow layout that wraps correctly, at a real cost:
+ * an inline element ignores an explicit `width`/`height` style, where RN's `Text` (a full Yoga
+ * node) accepts one. A `<text>` that needs an explicit size needs `class="block"` (or an
+ * equivalent utility) from its caller on the web; that is not automatic here.
+ */
+[data-rn] {
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/*
+ * React Native's border: a width alone draws a line, solid and black, because those are a view's
+ * own `borderStyle` and `borderColor` until something says otherwise. CSS starts every element at
+ * `border-style: none`, which draws nothing at any width, so `borderWidth: 2` in a `[style]` or a
+ * component's own `border-width: 2px` drew a border on a device and none here.
+ *
+ * The mount point is left out, since it belongs to the page, and `:where` keeps the selector as
+ * weak as a single attribute, so a component's own `border-color` beats it wherever it lands.
+ */
+[data-rn]:where(:not([data-rn='root'])) {
+  border-width: 0;
+  border-style: solid;
+  border-color: black;
+}
+
+/*
+ * The typeface, which nothing else in the stack sets.
+ *
+ * React Native draws text in the platform's own UI font without being asked - San Francisco, or
+ * Roboto - and at 14pt, which is what its `Text` defaults to. A browser's defaults are a serif
+ * face at 16px, and this project deliberately does not import Tailwind's preflight: preflight is
+ * a browser reset and means nothing on a phone. So nothing anywhere in the chain named a font, and
+ * every `<text>` on a page came out in Times New Roman at the wrong size while the same component
+ * on a phone looked right.
+ *
+ * On `body` rather than on `[data-rn]`, and that distinction is the whole of getting this right.
+ * Font size and family are inherited properties, and this cascade emulates that inheritance on
+ * native too (`css.ts`'s `INHERITED`), so `<view class="text-lg"><text>...` sizes the text from
+ * its parent on both platforms. Setting either on every element would break exactly that: the
+ * `<text>` would win over the `text-lg` above it and quietly stop inheriting.
+ *
+ * On `body` rather than on `html` for a different reason, and a sharper one. `rem` resolves
+ * against the root font size, and Tailwind's entire spacing scale is in `rem` - so
+ * `html { font-size: 14px }` would not set a text size, it would silently rescale every padding,
+ * margin, gap and width in the design by 0.875. `body` leaves the root alone.
+ *
+ * `--font-sans` is Tailwind's own theme variable, so an app that sets a brand font in its theme
+ * gets it here without touching this file. The stack behind it is the fallback for an app that
+ * never defined one, and leads with `system-ui` because matching the platform's UI font is what
+ * the native side does by definition.
+ */
+/*
+ * A root with a real height, which is what makes `flex: 1` mean anything.
+ *
+ * React Native's root view is the screen: it has a definite size before an app renders a thing,
+ * so `flex: 1` on a page fills it. A browser's `html` and `body` are auto-height, so the same
+ * page resolved its `flex: 1` against nothing and every `flex-1` box inside it collapsed to zero.
+ * A chart drew its axes and legend around a plot area with no height; a story page's content
+ * measured shorter than its own scroll view.
+ *
+ * `height: 100%` rather than `100vh` on purpose, so this composes. On `body` it is the viewport,
+ * and on an app mounted into some smaller box it is that box - which is the behaviour an app
+ * embedding this into an existing page wants, and what `100vh` would take away.
+ *
+ * The root element itself is a flex column for the same reason every other view is: it is the
+ * parent that a page's `flex: 1` is measured against, so it has to be a flex container or the
+ * child has no main axis to grow along.
+ */
+html,
+body {
+  height: 100%;
+}
+
+[data-rn-root] {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: var(
+    --font-sans,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif
+  );
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-rn]:not([data-rn='text']) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+[data-rn='text'] {
+  display: inline;
+}
+
+/*
+ * `ScrollView.js`'s own base style (`engine.ts`'s `DEFAULT_PROPS.ScrollView`): a native scroll
+ * view does not clip its content on its own, so without this the content spills straight out of
+ * the scroll view's bounds instead of scrolling. `virtual-list` commits as the same Fabric
+ * `ScrollView` (`engine.ts`'s `VIEW_NAMES`) and gets the same base here.
+ */
+[data-rn='scroll-view'],
+[data-rn='virtual-list'] {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: column;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * A horizontal scroll view's own direction. `scroll-view.ts` sends it as a top-level
+ * `flexDirection` prop rather than a style, so a caller's own style still wins, as it does in
+ * React Native; that prop reaches the element as an attribute, and this is what reads it. Without
+ * it the content view stretched to the scroll view's width instead of taking its children's, so
+ * its background stopped at the first screen and `(contentSizeChange)` reported the viewport.
+ */
+[data-rn='scroll-view'][flexdirection='row'] {
+  flex-direction: row;
+}
+
+/*
+ * `scrollEnabled: false`, read the same way. A device stops the user scrolling and still lets
+ * `scrollTo` move the view, which is exactly what `overflow: hidden` does.
+ */
+[data-rn='scroll-view'][scrollenabled='false'] {
+  overflow: hidden;
+}
+
+/*
+ * `Image`'s default `resizeMode`, which is `cover`. `props.ts` paints an image with
+ * `background-image` and writes a fit only when `resizeMode` is bound, and `Image` binds it only
+ * when the caller set one - so without this an image with just a `source` took the browser's own
+ * background default instead: natural size, tiled from the top-left corner.
+ */
+[data-rn='image'] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*
+ * An image's own pixel size, when its source gives one, as the box it takes when nothing else
+ * sizes it. `:where` keeps this below any class the app writes, which is where a replaced
+ * element's natural size sits in CSS; `props.ts` writes the two properties.
+ */
+:where([data-rn='image']) {
+  width: var(--rn-intrinsic-width, auto);
+  height: var(--rn-intrinsic-height, auto);
+}
+
+/*
+ * `Modal.js`'s base style is `{position: 'absolute'}`, sized to fill RN's window because that is
+ * what an absolutely-positioned view with no other constraint does inside it. A web page has no
+ * such guaranteed-full-viewport positioned ancestor, so this uses `fixed` instead - the layout
+ * equivalent for a host that has to cover the viewport regardless of where in the document it was
+ * mounted. `props.ts`'s `visible` handler toggles the `hidden` attribute; the second rule below
+ * gives that more specificity than the `display: flex` two rules up, so `hidden` actually hides
+ * the modal instead of being immediately overridden by it.
+ */
+[data-rn='modal'] {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgb(0 0 0 / 50%);
+}
+[data-rn='modal'][hidden] {
+  display: none;
+}
+
+/* `InputAccessoryView.js`'s base style. Docked at the bottom; see `elements.ts`'s divergence note - there is no keyboard to track on the web, so it only ever sits at the foot of the viewport. */
+[data-rn='input-accessory-view'] {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/*
+ * `ActivityIndicator`'s spinner. A device draws its own, and a browser has nothing to draw
+ * one with, so the element was an empty box with a progressbar role. This is a ring with a gap
+ * in it, turning, in the `color` `props.ts` writes and iOS's grey without one. Stopped,
+ * it stands still, and it is hidden unless `hidesWhenStopped` is false, the default on iOS.
+ */
+[data-rn='activity-indicator'] {
+  color: #999999;
+}
+[data-rn='activity-indicator']::after {
+  content: '';
+  box-sizing: border-box;
+  flex: 1;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rn-activity-indicator 0.8s linear infinite;
+}
+[data-rn='activity-indicator'][animating='false']::after {
+  animation-play-state: paused;
+}
+[data-rn='activity-indicator'][animating='false']:not([hideswhenstopped='false'])::after {
+  visibility: hidden;
+}
+@keyframes rn-activity-indicator {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*
+ * A text field paints nothing of its own, the way React Native's does.
+ *
+ * A browser gives `<input>` and `<textarea>` a `background-color: field` and a `color: fieldtext`,
+ * and resolves both against the page's `color-scheme` - which is `normal` here, so they stay the
+ * light-mode white and black whatever the app's theme says. React Native's `TextInput` has no
+ * background at all: the box around it is drawn by whatever styles a caller wraps it in.
+ *
+ * So in dark mode every field on a page was a white box, and `color` *is* inherited from the
+ * cascade - meaning near-white theme text on a white ground, i.e. an invisible value in an
+ * apparently blank field. Transparent is both the faithful behaviour and the fix.
+ *
+ * The rest of a browser's field chrome goes for the same reason. A `<textarea>` sets its own font,
+ * which is monospace at 13.33px in Chromium, where a device's field takes the text styles around
+ * it, as `<text>` does, and a platform font at 14 when there are none. It also adds padding and a
+ * resize handle that a device's field does not have.
+ */
+[data-rn='text-input'] {
+  background-color: transparent;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  margin: 0;
+  padding: 0;
+  resize: none;
+}
+
+/* `text-input.ts`'s `placeholderTextColor`, carried in as a custom property by `props.ts`. */
+[data-rn='text-input']::placeholder {
+  /* A device draws an unset placeholder grey; this is the text colour, faded, on any theme. */
+  color: var(--rn-placeholder-color, color-mix(in srgb, currentColor 45%, transparent));
+}

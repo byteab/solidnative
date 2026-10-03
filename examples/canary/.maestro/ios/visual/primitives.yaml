@@ -1,0 +1,11 @@
+# Primitives, as it draws: a screenshot compared with the one taken when it was last right.
+appId: dev.solidnative.canary
+---
+- runFlow:
+    file: ../subflows/open.yaml
+    env:
+      SCREEN: 'Primitives'
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: ../baselines/visual-primitives.png
+    thresholdPercentage: 97

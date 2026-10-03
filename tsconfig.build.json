@@ -1,0 +1,38 @@
+{
+  "//": "The published build: each package compiled by tsc to JavaScript and declarations in its dist. A package compiles against the declarations of the ones it depends on, which Nx builds first; each path below is the declaration file that package's publishConfig.exports names. A subpath list falls back in order, so `x/solid/y` and the root alias `x/y` both find `dist/solid/y.d.ts`.",
+  "extends": "./tsconfig.published.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "rewriteRelativeImportExtensions": true,
+    "paths": {
+      "@solid-native/fabric": ["./packages/fabric/dist/index.d.ts"],
+      "@solid-native/fabric/*": ["./packages/fabric/dist/*.d.ts"],
+      "@solid-native/platform": ["./packages/platform/dist/solid.d.ts"],
+      "@solid-native/platform/*": ["./packages/platform/dist/*.d.ts"],
+      "@solid-native/device": ["./packages/device/dist/solid.d.ts"],
+      "@solid-native/device/*": ["./packages/device/dist/*.d.ts"],
+      "@solid-native/router": ["./packages/router/dist/solid.d.ts"],
+      "@solid-native/router/*": ["./packages/router/dist/*.d.ts"],
+      "@solid-native/icons": ["./packages/icons/dist/solid.d.ts"],
+      "@solid-native/icons/*": ["./packages/icons/dist/*.d.ts"],
+      "@solid-native/components": ["./packages/components/dist/solid.d.ts"],
+      "@solid-native/components/*": [
+        "./packages/components/dist/solid/*.d.ts",
+        "./packages/components/dist/*.d.ts"
+      ],
+      "@solid-native/expo": ["./packages/expo/dist/solid.d.ts"],
+      "@solid-native/expo/*": ["./packages/expo/dist/solid/*.d.ts", "./packages/expo/dist/*.d.ts"],
+      "@solid-native/web": ["./packages/web/dist/solid/index.d.ts"],
+      "@solid-native/web/solid": ["./packages/web/dist/solid/index.d.ts"],
+      "@solid-native/web/vite": ["./packages/web/solid-vite.d.mts"],
+      "@solid-native/web/solid/vite": ["./packages/web/solid-vite.d.mts"],
+      "@solid-native/web/*": ["./packages/web/dist/solid/*.d.ts", "./packages/web/dist/*.d.ts"],
+      "@solid-native/testing": ["./packages/testing/dist/index.d.ts"],
+      "@solid-native/testing/vitest": ["./packages/testing/vitest.d.mts"],
+      "@solid-native/testing/*": ["./packages/testing/dist/*.d.ts"]
+    }
+  }
+}

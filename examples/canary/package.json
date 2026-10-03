@@ -1,0 +1,87 @@
+{
+  "name": "canary",
+  "private": true,
+  "main": "src/main.solid.ts",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "release:ios": "expo run:ios --configuration Release",
+    "release:android": "expo run:android --variant release",
+    "check-bundle": "node scripts/check-release-bundle.mjs",
+    "typecheck": "node metro.config.js && tsc -p tsconfig.json --noEmit",
+    "export": "expo export --platform ios --platform android --output-dir dist",
+    "test": "pnpm test:solid",
+    "e2e:ios": "xcrun simctl status_bar booted override --time 9:41 --batteryState charged --batteryLevel 100 --wifiBars 3 && JAVA_HOME=${JAVA_HOME:-/opt/homebrew/opt/openjdk@21} maestro test .maestro/ios",
+    "e2e:ios:record": "xcrun simctl status_bar booted override --time 9:41 --batteryState charged --batteryLevel 100 --wifiBars 3 && node .maestro/ios/record-baselines.mjs",
+    "test:solid": "node --import @solid-native/testing/register --import ./solid-tests/isolation-register.mjs --test solid-tests/*.test.ts"
+  },
+  "dependencies": {
+    "@expo/ui": "~57.0.16",
+    "@solid-native/components": "workspace:*",
+    "@solid-native/device": "workspace:*",
+    "@solid-native/expo": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/icons": "workspace:*",
+    "@solid-native/platform": "workspace:*",
+    "@solid-native/router": "workspace:*",
+    "@solid-native/web": "workspace:*",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~57.0.20",
+    "expo-apple-authentication": "~57.0.2",
+    "expo-audio": "^57.0.4",
+    "expo-battery": "~57.0.2",
+    "expo-brightness": "~57.0.1",
+    "expo-clipboard": "~57.0.1",
+    "expo-file-system": "~57.0.6",
+    "expo-glass-effect": "~57.0.4",
+    "expo-haptics": "~57.0.2",
+    "expo-image": "~57.0.4",
+    "expo-keep-awake": "~57.0.1",
+    "expo-local-llm": "^0.6.0",
+    "expo-localization": "~57.0.1",
+    "expo-maps": "~57.0.3",
+    "expo-modules-core": "~57.0.15",
+    "expo-network": "~57.0.1",
+    "expo-screen-orientation": "~57.0.2",
+    "expo-secure-store": "~57.0.3",
+    "expo-sensors": "~57.0.2",
+    "expo-symbols": "~57.0.3",
+    "lucide-static": "^1.48.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-gesture-handler": "^2.32.0",
+    "react-native-keyboard-controller": "1.21.9",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "react-native-worklets": "0.10.1",
+    "solid-js": "1.9.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@solid-native/metro": "workspace:*",
+    "@solid-native/tailwind": "workspace:*",
+    "@solid-native/testing": "workspace:*",
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/react": "~19.2.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "expo": {
+    "autolinking": {
+      "android": {
+        "exclude": [
+          "expo-local-llm"
+        ]
+      }
+    }
+  },
+  "nx": {
+    "tags": [
+      "scope:canary",
+      "layer:app"
+    ]
+  },
+  "version": "1.0.0"
+}

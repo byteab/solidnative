@@ -1,0 +1,69 @@
+# @solid-native/web
+
+A browser host for solid-native: the same Solid `@solid-native/components`, rendered into the DOM instead
+of native views. It implements the `HostEngine` seam the Fabric engine implements, so a `View`, a
+`Pressable` or a `TextInput` behaves the same way in a browser as it does on a phone - which is what
+the documentation site's live examples and this project's browser tests run on.
+
+Alpha: APIs may change before 1.0.
+
+## Install
+
+```sh
+npm install solid-js @solid-native/components @solid-native/web
+npm install --save-dev vite typescript
+```
+
+A browser app builds with Vite. `solidNativeWeb()` compiles shared universal components for the
+browser host, compiles `.native.css` sheets to scoped browser CSS, and rejects React Native imports
+rather than bundling them:
+
+```ts
+// vite.config.ts
+import { solidNativeWeb } from '@solid-native/web/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [solidNativeWeb()],
+});
+```
+
+## Example
+
+Mounting a component into a page:
+
+```ts
+import { mount } from '@solid-native/web';
+import { App } from './app.solid.tsx';
+
+const app = mount(document.getElementById('app')!, App, { inputs: { title: 'Hello' } });
+app.setInputs({ title: 'Updated' });
+app.dispose();
+```
+
+`mount` injects a reset stylesheet that gives elements React Native's layout defaults (border-box,
+no flex shrinking, a full-height column root) unless `injectReset: false` is passed.
+
+Inside a Solid DOM page you already have, place a shared component with `Island`. Passing the
+page's owner shares its services and context, and disposes the island with it:
+
+```tsx
+import { Island } from '@solid-native/web';
+
+<Island component={Wallet} inputs={{ accountId, onPaid }} />;
+```
+
+`@solid-native/web/web-view` mounts a Solid DOM component in the page a native web view loaded, and
+talks to the app across the bridge.
+
+## Docs
+
+- [Web](https://solid-native.com/packages/web): setting up a browser app, with Tailwind
+- [Native and web](https://solid-native.com/guide/native-and-web)
+- [Islands](https://solid-native.com/packages/web/islands)
+- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+
+## License
+
+MIT

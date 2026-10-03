@@ -1,0 +1,17 @@
+.size-11 {
+  width: 44px;
+  height: 44px;
+}
+.thumb {
+  width: 44px;
+}
+.tall {
+  height: 50px;
+}
+.square {
+  aspect-ratio: 1;
+}
+.banner {
+  width: 320px;
+  height: 160px;
+}

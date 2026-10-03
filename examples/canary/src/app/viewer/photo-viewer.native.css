@@ -1,0 +1,16 @@
+.viewer {
+  flex: 1;
+  background-color: rgb(0, 0, 0);
+}
+.bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.label {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}

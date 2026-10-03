@@ -1,0 +1,25 @@
+# Ride: the sheet searches places, a destination prices the options, and a request finds a driver.
+appId: dev.solidnative.canary
+---
+# By its deep link: the home list is long enough that centring its row scrolls it under the bar.
+- runFlow:
+    file: subflows/open-link.yaml
+    env:
+      PATH: ride
+- tapOn: 'Where to\?'
+- tapOn: 'Search destinations'
+- inputText: 'Tate'
+- assertNotVisible: 'British Museum, Bloomsbury'
+- tapOn: 'Tate Modern, Bankside'
+- assertVisible: 'Economy, .*'
+- tapOn: 'Comfort, .*'
+# The request is below the fold at the sheet's smallest detent.
+- swipe:
+    from: 'Economy, .*'
+    direction: UP
+- tapOn: 'Request Comfort'
+- extendedWaitUntil:
+    visible: '.* is on the way'
+    timeout: 10000
+- tapOn: 'Cancel ride'
+- assertVisible: 'Where to\?'

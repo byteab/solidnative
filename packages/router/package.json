@@ -1,0 +1,77 @@
+{
+  "name": "@solid-native/router",
+  "version": "0.1.1",
+  "description": "Solid router over native navigation: stack and tab outlets, native headers, links and react-native-screens presentation.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "router",
+    "navigation",
+    "react-native-screens"
+  ],
+  "type": "module",
+  "main": "src/solid.ts",
+  "dependencies": {
+    "@solid-native/device": "workspace:*",
+    "@solid-native/fabric": "workspace:*",
+    "@solid-native/platform": "workspace:*"
+  },
+  "peerDependencies": {
+    "react-native-screens": "^4.26.0",
+    "solid-js": "^1.9.15"
+  },
+  "nx": {
+    "tags": [
+      "scope:router",
+      "layer:ui"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p solid-tests/tsconfig.json --noEmit",
+    "test": "pnpm run test:solid",
+    "test:solid": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts"
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/router",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/router"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "solid-js": "1.9.15"
+  },
+  "exports": {
+    ".": "./src/solid.ts",
+    "./package.json": "./package.json",
+    "./solid": "./src/solid.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/solid.js",
+    "types": "dist/solid.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      },
+      "./package.json": "./package.json",
+      "./solid": {
+        "types": "./dist/solid.d.ts",
+        "default": "./dist/solid.js"
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@solid-native/tailwind",
+  "version": "0.1.1",
+  "description": "Tailwind CSS preset for solid-native (Solid): Tailwind 4 on native and web, Tailwind 3 on native.",
+  "keywords": [
+    "solid",
+    "react-native",
+    "solid-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "tailwind",
+    "tailwindcss",
+    "css"
+  ],
+  "type": "commonjs",
+  "main": "flatten.cjs",
+  "dependencies": {
+    "@solid-native/metro": "workspace:*",
+    "lightningcss": "^1.30.2"
+  },
+  "nx": {
+    "tags": [
+      "scope:tailwind",
+      "layer:build"
+    ]
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/tailwind",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "peerDependencies": {
+    "@solid-native/metro": "workspace:*",
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^3.4.1 || ^4.3.3"
+  },
+  "peerDependenciesMeta": {
+    "@tailwindcss/cli": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/tailwind"
+  },
+  "files": [
+    "*.cjs",
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

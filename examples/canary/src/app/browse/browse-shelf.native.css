@@ -1,0 +1,9 @@
+.shelf {
+  height: 170px;
+}
+.cover {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}

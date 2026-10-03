@@ -1,0 +1,76 @@
+name: Latest versions
+
+# Users install the newest versions our ranges allow, and this repository pins older ones: a minor
+# release of a dependency can break every new app while the tests here still pass. Each week this makes
+# fresh workspaces the way users do, on whatever those ranges resolve to that day, and tests, builds
+# and bundles each one, so drift shows up within a week instead of at release. See RELEASING.md.
+on:
+  schedule:
+    # Mondays at 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  # A failing scheduled run opens, or comments on, one issue per scenario.
+  issues: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  scenario:
+    name: ${{ matrix.scenario }}
+    runs-on: ubuntu-latest
+    # About ten minutes for the template, and up to twenty for an Nx workspace; the rest is room
+    # for a slow registry rather than a licence for a hung step.
+    timeout-minutes: 40
+    strategy:
+      # Every scenario reports, so one week's failures are all visible at once.
+      fail-fast: false
+      matrix:
+        scenario:
+          - template-npm
+          - template-pnpm
+          - nx-ts-npm
+          - nx-ts-pnpm
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup
+
+      - name: Start a local registry
+        run: |
+          npx --yes verdaccio@6 --config verdaccio.yaml --listen 4873 > verdaccio.log 2>&1 &
+          for _ in $(seq 1 60); do curl -sf localhost:4873/-/ping > /dev/null && break; sleep 1; done
+          # Publishing needs a user. Verdaccio creates one on this request and returns its token.
+          token=$(curl -sf -XPUT -H 'Content-Type: application/json' \
+            -d '{"name":"ci","password":"ci-password"}' \
+            http://localhost:4873/-/user/org.couchdb.user:ci | jq -r .token)
+          echo "//localhost:4873/:_authToken=$token" >> ~/.npmrc
+
+      # Prints the Solid, Expo, React Native, Nx, TypeScript and Vite it resolved into the job
+      # summary, pass or fail.
+      - run: node scripts/verify-publish.mjs --scenario=${{ matrix.scenario }}
+
+      - if: failure()
+        run: cat verdaccio.log
+
+      # One open issue per scenario, found by its title: a new one the first week it fails, and a
+      # comment on that one every week after until someone closes it.
+      - name: Report the failure
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Latest versions: ${{ matrix.scenario }} fails'
+          RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          body="The ${{ matrix.scenario }} scenario failed on the newest versions its ranges allow: $RUN. The run's summary lists the versions it resolved."
+          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title \
+            | jq -r --arg title "$TITLE" 'map(select(.title == $title)) | .[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "Still failing: $RUN"
+          else
+            gh issue create --title "$TITLE" --body "$body"
+          fi

@@ -1,0 +1,32 @@
+# Large titles collapse into the bar as the page scrolls, as UIKit draws them: the home screen,
+# and a pushed page with a search bar.
+appId: dev.solidnative.canary
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: 'Solid Native'
+    timeout: 30000
+- assertScreenshot:
+    path: baselines/home-large-title.png
+    thresholdPercentage: 97
+- swipe:
+    start: 50%, 70%
+    end: 50%, 40%
+    duration: 800
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: baselines/home-collapsed-title.png
+    thresholdPercentage: 97
+- runFlow:
+    file: subflows/open.yaml
+    env:
+      SCREEN: Search
+- swipe:
+    start: 50%, 80%
+    end: 50%, 50%
+    duration: 800
+- waitForAnimationToEnd
+- assertScreenshot:
+    path: baselines/search-collapsed-title.png
+    thresholdPercentage: 97

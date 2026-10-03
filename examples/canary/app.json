@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "canary",
+    "slug": "canary",
+    "scheme": "canary",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "dev.solidnative.canary",
+      "supportsTablet": true,
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "package": "dev.solidnative.canary"
+    },
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-localization", "expo-secure-store"]
+  }
+}

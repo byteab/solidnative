@@ -1,0 +1,13 @@
+/* The code browser's styles (`code-browser.tsx`). */
+example-code-browser {
+  display: block;
+}
+
+/* The file fills the pane, so the block's own border and rounding would draw a box in a box. */
+example-code-browser .code-pane .shiki {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 1rem 1.25rem;
+  overflow: visible;
+}

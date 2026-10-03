@@ -1,0 +1,59 @@
+.row {
+  height: 84px;
+}
+.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 160px;
+  flex-direction: row;
+}
+.action {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.archive {
+  background-color: rgb(59, 110, 245);
+}
+.delete {
+  background-color: rgb(220, 53, 53);
+}
+.action-label {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 16px;
+  background-color: var(--card);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--line);
+}
+.chosen {
+  background-color: var(--card-inset);
+}
+.line {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.from {
+  color: var(--text-strong);
+  font-size: 15px;
+}
+.unread {
+  font-weight: 700;
+}
+.tick {
+  color: var(--accent);
+  font-size: 13px;
+}
+.subject {
+  color: var(--text);
+  font-size: 15px;
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@solid-native/nx",
+  "version": "0.1.1",
+  "description": "Nx generators for native SolidJS apps: nx add, and an Expo app project whose targets run it.",
+  "keywords": [
+    "solid",
+    "solidjs",
+    "react-native",
+    "ios",
+    "android",
+    "fabric",
+    "native",
+    "nx",
+    "nx-plugin",
+    "generators",
+    "expo"
+  ],
+  "type": "module",
+  "generators": "./generators.json",
+  "dependencies": {
+    "@nx/devkit": "^23.0.0",
+    "minimatch": "^10.0.0",
+    "semver": "^7.7.0"
+  },
+  "peerDependencies": {
+    "nx": "^23.0.0"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.7.0"
+  },
+  "nx": {
+    "tags": [
+      "scope:nx",
+      "layer:build"
+    ]
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test \"*.test.ts\" \"{init,application}/*.test.ts\""
+  },
+  "license": "MIT",
+  "homepage": "https://solid-native.com/packages/nx",
+  "bugs": {
+    "url": "https://github.com/byteab/solid-native/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteab/solid-native.git",
+    "directory": "packages/nx"
+  },
+  "files": [
+    "*.cjs",
+    "generators.json",
+    "*/*.cjs",
+    "*/*.json",
+    "files"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

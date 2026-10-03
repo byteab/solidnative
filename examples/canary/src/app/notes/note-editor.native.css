@@ -1,0 +1,112 @@
+:host {
+  --ink: light-dark(oklch(0.22 0.02 80), oklch(0.95 0.01 90));
+  --soft: light-dark(oklch(0.55 0.02 80), oklch(0.68 0.01 90));
+  --accent: oklch(0.7 0.16 70);
+}
+.screen,
+.page {
+  flex: 1;
+  background-color: light-dark(oklch(0.985 0.008 90), oklch(0.14 0.01 90));
+}
+.mode {
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 700;
+}
+.title-field,
+.read-title {
+  margin: 8px 20px 10px;
+  color: var(--ink);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+.block,
+.read-block {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 20px;
+}
+.text,
+.read-text {
+  flex: 1;
+  padding: 4px 0;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 24px;
+}
+.heading .text,
+.heading .read-text {
+  margin-top: 12px;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 800;
+}
+.quote {
+  margin: 4px 20px;
+  padding: 0 0 0 14px;
+  border-left-width: 3px;
+  border-left-color: var(--accent);
+}
+.quote .text,
+.quote .read-text {
+  color: var(--soft);
+  font-style: italic;
+}
+.marker {
+  padding-top: 4px;
+  color: var(--accent);
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 800;
+}
+.done .text,
+.done .read-text {
+  color: var(--soft);
+  text-decoration-line: line-through;
+}
+.bold {
+  font-weight: 800;
+}
+.italic {
+  font-style: italic;
+}
+.code {
+  font-family: Menlo;
+  font-size: 15px;
+  color: oklch(0.55 0.15 30);
+  background-color: light-dark(oklch(0.94 0.02 30), oklch(0.28 0.03 30));
+}
+.strike {
+  text-decoration-line: line-through;
+}
+.toolbar {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-top-width: var(--hairline, 0.5px);
+  border-top-color: light-dark(oklch(0.88 0.01 90), oklch(0.3 0.01 90));
+  background-color: light-dark(oklch(0.97 0.008 90), oklch(0.19 0.01 90));
+}
+.tool {
+  width: 40px;
+  height: 36px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.on {
+  background-color: oklch(from var(--accent) l c h / 0.2);
+}
+.tool-glyph {
+  color: var(--ink);
+  font-size: 18px;
+}
+.rule {
+  width: 1px;
+  height: 22px;
+  margin: 0 6px;
+  background-color: light-dark(oklch(0.85 0.01 90), oklch(0.35 0.01 90));
+}
