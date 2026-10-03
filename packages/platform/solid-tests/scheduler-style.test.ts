@@ -372,4 +372,46 @@ describe('CSS animation frame scheduling', () => {
     assert.equal(clock.frames.size, 0);
     root.dispose();
   });
+  it('flattens a style object shared by many nodes the same way for each of them', () => {
+    const fabric = createFakeFabric();
+    const root = createNativeRoot({ fabric, rootTag: 1, clock: createClock() });
+    const shared = { 'margin-top': '4px', color: 'red', width: '50%' };
+    const tinted = { '--tint': 'blue' };
+    const sheet: StyleSheet = {
+      rules: [
+        {
+          ...rule(['label'], {}),
+          deferred: [{ props: ['color'], kind: 'color', reference: '--tint', fallback: 'red' }],
+        },
+      ],
+    };
+    const nodes: EngineNode[] = [];
+    const labels: EngineNode[] = [];
+    root.render(() =>
+      withNativeStyles(sheet, () => {
+        const page = createElement('view');
+        for (let i = 0; i < 2; i++) {
+          const row = createElement('view');
+          const label = createElement('text');
+          setProp(row, 'style', shared);
+          setProp(label, 'style', tinted);
+          setProp(label, 'class', 'label');
+          insertNode(row, label);
+          insertNode(page, row);
+          nodes.push(row);
+          labels.push(label);
+        }
+        return page;
+      }),
+    );
+    // Each second use comes from the cache: the same names and numbers, and `tinted` still sets
+    // the custom property rather than an inline style.
+    for (const row of nodes) {
+      assert.equal(nativeNode(fabric, row).props['marginTop'], 4);
+      assert.equal(nativeNode(fabric, row).props['width'], '50%');
+    }
+    assert.equal(nativeNode(fabric, labels[0]!).props['color'], 'blue');
+    assert.equal(nativeNode(fabric, labels[1]!).props['color'], 'blue');
+    root.dispose();
+  });
 });

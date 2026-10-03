@@ -110,9 +110,25 @@ function copyValue(value: unknown): unknown {
     copyEntries(value, copy, false);
     return copy;
   }
-  if (typeof value === 'string' && maybeNumeric(value) && NUMERIC_STYLE.test(value.trim()))
-    return parseFloat(value);
+  if (typeof value === 'string') return stringValue(value);
   return value;
+}
+
+/** Each string value as written out: a screen repeats a handful of colours and keywords. */
+let strings: Record<string, string | number> = Object.create(null);
+let stringCount = 0;
+
+function stringValue(value: string): string | number {
+  const known = strings[value];
+  if (known !== undefined) return known;
+  // ponytail: emptied when it outgrows a palette, as the engine's colour cache is, so values
+  // minted per frame cannot grow it without bound.
+  if (++stringCount > 512) {
+    strings = Object.create(null);
+    stringCount = 1;
+  }
+  return (strings[value] =
+    maybeNumeric(value) && NUMERIC_STYLE.test(value.trim()) ? parseFloat(value) : value);
 }
 
 function flattenStyle(value: unknown, into: Record<string, unknown> = {}): Record<string, unknown> {
@@ -142,11 +158,22 @@ function flattenStyle(value: unknown, into: Record<string, unknown> = {}): Recor
 let written = 0;
 let irregular = false;
 
+/**
+ * Each style name as it is written out, or null for a custom property: a property read per key,
+ * where the checks it answers are native calls on Hermes. Names are the app's style keys, a bounded set.
+ */
+const styleKeys: Record<string, string | null> = Object.create(null);
+
 function writeStyle(into: Record<string, unknown>, name: string, value: unknown): void {
-  const custom = name.charCodeAt(0) === 45 && name.charCodeAt(1) === 45;
+  let key = styleKeys[name];
+  if (key === undefined) {
+    const custom = name.charCodeAt(0) === 45 && name.charCodeAt(1) === 45;
+    styleKeys[name] = key = custom ? null : styleKey(name);
+  }
   written++;
-  if (custom || value == null) irregular = true;
-  into[custom ? name : styleKey(name)] = custom ? value : copyValue(value);
+  if (key === null || value == null) irregular = true;
+  if (key === null) into[name] = value;
+  else into[key] = typeof value === 'number' ? value : copyValue(value);
 }
 
 function equalValue(left: unknown, right: unknown): boolean {
@@ -245,10 +272,37 @@ function applyMergedStyle(engine: Engine, node: EngineNode, state: StyleState): 
   if (!equalValue(current, inline)) engine.setProp(node, 'style', inlineCount ? inline : null);
 }
 
+/** A plain style object's flattened copy and what flattening it counted, by the object itself. */
+interface Flat {
+  readonly style: Record<string, unknown>;
+  readonly written: number;
+  readonly irregular: boolean;
+}
+const flats = new WeakMap<object, Flat>();
+
+/**
+ * Flatten once per style object: a list of rows hands every row the same `styles.label`, and the
+ * copy is never mutated (applyPlainStyle and StyleState replace it), so the rows can share it. A
+ * store's style is flattened afresh each time, as the store mutates its raw object in place.
+ */
+function flattenShared(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || $RAW in value)
+    return flattenStyle(value);
+  const cached = flats.get(value);
+  if (cached) {
+    written = cached.written;
+    irregular = cached.irregular;
+    return cached.style;
+  }
+  const style = flattenStyle(value);
+  flats.set(value, { style, written, irregular });
+  return style;
+}
+
 function setStyle(engine: Engine, node: EngineNode, value: unknown): void {
   written = 0;
   irregular = false;
-  const style = flattenStyle(value);
+  const style = flattenShared(value);
   if (!irregular && !hasStyleState(node)) {
     applyPlainStyle(engine, node, style, written === 0);
     return;
