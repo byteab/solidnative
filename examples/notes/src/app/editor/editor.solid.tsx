@@ -13,12 +13,7 @@ import {
   View,
 } from '@solidnative/components/solid';
 import { Show, withNativeStyles } from '@solidnative/platform/solid';
-import {
-  NativeHeader,
-  NativeHeaderItem,
-  useNavigation,
-  useRoute,
-} from '@solidnative/router/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation, useRoute } from '@solidnative/router/solid';
 import { wordCount } from '../data/note.ts';
 import { Notes } from '../sync/notes.solid.ts';
 import sheet from './editor.native.css';

@@ -1,11 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createNativeRoot, type HostChild } from '@solidnative/platform/solid';
-import {
-  registerPlatformComponents,
-  registerViewName,
-  type FabricNode,
-} from '@solidnative/fabric';
+import { registerPlatformComponents, registerViewName, type FabricNode } from '@solidnative/fabric';
 import { inputFixture, switchFixture } from './compiled-fixture.tsx';
 import {
   createFakeFabric,

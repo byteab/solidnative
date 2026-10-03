@@ -9,12 +9,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import {
-  pinnedRange,
-  type HostEngine,
-  type HostNode,
-  type ScrollRange,
-} from '@solidnative/fabric';
+import { pinnedRange, type HostEngine, type HostNode, type ScrollRange } from '@solidnative/fabric';
 // An internal the components entry points do not export (see eslint.config.mjs's allowlist).
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { StickyHeaders } from '../components/src/sticky-headers.ts';

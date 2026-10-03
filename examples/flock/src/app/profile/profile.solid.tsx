@@ -2,12 +2,7 @@
 import { createMemo, createSignal } from 'solid-js';
 import { Image, Pressable, Text, View, VirtualList } from '@solidnative/components/solid';
 import { For, Show } from '@solidnative/platform/solid';
-import {
-  NativeHeader,
-  NativeHeaderItem,
-  useNavigation,
-  useRoute,
-} from '@solidnative/router/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation, useRoute } from '@solidnative/router/solid';
 import { ME, accent, compact, likedPosts, postsBy, user } from '../flock.solid.ts';
 import { openSettings } from '../sheets.solid.ts';
 import { FollowButton } from '../explore/explore.solid.tsx';

@@ -15,12 +15,7 @@ import {
   withNativeStyles,
   type NativeChild,
 } from '@solidnative/platform/solid';
-import {
-  NativeHeader,
-  NativeHeaderItem,
-  useNavigation,
-  useRoute,
-} from '@solidnative/router/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation, useRoute } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './regressions.native.css';
 export function Regressions() {

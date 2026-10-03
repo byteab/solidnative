@@ -73,11 +73,7 @@ const declaration = (source: string) =>
 describe('every package', () => {
   it('is found, so the checks below are not vacuous', () => {
     const names = PACKAGES.map(({ manifest }) => manifest.name);
-    for (const name of [
-      '@solidnative/platform',
-      '@solidnative/components',
-      '@solidnative/expo',
-    ]) {
+    for (const name of ['@solidnative/platform', '@solidnative/components', '@solidnative/expo']) {
       assert.ok(names.includes(name), name);
     }
   });

@@ -1,9 +1,4 @@
-import {
-  type HostEngine,
-  type HostNode,
-  type ScrollDrive,
-  pinnedRange,
-} from '@solidnative/fabric';
+import { type HostEngine, type HostNode, type ScrollDrive, pinnedRange } from '@solidnative/fabric';
 
 interface Extent {
   readonly start: number;

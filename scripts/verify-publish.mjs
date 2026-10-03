@@ -588,9 +588,7 @@ if (scenario) {
 
   if (process.argv.includes('--generators')) {
     const dir = mkdtempSync(path.join(tmpdir(), 'solid-native-workspace-'));
-    console.log(
-      `\nok  nx g @solidnative/nx:app: the native app bundles ${await nxWorkspace(dir)}`,
-    );
+    console.log(`\nok  nx g @solidnative/nx:app: the native app bundles ${await nxWorkspace(dir)}`);
     rmSync(dir, { recursive: true, force: true });
   }
 

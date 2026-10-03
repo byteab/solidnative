@@ -34,9 +34,7 @@ const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const workspaceRoot = path.resolve(dirname, '../..');
 const dist = path.resolve(dirname, 'dist');
 const tooling = createRequire(
-  createRequire(path.join(dirname, 'package.json')).resolve(
-    '@solidnative/metro/solid-browser.cjs',
-  ),
+  createRequire(path.join(dirname, 'package.json')).resolve('@solidnative/metro/solid-browser.cjs'),
 );
 const preview = path.resolve(dirname, 'src/learn/preview');
 

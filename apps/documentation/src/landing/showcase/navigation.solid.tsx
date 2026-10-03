@@ -7,13 +7,7 @@
  * `packages/web/limits`.
  */
 import { createMemo } from 'solid-js';
-import {
-  Pressable,
-  SafeAreaProvider,
-  ScrollView,
-  Text,
-  View,
-} from '@solidnative/components/solid';
+import { Pressable, SafeAreaProvider, ScrollView, Text, View } from '@solidnative/components/solid';
 import { For, Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,

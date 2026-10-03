@@ -17,9 +17,7 @@ import { markdown } from './build/markdown.ts';
 
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const tooling = createRequire(
-  createRequire(path.join(dirname, 'package.json')).resolve(
-    '@solidnative/metro/solid-browser.cjs',
-  ),
+  createRequire(path.join(dirname, 'package.json')).resolve('@solidnative/metro/solid-browser.cjs'),
 );
 
 export default defineConfig({

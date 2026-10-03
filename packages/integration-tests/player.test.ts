@@ -8,12 +8,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import {
-  audioPlayer,
-  videoPlayer,
-  watchPlayer,
-  type NativePlayer,
-} from '@solidnative/expo/player';
+import { audioPlayer, videoPlayer, watchPlayer, type NativePlayer } from '@solidnative/expo/player';
 import { withServiceScope } from '@solidnative/device/solid';
 import { disposeServices, owned } from './expo-service.ts';
 

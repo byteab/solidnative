@@ -149,8 +149,8 @@ showcase and regression app every release is checked against.
 
 ## Packages
 
-| Package                    | What it provides                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------- |
+| Package                   | What it provides                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------- |
 | `@solidnative/platform`   | The Solid universal renderer, `mountNative()` and the native commit scheduler.        |
 | `@solidnative/components` | The elements: views, text, images, lists, inputs, pressables, gestures, animation.    |
 | `@solidnative/router`     | Native stack and tab navigation over `react-native-screens`.                          |
@@ -199,8 +199,8 @@ native components and tooling are kept; the Angular layer on top was replaced:
 | component `styles` metadata         | `.native.css` sheets applied with `withNativeStyles`    |
 | dependency injection                | `useService` / `ServiceScope`                           |
 | `@defer`, `HttpClient`, `$localize` | `lazy` + `Suspense`, `fetch`, message catalogs + `Intl` |
-| `ng add` / `ng generate`            | `create-expo-app --template`, `nx add @solidnative/nx` |
-| `@ng-native/*`, `@ng-icons/*`       | `@solidnative/*`, `lucide-static`                      |
+| `ng add` / `ng generate`            | `create-expo-app --template`, `nx add @solidnative/nx`  |
+| `@ng-native/*`, `@ng-icons/*`       | `@solidnative/*`, `lucide-static`                       |
 
 Every capability was ported with its tests before the Angular code was removed. The reasoning
 behind each choice is in [docs/decisions.md](docs/decisions.md).

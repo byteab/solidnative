@@ -5,14 +5,14 @@ editor and it runs beside them in a phone-shaped preview, compiled in the browse
 
 ## Outline
 
-| #   | Lesson                 | What it teaches                                                                                           |
-| --- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | Your first screen      | A component and its JSX; `<View>` and `<Text>`; imports; expressions in JSX.                              |
-| 2   | Layout and style       | Flexbox as a phone does it; component CSS compiled to native; what fails.                                 |
-| 3   | A list of habits       | `<For>` with a `fallback`, a derived count; `<ScrollView>` and `contentContainerStyle`.                   |
-| 4   | State and components   | `createSignal`, `createMemo`; `<Pressable>`; `HabitRow` with props and callbacks.                         |
-| 5   | Tailwind and platforms | Tailwind with the native preset; `pt-safe`, `active:`, `ios:`, `android:`, `dark:`.                       |
-| 6   | A form for new habits  | `<TextInput>` bound to a signal: native blur, `maxLength`, the return key.                                |
+| #   | Lesson                 | What it teaches                                                                                          |
+| --- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| 1   | Your first screen      | A component and its JSX; `<View>` and `<Text>`; imports; expressions in JSX.                             |
+| 2   | Layout and style       | Flexbox as a phone does it; component CSS compiled to native; what fails.                                |
+| 3   | A list of habits       | `<For>` with a `fallback`, a derived count; `<ScrollView>` and `contentContainerStyle`.                  |
+| 4   | State and components   | `createSignal`, `createMemo`; `<Pressable>`; `HabitRow` with props and callbacks.                        |
+| 5   | Tailwind and platforms | Tailwind with the native preset; `pt-safe`, `active:`, `ios:`, `android:`, `dark:`.                      |
+| 6   | A form for new habits  | `<TextInput>` bound to a signal: native blur, `maxLength`, the return key.                               |
 | 7   | Testing                | `@solidnative/testing` with Vitest: `render`, `screen`, `userEvent.press`, `vi.fn`; what needs a device. |
 
 Each lesson starts where the one before it ended.

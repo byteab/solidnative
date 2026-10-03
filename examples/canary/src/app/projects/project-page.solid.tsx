@@ -3,12 +3,7 @@ import { createMemo, createSignal } from 'solid-js';
 import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
 import { Pressable, Text, View, VirtualList } from '@solidnative/components/solid';
 import { useService } from '@solidnative/device/solid';
-import {
-  NativeHeader,
-  NativeHeaderItem,
-  useNavigation,
-  useRoute,
-} from '@solidnative/router/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation, useRoute } from '@solidnative/router/solid';
 import { ProjectStore } from './project-data.solid.ts';
 import sheet from './project-page.native.css';
 

@@ -4,12 +4,7 @@ import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid
 import { ColorScheme, Dialogs, useService } from '@solidnative/device/solid';
 import { Icon, IconProvider } from '@solidnative/icons/solid';
 import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
-import {
-  NativeHeader,
-  NativeHeaderItem,
-  useNavigation,
-  useRoute,
-} from '@solidnative/router/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation, useRoute } from '@solidnative/router/solid';
 import { calendarGrid, Habits } from '../data/habits.solid.ts';
 import sheet from './habit-detail.native.css';
 

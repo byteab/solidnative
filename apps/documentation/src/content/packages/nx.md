@@ -34,15 +34,15 @@ every `nx start`.
 
 ## The targets
 
-| Command                 | From           | What runs                                                           |
-| ----------------------- | -------------- | ------------------------------------------------------------------- |
-| `nx start mobile`       | `project.json` | `expo start`                                                        |
-| `nx run mobile:run-ios` | `@nx/expo`     | `expo run:ios`, and `run-android` likewise                          |
-| `nx export mobile`      | `@nx/expo`     | `expo export`; `--platform ios` for one platform                    |
-| `nx prebuild mobile`    | `@nx/expo`     | `expo prebuild`                                                     |
-| `nx build mobile`       | `@nx/expo`     | an EAS build, on Expo's machines                                    |
+| Command                 | From           | What runs                                                          |
+| ----------------------- | -------------- | ------------------------------------------------------------------ |
+| `nx start mobile`       | `project.json` | `expo start`                                                       |
+| `nx run mobile:run-ios` | `@nx/expo`     | `expo run:ios`, and `run-android` likewise                         |
+| `nx export mobile`      | `@nx/expo`     | `expo export`; `--platform ios` for one platform                   |
+| `nx prebuild mobile`    | `@nx/expo`     | `expo prebuild`                                                    |
+| `nx build mobile`       | `@nx/expo`     | an EAS build, on Expo's machines                                   |
 | `nx test mobile`        | `project.json` | `node --test` over `src/**/*.test.ts`, with `@solidnative/testing` |
-| `nx typecheck mobile`   | `project.json` | `tsc -p tsconfig.json --noEmit`                                     |
+| `nx typecheck mobile`   | `project.json` | `tsc -p tsconfig.json --noEmit`                                    |
 
 `@nx/expo` provides no `typecheck` (Expo's `tsconfig` sets `noEmit`, so `@nx/js` skips it) or
 `test`, so the generator writes both. `test` is Node's test runner with

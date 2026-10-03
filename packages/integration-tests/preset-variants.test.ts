@@ -142,9 +142,7 @@ describe('the two Tailwind presets', () => {
     const { flattenTailwind } = createRequire(import.meta.url)('@solidnative/tailwind') as {
       flattenTailwind(css: string): string;
     };
-    const { compileCss } = createRequire(import.meta.url)(
-      '@solidnative/metro/css/compile.cjs',
-    ) as {
+    const { compileCss } = createRequire(import.meta.url)('@solidnative/metro/css/compile.cjs') as {
       compileCss(css: string, context: string, options: object): StyleSheet;
     };
     const refused: string[] = [];
