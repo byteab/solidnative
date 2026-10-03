@@ -1015,12 +1015,23 @@ const COLOR = 1;
 /** A conversion that returns a fresh value, made on the way out by `processed`. */
 const FRESH = 2;
 const TRANSFORM = 3;
-/** Answers per key name, once: these ran for every prop of every node in every commit. */
-const propKinds = new Map<string, number>();
+/**
+ * An instruction for this engine that native has never heard of (`$transition`, `$animation`,
+ * `__translate`): only `mergeProps`'s full path knows what to do with one.
+ */
+const ENGINE = 4;
+/** Or'd into a kind: the name has a hyphen, so it is an attribute, never a native prop. */
+const HYPHENATED = 8;
+/**
+ * Answers per key name, once: these ran for every prop of every node in every commit. A plain
+ * object, whose read Hermes does inline, where a `Map` lookup is a native call.
+ */
+const propKinds: Record<string, number> = Object.create(null);
 function propKind(key: string): number {
-  let kind = propKinds.get(key);
+  let kind = propKinds[key];
   if (kind === undefined) {
-    if (isColorProp(key)) kind = COLOR;
+    if (key.charCodeAt(0) === 36 || key.startsWith('__')) kind = ENGINE;
+    else if (isColorProp(key)) kind = COLOR;
     else if (key === 'transform') kind = TRANSFORM;
     else if (
       ASSET_PROPS.has(key) ||
@@ -1030,7 +1041,8 @@ function propKind(key: string): number {
     )
       kind = FRESH;
     else kind = PLAIN;
-    propKinds.set(key, kind);
+    if (key.includes('-')) kind |= HYPHENATED;
+    propKinds[key] = kind;
   }
   return kind;
 }
@@ -1048,6 +1060,20 @@ const UNCONVERTED = Symbol('unconverted');
  * approximated, it is dropped.
  */
 const NESTED_COLOR_LIST_PROPS = new Set(['boxShadow']);
+
+/** A node's own props that go to native: everything but its style and the engine's own keys. */
+function copyNativeProps(
+  source: Readonly<Record<string, unknown>>,
+  props: Record<string, unknown>,
+): void {
+  for (const key in source) {
+    // No native prop has a hyphen. `data-*` and `aria-*` attributes stay on the node for
+    // selectors to match, and the components package maps `aria-*` to what native reads.
+    if (key === 'style' || key === INTRINSIC_SIZE || key === STYLE_OVERRIDE || key.includes('-'))
+      continue;
+    props[key] = source[key];
+  }
+}
 
 /** Styles arrive as objects, arrays, nested arrays and nulls. Reduce to one object. */
 function flattenStyle(value: unknown, into: Record<string, unknown>): Record<string, unknown> {
@@ -1966,19 +1992,10 @@ export class Engine implements HostEngine {
     }
     if (this.dev) this.checkProps(node);
     if (node.sheet !== null || node.hostSheet !== null) this.noteSheets(node);
+    const plain = this.plainProps(node, viewName);
+    if (plain !== null) return plain;
     const props = this.cascaded(node, viewName);
-    for (const key in node.props) {
-      // No native prop has a hyphen. `data-*` and `aria-*` attributes stay on the node for
-      // selectors to match, and the components package maps `aria-*` to what native reads.
-      if (
-        key !== 'style' &&
-        key !== INTRINSIC_SIZE &&
-        key !== STYLE_OVERRIDE &&
-        !key.includes('-')
-      ) {
-        props[key] = node.props[key];
-      }
-    }
+    copyNativeProps(node.props, props);
     const style = flattenStyle(node.props['style'], props);
     const intrinsic = node.props[INTRINSIC_SIZE] as IntrinsicSize | undefined;
     if (intrinsic) applyIntrinsicSize(style, intrinsic);
@@ -1993,6 +2010,80 @@ export class Engine implements HostEngine {
   private fresh = false;
 
   /**
+   * `mergeProps` for a node nothing but its own props and inline style reaches, the common case:
+   * no cascade, no transition, animation or composed transform, so the defaults, props and style
+   * are copied and their colours converted in one pass rather than four. Null when the node needs
+   * the full path, which gives the same props for any node this one takes.
+   *
+   * Exempt from the complexity limit, as `matchesCompound` is: a flat run of independent guards
+   * and three loops on a path every node takes. Split into helpers it measured 3% slower on mount,
+   * a shared loop over the three sources costing Hermes its property caches at that one site.
+   */
+  // eslint-disable-next-line complexity
+  private plainProps(node: EngineNode, viewName: string): Record<string, unknown> | null {
+    const style = node.props['style'] as Record<string, unknown> | null | undefined;
+    if (
+      node.transitions !== undefined ||
+      node.playing !== undefined ||
+      node.scrolled !== undefined ||
+      node.props[INTRINSIC_SIZE] !== undefined ||
+      node.props[STYLE_OVERRIDE] !== undefined ||
+      (style != null && (typeof style !== 'object' || Array.isArray(style))) ||
+      this.styles.resolve(node, this.styleEpoch).style !== EMPTY_STYLE
+    ) {
+      return null;
+    }
+    const defaults = DEFAULT_PROPS[viewName];
+    const props: Record<string, unknown> = {};
+    this.fresh = false;
+    // Defaults are converted along with everything else, as `convertInPlace` converts them.
+    for (const key in defaults) {
+      if (!this.putProp(props, key, defaults[key], propKind(key))) return null;
+    }
+    for (const key in node.props) {
+      if (key === 'style') continue;
+      const kind = propKind(key);
+      // No native prop has a hyphen: see `copyNativeProps`.
+      if (kind & HYPHENATED) continue;
+      if (!this.putProp(props, key, node.props[key], kind)) return null;
+    }
+    for (const key in style) {
+      if (!this.putProp(props, key, style[key], propKind(key))) return null;
+    }
+    if (viewName === PARAGRAPH) alignText(props, this.directionOf(node, props));
+    return props;
+  }
+
+  /** One key of `plainProps`, converted as `convertInPlace` would; false for an engine key. */
+  private putProp(
+    props: Record<string, unknown>,
+    key: string,
+    value: unknown,
+    kind: number,
+  ): boolean {
+    kind &= 7;
+    if (kind === ENGINE) return false;
+    if (
+      kind === COLOR &&
+      value !== null &&
+      (typeof value === 'string' || typeof value === 'number')
+    ) {
+      props[key] = this.cachedColor(value);
+      return true;
+    }
+    props[key] = value;
+    if (
+      kind !== PLAIN &&
+      value !== null &&
+      value !== undefined &&
+      (kind !== TRANSFORM || typeof value === 'string')
+    ) {
+      this.fresh = true;
+    }
+    return true;
+  }
+
+  /**
    * Convert a merged props object's colours where they are, once per merge; whether anything is
    * left for `processed`. A colour written as a string or a number converts to a number, which
    * compares equal from one commit to the next, so it can be diffed converted and the props built
@@ -2002,8 +2093,8 @@ export class Engine implements HostEngine {
   private convertInPlace(props: Record<string, unknown>): boolean {
     let fresh = false;
     for (const key in props) {
-      const kind = propKind(key);
-      if (kind === PLAIN) continue;
+      const kind = propKind(key) & 7;
+      if (kind === PLAIN || kind === ENGINE) continue;
       const value = props[key];
       if (value === null || value === undefined) continue;
       if (kind === COLOR && (typeof value === 'string' || typeof value === 'number')) {

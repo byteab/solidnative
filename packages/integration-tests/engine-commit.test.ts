@@ -8,6 +8,7 @@ import {
   Engine,
   claimHost,
   markComponentHost,
+  registerViewName,
   type EngineNode,
   type StyleSheet,
 } from '@solidnative/fabric';
@@ -292,6 +293,33 @@ describe('what a commit sends', () => {
       { brightness: 0.5 },
       { dropShadow: { offsetX: 0, offsetY: 4, color: 'processed red' } },
     ]);
+  });
+
+  it("keeps an inline style's transition to the engine, and still eases what it names", () => {
+    // TouchableOpacity writes `$transition` into its inline style: only the full merge reads it.
+    const fabric = createFakeFabric();
+    const engine = new Engine(fabric, 1);
+    const view = engine.createElement('view');
+    const style = (opacity: number) => ({
+      opacity,
+      $transition: { opacity: { duration: 100, delay: 0, easing: [0, 0, 1, 1] } },
+    });
+    engine.setProp(view, 'style', style(1));
+    engine.appendChild(engine.root, view);
+    engine.commit();
+    assert.equal(fabric.committed[0]!.props['$transition'], undefined);
+    engine.setProp(view, 'style', style(0));
+    engine.commit();
+    assert.ok(engine.animating, 'the opacity eases rather than jumping');
+  });
+
+  it("converts the colours in a registered view's defaults", () => {
+    registerViewName('tinted-default-view', 'RCTView', { backgroundColor: 'red' });
+    const fabric = createFakeFabric();
+    const engine = new Engine(fabric, 1, { processColor: (value) => `processed ${value}` });
+    engine.appendChild(engine.root, engine.createElement('tinted-default-view'));
+    engine.commit();
+    assert.equal(fabric.committed[0]!.props['backgroundColor'], 'processed red');
   });
 
   it('keeps hyphenated attributes to the engine, since no native prop is spelt that way', () => {
