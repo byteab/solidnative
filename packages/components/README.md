@@ -48,22 +48,22 @@ entries.
 
 ## Docs
 
-- [Components](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components.md)
-- [Layout](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/layout.md),
-  [scroll view](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/scroll-view.md),
-  [keyboard-avoiding view](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/keyboard-avoiding-view.md),
-  [lists](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/lists.md),
-  [text](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/text.md),
-  [image](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/image.md),
-  [activity indicator](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/activity-indicator.md),
-  [text input](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/input.md),
-  [switch](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/switch.md),
-  [pressable](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/pressable.md),
-  [gestures](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/gestures.md),
-  [modal](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/modal.md) and
-  [animation](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components/animation.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Components](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components.md)
+- [Layout](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/layout.md),
+  [scroll view](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/scroll-view.md),
+  [keyboard-avoiding view](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/keyboard-avoiding-view.md),
+  [lists](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/lists.md),
+  [text](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/text.md),
+  [image](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/image.md),
+  [activity indicator](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/activity-indicator.md),
+  [text input](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/input.md),
+  [switch](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/switch.md),
+  [pressable](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/pressable.md),
+  [gestures](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/gestures.md),
+  [modal](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/modal.md) and
+  [animation](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components/animation.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

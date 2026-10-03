@@ -1,6 +1,6 @@
 # @solidnative/fabric
 
-The framework-agnostic engine underneath solid-native's Solid renderer: a retained view tree, a commit
+The framework-agnostic engine underneath solidnative's Solid renderer: a retained view tree, a commit
 step into React Native's Fabric, and a CSS engine with a real cascade. No UI-framework import
 anywhere in it - that boundary is enforced by lint, not just convention.
 
@@ -17,7 +17,7 @@ npm install @solidnative/fabric
 
 ## Example
 
-Registering a third-party Fabric component that ships no solid-native bindings of its own:
+Registering a third-party Fabric component that ships no solidnative bindings of its own:
 
 ```ts
 import { registerViewName } from '@solidnative/fabric';
@@ -44,12 +44,12 @@ const platform = nativePlatform(); // 'ios' | 'android'
 
 ## Docs
 
-- [Fabric](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric.md)
-- [The CSS engine](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/css-engine.md),
-  [what CSS reaches a device](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/supported-css.md) and
-  [animation](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric/animation.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Fabric](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/fabric.md)
+- [The CSS engine](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/fabric/css-engine.md),
+  [what CSS reaches a device](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/fabric/supported-css.md) and
+  [animation](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/fabric/animation.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

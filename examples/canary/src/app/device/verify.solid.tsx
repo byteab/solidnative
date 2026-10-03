@@ -164,7 +164,7 @@ export function VerifyPage() {
     const request = epoch,
       id = ++shareRequest;
     try {
-      const took = await sharing.share({ message: 'solid-native', url: 'https://expo.dev' });
+      const took = await sharing.share({ message: 'solidnative', url: 'https://expo.dev' });
       if (owns(request) && id === shareRequest)
         setShared(took ? 'Something took it.' : 'Dismissed, or nothing took it.');
     } catch (error) {

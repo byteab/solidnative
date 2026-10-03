@@ -1,6 +1,6 @@
 # Runs
 
-A small run tracker built with solid-native and Solid: a live map, GPS tracking with splits, and a GPX
+A small run tracker built with solidnative and Solid: a live map, GPS tracking with splits, and a GPX
 export, all built to run in the simulator without a real GPS.
 
 | Screen                                                 | What it shows                                                                                                       |

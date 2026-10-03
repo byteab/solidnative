@@ -18,7 +18,7 @@ declare module 'solid-js' {
 }
 
 const DESCRIPTION =
-  'Build a habit tracker with Solid and solid-native in your browser: real components, native CSS, Tailwind and tests, on an iOS and Android preview.';
+  'Build a habit tracker with Solid and solidnative in your browser: real components, native CSS, Tailwind and tests, on an iOS and Android preview.';
 
 /** "Done", or how many steps are done, or nothing for a lesson not started. */
 function status(lesson: CourseLesson): string {

@@ -2,7 +2,7 @@ import { AppRegistry, Image, Platform, processColor } from 'react-native';
 import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { registerExpoUiViews } from '@solidnative/expo/views';
 import { mountFlock } from './bootstrap.solid.tsx';
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 
 /** Flock's entry, rendered by Solid. */
 registerPlatformComponents(Platform.OS);

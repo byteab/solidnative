@@ -1,6 +1,6 @@
 # Solid rules
 
-This repo is solid-native: SolidJS components rendering native iOS/Android views on React Native's
+This repo is solidnative: SolidJS components rendering native iOS/Android views on React Native's
 Fabric renderer through `solid-js/universal`. No DOM, no browser, and React never renders.
 General Solid knowledge applies to signals, stores and components; its DOM parts
 (`solid-js/web`, `render()`, `<Portal>`, `onClick`, `<div>`) do not.

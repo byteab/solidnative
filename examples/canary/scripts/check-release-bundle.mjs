@@ -23,7 +23,7 @@ const DEV_ONLY = [
   '$RefreshReg$',
 ];
 
-const out = mkdtempSync(path.join(tmpdir(), 'solid-native-bundle-'));
+const out = mkdtempSync(path.join(tmpdir(), 'solidnative-bundle-'));
 let failures = 0;
 const check = (ok, message) => {
   console.log(`${ok ? 'ok  ' : 'FAIL'}  ${message}`);

@@ -87,9 +87,9 @@ function createPage<P extends object>(
   const bridge = page.ReactNativeWebView;
   const previous = page.__solidNative;
   const margin = document.body.style.margin;
-  const existing = options.host ?? document.querySelector<HTMLElement>('solid-native-web-root');
+  const existing = options.host ?? document.querySelector<HTMLElement>('solidnative-web-root');
   const host =
-    existing ?? document.body.appendChild(document.createElement('solid-native-web-root'));
+    existing ?? document.body.appendChild(document.createElement('solidnative-web-root'));
   const children = [...host.childNodes];
   let disposed = false;
   let mounting = true;

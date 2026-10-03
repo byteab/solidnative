@@ -1,7 +1,7 @@
 # AGENTS.md
 
 This is a SolidJS app rendering real native iOS and Android views with
-[solid-native](https://github.com/byteab/solid-native/tree/main/apps/documentation/src/content): Solid components on React Native's Fabric renderer, inside an
+[solidnative](https://github.com/byteab/solidnative/tree/main/apps/documentation/src/content): Solid components on React Native's Fabric renderer, inside an
 Expo app. It is not a web app and not React: there is no DOM, and React never renders anything.
 JSX here is Solid's, compiled for a native renderer.
 

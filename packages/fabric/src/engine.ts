@@ -2274,7 +2274,7 @@ export class Engine implements HostEngine {
     if (this.reported.has(`scroll ${name}`)) return;
     this.reported.add(`scroll ${name}`);
     console.error(
-      `[solid-native] '${name}' plays by animation-timeline: scroll(), but the element is not ` +
+      `[solidnative] '${name}' plays by animation-timeline: scroll(), but the element is not ` +
         `inside a scroll view, so nothing moves it. It shows its first frame.`,
     );
   }
@@ -2283,7 +2283,7 @@ export class Engine implements HostEngine {
     if (this.reported.has(`held ${name}`)) return;
     this.reported.add(`held ${name}`);
     console.error(
-      `[solid-native] '${name}' plays by a scroll, which native drives for opacity and ` +
+      `[solidnative] '${name}' plays by a scroll, which native drives for opacity and ` +
         `transforms only. ${properties.join(', ')} holds its first frame.`,
     );
   }
@@ -2292,7 +2292,7 @@ export class Engine implements HostEngine {
     if (this.reported.has(`@keyframes ${name}`)) return;
     this.reported.add(`@keyframes ${name}`);
     console.error(
-      `[solid-native] no @keyframes named '${name}'. Nothing animates, and the element ` +
+      `[solidnative] no @keyframes named '${name}'. Nothing animates, and the element ` +
         `renders with its resting style. Keyframes are global across every stylesheet the app ` +
         `has loaded, so the block has to exist somewhere by the time the animation starts.`,
     );
@@ -2802,7 +2802,7 @@ export class Engine implements HostEngine {
     if (this.undefinedTokens.has(name)) return;
     this.undefinedTokens.add(name);
     console.warn(
-      `[solid-native] var(${name}) in ${props.join(', ')} names a custom property nothing in` +
+      `[solidnative] var(${name}) in ${props.join(', ')} names a custom property nothing in` +
         ` scope defines, so the declaration is dropped, as a browser drops it. Define ${name} on` +
         ` :root or an ancestor, or give the var() a fallback.`,
     );
@@ -2819,7 +2819,7 @@ export class Engine implements HostEngine {
       this.reported.add(report);
       const meant = [...declared].find((name) => name.toLowerCase() === key.toLowerCase());
       console.warn(
-        `[solid-native] <${node.name}> has no prop '${key}', so native ignores it.` +
+        `[solidnative] <${node.name}> has no prop '${key}', so native ignores it.` +
           (meant ? ` Did you mean '${meant}'?` : '') +
           ` Check the spelling against the ${className(node.name)} page, or declare it with` +
           ` declareNativeProps('${node.name}', ['${key}']) if the native view does read it.`,
@@ -2846,7 +2846,7 @@ export class Engine implements HostEngine {
     if (this.reported.has(node.name)) return;
     this.reported.add(node.name);
     console.error(
-      `[solid-native] <${node.name}> is not a known element: no component or registered ` +
+      `[solidnative] <${node.name}> is not a known element: no component or registered ` +
         `native view claims it, so it renders as an empty view. Check the spelling, or use the ` +
         `component that owns it.`,
     );
@@ -3182,7 +3182,7 @@ export class Engine implements HostEngine {
       this.onError(error, topLevelType);
       return;
     }
-    console.error(`[solid-native] an error was thrown while dispatching ${topLevelType}`, error);
+    console.error(`[solidnative] an error was thrown while dispatching ${topLevelType}`, error);
   }
 
   /**

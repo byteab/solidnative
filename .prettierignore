@@ -17,4 +17,4 @@ packages/integration-tests/fixtures/tailwind-v3-sweep-oracle.json
 # what Tailwind really emits, and the flattener reads it a line at a time.
 packages/integration-tests/fixtures/tailwind-utilities.css
 # Generated from an app's Tailwind entry by its Metro config.
-examples/*/.solid-native/
+examples/*/.solidnative/

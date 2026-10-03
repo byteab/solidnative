@@ -70,7 +70,7 @@ export const NATIVE_VIEWS: Readonly<Record<string, [string, Record<string, unkno
 export function registerNativeViews(...elements: readonly (keyof typeof NATIVE_VIEWS)[]): void {
   for (const element of elements) {
     const known = NATIVE_VIEWS[element];
-    if (!known) throw new Error(`[solid-native] no native view is known as '${element}'`);
+    if (!known) throw new Error(`[solidnative] no native view is known as '${element}'`);
     registerViewName(element, known[0], known[1]);
   }
 }

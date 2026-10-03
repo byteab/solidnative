@@ -24,7 +24,7 @@ export function toGpx(run: Run): string {
   const name = escapeXml(`Run - ${new Date(run.startedAt).toLocaleDateString()}`);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="solid-native Runs" xmlns="http://www.topografix.com/GPX/1/1">
+<gpx version="1.1" creator="solidnative Runs" xmlns="http://www.topografix.com/GPX/1/1">
   <trk>
     <name>${name}</name>
     <trkseg>

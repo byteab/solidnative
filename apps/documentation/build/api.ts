@@ -291,7 +291,7 @@ export function lookup(api: Record<string, ApiEntry>, reference: string): ApiEnt
   );
 }
 
-const MODULE = 'virtual:solid-native/api';
+const MODULE = 'virtual:solidnative/api';
 
 /**
  * Serves the extraction as a module the site imports.

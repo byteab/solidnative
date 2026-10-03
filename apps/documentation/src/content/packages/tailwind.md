@@ -41,13 +41,13 @@ module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
 `withTailwind` runs `@tailwindcss/cli` on `input` once, synchronously, before Metro's first
 import, then watches under a dev server. One-off builds (`expo export`, `expo export:embed`,
 `react-native bundle`, `expo prebuild`) and runs with `CI` set don't watch and exit cleanly;
-`watch: true`/`false` overrides. The `output` (default `.solid-native/app.tailwind.js`) is a `.js`/`.cjs`/`.mjs` module,
+`watch: true`/`false` overrides. The `output` (default `.solidnative/app.tailwind.js`) is a `.js`/`.cjs`/`.mjs` module,
 not CSS, because Expo's transform worker claims every `.css` file and returns an empty module off
 web. A `.d.ts` beside it types the default export as the `StyleSheet` `globalStyles` takes. Both
-are rebuilt on every start, so `.solid-native/` belongs in `.gitignore` (the template does this).
+are rebuilt on every start, so `.solidnative/` belongs in `.gitignore` (the template does this).
 
 A fresh clone or CI job lacks both until the Metro config loads, so typecheck fails with
-`Cannot find module '../.solid-native/app.tailwind.js'`. Loading the config builds them and exits,
+`Cannot find module '../.solidnative/app.tailwind.js'`. Loading the config builds them and exits,
 so run it first:
 
 ```json
@@ -56,7 +56,7 @@ so run it first:
 
 ```ts
 // src/main.solid.ts
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 
 const root = createNativeRoot({
   fabric: getFabricUIManager(),
@@ -75,7 +75,7 @@ scale - never depends on the element, so it is all resolved at build time before
 compiler sees it. Whatever native can't express is reported with its line:
 
 ```text
-[solid-native] app.tailwind.css:153: dropped 'appearance': 'appearance' is not mapped yet.
+[solidnative] app.tailwind.css:153: dropped 'appearance': 'appearance' is not mapped yet.
 ```
 
 That is deliberate - see [what CSS reaches a device](/packages/fabric/supported-css) for what

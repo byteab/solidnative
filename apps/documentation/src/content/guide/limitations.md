@@ -6,7 +6,7 @@ summary: What the alpha does not do yet, and the workaround for each.
 # Known limitations
 
 Known gaps in the alpha, with workarounds where they exist. See
-[solid-native compared](/guide/comparison#maturity) for what is implemented versus verified.
+[solidnative compared](/guide/comparison#maturity) for what is implemented versus verified.
 
 ## There is no DOM
 
@@ -63,7 +63,7 @@ directly for upload progress.
 
 Fabric holds one event handler, which `ReactFabric` claims when React Native lazily loads it. A
 Solid root requires the `ReactFabric` shim before installing its own dispatcher, so the Solid claim
-lands last and React's event plugins never see solid-native view events. The engine catches errors
+lands last and React's event plugins never see solidnative view events. The engine catches errors
 from callback props, responder handlers and direct `Engine` listeners, passes them to
 `engineOptions.onError` (or `console.error`) and keeps bubbling. Native errors are not JavaScript
 errors and are not caught.

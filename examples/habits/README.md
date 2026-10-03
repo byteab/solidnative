@@ -1,6 +1,6 @@
 # Habits
 
-A small habit tracker built with solid-native and Solid: four habits with a couple of months of history,
+A small habit tracker built with solidnative and Solid: four habits with a couple of months of history,
 so every screen has something to show on first launch.
 
 | Screen                                                     | What it shows                                                                                                                                          |

@@ -1,5 +1,5 @@
 /**
- * `solidNative()`: the Vite plugin that lets Vitest run solid-native's Solid code in Node, compiled as
+ * `solidNative()`: the Vite plugin that lets Vitest run solidnative's Solid code in Node, compiled as
  * `@solidnative/testing/register` compiles it for `node --test` (see `compile.mjs`).
  *
  * The environment is Vitest's default, `node`: the renderer talks to a fake Fabric, not a DOM.
@@ -7,13 +7,13 @@
 import { readFileSync } from 'node:fs';
 import { STAND_INS, compile, isNativeCss, solidRuntime } from './compile.mjs';
 
-const CSS = '\0solid-native-css:';
+const CSS = '\0solidnative-css:';
 
 /** @returns {import('vite').Plugin} */
 export function solidNative() {
   let runtime;
   return {
-    name: 'solid-native',
+    name: 'solidnative',
     enforce: 'pre',
     config: () => ({
       define: { __DEV__: 'true' },

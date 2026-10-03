@@ -1,0 +1,200 @@
+/*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
+@layer properties;
+:root,
+:host {
+  --color-indigo-600: oklch(51.1% 0.262 276.966);
+  --color-zinc-100: oklch(96.7% 0.001 286.375);
+  --color-zinc-200: oklch(92% 0.004 286.32);
+  --color-zinc-500: oklch(55.2% 0.016 285.938);
+  --color-zinc-800: oklch(27.4% 0.006 286.033);
+  --color-zinc-900: oklch(21% 0.006 285.885);
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: 0.25rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --radius-xl: 0.75rem;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.flex-1 {
+  flex: 1;
+}
+.transform {
+  transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,)
+    var(--tw-skew-y,);
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.gap-3 {
+  gap: calc(var(--spacing) * 3);
+}
+.rounded-xl {
+  border-radius: var(--radius-xl);
+}
+.border-b-hairline {
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: var(--hairline, 1px);
+}
+.border-zinc-200 {
+  border-color: var(--color-zinc-200);
+}
+.bg-indigo-600 {
+  background-color: var(--color-indigo-600);
+}
+.bg-white {
+  background-color: var(--color-white);
+}
+.bg-zinc-100 {
+  background-color: var(--color-zinc-100);
+}
+.p-4 {
+  padding: calc(var(--spacing) * 4);
+}
+.p-6 {
+  padding: calc(var(--spacing) * 6);
+}
+.px-5 {
+  padding-inline: calc(var(--spacing) * 5);
+}
+.py-3 {
+  padding-block: calc(var(--spacing) * 3);
+}
+.text-2xl {
+  font-size: var(--text-2xl);
+  line-height: var(--tw-leading, var(--text-2xl--line-height));
+}
+.text-base {
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+}
+.text-sm {
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+}
+.font-bold {
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+}
+.font-semibold {
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+}
+.text-white {
+  color: var(--color-white);
+}
+.text-zinc-500 {
+  color: var(--color-zinc-500);
+}
+.text-zinc-900 {
+  color: var(--color-zinc-900);
+}
+.transition {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    outline-color,
+    text-decoration-color,
+    fill,
+    stroke,
+    --tw-gradient-from,
+    --tw-gradient-via,
+    --tw-gradient-to,
+    opacity,
+    box-shadow,
+    transform,
+    translate,
+    scale,
+    rotate,
+    filter,
+    -webkit-backdrop-filter,
+    backdrop-filter,
+    display,
+    content-visibility,
+    overlay,
+    pointer-events;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.active\:bg-zinc-100:active {
+  background-color: var(--color-zinc-100);
+}
+.active\:opacity-80:active {
+  opacity: 80%;
+}
+.dark .dark\:border-zinc-800 {
+  border-color: var(--color-zinc-800);
+}
+.dark .dark\:bg-black {
+  background-color: var(--color-black);
+}
+.dark .dark\:text-white {
+  color: var(--color-white);
+}
+.dark .dark\:active\:bg-zinc-900:active {
+  background-color: var(--color-zinc-900);
+}
+.platform-ios .font-mono {
+  font-family: Menlo;
+}
+.platform-android .font-mono {
+  font-family: monospace;
+}
+@property --tw-rotate-x {
+  syntax: '*';
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: '*';
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: '*';
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: '*';
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: '*';
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: '*';
+  inherits: false;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
+    ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
+    *,
+    ::before,
+    ::after,
+    ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-font-weight: initial;
+    }
+  }
+}

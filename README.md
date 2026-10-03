@@ -1,8 +1,8 @@
-# solid-native
+# solidnative
 
 **Solid apps, rendered as real native iOS and Android views.**
 
-solid-native renders SolidJS components straight onto React Native's Fabric renderer, so a `<View>` is
+solidnative renders SolidJS components straight onto React Native's Fabric renderer, so a `<View>` is
 a `UIView` on iOS and an `android.view.View` on Android, and React is never in the render path. You
 write Solid components, signals and stores, then create, run, reload and ship the app with Expo.
 
@@ -10,7 +10,7 @@ It is a migration of [ng-native](https://github.com/ng-native/ng-native), which 
 Angular, to SolidJS. See [where it came from](#from-ng-native).
 
 > [!WARNING]
-> solid-native is an experiment, built to explore running Solid on React Native's architecture. It
+> solidnative is an experiment, built to explore running Solid on React Native's architecture. It
 > is not production ready: expect gaps, rough edges and breaking changes.
 
 ```sh
@@ -97,7 +97,7 @@ unmodified dependencies: nothing is forked. [ARCHITECTURE.md](ARCHITECTURE.md) h
 
 ## Expo and the React Native ecosystem
 
-solid-native keeps React Native's architecture and swaps only React for Solid. Everything below the
+solidnative keeps React Native's architecture and swaps only React for Solid. Everything below the
 renderer is unchanged, so the native side of the ecosystem still works:
 
 - **Expo tooling.** `create-expo-app`, `npx expo start`, Expo Go, development builds, config
@@ -129,13 +129,13 @@ renderer is unchanged, so the native side of the ecosystem still works:
 
 ## Documentation
 
-- [Getting started](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/getting-started.md)
-- [Adding it to an existing app](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/manual-setup.md)
-- [Theming and Tailwind](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/theming.md)
-- [Build a form](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/forms.md)
-- [Deployment](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/deployment.md)
-- [How it compares](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/comparison.md)
-- [Known limitations](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/limitations.md)
+- [Getting started](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/getting-started.md)
+- [Adding it to an existing app](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/manual-setup.md)
+- [Theming and Tailwind](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/theming.md)
+- [Build a form](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/forms.md)
+- [Deployment](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/deployment.md)
+- [How it compares](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/comparison.md)
+- [Known limitations](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/limitations.md)
 - [Architecture](ARCHITECTURE.md) and [design decisions](docs/decisions.md)
 - [Performance](docs/performance.md)
 
@@ -156,7 +156,7 @@ showcase and regression app every release is checked against.
 | `@solidnative/icons`      | `Icon` with `lucide-static` (or any SVG strings), drawn as native SVG.                |
 | `@solidnative/metro`      | The Metro preset: the Solid transform, the CSS compiler and clean development reload. |
 | `@solidnative/tailwind`   | The Tailwind preset and its platform variants.                                        |
-| `@solidnative/testing`    | Testing Library for solid-native Solid components, running in Node.                   |
+| `@solidnative/testing`    | Testing Library for solidnative Solid components, running in Node.                    |
 | `@solidnative/web`        | A DOM host for the same components, with a Vite preset.                               |
 | `@solidnative/nx`         | `nx add` and an app generator for Nx workspaces.                                      |
 | `@solidnative/fabric`     | The framework-agnostic retained tree and commit engine the renderer is built on.      |
@@ -184,12 +184,12 @@ The numbers, what made them and what was tried and dropped are in
 
 ## From ng-native
 
-solid-native began as a fork of [ng-native](https://github.com/ng-native/ng-native) by
+solidnative began as a fork of [ng-native](https://github.com/ng-native/ng-native) by
 [Ashley Hunter](https://github.com/ashley-hunter), which rendered Angular components as native
 views, and is its migration to SolidJS. ng-native's framework-agnostic Fabric engine, CSS runtime,
 native components and tooling are kept; the Angular layer on top was replaced:
 
-| ng-native (Angular)                 | solid-native (Solid)                                    |
+| ng-native (Angular)                 | solidnative (Solid)                                     |
 | ----------------------------------- | ------------------------------------------------------- |
 | Angular renderer and AOT compiler   | Solid's universal renderer, JSX compiled in Metro       |
 | change detection                    | fine-grained signals and stores                         |
@@ -204,9 +204,9 @@ behind each choice is in [docs/decisions.md](docs/decisions.md).
 
 ## Status
 
-solid-native is an experiment for exploration, not a production-ready framework, and APIs can change
+solidnative is an experiment for exploration, not a production-ready framework, and APIs can change
 between `0.x` releases. The
-[known limitations](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/limitations.md) list every gap with its workaround.
+[known limitations](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/limitations.md) list every gap with its workaround.
 
 ## Contributing
 
@@ -218,5 +218,5 @@ Everyone taking part is expected to follow the [Code of Conduct](CODE_OF_CONDUCT
 
 [MIT](LICENSE)
 
-solid-native is an independent open-source project. It is not affiliated with or endorsed by the
+solidnative is an independent open-source project. It is not affiliated with or endorsed by the
 SolidJS team, Meta or Expo.

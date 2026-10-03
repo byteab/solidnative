@@ -5,7 +5,7 @@ summary: Create an Expo app, render your first Solid component as native views, 
 
 # Getting started
 
-solid-native is in alpha. If you hit a bug, please [open an issue](https://github.com/byteab/solid-native/issues/new/choose).
+solidnative is in alpha. If you hit a bug, please [open an issue](https://github.com/byteab/solidnative/issues/new/choose).
 
 ## Create the app
 
@@ -163,5 +163,5 @@ Release bundles carry no development reload code (see [Metro](/packages/metro)).
 
 [Theming and Tailwind](/guide/theming), [Screens and navigation](/packages/router/screens),
 [Components](/packages/components), [Architecture](/guide/architecture),
-[Known limitations](/guide/limitations), and [solid-native compared](/guide/comparison) (React
+[Known limitations](/guide/limitations), and [solidnative compared](/guide/comparison) (React
 Native, NativeScript, Ionic, Flutter).

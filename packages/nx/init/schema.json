@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/schema",
   "$id": "SolidNativeNxInit",
-  "title": "Set up solid-native",
+  "title": "Set up solidnative",
   "type": "object",
   "properties": {
     "skipInstall": {

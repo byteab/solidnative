@@ -92,7 +92,7 @@ module.exports = function lowerPrimitives({ types: t }, options = {}) {
     },
   };
   return {
-    name: 'solid-native-lower-primitives',
+    name: 'solidnative-lower-primitives',
     visitor: {
       // Ahead of the Solid compiler, which turns JSX into calls on its own visit.
       Program(path) {

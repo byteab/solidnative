@@ -192,7 +192,7 @@ renders. Run `npx expo start`, open in Expo Go or press `i`/`a`, and check each 
 
 Install `@solidnative/testing` as a dev dependency; its `register` hook compiles JSX and
 `.native.css` for Node's test runner as Metro does. Copy `src/app/app.test.ts` from
-[the template](https://github.com/byteab/solid-native/tree/main/template) and add:
+[the template](https://github.com/byteab/solidnative/tree/main/template) and add:
 
 ```json
 {
@@ -228,7 +228,7 @@ module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
 
 ```ts
 // src/main.solid.ts
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 
 // ...and in engineOptions, beside processColor:
   globalStyles: tailwind,
@@ -236,7 +236,7 @@ import tailwind from '../.solid-native/app.tailwind.js';
 
 The sheet is `.js` because Expo's worker empties `.css` modules. `withTailwind` watches the
 Tailwind CLI and updates the sheet without a restart. Metro writes it and its `.d.ts` to
-`.solid-native/` on startup: start Metro before the first typecheck and gitignore the directory.
+`.solidnative/` on startup: start Metro before the first typecheck and gitignore the directory.
 See [Theming and Tailwind](/guide/theming).
 
 ## The dev loop

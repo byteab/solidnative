@@ -1,4 +1,4 @@
-# solid-native
+# solidnative
 
 Solid applications rendering real native iOS and Android views on React Native's Fabric
 renderer, with React never in the render path. This glossary fixes the words the project uses for

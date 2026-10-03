@@ -33,7 +33,7 @@ const generated = (ast) =>
   babel.transformFromAstSync(ast, undefined, { babelrc: false, configFile: false }).code;
 
 test('actual Expo development override disables React Refresh for Solid DOM pages', () => {
-  const dir = fs.mkdtempSync('/private/tmp/solid-native-g12-dom-dev-');
+  const dir = fs.mkdtempSync('/private/tmp/solidnative-g12-dom-dev-');
   try {
     const requireExpo = createRequire(require.resolve('@expo/metro-config/package.json'));
     const preset = requireExpo.resolve('expo/internal/babel-preset');

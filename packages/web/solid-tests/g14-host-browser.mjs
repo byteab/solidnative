@@ -12,8 +12,8 @@ const workspace = fileURLToPath(new URL('../../../', import.meta.url));
 const fixture = mkdtempSync(
   path.join(fileURLToPath(new URL('./', import.meta.url)), 'host-browser-'),
 );
-const output = mkdtempSync(path.join(tmpdir(), 'solid-native-g14-browser-build-'));
-const cache = mkdtempSync(path.join(tmpdir(), 'solid-native-g14-browser-cache-'));
+const output = mkdtempSync(path.join(tmpdir(), 'solidnative-g14-browser-build-'));
+const cache = mkdtempSync(path.join(tmpdir(), 'solidnative-g14-browser-cache-'));
 writeFileSync(
   path.join(fixture, 'index.html'),
   '<!doctype html><html><body><div id="app"></div><script type="module" src="/entry.mjs"></script></body></html>',
@@ -58,8 +58,8 @@ try {
           .locator(
             '[data-h-' +
               (await page
-                .locator('style[data-solid-native-style]')
-                .getAttribute('data-solid-native-style')) +
+                .locator('style[data-solidnative-style]')
+                .getAttribute('data-solidnative-style')) +
               ']',
           )
           .evaluate((node) => getComputedStyle(node).paddingTop),
@@ -86,7 +86,7 @@ try {
       await page.screenshot({ path: screenshot });
       await page.evaluate(() => window.mounted.dispose());
       assert.equal(await page.locator('#app > *').count(), 0);
-      assert.equal(await page.locator('[data-solid-native-style]').count(), 0);
+      assert.equal(await page.locator('[data-solidnative-style]').count(), 0);
       results.push({ mode, status: 'PASS', screenshot });
     } finally {
       await page.close();

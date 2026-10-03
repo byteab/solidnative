@@ -20,14 +20,14 @@ export const SITE_URL = (fromImportMeta ?? fromProcess ?? 'https://solid-native.
   '',
 );
 
-export const SITE_NAME = 'solid-native';
+export const SITE_NAME = 'solidnative';
 
 export const DEFAULT_DESCRIPTION =
   'Solid components rendering real native iOS and Android views, with React never in the render path.';
 
 export const OG_IMAGE = '/og.png';
 
-export const GITHUB_REPO = 'https://github.com/byteab/solid-native';
+export const GITHUB_REPO = 'https://github.com/byteab/solidnative';
 
 /** Where sponsorship goes: GitHub Sponsors, which is also the repository's Sponsor button. */
 export const GITHUB_SPONSORS = 'https://github.com/sponsors/byteab';

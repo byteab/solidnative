@@ -152,6 +152,6 @@ describe('conflicts', () => {
 
   it('names a range that cannot resolve to what the app needs', () => {
     const [problem] = native.conflicts({ devDependencies: { typescript: '^5.8.0' } });
-    assert.match(problem, /typescript is \^5\.8\.0 here, and solid-native needs ~6\.0\.3/);
+    assert.match(problem, /typescript is \^5\.8\.0 here, and solidnative needs ~6\.0\.3/);
   });
 });

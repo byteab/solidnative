@@ -22,4 +22,4 @@ as it finishes.
 it knows (Claude Code reads it through `CLAUDE.md`). Add your own conventions to it as the app
 grows.
 
-Docs: https://github.com/byteab/solid-native/tree/main/apps/documentation/src/content
+Docs: https://github.com/byteab/solidnative/tree/main/apps/documentation/src/content

@@ -1,6 +1,6 @@
 # @solidnative/web
 
-A browser host for solid-native: the same Solid `@solidnative/components`, rendered into the DOM instead
+A browser host for solidnative: the same Solid `@solidnative/components`, rendered into the DOM instead
 of native views. It implements the `HostEngine` seam the Fabric engine implements, so a `View`, a
 `Pressable` or a `TextInput` behaves the same way in a browser as it does on a phone - which is what
 the documentation site's live examples and this project's browser tests run on.
@@ -58,11 +58,11 @@ talks to the app across the bridge.
 
 ## Docs
 
-- [Web](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/web.md): setting up a browser app, with Tailwind
-- [Native and web](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/guide/native-and-web.md)
-- [Islands](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/web/islands.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Web](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/web.md): setting up a browser app, with Tailwind
+- [Native and web](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/guide/native-and-web.md)
+- [Islands](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/web/islands.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

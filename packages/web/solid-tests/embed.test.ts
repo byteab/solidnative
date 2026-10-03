@@ -117,8 +117,8 @@ describe('mountBrowser with an owner: an island inside a host page', () => {
 
   it("leaves the host page's own html and body alone", () => {
     const { document, island, disposeHost } = bootHost(() => IslandCounter());
-    assert.equal(document.getElementById('solid-native-web-reset'), null, 'not the page reset');
-    const reset = document.getElementById('solid-native-web-island-reset')?.textContent;
+    assert.equal(document.getElementById('solidnative-web-reset'), null, 'not the page reset');
+    const reset = document.getElementById('solidnative-web-island-reset')?.textContent;
     assert.ok(reset?.includes('[data-rn-root]'), 'the island still gets its element reset');
     assert.doesNotMatch(reset!, /(^|[\s,}])(html|body)\s*[,{]/, 'but no rule for html or body');
     assert.match(reset!, /\[data-rn-root\][^{]*\{[^}]*font-family/, 'the root carries the font');

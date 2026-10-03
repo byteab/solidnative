@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Questions and ideas
-    url: https://github.com/byteab/solid-native/discussions
+    url: https://github.com/byteab/solidnative/discussions
     about: Ask how to do something, or float an idea before it becomes a feature request.
   - name: Security vulnerabilities
-    url: https://github.com/byteab/solid-native/security/advisories/new
+    url: https://github.com/byteab/solidnative/security/advisories/new
     about: Report privately, as SECURITY.md describes - not as a public issue.

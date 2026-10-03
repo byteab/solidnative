@@ -41,7 +41,7 @@ export const KeepAwake = sourcedService<KeepAwake, NativeKeepAwake | null>(
       holders,
       active: createMemo(() => holders().size > 0),
       error: queue.error,
-      hold(tag = 'solid-native') {
+      hold(tag = 'solidnative') {
         if (!alive) return () => {};
         let held = true;
         const release = () => {

@@ -10,7 +10,7 @@ one version. `.github/workflows/release.yml` does it, run by hand from the Actio
 2. **Publish each package once by hand.** npm only lets a trusted publisher be configured on a
    package that already exists. `0.1.1` went out this way, from a local build.
 3. **Configure trusted publishing** on each package's settings page on npmjs.com: GitHub Actions,
-   owner `byteab`, repository `solid-native`, workflow `release.yml`. The release publishes
+   owner `byteab`, repository `solidnative`, workflow `release.yml`. The release publishes
    through OIDC and no npm token is stored anywhere.
 
 ## Describing changes

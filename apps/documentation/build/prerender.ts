@@ -15,7 +15,7 @@
  *
  * Three things are deliberately not in a snapshot:
  *
- * - **The live examples.** Each one is an island (`<solid-native-island>`, from `@solidnative/web/solid`)
+ * - **The live examples.** Each one is an island (`<solidnative-island>`, from `@solidnative/web/solid`)
  *   rendering `<view>` and `<text>`, element names no browser knows and no crawler can read. They are emptied here and mount on the client,
  *   which is the only place they can run. The prose around them is the point of this file.
  * - **A theme.** `index.html`'s pre-paint script decides `dark` from the reader's own storage and
@@ -190,7 +190,7 @@ async function render(page: Page, origin: string, route: string): Promise<Render
       example.replaceChildren();
     }
     // An island embedded anywhere else: emptied, and no longer marked as a root.
-    for (const island of document.querySelectorAll('solid-native-island, [data-rn-root]')) {
+    for (const island of document.querySelectorAll('solidnative-island, [data-rn-root]')) {
       island.replaceChildren();
       island.removeAttribute('data-rn-root');
       island.classList.remove('platform-web');

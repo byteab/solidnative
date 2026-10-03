@@ -34,7 +34,7 @@ export function Recording() {
 
 ## What it does
 
-- **`hold(tag)`** - holds the screen on under `tag` (default `'solid-native'`) and returns the
+- **`hold(tag)`** - holds the screen on under `tag` (default `'solidnative'`) and returns the
   release; under a Solid owner, disposal releases it too. Holds are counted per tag, so two holds
   on the same tag each last until their own release; distinct tags tell them apart in `holders`.
 - **`holders`** - accessor of the set of tags currently holding, e.g. for a debug screen.

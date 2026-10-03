@@ -1,11 +1,11 @@
 ---
 title: Using AI assistants
-summary: What a coding agent needs to build with solid-native, and where it finds it.
+summary: What a coding agent needs to build with solidnative, and where it finds it.
 ---
 
 # Using AI assistants
 
-An agent that knows Solid and React Native but not solid-native may import `solid-js/web`, use
+An agent that knows Solid and React Native but not solidnative may import `solid-js/web`, use
 `document`, write `<div onClick>` or drop the `@jsxImportSource @solidnative/platform/solid`
 comment: code that compiles but renders nothing. Two resources fix this without setup.
 

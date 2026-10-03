@@ -149,7 +149,7 @@ export function ExampleAppPage(props: { slug: string }) {
                       <For
                         each={[
                           `git clone ${GITHUB_REPO}.git`,
-                          'cd solid-native && pnpm install',
+                          'cd solidnative && pnpm install',
                           `cd ${app.sourceRoot} && pnpm start`,
                         ]}
                       >

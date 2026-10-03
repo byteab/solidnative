@@ -107,7 +107,7 @@ test('upstream React DOM pages retain the exact Expo transform', () => {
 });
 
 test('Expo generated Solid page entry mounts itself and passes early errors without React', () => {
-  const dir = fs.mkdtempSync('/private/tmp/solid-native-g12-dom-');
+  const dir = fs.mkdtempSync('/private/tmp/solidnative-g12-dom-');
   try {
     const entry = path.join(dir, 'expo/dom/entry.js');
     fs.mkdirSync(path.dirname(entry), { recursive: true });

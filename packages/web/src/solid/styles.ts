@@ -36,7 +36,7 @@ function acquire(sheet: BrowserStyleSheet): void {
   if (owned.has(sheet.id)) return;
   if (!entry) {
     const node = document.createElement('style');
-    node.setAttribute('data-solid-native-style', sheet.id);
+    node.setAttribute('data-solidnative-style', sheet.id);
     node.textContent = sheet.css;
     document.head.appendChild(node);
     sheets.set(sheet.id, (entry = { css: sheet.css, node, refs: 0 }));

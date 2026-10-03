@@ -121,7 +121,7 @@ const SUITES = [
     }),
   ),
   suite('solid-compiler', 'packages/metro', { tests: ['solid-*.test.cjs'] }),
-  suite('solid-native', 'packages/platform', {
+  suite('solidnative', 'packages/platform', {
     imports: [COMPILED, CSS_COMPILED],
     tests: ['solid-tests/*.test.ts'],
   }),

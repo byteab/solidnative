@@ -81,7 +81,7 @@ export function App() {
   const [count, setCount] = createSignal(0);
   return withNativeStyles(sheet, () => (
     <View class="card">
-      <Text>Hello from solid-native</Text>
+      <Text>Hello from solidnative</Text>
       <Pressable accessibilityRole="button" onPress={() => setCount(count() + 1)}>
         <Text>Pressed {count()} times</Text>
       </Pressable>

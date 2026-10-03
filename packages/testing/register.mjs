@@ -14,7 +14,7 @@ import { STAND_INS, compile, solidRuntime } from './compile.mjs';
 globalThis.__DEV__ ??= true;
 
 const runtime = solidRuntime();
-/** The app's own files and solid-native's packages; any other installed package is left as it is. */
+/** The app's own files and solidnative's packages; any other installed package is left as it is. */
 const ours = (filename) =>
   !/[\\/]node_modules[\\/]/.test(filename) ||
   /[\\/]node_modules[\\/]@solidnative[\\/]/.test(filename);

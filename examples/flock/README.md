@@ -1,6 +1,6 @@
 # Flock
 
-A Twitter-style social app built with solid-native and Solid. Every control is the platform's own:
+A Twitter-style social app built with solidnative and Solid. Every control is the platform's own:
 SwiftUI and UIKit on iOS, Material on Android.
 
 | Screen                                                          | What it shows                                                                                                              |

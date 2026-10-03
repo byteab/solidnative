@@ -58,7 +58,7 @@ test('malformed messages cannot replace callbacks; disposed receivers and callba
   callback('late');
   assert.equal(posted.length, count);
   assert.equal(page.__solidNative, undefined);
-  assert.equal(document.querySelector('solid-native-web-root'), null);
+  assert.equal(document.querySelector('solidnative-web-root'), null);
   assert.equal(document.body.style.margin, '');
 });
 

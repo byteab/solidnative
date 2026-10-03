@@ -1,12 +1,12 @@
 {
   "name": "@solidnative/testing",
   "version": "0.1.1",
-  "description": "Test solid-native Solid components in Node with no simulator: a fake Fabric, Testing Library queries and events, and node:test and Vitest integration.",
+  "description": "Test solidnative Solid components in Node with no simulator: a fake Fabric, Testing Library queries and events, and node:test and Vitest integration.",
   "keywords": [
     "solid",
     "solidjs",
     "react-native",
-    "solid-native",
+    "solidnative",
     "ios",
     "android",
     "fabric",
@@ -80,13 +80,13 @@
     "test": "node --import ./register.mjs --test \"src/**/*.test.ts\" \"src/**/*.test.tsx\" && vitest run"
   },
   "license": "MIT",
-  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/testing.md",
+  "homepage": "https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/testing.md",
   "bugs": {
-    "url": "https://github.com/byteab/solid-native/issues"
+    "url": "https://github.com/byteab/solidnative/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "packages/testing"
   },
   "files": [

@@ -210,7 +210,7 @@ These are dropped with a warning:
 Each warning names the file and line, what was dropped and why, and the native alternative if any:
 
 ```text
-[solid-native] src/app/card.native.css:12: dropped 'float': 'float' has no React Native equivalent: no style prop of a native view does what it does. Lay the row out with flexbox: flex-direction: row on the parent.
+[solidnative] src/app/card.native.css:12: dropped 'float': 'float' has no React Native equivalent: no style prop of a native view does what it does. Lay the row out with flexbox: flex-direction: row on the parent.
 ```
 
 The rest of the rule still applies. A rule whose selector native cannot match is dropped whole,

@@ -15,7 +15,7 @@ export interface LessonProgress {
 }
 
 /** Versioned, so a change to the lessons can leave old progress behind. */
-const KEY = 'solid-native-learn:v2:';
+const KEY = 'solidnative-learn:v2:';
 
 const isStep = (value: unknown): value is number =>
   Number.isInteger(value) && (value as number) >= 0;

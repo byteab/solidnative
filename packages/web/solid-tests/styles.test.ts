@@ -195,7 +195,7 @@ describe("a component's own sheet, on the web", () => {
   it('adds one stylesheet per sheet, however many times it renders, and removes it after', () => {
     const { document, root } = boot(() => [Themed({ id: 'one' }), Themed({ id: 'two' })]);
     const sheets = () =>
-      [...document.head.querySelectorAll('style[data-solid-native-style]')].filter((style) =>
+      [...document.head.querySelectorAll('style[data-solidnative-style]')].filter((style) =>
         style.textContent?.includes('.card['),
       );
     assert.equal(sheets().length, 1);
@@ -205,7 +205,7 @@ describe("a component's own sheet, on the web", () => {
 
   it('keeps a custom property by the name it was written with', () => {
     const { document, root } = boot(() => Themed({}));
-    const sheet = [...document.head.querySelectorAll('style[data-solid-native-style]')].find(
+    const sheet = [...document.head.querySelectorAll('style[data-solidnative-style]')].find(
       (style) => style.textContent?.includes('.card['),
     );
     // The compiler minifies the colour, never the property name.

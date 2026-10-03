@@ -5,7 +5,7 @@ summary: nx add and an app generator for an Nx workspace, with Expo's targets in
 
 # Nx
 
-`@solidnative/nx` adds a solid-native app to an Nx workspace as an ordinary project:
+`@solidnative/nx` adds a solidnative app to an Nx workspace as an ordinary project:
 
 ```sh
 nx add @solidnative/nx
@@ -24,7 +24,7 @@ It adds `@nx/expo` at the workspace's Nx version and registers its plugin in `nx
 infers an Expo project's targets from `app.json`, `metro.config.js` and `package.json`.
 
 It skips `@nx/expo:init`, which on Nx 23.2 installs SDK 56 with a `react-dom` wanting React 19.3;
-npm refuses that beside solid-native's SDK 57 and React 19.2.3. It adds what the app needs from
+npm refuses that beside solidnative's SDK 57 and React 19.2.3. It adds what the app needs from
 `init` at the app's versions instead: `react-dom` (else `@nx/react`'s peer pulls 19.3 and later
 installs fail) and `@expo/cli`, which `nx prebuild` loads from the root.
 
@@ -74,7 +74,7 @@ differ because of Nx:
 With package-manager workspaces (Nx's default since 20), the app lists its own dependencies, and
 the generator adds a workspace glob if needed (the TypeScript preset has only `packages/*`). In an
 integrated workspace they go in the root `package.json`, existing versions untouched, with a
-warning for any npm will not install beside solid-native. The app's `package.json` still names the
+warning for any npm will not install beside solidnative. The app's `package.json` still names the
 native modules at the root's ranges, because Expo links only those.
 
 ## Options

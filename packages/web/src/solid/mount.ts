@@ -50,7 +50,7 @@ export interface IslandProps<P extends object> {
 export function Island<P extends object>(props: IslandProps<P>): HTMLElement {
   const owner = getOwner();
   if (!owner) throw new Error('Island requires an active Solid owner.');
-  const element = (props.document ?? document).createElement('solid-native-island');
+  const element = (props.document ?? document).createElement('solidnative-island');
   let current: MountResult<P> | undefined;
   let component: BrowserComponent<P> | undefined;
   createEffect(() => {

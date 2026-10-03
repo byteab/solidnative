@@ -3,7 +3,7 @@ import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fab
 import { mountApp } from './bootstrap.solid.tsx';
 // The generated stylesheet. The Tailwind CLI writes CSS; the Metro config compiles it into this
 // module, because Expo's transform worker turns a `.css` import into an empty module on native.
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 
 // The `.solid.ts` suffix gives this file Metro's clean reload in development: an edit disposes the
 // root and reloads the JS VM, where React Refresh would patch components in place.

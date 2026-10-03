@@ -4,7 +4,7 @@
  * Read off disk at build time from each registry entry's `sourceRoot`, so the page shows the code
  * in the repository rather than a copy of it. Two virtual modules:
  *
- * - `virtual:solid-native/example-sources` lists every app's files, each with a loader;
+ * - `virtual:solidnative/example-sources` lists every app's files, each with a loader;
  * - each loader imports one file, highlighted by `markdown.ts`'s Shiki, as its own chunk.
  *
  * One chunk per file rather than one per app, because an app's highlighted source runs to
@@ -23,8 +23,8 @@ import type { Plugin } from 'vite';
 import { EXAMPLE_APPS } from '../src/example-apps/registry.ts';
 import { highlight } from './markdown.ts';
 
-const INDEX = 'virtual:solid-native/example-sources';
-const FILE = 'virtual:solid-native/example-source/';
+const INDEX = 'virtual:solidnative/example-sources';
+const FILE = 'virtual:solidnative/example-source/';
 /** Ends a file's module id, so no plugin reads `home.ts` in the id as a TypeScript module. */
 const FILE_SUFFIX = '.highlighted';
 

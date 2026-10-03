@@ -2304,6 +2304,6 @@ const NESTED_BLOCK = /\{[^{}]*\{/;
 
 /** A `translate`, `rotate` or `scale` declaration's name, and what comes before and after it. */
 const INDIVIDUAL_TRANSFORM = /([{;\s])(translate|rotate|scale)(\s*:)/g;
-const HIDDEN_TRANSFORM = '--solid-native-individual-';
+const HIDDEN_TRANSFORM = '--solidnative-individual-';
 
 module.exports = { compileCss, CssUnsupported, deferHslToken, linear, markUnitless, opacityOf };

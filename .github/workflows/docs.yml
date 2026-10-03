@@ -66,7 +66,7 @@ jobs:
           BRANCH: ${{ github.head_ref || github.ref_name }}
           SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          npx -y wrangler@4.147.0 pages deploy apps/documentation/dist --project-name=solid-native \
+          npx -y wrangler@4.147.0 pages deploy apps/documentation/dist --project-name=solidnative \
             --branch="$BRANCH" --commit-hash="$SHA"
           jq -r 'select(.type == "pages-deploy-detailed") | "url=\(.url)\nalias=\(.alias // "")"' \
             "$WRANGLER_OUTPUT_FILE_DIRECTORY"/*.json >> "$GITHUB_OUTPUT"

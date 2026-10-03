@@ -1,11 +1,11 @@
 {
   "name": "@solidnative/fabric",
   "version": "0.1.1",
-  "description": "solid-native's engine: a retained view tree committed to React Native's Fabric, with events, the responder system and a CSS cascade.",
+  "description": "solidnative's engine: a retained view tree committed to React Native's Fabric, with events, the responder system and a CSS cascade.",
   "keywords": [
     "solid",
     "react-native",
-    "solid-native",
+    "solidnative",
     "ios",
     "android",
     "fabric",
@@ -26,13 +26,13 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "license": "MIT",
-  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/fabric.md",
+  "homepage": "https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/fabric.md",
   "bugs": {
-    "url": "https://github.com/byteab/solid-native/issues"
+    "url": "https://github.com/byteab/solidnative/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "packages/fabric"
   },
   "files": [

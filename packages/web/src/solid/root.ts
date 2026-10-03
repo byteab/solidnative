@@ -35,7 +35,7 @@ export interface BrowserRoot {
 }
 const roots = new WeakSet<Element>();
 function reset(document: Document, island: boolean): void {
-  const id = island ? 'solid-native-web-island-reset' : 'solid-native-web-reset';
+  const id = island ? 'solidnative-web-island-reset' : 'solidnative-web-reset';
   if (document.getElementById(id)) return;
   const style = document.createElement('style');
   style.id = id;

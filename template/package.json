@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "template"
   },
   "publishConfig": {

@@ -1,11 +1,11 @@
 ---
 title: Sponsor
-summary: solid-native is free and MIT licensed. Sponsorship pays for keeping it working on every new iOS, Android, Expo and Solid release.
+summary: solidnative is free and MIT licensed. Sponsorship pays for keeping it working on every new iOS, Android, Expo and Solid release.
 ---
 
-# Sponsor solid-native
+# Sponsor solidnative
 
-solid-native is free, MIT licensed and built in the open, as an independent project. If it saves
+solidnative is free, MIT licensed and built in the open, as an independent project. If it saves
 you or your team time, sponsoring it is the most direct way to keep it moving.
 
 **[Sponsor on GitHub](https://github.com/sponsors/byteab)** - monthly or one-off, as a
@@ -30,9 +30,9 @@ them can break it:
 
 Money is not the only thing that keeps a project alive:
 
-- **Star it on [GitHub](https://github.com/byteab/solid-native)**, which is how other
+- **Star it on [GitHub](https://github.com/byteab/solidnative)**, which is how other
   people find it.
-- **[Report what breaks](https://github.com/byteab/solid-native/issues)**, with the
+- **[Report what breaks](https://github.com/byteab/solidnative/issues)**, with the
   device and versions it broke on.
 - **Tell people.** A blog post, a talk or a message to your team does more than you would expect.
 - **Contribute** a fix, an example or a page of documentation.

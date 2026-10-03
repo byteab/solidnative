@@ -12,10 +12,10 @@ const workspace = fileURLToPath(new URL('../../../', import.meta.url));
 const fixture = mkdtempSync(
   path.join(fileURLToPath(new URL('./', import.meta.url)), 'host-browser-'),
 );
-const output = mkdtempSync(path.join(tmpdir(), 'solid-native-g13-browser-build-'));
-const cache = mkdtempSync(path.join(tmpdir(), 'solid-native-g13-browser-cache-'));
+const output = mkdtempSync(path.join(tmpdir(), 'solidnative-g13-browser-build-'));
+const cache = mkdtempSync(path.join(tmpdir(), 'solidnative-g13-browser-cache-'));
 // Kept after the run for inspection, and outside the tree so a CI run never writes into it.
-const screenshots = mkdtempSync(path.join(tmpdir(), 'solid-native-web-host-screenshots-'));
+const screenshots = mkdtempSync(path.join(tmpdir(), 'solidnative-web-host-screenshots-'));
 writeFileSync(
   path.join(fixture, 'index.html'),
   '<!doctype html><html><body><div id="app"></div><script type="module" src="/entry.mjs"></script></body></html>',
@@ -60,8 +60,8 @@ try {
           .locator(
             '[data-h-' +
               (await page
-                .locator('style[data-solid-native-style]')
-                .getAttribute('data-solid-native-style')) +
+                .locator('style[data-solidnative-style]')
+                .getAttribute('data-solidnative-style')) +
               ']',
           )
           .evaluate((node) => getComputedStyle(node).paddingTop),
@@ -88,7 +88,7 @@ try {
       await page.screenshot({ path: screenshot });
       await page.evaluate(() => window.mounted.dispose());
       assert.equal(await page.locator('#app > *').count(), 0);
-      assert.equal(await page.locator('[data-solid-native-style]').count(), 0);
+      assert.equal(await page.locator('[data-solidnative-style]').count(), 0);
       results.push({ mode, status: 'PASS', screenshot });
     } finally {
       await page.close();

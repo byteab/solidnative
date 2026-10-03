@@ -1,6 +1,6 @@
 ---
 title: Islands
-summary: solid-native components inside a Solid web page, or as separate roots on one page.
+summary: solidnative components inside a Solid web page, or as separate roots on one page.
 ---
 
 # Islands
@@ -21,7 +21,7 @@ for the browser host.
 ## In a page: `Island`
 
 A DOM page's JSX can't contain `View`, `Text` or `Pressable`; the DOM compiler doesn't know
-`view`. `Island` is the boundary: its component renders through solid-native's browser host.
+`view`. `Island` is the boundary: its component renders through solidnative's browser host.
 
 ```tsx
 /** @jsxImportSource solid-js */
@@ -52,7 +52,7 @@ export function AccountPage() {
 - **`inputs`**: the component's props, set before first render. Changed values update props in
   place without remounting, so state survives. Callbacks such as `onPaid` are ordinary props; no
   separate outputs map.
-- **`class`** goes on the island's element, a `<solid-native-island>`.
+- **`class`** goes on the island's element, a `<solidnative-island>`.
 - **`services`** adds `ServiceBinding`s from `@solidnative/device/solid` for this island only;
   **`onError`** receives its errors.
 - **Teardown is automatic** with its owner: a `<Show>` turning false, a route change, page disposal.
@@ -102,7 +102,7 @@ Signals the page writes update the island; island events run under the island's 
 ## Styles
 
 Islands inject a smaller reset than full-page roots. The full one gives `html` and `body` a
-height and font, right for a page solid-native owns but not one it visits; the island reset puts
+height and font, right for a page solidnative owns but not one it visits; the island reset puts
 the font on the island's root and leaves the host page as it was. `Island` always uses it; `mount`
 does with `island: true`.
 

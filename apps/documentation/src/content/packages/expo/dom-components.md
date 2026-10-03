@@ -15,7 +15,7 @@ native does well: each one is a whole browser view running its own JavaScript, s
 editor or chart on a screen, not list rows.
 
 It is not the Web Components standard (no custom elements or shadow DOM; the name is Expo's), and
-it is the deliberate exception to solid-native's real native views. It is the Solid version of
+it is the deliberate exception to solidnative's real native views. It is the Solid version of
 Expo's React [DOM components](https://docs.expo.dev/guides/dom-components/), on the same machinery:
 Expo's web view, the `'use dom'` directive, Expo's dev server route and release export. Both can
 live in one app.
@@ -66,7 +66,7 @@ export default mountInWebView(Signature, {
 ```
 
 The file is ordinary browser Solid, and its CSS is real CSS (a `<style>` element or a class), so
-`resize`, `grid` or `touch-action` work. It mounts into its own `solid-native-web-root` element, the
+`resize`, `grid` or `touch-action` work. It mounts into its own `solidnative-web-root` element, the
 body has no margin, and whatever is behind the web view shows through unpainted areas.
 
 `mountInWebView(component, options?)` takes:

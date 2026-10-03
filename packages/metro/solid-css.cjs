@@ -10,8 +10,7 @@ function transformNativeCss(source, filename, options = {}) {
     );
   const sheet = compileCss(source, filename, {
     platform: options.platform,
-    onUnsupported:
-      options.onUnsupported ?? ((message) => console.warn(`[solid-native] ${message}`)),
+    onUnsupported: options.onUnsupported ?? ((message) => console.warn(`[solidnative] ${message}`)),
   });
   // Font source markers must become static requires so Metro owns their asset graph edges.
   const literal = JSON.stringify(sheet).replace(

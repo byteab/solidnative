@@ -1,8 +1,8 @@
 # @solidnative/metro
 
-The build-time half of solid-native: a Metro config preset and Babel transformer that compiles Solid
+The build-time half of solidnative: a Metro config preset and Babel transformer that compiles Solid
 JSX for the native host, turns each `.native.css` file into the rule set
-[`@solidnative/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric)
+[`@solidnative/fabric`](https://github.com/byteab/solidnative/blob/main/packages/fabric)
 reads at runtime, inlines the `lucide-static` icons a file imports, and reloads cleanly on edits.
 
 Alpha: APIs may change before 1.0.
@@ -55,10 +55,10 @@ module.exports = withSolidNative(getDefaultConfig(__dirname), {
 
 ## Docs
 
-- [Metro](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro.md)
-- [Configuration](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro/configuration.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Metro](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/metro.md)
+- [Configuration](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/metro/configuration.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

@@ -1,6 +1,6 @@
 # Decisions
 
-solid-native is a migration of [ng-native](https://github.com/ng-native/ng-native), which rendered
+solidnative is a migration of [ng-native](https://github.com/ng-native/ng-native), which rendered
 Angular components as native views, to SolidJS. These are the choices made along the way and why.
 The rules that follow from them are in [ARCHITECTURE.md](../ARCHITECTURE.md).
 
@@ -58,7 +58,7 @@ the Angular CLI schematics (use `create-expo-app --template @solidnative/templat
 ## The name
 
 Everything Angular-derived was renamed: packages moved to the `@solidnative/*` scope (the
-unscoped `solid-native` npm name is taken), diagnostics read `[solid-native]` and bundle ids
+unscoped `solidnative` npm name is taken), diagnostics read `[solidnative]` and bundle ids
 `dev.solidnative.*`. The documentation site was rewritten as a Solid DOM app.
 
 ## Two bugs the migration surfaced

@@ -279,7 +279,7 @@ function conflicts(manifest) {
     if (!range || name.startsWith('@solidnative/')) continue;
     if (semver.validRange(range) && !semver.intersects(range, wanted)) {
       problems.push(
-        `${name} is ${range} here, and solid-native needs ${wanted}. ` +
+        `${name} is ${range} here, and solidnative needs ${wanted}. ` +
           `npm will refuse the install until it is moved.`,
       );
     }

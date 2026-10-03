@@ -22,7 +22,7 @@ import { breadcrumbsFor, READING_ORDER, type NavItem } from './navigation.ts';
 import { applyNotFound, applySeo } from './seo.ts';
 import { DEFAULT_DESCRIPTION, SITE_NAME } from './site.ts';
 
-/** The brand belongs in every title, but "solid-native compared - solid-native" does not. */
+/** The brand belongs in every title, but "solidnative compared - solidnative" does not. */
 function titleFor(title: string): string {
   return title.startsWith(SITE_NAME) ? title : `${title} - ${SITE_NAME}`;
 }

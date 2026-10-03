@@ -65,5 +65,5 @@ test('replacing and clearing a style host removes the previous selector marker',
   } finally {
     root.dispose();
   }
-  assert.equal(document.querySelectorAll('[data-solid-native-style]').length, 0);
+  assert.equal(document.querySelectorAll('[data-solidnative-style]').length, 0);
 });

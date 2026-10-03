@@ -1,12 +1,12 @@
 {
   "name": "@solidnative/metro",
   "version": "0.1.1",
-  "description": "Metro config preset and transformer for solid-native on Solid: Solid's native JSX transform, build-time CSS compiler, icon inlining and clean reload.",
+  "description": "Metro config preset and transformer for solidnative on Solid: Solid's native JSX transform, build-time CSS compiler, icon inlining and clean reload.",
   "keywords": [
     "solid",
     "solidjs",
     "react-native",
-    "solid-native",
+    "solidnative",
     "ios",
     "android",
     "fabric",
@@ -51,13 +51,13 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "license": "MIT",
-  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/metro.md",
+  "homepage": "https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/metro.md",
   "bugs": {
-    "url": "https://github.com/byteab/solid-native/issues"
+    "url": "https://github.com/byteab/solidnative/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "packages/metro"
   },
   "files": [

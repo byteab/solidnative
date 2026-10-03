@@ -10,7 +10,7 @@
  * resetting when the app changes.
  */
 import { For, Show, createMemo, createResource, createSignal } from 'solid-js';
-import { EXAMPLE_SOURCES } from 'virtual:solid-native/example-sources';
+import { EXAMPLE_SOURCES } from 'virtual:solidnative/example-sources';
 import { GITHUB_REPO } from '../site.ts';
 import { fileTree, type FileNode } from './file-tree.ts';
 import './example-apps.css';

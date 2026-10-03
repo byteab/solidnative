@@ -1,6 +1,6 @@
 # @solidnative/testing
 
-Runs an solid-native Solid component test in plain Node, in milliseconds, with no simulator and no
+Runs an solidnative Solid component test in plain Node, in milliseconds, with no simulator and no
 device: Testing Library's `render()` and `screen`, and React Native Testing Library's `fireEvent`
 and `userEvent`, over a fake of the native side.
 
@@ -58,12 +58,12 @@ sent.
 
 ## Docs
 
-- [Testing](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/testing.md)
-- [Setup](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/testing/setup.md),
-  [writing a test](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/testing/writing-a-test.md) and the
-  [API reference](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/testing/api.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Testing](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/testing.md)
+- [Setup](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/testing/setup.md),
+  [writing a test](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/testing/writing-a-test.md) and the
+  [API reference](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/testing/api.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

@@ -39,13 +39,13 @@
     "test": "node --test \"*.test.ts\" \"{init,application}/*.test.ts\""
   },
   "license": "MIT",
-  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/nx.md",
+  "homepage": "https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/nx.md",
   "bugs": {
-    "url": "https://github.com/byteab/solid-native/issues"
+    "url": "https://github.com/byteab/solidnative/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "packages/nx"
   },
   "files": [

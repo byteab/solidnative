@@ -143,8 +143,8 @@ describe('the Metro preset', () => {
 
   it("puts the app's Solid version in Metro's cache key, so an upgrade starts afresh", () => {
     // Metro reads the key once per process, so an upgrade is a second root rather than an edit.
-    const before = appRoot('solid-native-solid-');
-    const after = appRoot('solid-native-solid-');
+    const before = appRoot('solidnative-solid-');
+    const after = appRoot('solidnative-solid-');
     writeFileSync(
       path.join(after, 'node_modules/solid-js/package.json'),
       JSON.stringify({ name: 'solid-js', version: '1.9.16' }),
@@ -162,7 +162,7 @@ describe('the Metro preset', () => {
   it("puts the worklets Babel plugin's package in Metro's cache key, so installing it starts afresh", () => {
     // babel-preset-expo adds the plugin only when it resolves, and Metro's key knew nothing of
     // that, so files transformed before the install kept their worklets untransformed.
-    const root = appRoot('solid-native-worklets-');
+    const root = appRoot('solidnative-worklets-');
     try {
       const key = () => withSolidNative(base(root)).transformer.cacheVersion!;
       const before = key();
@@ -195,7 +195,7 @@ describe('the Metro preset', () => {
   it("resolves with the app's tsconfig customConditions, as tsc does", () => {
     // Nx's TypeScript preset exports a library's source only under a custom condition named in
     // tsconfig; without it Metro took the dist entry, which is not built, and failed.
-    const root = appRoot('solid-native-conditions-');
+    const root = appRoot('solidnative-conditions-');
     writeFileSync(
       path.join(root, 'tsconfig.json'),
       JSON.stringify({ compilerOptions: { customConditions: ['react-native', '@org/source'] } }),
@@ -209,7 +209,7 @@ describe('the Metro preset', () => {
   });
 
   it('reads customConditions from a tsconfig with comments and trailing commas, as tsc does', () => {
-    const root = appRoot('solid-native-conditions-');
+    const root = appRoot('solidnative-conditions-');
     writeFileSync(
       path.join(root, 'tsconfig.json'),
       [
@@ -232,7 +232,7 @@ describe('the Metro preset', () => {
   });
 
   it('adds each condition once, beside the ones Metro already has, and never react-native', () => {
-    const root = appRoot('solid-native-conditions-');
+    const root = appRoot('solidnative-conditions-');
     writeFileSync(
       path.join(root, 'tsconfig.json'),
       '{ "compilerOptions": { "customConditions": ["source", "react-native", "app"] } }',
@@ -281,7 +281,7 @@ describe('the Metro preset', () => {
 
     /** A stand-in for Expo's worker and the one it hands source files to, laid out as Expo's is. */
     function fakeExpo() {
-      const root = appRoot('solid-native-worker-');
+      const root = appRoot('solidnative-worker-');
       const dir = path.join(root, 'node_modules/@expo/metro-config/build/transform-worker');
       mkdirSync(dir, { recursive: true });
       writeFileSync(path.join(dir, 'transform-worker.js'), tag('expo'));

@@ -10,7 +10,7 @@ export function solidNativeWeb() {
   const local = createRequire(import.meta.url);
   return [
     {
-      name: 'solid-native:solid-browser',
+      name: 'solidnative:solid-browser',
       enforce: 'pre',
       config() {
         return {

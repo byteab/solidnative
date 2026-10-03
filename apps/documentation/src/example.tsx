@@ -9,7 +9,7 @@
  * would draw nothing here.
  *
  * `Island` from `@solidnative/web/solid` gives each example exactly that: an element of its own,
- * `<solid-native-island>`, that becomes the root of a small, separate universal tree drawn by the
+ * `<solidnative-island>`, that becomes the root of a small, separate universal tree drawn by the
  * browser host, owned by this page so it is disposed with it. The page around it stays a
  * document, and the two never share a renderer.
  *

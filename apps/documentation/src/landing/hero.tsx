@@ -23,7 +23,7 @@ declare module 'solid-js' {
 
 /** The sponsor, tagged so their analytics can tell a visit came from here. */
 const SPONSOR_URL =
-  'https://coralogix.com/?utm_source=solid-native&utm_medium=referral&utm_campaign=solid-native';
+  'https://coralogix.com/?utm_source=solidnative&utm_medium=referral&utm_campaign=solidnative';
 
 const PHONES: readonly {
   slot: 'left' | 'centre' | 'right';

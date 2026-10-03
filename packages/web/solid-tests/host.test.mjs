@@ -68,13 +68,13 @@ test('shared Solid controls, keyed identity, conditional owners and reactive pro
         .some((n) => n.startsWith('data-s-')),
       true,
     );
-    assert.equal(document.querySelectorAll('[data-solid-native-style]').length, 1);
+    assert.equal(document.querySelectorAll('[data-solidnative-style]').length, 1);
   } finally {
     root.dispose();
   }
   assert.equal(disposed, 1);
   assert.equal(element.children.length, 0);
-  assert.equal(document.querySelectorAll('[data-solid-native-style]').length, 0);
+  assert.equal(document.querySelectorAll('[data-solidnative-style]').length, 0);
 });
 test('root teardown cancels observers, callbacks and sibling effects after a throwing cleanup', async () => {
   const { element } = setup();
@@ -129,7 +129,7 @@ test('two roots isolate keyboard responders and releasing one retains shared sty
     assert.equal(other.querySelectorAll('[id="one"],[id="two"],[id="three"]')[0].id, 'three');
     assert.equal(element.querySelectorAll('[id="one"],[id="two"],[id="three"]')[0].id, 'one');
     a.dispose();
-    assert.equal(document.querySelectorAll('[data-solid-native-style]').length, 1);
+    assert.equal(document.querySelectorAll('[data-solidnative-style]').length, 1);
   } finally {
     a.dispose();
     b.dispose();

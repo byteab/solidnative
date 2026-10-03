@@ -9,7 +9,7 @@
  * drift from the source.
  */
 import { createMemo, createSignal, For, Show } from 'solid-js';
-import { API } from 'virtual:solid-native/api';
+import { API } from 'virtual:solidnative/api';
 import type { ApiEntry } from '../build/api.ts';
 import { Icon } from './icon.tsx';
 import './doc-usage.css';

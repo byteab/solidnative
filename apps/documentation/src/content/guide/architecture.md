@@ -57,7 +57,7 @@ react-native-gesture-handler, so under the browser host they throw
 
 ## CSS
 
-Native has no CSS engine, so solid-native brings one.
+Native has no CSS engine, so solidnative brings one.
 
 **At build time**, the Metro transformer parses a component's `.native.css` import with
 lightningcss, converts values for React Native, compiles selectors into compounds and combinators,

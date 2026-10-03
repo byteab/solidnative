@@ -1,6 +1,6 @@
 # Music
 
-A small but real music player built with solid-native and Solid: albums, a searchable song library, real
+A small but real music player built with solidnative and Solid: albums, a searchable song library, real
 audio playback, and a mini player that docks above the tab bar and opens into a full-screen Now
 Playing sheet.
 

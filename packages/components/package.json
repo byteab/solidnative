@@ -5,7 +5,7 @@
   "keywords": [
     "solid",
     "react-native",
-    "solid-native",
+    "solidnative",
     "ios",
     "android",
     "fabric",
@@ -100,9 +100,9 @@
     "test:solid": "node --import ../platform/solid-tests/compiled-register.mjs --test solid-tests/*.test.ts"
   },
   "license": "MIT",
-  "homepage": "https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/components.md",
+  "homepage": "https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/components.md",
   "bugs": {
-    "url": "https://github.com/byteab/solid-native/issues"
+    "url": "https://github.com/byteab/solidnative/issues"
   },
   "peerDependenciesMeta": {
     "react-native": {
@@ -123,7 +123,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byteab/solid-native.git",
+    "url": "git+https://github.com/byteab/solidnative.git",
     "directory": "packages/components"
   },
   "files": [

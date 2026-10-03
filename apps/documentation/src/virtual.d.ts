@@ -6,7 +6,7 @@
  * The API extraction, served by `build/api.ts` as a virtual module. There is no file: the plugin
  * generates the module's source at build time from the workspace's own TypeScript.
  */
-declare module 'virtual:solid-native/api' {
+declare module 'virtual:solidnative/api' {
   import type { ApiEntry } from '../build/api.ts';
   /** Every declaration, keyed `@solidnative/components#Switch`. */
   export const API: Record<string, ApiEntry>;
@@ -28,7 +28,7 @@ declare module '*?excerpt' {
 }
 
 /** Every example app's source files, read out of its folder by `build/example-sources.ts`. */
-declare module 'virtual:solid-native/example-sources' {
+declare module 'virtual:solidnative/example-sources' {
   export interface ExampleSourceFile {
     /** Relative to the app's folder, with forward slashes. */
     readonly path: string;

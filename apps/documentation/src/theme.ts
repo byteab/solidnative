@@ -13,7 +13,7 @@
 import { createSignal } from 'solid-js';
 
 // `index.html` moves a choice stored under the site's previous key to this one before first paint.
-const KEY = 'solid-native-docs-theme';
+const KEY = 'solidnative-docs-theme';
 
 export type Scheme = 'light' | 'dark';
 

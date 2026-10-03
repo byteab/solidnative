@@ -1,6 +1,6 @@
 # Wallet
 
-A small banking app built with solid-native and Solid: the example to read when you want to see what a
+A small banking app built with solidnative and Solid: the example to read when you want to see what a
 real app looks like, rather than one feature at a time.
 
 | Screen                                                | What it shows                                                                                                                       |

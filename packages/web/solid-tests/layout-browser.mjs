@@ -20,7 +20,7 @@ import { createServer } from 'vite';
 import { solidNativeWeb } from '../solid-vite.mjs';
 
 const workspace = fileURLToPath(new URL('../../../', import.meta.url));
-const cache = mkdtempSync(path.join(tmpdir(), 'solid-native-web-layout-cache-'));
+const cache = mkdtempSync(path.join(tmpdir(), 'solidnative-web-layout-cache-'));
 let server, browser, page;
 const errors = [];
 
@@ -425,14 +425,14 @@ describe('the Tailwind web preset', () => {
 describe('the reset', () => {
   it('mount injects it by default, below every utility', async () => {
     await show('cascade', { asAnAppMounts: true });
-    assert.ok(await page.$('#solid-native-web-reset'));
+    assert.ok(await page.$('#solidnative-web-reset'));
     assert.equal(await css('#tinted-frame', 'borderTopWidth'), '2px');
     assert.equal(await css('#tinted-frame', 'borderTopColor'), 'rgb(255, 0, 0)');
     assert.equal(
       await page.$eval('#column', (el) => getComputedStyle(el.parentElement).flexDirection),
       'row',
     );
-    await page.evaluate(() => document.getElementById('solid-native-web-reset')?.remove());
+    await page.evaluate(() => document.getElementById('solidnative-web-reset')?.remove());
   });
 
   for (const order of ['utilities first', 'reset first']) {
@@ -454,7 +454,7 @@ describe('the reset', () => {
             doc.body.appendChild(view);
             return frame.contentWindow.getComputedStyle(view).flexDirection;
           };
-          return [!!doc.getElementById('solid-native-web-reset'), probe(''), probe('u-row')];
+          return [!!doc.getElementById('solidnative-web-reset'), probe(''), probe('u-row')];
         } finally {
           frame.remove();
         }

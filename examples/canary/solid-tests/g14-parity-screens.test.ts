@@ -362,7 +362,7 @@ for (const platform of ['ios', 'android'] as const) {
     press(h, 'Notify');
     assert.deepEqual(v.notices, ['Copied to the clipboard']);
     press(h, 'Share');
-    assert.deepEqual(v.shareRequests, [{ message: 'solid-native', url: 'https://expo.dev' }]);
+    assert.deepEqual(v.shareRequests, [{ message: 'solidnative', url: 'https://expo.dev' }]);
     v.shares[0]!.resolve({ action: 'sharedAction' });
     await settle(h);
     assert.match(h.renderedText(), /Something took it\./);

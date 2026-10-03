@@ -5,7 +5,7 @@ summary: Ship an app in more than one language with typed message catalogs that 
 
 # Localization
 
-solid-native has no i18n framework, message marker or extractor. It provides the parts underneath:
+solidnative has no i18n framework, message marker or extractor. It provides the parts underneath:
 [`Locale`](/packages/expo/locale) for device languages, [`Direction`](/packages/device/direction)
 for layout direction, Hermes' `Intl.NumberFormat` and `Intl.DateTimeFormat`, and Solid's reactivity,
 which re-renders every message when the language changes.

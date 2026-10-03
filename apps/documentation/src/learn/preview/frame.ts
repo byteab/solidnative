@@ -34,7 +34,7 @@ const platform: Platform =
 registerPlatformComponents(platform);
 // The engine's development checks, which a device build in development runs too. See `engineNotes`.
 (globalThis as { __DEV__?: boolean }).__DEV__ = true;
-const ENGINE = /^\[solid-native\]\s*/;
+const ENGINE = /^\[solidnative\]\s*/;
 
 /**
  * `@solidnative/device` asks `require('react-native')` for each capability, and takes "no

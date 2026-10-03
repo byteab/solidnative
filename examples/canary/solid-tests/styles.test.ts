@@ -31,7 +31,7 @@ test('actual project screens, the global palette and ToastHost compile on both n
 });
 
 test('actual Tailwind CLI scans native TSX and merges utilities after global app rules', () => {
-  const directory = mkdtempSync(path.join(tmpdir(), 'solid-native-g5-tailwind-'));
+  const directory = mkdtempSync(path.join(tmpdir(), 'solidnative-g5-tailwind-'));
   try {
     const filename = path.join(directory, 'Probe.solid.tsx');
     writeFileSync(

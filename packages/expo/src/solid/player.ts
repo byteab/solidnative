@@ -165,7 +165,7 @@ function own<T extends NativePlayer>(
   setup: (native: T) => { state: Accessor<PlayerState>; stop(): void },
 ): Player<T> {
   if (!getOwner()) throw new Error('Players require an active Solid owner.');
-  if (!source) throw new Error(`[solid-native] ${module} is not installed`);
+  if (!source) throw new Error(`[solidnative] ${module} is not installed`);
   let active = true;
   onCleanup(() => {
     active = false;

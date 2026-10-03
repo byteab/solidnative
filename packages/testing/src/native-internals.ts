@@ -27,7 +27,7 @@ interface State {
   readonly written: WeakMap<EngineNode, readonly string[]>;
 }
 
-const KEY = Symbol.for('solid-native.testing.native');
+const KEY = Symbol.for('solidnative.testing.native');
 export const nativeState: State = ((globalThis as Record<symbol, State | undefined>)[KEY] ??= {
   next: 0,
   gestures: new Map(),

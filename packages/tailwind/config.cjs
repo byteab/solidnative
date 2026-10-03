@@ -9,7 +9,7 @@
  * and in the app:
  *
  * ```ts
- * import tailwind from '../.solid-native/app.tailwind.js';
+ * import tailwind from '../.solidnative/app.tailwind.js';
  * // ...and pass `tailwind` to the app's global styles (see `withNativeStyles`).
  * ```
  *
@@ -32,7 +32,7 @@ const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 const { flattenTailwind } = require('./flatten.cjs');
 
 /** Where the generated module goes if the app does not say. */
-const DEFAULT_OUTPUT = '.solid-native/app.tailwind.js';
+const DEFAULT_OUTPUT = '.solidnative/app.tailwind.js';
 
 /**
  * @param {object} config a Metro config, after `withSolidNative`
@@ -50,7 +50,7 @@ function withTailwind(config, options) {
   const output = path.resolve(projectRoot, options.output ?? DEFAULT_OUTPUT);
   if (!/\.[cm]?js$/.test(output)) {
     throw new Error(
-      `[solid-native] the Tailwind output has to be a .js module, because Expo's transform ` +
+      `[solidnative] the Tailwind output has to be a .js module, because Expo's transform ` +
         `worker turns every .css file into an empty one on native. Got ${output}`,
     );
   }
@@ -109,7 +109,7 @@ function compileSheetModule(css, context = 'tailwind') {
   for (const message of dropped) {
     // A leftover custom property was already substituted; anything else is a utility the app used
     // and native cannot express, which is worth saying while it is still being written.
-    if (!message.includes("dropped '--")) console.warn(`[solid-native] ${message}`);
+    if (!message.includes("dropped '--")) console.warn(`[solidnative] ${message}`);
   }
   return `// Generated from ${path.basename(context)}. Edit the Tailwind entry, not this.\nexport default ${JSON.stringify(sheet)};\n`;
 }
@@ -190,7 +190,7 @@ function watch(input, css, output, cwd) {
   child.once('exit', (code, signal) => {
     if (stopping) return;
     console.error(
-      `[solid-native] the Tailwind watcher exited (${signal ?? `code ${code}`}). Classes written ` +
+      `[solidnative] the Tailwind watcher exited (${signal ?? `code ${code}`}). Classes written ` +
         'from now on will not reach the device until Metro is restarted.',
     );
   });
@@ -230,7 +230,7 @@ function cliPath(cwd) {
   const entry = typeof bin === 'string' ? bin : bin[Object.keys(bin)[0]];
   const resolved = path.join(path.dirname(from), entry);
   if (!existsSync(resolved)) {
-    throw new Error(`[solid-native] found ${name} but not its binary at ${resolved}`);
+    throw new Error(`[solidnative] found ${name} but not its binary at ${resolved}`);
   }
   return resolved;
 }

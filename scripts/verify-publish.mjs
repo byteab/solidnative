@@ -73,7 +73,7 @@ const PUBLISHED = [
  * time. pnpm's content-addressed store is safe to share, because fresh metadata brings a fresh
  * integrity hash with it.
  */
-const caches = mkdtempSync(path.join(tmpdir(), 'solid-native-caches-'));
+const caches = mkdtempSync(path.join(tmpdir(), 'solidnative-caches-'));
 
 const run = (cmd, args, cwd, quiet = true) =>
   execFileSync(cmd, args, {
@@ -123,7 +123,7 @@ function publishAll() {
   }
 }
 
-function generateApp(dir = mkdtempSync(path.join(tmpdir(), 'solid-native-probe-'))) {
+function generateApp(dir = mkdtempSync(path.join(tmpdir(), 'solidnative-probe-'))) {
   const app = path.join(dir, 'app');
   console.log(`\ngenerating an app in ${app}`);
   run(
@@ -376,7 +376,7 @@ export function App() {
   const [count, setCount] = createSignal(0);
   return withNativeStyles(sheet, () => (
     <View class="card" testID="card">
-      <Text class="text-lg font-semibold">Hello from solid-native</Text>
+      <Text class="text-lg font-semibold">Hello from solidnative</Text>
       <Pressable
         class="rounded-lg bg-blue-600 px-4 py-2"
         testID="counter"
@@ -468,7 +468,7 @@ async function checkWebPage(page, url) {
   await page.goto(url);
   const counter = page.getByTestId('counter');
   try {
-    await page.getByText('Hello from solid-native').waitFor({ timeout: 10_000 });
+    await page.getByText('Hello from solidnative').waitFor({ timeout: 10_000 });
     await counter.getByText('Pressed 0 times').waitFor({ timeout: 1_000 });
   } catch {
     throw new Error(`the app did not render:\n${errors.join('\n') || (await page.content())}`);
@@ -553,7 +553,7 @@ function reportVersions(name, outcome, app, top) {
 
 async function runScenario(name) {
   const scenario = SCENARIOS[name];
-  const dir = mkdtempSync(path.join(tmpdir(), `solid-native-${name}-`));
+  const dir = mkdtempSync(path.join(tmpdir(), `solidnative-${name}-`));
   const started = Date.now();
   const elapsed = () => `${Math.round((Date.now() - started) / 1000)}s`;
   try {
@@ -587,13 +587,13 @@ if (scenario) {
   rmSync(path.dirname(app), { recursive: true, force: true });
 
   if (process.argv.includes('--generators')) {
-    const dir = mkdtempSync(path.join(tmpdir(), 'solid-native-workspace-'));
+    const dir = mkdtempSync(path.join(tmpdir(), 'solidnative-workspace-'));
     console.log(`\nok  nx g @solidnative/nx:app: the native app bundles ${await nxWorkspace(dir)}`);
     rmSync(dir, { recursive: true, force: true });
   }
 
   if (process.argv.includes('--web')) {
-    const dir = mkdtempSync(path.join(tmpdir(), 'solid-native-web-'));
+    const dir = mkdtempSync(path.join(tmpdir(), 'solidnative-web-'));
     console.log(`\nok  a browser app on @solidnative/web bundles ${await webApp(dir)}`);
     rmSync(dir, { recursive: true, force: true });
   }

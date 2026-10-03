@@ -171,7 +171,7 @@ export function reactNative(): ReactNative | null {
   if (typeof require === 'function') return require('react-native') as ReactNative;
   if ((globalThis as { nativeFabricUIManager?: unknown }).nativeFabricUIManager !== undefined) {
     console.error(
-      '[solid-native] react-native could not be required, so every platform capability is ' +
+      '[solidnative] react-native could not be required, so every platform capability is ' +
         'inert. The bundle is not CommonJS; check the Metro transform.',
     );
   }

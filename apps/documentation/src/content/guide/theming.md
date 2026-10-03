@@ -6,7 +6,7 @@ summary: Tailwind and your own CSS on native views, through a real cascade with 
 # Theming and Tailwind
 
 NativeWind needs `cssInterop` and a variant runtime because React Native has no CSS engine.
-solid-native has a real cascade, so `<View class="flex-1 bg-blue-500 p-4">` matches through
+solidnative has a real cascade, so `<View class="flex-1 bg-blue-500 p-4">` matches through
 `class`. A build step converts web CSS to the native subset; a preset adds native vocabulary.
 
 ## The build step
@@ -24,7 +24,7 @@ Importing these instead of `tailwindcss` leaves out preflight's browser reset (`
 `::before`, `-webkit-*`).
 
 `withTailwind` runs the Tailwind CLI from Metro and writes the sheet as a JavaScript module,
-`.solid-native/app.tailwind.js` unless `output` says otherwise (a `.css` output would reach native
+`.solidnative/app.tailwind.js` unless `output` says otherwise (a `.css` output would reach native
 as an empty module):
 
 ```ts
@@ -42,7 +42,7 @@ The entry passes it to the root as global styles, whose rules match any node:
 
 ```ts
 // src/main.solid.ts
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 
 const root = createNativeRoot({
   fabric: getFabricUIManager(),

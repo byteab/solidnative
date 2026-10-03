@@ -20,7 +20,7 @@ const server = await createServer({
   root,
   configFile: false,
   logLevel: 'warn',
-  cacheDir: '/private/tmp/solid-native-g12-vite-cache',
+  cacheDir: '/private/tmp/solidnative-g12-vite-cache',
   server: { host: '127.0.0.1', port: 0 },
   resolve: {
     alias: [

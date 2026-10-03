@@ -105,7 +105,7 @@ describe('a DOM component imported from native code', () => {
 describe("the page's entry", () => {
   /** The page bootstrap our worker puts in place of Expo's React entry. */
   function page() {
-    const root = mkdtempSync(path.join(tmpdir(), 'solid-native-web-entry-'));
+    const root = mkdtempSync(path.join(tmpdir(), 'solidnative-web-entry-'));
     const entry = path.join(root, 'node_modules/expo/dom/entry.js');
     mkdirSync(path.dirname(entry), { recursive: true });
     writeFileSync(path.join(root, 'note.dom.tsx'), WEB_COMPONENT);

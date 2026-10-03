@@ -129,7 +129,7 @@ export const EXPO_VIEWS: Readonly<Record<string, [string, ExpoViewOptions?]>> = 
 export function registerExpoViews(...elements: readonly (keyof typeof EXPO_VIEWS)[]): void {
   for (const element of elements) {
     const known = EXPO_VIEWS[element];
-    if (!known) throw new Error(`[solid-native] no Expo view is known as '${element}'`);
+    if (!known) throw new Error(`[solidnative] no Expo view is known as '${element}'`);
     registerExpoView(element, known[0], known[1]);
   }
 }

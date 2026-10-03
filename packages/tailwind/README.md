@@ -1,8 +1,8 @@
 # @solidnative/tailwind
 
-A Tailwind CSS preset for solid-native's Solid renderer, for Tailwind 4 on native and web and
+A Tailwind CSS preset for solidnative's Solid renderer, for Tailwind 4 on native and web and
 Tailwind 3 on native: `<view class="flex-1 bg-blue-500 p-4">` works because
-[`@solidnative/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric) already has
+[`@solidnative/fabric`](https://github.com/byteab/solidnative/blob/main/packages/fabric) already has
 a real cascade, and `class` already matches against it.
 
 Alpha: APIs may change before 1.0.
@@ -35,7 +35,7 @@ module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
 
 ```ts
 // src/main.solid.ts
-import tailwind from '../.solid-native/app.tailwind.js';
+import tailwind from '../.solidnative/app.tailwind.js';
 // ...hand `tailwind` to the app's global styles, as the template's entry does.
 ```
 
@@ -77,12 +77,12 @@ own CLI, so there is no `@tailwindcss/cli` to install. The preset turns prefligh
 
 ## Docs
 
-- [Tailwind](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind.md), including
-  [Tailwind 3](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind.md#tailwind-3)
-- [Variants](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind/variants.md) and
-  [safe area and hairlines](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/tailwind/utilities.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Tailwind](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/tailwind.md), including
+  [Tailwind 3](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/tailwind.md#tailwind-3)
+- [Variants](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/tailwind/variants.md) and
+  [safe area and hairlines](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/tailwind/utilities.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 

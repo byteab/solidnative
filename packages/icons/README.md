@@ -42,9 +42,9 @@ export function Reading() {
 
 ## Docs
 
-- [Icons](https://github.com/byteab/solid-native/blob/main/apps/documentation/src/content/packages/icons.md)
-- [Root README](https://github.com/byteab/solid-native/blob/main/README.md) and
-  [ARCHITECTURE.md](https://github.com/byteab/solid-native/blob/main/ARCHITECTURE.md)
+- [Icons](https://github.com/byteab/solidnative/blob/main/apps/documentation/src/content/packages/icons.md)
+- [Root README](https://github.com/byteab/solidnative/blob/main/README.md) and
+  [ARCHITECTURE.md](https://github.com/byteab/solidnative/blob/main/ARCHITECTURE.md)
 
 ## License
 
