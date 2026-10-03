@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const { test, after } = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const vm = require('node:vm');
 const { createRequire } = require('node:module');
 const worker = require('@expo/metro-config/build/transform-worker/metro-transform-worker');
@@ -14,7 +15,7 @@ const runtimePaths = [
   path.join(path.dirname(cliRequire.resolve('./package.json')), 'build/metro-require/require.js'),
 ];
 
-const projectRoot = fs.mkdtempSync('/private/tmp/native-solid-reload-');
+const projectRoot = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'native-solid-reload-'));
 after(() => fs.rmSync(projectRoot, { recursive: true, force: true }));
 function setup() {
   const preset = expoRequire.resolve('expo/internal/babel-preset');

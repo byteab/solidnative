@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const { createRequire } = require('node:module');
 const { pathToFileURL } = require('node:url');
 const babel = require('@babel/core');
@@ -33,7 +34,7 @@ const generated = (ast) =>
   babel.transformFromAstSync(ast, undefined, { babelrc: false, configFile: false }).code;
 
 test('actual Expo development override disables React Refresh for Solid DOM pages', () => {
-  const dir = fs.mkdtempSync('/private/tmp/solidnative-g12-dom-dev-');
+  const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'solidnative-g12-dom-dev-'));
   try {
     const requireExpo = createRequire(require.resolve('@expo/metro-config/package.json'));
     const preset = requireExpo.resolve('expo/internal/babel-preset');

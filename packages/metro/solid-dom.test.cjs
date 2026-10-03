@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const { createRequire } = require('node:module');
 const { pathToFileURL } = require('node:url');
 const babel = require('@babel/core');
@@ -107,7 +108,7 @@ test('upstream React DOM pages retain the exact Expo transform', () => {
 });
 
 test('Expo generated Solid page entry mounts itself and passes early errors without React', () => {
-  const dir = fs.mkdtempSync('/private/tmp/solidnative-g12-dom-');
+  const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'solidnative-g12-dom-'));
   try {
     const entry = path.join(dir, 'expo/dom/entry.js');
     fs.mkdirSync(path.dirname(entry), { recursive: true });

@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const path = require('node:path');
+const os = require('node:os');
 const fs = require('node:fs');
 const babel = require('@babel/core');
 const { TraceMap, originalPositionFor } = require('@jridgewell/trace-mapping');
@@ -234,7 +235,9 @@ test('native Metro resolver canonicalizes signal/store/universal including inter
 });
 
 test('runtime selection requires the application dependency', () => {
-  const empty = fs.mkdtempSync('/private/tmp/native-solid-no-dependency-');
+  const empty = fs.mkdtempSync(
+    path.join(fs.realpathSync(os.tmpdir()), 'native-solid-no-dependency-'),
+  );
   try {
     assert.throws(() => createSolidRuntime(empty), /Cannot find module 'solid-js\/package.json'/);
   } finally {

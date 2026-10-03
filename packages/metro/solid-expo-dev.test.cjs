@@ -3,12 +3,15 @@ const { test } = require('node:test');
 const { createRequire } = require('node:module');
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const babel = require('@babel/core');
 const transformer = require('./solid-transformer.cjs');
 const expo = require('@expo/metro-config/build/babel-transformer');
 
 test('documented per-file Expo override disables native Solid React Refresh while preserving React defaults', () => {
-  const projectRoot = fs.mkdtempSync('/private/tmp/native-solid-expo-dev-');
+  const projectRoot = fs.mkdtempSync(
+    path.join(fs.realpathSync(os.tmpdir()), 'native-solid-expo-dev-'),
+  );
   try {
     const expoRequire = createRequire(require.resolve('@expo/metro-config/package.json'));
     const preset = expoRequire.resolve('expo/internal/babel-preset');
@@ -68,7 +71,9 @@ test("the toolkit's own plain helpers are Solid files; an app's plain helper kee
   // Imports neither solid-js nor a `/solid` entry, and exports capitalised builders.
   assert.equal(isSolidFile(path.join(__dirname, '../components/src/solid/gestures.ts')), true);
   assert.equal(isSolidFile(path.join(__dirname, '../fabric/src/css.ts')), true);
-  const projectRoot = fs.mkdtempSync('/private/tmp/native-solid-plain-');
+  const projectRoot = fs.mkdtempSync(
+    path.join(fs.realpathSync(os.tmpdir()), 'native-solid-plain-'),
+  );
   try {
     const plain = path.join(projectRoot, 'src', 'format.ts');
     fs.mkdirSync(path.dirname(plain));
