@@ -41,6 +41,7 @@ Device, Release, interleaved launches, 10 rounds each. Renderer JavaScript ms (t
 | Check a rule's parent class before its position test      | `fabric/src/css.ts`            | with the next two, Tailwind mount 35 -> 18 ms                 |
 | Re-mark only siblings whose position a selector read      | `fabric/src/engine.ts`         | Tailwind remove 24 -> 11 ms, select by class 21 -> 0.4 ms     |
 | Keep a node's answer when it matches as before            | `fabric/src/css.ts`            | Tailwind remove 11 -> 1.7 ms, append 30 -> 19 ms              |
+| Merge props in one pass for nodes no CSS reaches          | `fabric/src/engine.ts`         | headless mount -4.7%, replace -3.5%; iOS sim within noise     |
 
 The four CSS changes matter only under a sheet, and the canary's device bench has none. Headless,
 a global Tailwind sheet made an inline-styled mount 4.3x slower (11.6 -> 49.9 ms). It is now 18 ms.
@@ -56,9 +57,9 @@ Class-styled rows are 36 ms, against 12 ms for inline styles with no sheet.
 
 Tailwind is set aside for now; these target inline-styled views.
 
-1. **Engine fast path for nodes no CSS reaches.** No sheet, no classes, no transition or animation
-   keys: one loop for defaults + props + style + colour conversion, and no `resolve`,
-   `transitioned`, `animated` or `composeTransform`. These steps are ~18% of mount.
+1. **Done: engine fast path** (`plainProps`). Smaller than the ~18% the merge steps cost, because
+   most of their work was the copying, which a node still needs once. Android device numbers
+   pending: the emulator degraded mid-run (every phase 5-7x slower, React's too).
 2. **Static props merged at build time.** `solid-lower.cjs` already rewrites templates. Merge a
    template element's static props and literal styles once, normalized and colour-converted, so a
    node lays only its dynamic props over a copy. This is how Solid's DOM renderer beats React, and
