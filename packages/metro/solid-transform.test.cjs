@@ -301,10 +301,10 @@ export const A = (p) => ${jsx};`,
     ).code;
   const plain = lowered('<View style={p.s} onLayout={p.f}><Label style={p.t}>{p.a}</Label></View>');
   assert.match(plain, /createElement\("view"\)/);
-  assert.match(plain, /createElement\("text"\)/);
-  assert.match(plain, /setProp\(_el\$2, "accessible", true\)/);
+  assert.match(plain, /createElement\("text", _statics\)/);
+  assert.match(plain, /accessible: true/);
   assert.doesNotMatch(plain, /createComponent/);
-  assert.match(lowered('<Label>x</Label>', 'android'), /"accessible", false/);
+  assert.match(lowered('<Label>x</Label>', 'android'), /accessible: false/);
   for (const kept of [
     '<View ref={p.r} />',
     '<View {...p} />',
@@ -318,4 +318,34 @@ export const A = (p) => ${jsx};`,
     assert.match(lowered(kept), /createComponent/, kept);
   assert.match(lowered('<Label>x</Label>', null), /createComponent/, 'Text needs a platform');
   assert.match(lowered('<View />', 'ios', { lowerPrimitives: false }), /createComponent/);
+});
+
+test("a lowered element's literal attributes are made with it, its style flattened", () => {
+  const { code } = transformSolid(
+    `/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+export const A = (p) => <View testID="row" collapsable={false} hidden hitSlop={{ top: -4 }}
+  style={{ 'margin-top': '4px', padding: '1.5', color: 'red', transform: [{ scale: '2' }] }}
+  class="a" nativeID={p.id}><View style={{}} /><View style={{ '--tint': 'red' }} /></View>;`,
+    'statics.tsx',
+    { platform: 'ios' },
+  );
+  const statics = Function(
+    `${code.match(/const _statics = ([^;]*);/)[1].replace(/^/, 'return ')}`,
+  )();
+  assert.deepEqual(statics, {
+    testID: 'row',
+    collapsable: false,
+    hidden: true,
+    hitSlop: { top: -4 },
+    style: { marginTop: 4, padding: 1.5, color: 'red', transform: [{ scale: 2 }] },
+  });
+  assert.match(code, /createElement\("view", _statics\)/);
+  // A class and a custom property go through the platform; a computed value stays a binding.
+  assert.match(code, /setProp\(_el\$, "class", "a"\)/);
+  assert.match(code, /setProp\(_el\$, "nativeID", p\.id/);
+  assert.match(code, /setProp\(_el\$3, "style", \{\s*'--tint': 'red'\s*\}\)/);
+  // An empty style sets nothing.
+  assert.match(code, /_el\$2 = _\$createElement\("view"\)/);
+  assert.doesNotMatch(code, /\$statics/);
 });

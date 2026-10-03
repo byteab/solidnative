@@ -313,6 +313,21 @@ describe('what a commit sends', () => {
     assert.ok(engine.animating, 'the opacity eases rather than jumping');
   });
 
+  it('starts an element with the props compiled for it, which later writes replace', () => {
+    const fabric = createFakeFabric();
+    const engine = new Engine(fabric, 1, { processColor: (value) => `processed ${value}` });
+    const statics = { testID: 'row', style: { color: 'red', direction: 'rtl' } };
+    const view = engine.createElement('view', null, statics);
+    engine.appendChild(engine.root, view);
+    engine.commit();
+    assert.equal(fabric.committed[0]!.props['testID'], 'row');
+    assert.equal(fabric.committed[0]!.props['color'], 'processed red');
+    engine.setProp(view, 'testID', 'other');
+    engine.commit();
+    assert.equal(view.props['testID'], 'other');
+    assert.equal(statics.testID, 'row', 'the compiled object is shared, never written');
+  });
+
   it("converts the colours in a registered view's defaults", () => {
     registerViewName('tinted-default-view', 'RCTView', { backgroundColor: 'red' });
     const fabric = createFakeFabric();

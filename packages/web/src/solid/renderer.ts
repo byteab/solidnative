@@ -75,11 +75,22 @@ function setBinding(node: BrowserNode, name: string, value: unknown): void {
 function foreignAnchor(parent: BrowserNode, anchor: BrowserNode | undefined): boolean {
   return !!anchor && (contextOf(anchor) !== contextOf(parent) || anchor.parent !== parent);
 }
+function setProperty(node: BrowserNode, name: string, value: unknown): void {
+  const context = contextOf(node);
+  if (context.disposed || !context.owns(node)) return;
+  if (setStyle(node, name, value)) return;
+  if (name === 'responder') setBinding(node, name, value);
+  else if (name.startsWith('on:')) setBinding(node, name.slice(3), value);
+  else if (/^on[A-Z]/.test(name)) setBinding(node, `top${name.slice(2)}`, value);
+  else context.engine.setProp(node, name, value);
+}
 export const renderer = createRenderer<BrowserNode>({
-  createElement(name) {
+  // Lowered elements arrive with their literal props compiled into `statics` (`solid-lower.cjs`).
+  createElement(name: string, statics?: Readonly<Record<string, unknown>>) {
     const context = currentBrowser();
     const node = context.own(context.engine.createElementNode(name));
     stampStyle(node);
+    for (const key in statics) setProperty(node, key, statics[key]);
     return node;
   },
   createTextNode(value) {
@@ -92,15 +103,7 @@ export const renderer = createRenderer<BrowserNode>({
     (node.el as Text).data = node.text;
   },
   isTextNode: (node) => node.kind === 'text',
-  setProperty(node, name, value) {
-    const context = contextOf(node);
-    if (context.disposed || !context.owns(node)) return;
-    if (setStyle(node, name, value)) return;
-    if (name === 'responder') setBinding(node, name, value);
-    else if (name.startsWith('on:')) setBinding(node, name.slice(3), value);
-    else if (/^on[A-Z]/.test(name)) setBinding(node, `top${name.slice(2)}`, value);
-    else context.engine.setProp(node, name, value);
-  },
+  setProperty,
   insertNode(parent, node, anchor) {
     const context = contextOf(node);
     if (context.disposed || !context.owns(node)) return;

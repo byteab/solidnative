@@ -1525,9 +1525,24 @@ export class Engine implements HostEngine {
 
   // --- mutation API -----------------------------------------------------
 
-  createElement(name: string, sheet: StyleSheet | null = null): EngineNode {
+  /**
+   * `statics` are props a compiler worked out ahead of time (`solid-lower.cjs`): the node starts
+   * with them, as if each had been set, in one copy rather than a `setProp` apiece. Its `style`
+   * is already flattened and is shared between nodes, so it is never written to.
+   */
+  createElement(
+    name: string,
+    sheet: StyleSheet | null = null,
+    statics?: Readonly<Record<string, unknown>>,
+  ): EngineNode {
     const node = new RetainedNode('element', name, this);
     node.sheet = sheet;
+    if (statics !== undefined) {
+      const props = node.props;
+      for (const key in statics) props[key] = statics[key];
+      node.propsDirty = true;
+      if (props['style'] !== undefined) this.noteInlineDirection(node);
+    }
     if (sheet?.structural) this.structuralSheets = true;
     if (HOISTS[name]) this.hoisted.add(node);
     return node;

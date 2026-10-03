@@ -13,9 +13,16 @@ import {
 import { currentStyleSheet } from './styles.ts';
 import { setProperty } from './properties.ts';
 
-/** An element owned by `root`, which the caller has already looked up from the Solid owner. */
-export function createElementIn(root: RootContext, name: string): EngineNode {
-  const node = root.engine.createElement(name, currentStyleSheet());
+/**
+ * An element owned by `root`, which the caller has already looked up from the Solid owner.
+ * `statics` are its props compiled ahead of time (`solid-lower.cjs`), set before anything else.
+ */
+export function createElementIn(
+  root: RootContext,
+  name: string,
+  statics?: Readonly<Record<string, unknown>>,
+): EngineNode {
+  const node = root.engine.createElement(name, currentStyleSheet(), statics);
   // These raw JSX intrinsics are implemented by this adapter; they need no component to claim
   // them. Leave other names unclaimed so the engine keeps reporting missing/unknown primitives.
   if (name === 'view' || name === 'text') claimHost(node);
@@ -23,7 +30,9 @@ export function createElementIn(root: RootContext, name: string): EngineNode {
 }
 
 export const renderer = createRenderer<EngineNode>({
-  createElement: (name) => createElementIn(currentRoot(), name),
+  // The compiler hands lowered elements their static props as a second argument.
+  createElement: (name: string, statics?: Readonly<Record<string, unknown>>) =>
+    createElementIn(currentRoot(), name, statics),
   // Universal's array normalizer passes numbers despite its string-only callback type.
   createTextNode(value) {
     const root = currentRoot(true);

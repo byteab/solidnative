@@ -42,6 +42,16 @@ Device, Release, interleaved launches, 10 rounds each. Renderer JavaScript ms (t
 | Re-mark only siblings whose position a selector read      | `fabric/src/engine.ts`         | Tailwind remove 24 -> 11 ms, select by class 21 -> 0.4 ms     |
 | Keep a node's answer when it matches as before            | `fabric/src/css.ts`            | Tailwind remove 11 -> 1.7 ms, append 30 -> 19 ms              |
 | Merge props in one pass for nodes no CSS reaches          | `fabric/src/engine.ts`         | headless mount -4.7%, replace -3.5%; iOS sim within noise     |
+| Literal props made with the element, compiled at build    | `metro/solid-lower.cjs`        | see below                                                     |
+
+**Static props at build time.** A lowered View or Text's literal attributes, a literal style
+among them, go into one module-level object, the style flattened and its numbers parsed as the
+platform would, which `createElement` copies into the node: no `setProp` apiece and no style
+flatten per node. Colours stay converted at run time, through the engine's cache, since only the
+host's `processColor` knows their native form. The bench's only literal per row is Text's
+`accessible`: headless mount -3%, replace -3%; device mount within noise, Android replace -8%,
+append -7%. With a literal label style per row instead of a shared one, headless mount drops 11.6
+-> 10.2 ms (-12%), faster than the shared style it replaces.
 
 The four CSS changes matter only under a sheet, and the canary's device bench has none. Headless,
 a global Tailwind sheet made an inline-styled mount 4.3x slower (11.6 -> 49.9 ms). It is now 18 ms.
@@ -59,10 +69,7 @@ Tailwind is set aside for now; these target inline-styled views.
 
 1. **Done: engine fast path** (`plainProps`). Smaller than the ~18% the merge steps cost, because
    most of their work was the copying, which a node still needs once. The table above includes it.
-2. **Static props merged at build time.** `solid-lower.cjs` already rewrites templates. Merge a
-   template element's static props and literal styles once, normalized and colour-converted, so a
-   node lays only its dynamic props over a copy. This is how Solid's DOM renderer beats React, and
-   the likeliest way past parity.
+2. **Done: static props at build time** (above).
 3. **Replace is O(n²).** Universal removes old rows from the front, one `splice` each (5.5% of
    replace). Batch the removals in the engine, with every reader of `children` seeing the batch.
 4. **Clear on device.** Renderer clear is 13.8 ms on iOS but 2.7 ms headless, where GC runs
