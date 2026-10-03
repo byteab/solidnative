@@ -12,7 +12,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
+import { Engine, StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { resetStyleStats, styleStats } from '../fabric/src/css.ts';
 import { createRequire } from 'node:module';
 import { mountSolid } from './css-solid-harness.ts';
@@ -182,5 +183,27 @@ describe('what CSS costs', () => {
     wrap.children.push(label);
     assert.notEqual(resolver.resolve(wrap, 3), resolver.resolve(a, 3), 'a context of its own');
     assert.ok(resolver.resolve(label, 3).style['color'], 'so the moved label resolves again');
+  });
+});
+
+describe('a list change under a structural sheet', () => {
+  // A Tailwind sheet's `space-x-*` makes every sheet structural. Removing one row re-matched every
+  // row of the list before: the list re-resolved, minted a new context, and each row followed.
+  it('re-resolves only the list when a row no position rule reaches is removed', () => {
+    const css = '.space > :not(:last-child) { margin-right: 4px } .row { opacity: 0.5 }';
+    const engine = new Engine(createFakeFabric(), 1, { globalStyles: compileCss(css, 'test') });
+    const list = engine.createElement('view');
+    engine.appendChild(engine.root, list);
+    for (let i = 0; i < 50; i++) {
+      const row = engine.createElement('view');
+      engine.setClasses(row, 'row');
+      engine.appendChild(list, row);
+    }
+    engine.commit();
+
+    resetStyleStats();
+    engine.removeChild(list, list.children[10]!);
+    engine.commit();
+    assert.ok(styleStats.nodesResolved <= 2, `${styleStats.nodesResolved} nodes re-resolved`);
   });
 });

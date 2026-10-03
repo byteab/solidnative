@@ -372,6 +372,8 @@ export interface StyleCache {
    * values do, and by the same copy-on-write rule, so a subtree that defines none shares one map.
    */
   tokens: Readonly<Record<string, TokenValue>>;
+  /** The rules that matched, in cascade order, when it was cascaded: what `resolve` reuses by. */
+  rules?: readonly StyleRule[];
 }
 
 /** What the matcher needs of a node. The engine's node satisfies this structurally. */
@@ -415,6 +417,19 @@ export interface StyleTarget {
   styleCache: StyleCache | null;
   /** Set when something that could change what this node matches has changed. */
   styleDirty: boolean;
+  /**
+   * Set once a selector has read where this node stands among its siblings (`:nth-*`,
+   * `:first-child`, a sibling combinator), its own or a descendant's. Only such a node can match
+   * differently when its parent's child list changes, so only it is marked then
+   * (`Engine.markStructure`). Never cleared: a stale mark costs a resolve, a missing one a bug.
+   */
+  positionRead?: boolean;
+  /**
+   * Whether anything a selector reads of this node itself has changed since its last commit:
+   * classes, props, `:focus`, `:active`. False lets a node marked only because its child list
+   * moved keep its context when it matches as before (`resolve`); absent never does.
+   */
+  readonly propsDirty?: boolean;
   /** `:focus`. Set by the engine from the native focus and blur events. */
   focused?: boolean;
   /**
@@ -616,8 +631,48 @@ export function matches(
   ) {
     return false;
   }
+  // `.space-x-3 > :not(:last-child)`: the parent's classes settle it for nearly every node, and
+  // cheaply, where the subject alone would read each node's position first.
+  const gate = parentGate(rule);
+  if (gate !== null) {
+    const classes = node.parent?.classes;
+    if (!classes) return false;
+    for (let i = 0; i < gate.length; i++) if (!classes.has(gate[i]!)) return false;
+  }
   if (!matchesCompound(node, subject, sheet)) return false;
   return matchPrefix(node, rule, last - 1, sheet);
+}
+
+function sameRules(a: readonly StyleRule[] | undefined, b: readonly StyleRule[]): boolean {
+  if (a === undefined || a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+
+/** Rule memo of `parentGate`: null when the rule asks nothing of the parent's classes. */
+const gates = new WeakMap<StyleRule, readonly string[] | null>();
+
+/** The classes a rule's subject's parent must have, when a child combinator joins them. */
+function parentGate(rule: StyleRule): readonly string[] | null {
+  let gate = gates.get(rule);
+  if (gate === undefined) {
+    const last = rule.compounds.length - 1;
+    const classes =
+      last > 0 && rule.combinators[last - 1] === 'child'
+        ? requiredClasses(rule.compounds[last - 1]!)
+        : [];
+    gates.set(rule, (gate = classes.length ? classes : null));
+  }
+  return gate;
+}
+
+/** Classes a node must have to match a compound: its own, and those of a one-option `:is()`. */
+function requiredClasses(compound: Compound): string[] {
+  const classes = [...compound.classes];
+  for (const options of compound.is ?? []) {
+    if (options.length === 1) classes.push(...requiredClasses(options[0]!));
+  }
+  return classes;
 }
 
 /**
@@ -695,6 +750,7 @@ const isElement = (node: StyleTarget) => node.kind === undefined || node.kind ==
 
 /** The element before this one, skipping everything that is not one. */
 function previousElement(node: StyleTarget): StyleTarget | null {
+  node.positionRead = true;
   const siblings = node.parent?.children;
   if (!siblings) return null;
   for (let i = siblings.indexOf(node) - 1; i >= 0; i--) {
@@ -711,6 +767,7 @@ function previousElement(node: StyleTarget): StyleTarget | null {
  * counting, and the rest wait for a list that is actually slow.
  */
 function matchesNth(node: StyleTarget, test: NthTest): boolean {
+  node.positionRead = true;
   const siblings = node.parent?.children;
   if (!siblings) return false;
 
@@ -905,6 +962,7 @@ interface CascadeResult {
   readonly important: Record<string, unknown> | null;
   readonly tokens: Readonly<Record<string, TokenValue>> | null;
   readonly deferred: DeferredDeclaration[] | null;
+  readonly rules: readonly StyleRule[];
 }
 
 /** What `em` falls back to when nothing in scope has set a font size. The web's default. */
@@ -1086,6 +1144,13 @@ export class StyleResolver {
 
     const result = this.cascade(node, this.rulesFor(node));
 
+    const kept = this.keptAnswer(node, parentContext, result.rules);
+    if (kept) {
+      kept.epoch = epoch;
+      node.styleDirty = false;
+      return kept;
+    }
+
     // Tokens are in scope for this node's own declarations as well as its descendants', so they
     // are merged before any `var()` here is resolved.
     const parentTokens = parent ? parent.tokens : this.tokensOnRoot;
@@ -1105,10 +1170,34 @@ export class StyleResolver {
       style: { ...parentInherited, ...own },
       inherited: inheritFrom(parentInherited, own),
       tokens,
+      rules: result.rules,
     };
     node.styleCache = cache;
     node.styleDirty = false;
     return cache;
+  }
+
+  /**
+   * The last answer, when a node marked only because its child list moved (`:empty`, a position
+   * selector) matches as before: the same rules under the same parent give the same answer, and
+   * keeping the old one, context and all, spares every descendant a resolve. A node whose own
+   * classes, props or place changed mints a new context even so, as a descendant's selector can
+   * read those of it.
+   */
+  private keptAnswer(
+    node: StyleTarget,
+    parentContext: object,
+    rules: readonly StyleRule[],
+  ): StyleCache | null {
+    const previous = node.styleCache;
+    return previous !== null &&
+      node.propsDirty === false &&
+      !node.positionRead &&
+      previous.parentContext === parentContext &&
+      previous.generation === this.generation &&
+      sameRules(previous.rules, rules)
+      ? previous
+      : null;
   }
 
   /**
@@ -1237,9 +1326,11 @@ export class StyleResolver {
     let hasImportant = false;
     let tokens: Readonly<Record<string, TokenValue>> | null = null;
     let deferred: DeferredDeclaration[] | null = null;
+    const rules: StyleRule[] = [];
 
     for (const { rule, sheet } of entries) {
       if (!this.conditionHolds(rule) || !matches(node, rule, sheet)) continue;
+      rules.push(rule);
       Object.assign(normal, rule.declarations);
       if (rule.important) {
         Object.assign(important, rule.important);
@@ -1256,6 +1347,7 @@ export class StyleResolver {
       important: hasImportant ? important : null,
       tokens,
       deferred,
+      rules,
     };
   }
 

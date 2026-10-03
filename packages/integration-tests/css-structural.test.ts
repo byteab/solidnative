@@ -13,7 +13,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { Engine } from '@solidnative/fabric';
+import { Engine, type EngineNode } from '@solidnative/fabric';
 import { createFakeFabric, type FakeFabric, type FakeFabricNode } from '@solidnative/testing';
 import { mountSolid } from './css-solid-harness.ts';
 import { structuralHost } from './css-solid-fixtures.tsx';
@@ -289,5 +289,75 @@ describe('a position test that is not at the top of its compound', () => {
     engine.appendChild(list, engine.createAnchor());
     engine.commit();
     assert.equal(lastProps(fabric, list)['opacity'], 0.5);
+  });
+});
+
+describe('re-matching only what a list change can reach', () => {
+  // A child list that moves re-matches the children whose match read their position, and keeps
+  // everything else: a Tailwind sheet's `space-x-*` makes every sheet structural, and a list of a
+  // thousand rows re-cascading for one removal is what that cost before.
+  const lastProps = (fabric: FakeFabric, node: unknown): Record<string, unknown> => {
+    const all = (n: FakeFabricNode): FakeFabricNode[] => [n, ...n.children.flatMap(all)];
+    const found = fabric.committed.flatMap(all).find((n) => n.instanceHandle === node);
+    assert.ok(found, 'committed');
+    return found.props;
+  };
+  const setup = (css: string) => {
+    const fabric = createFakeFabric();
+    const engine = new Engine(fabric, 1, { globalStyles: compileCss(css, 'test') });
+    const element = (classes: string, parent: EngineNode) => {
+      const node = engine.createElement('view');
+      if (classes) engine.setClasses(node, classes);
+      engine.appendChild(parent, node);
+      return node;
+    };
+    return { fabric, engine, element };
+  };
+
+  it('restyles a child when its parent stops being the first, though only the parent moved', () => {
+    // The position read is the parent's, made while matching the child.
+    const { fabric, engine, element } = setup('.a:first-child > .b { opacity: 0.5 }');
+    const list = element('', engine.root);
+    const a = element('a', list);
+    const b = element('b', a);
+    engine.commit();
+    assert.equal(lastProps(fabric, b)['opacity'], 0.5);
+
+    const before = engine.createElement('view');
+    engine.setClasses(before, 'a');
+    engine.insertBefore(list, before, a);
+    engine.commit();
+    assert.equal(lastProps(fabric, b)['opacity'], null, 'no longer under the first');
+  });
+
+  it('separates the children of a spaced parent, and moves the separator with the last child', () => {
+    const { fabric, engine, element } = setup('.space > :not(:last-child) { margin-right: 4px }');
+    const list = element('space', engine.root);
+    const first = element('', list);
+    const last = element('', list);
+    engine.commit();
+    assert.equal(lastProps(fabric, first)['marginRight'], 4);
+    assert.equal(lastProps(fabric, last)['marginRight'], undefined);
+
+    engine.removeChild(list, last);
+    engine.commit();
+    assert.equal(lastProps(fabric, first)['marginRight'], null, 'now the last');
+  });
+
+  it('restyles a descendant when its parent gains a class as its child list changes', () => {
+    // The parent matches the same rules as before, but `.dark .label` reads its classes.
+    const { fabric, engine, element } = setup(
+      '.space > :not(:last-child) { margin-right: 4px } .dark .label { opacity: 0.5 }',
+    );
+    const list = element('', engine.root);
+    element('', list);
+    const label = element('label', list);
+    engine.commit();
+    assert.equal(lastProps(fabric, label)['opacity'], undefined);
+
+    engine.removeChild(list, list.children[0]!);
+    engine.setClasses(list, 'dark');
+    engine.commit();
+    assert.equal(lastProps(fabric, label)['opacity'], 0.5);
   });
 });

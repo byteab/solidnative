@@ -377,6 +377,8 @@ export interface EngineNode extends HostNode {
   styleCache: StyleCache | null;
   /** Set when something that could change what this node matches has changed. */
   styleDirty: boolean;
+  /** See `StyleTarget.positionRead`. */
+  positionRead: boolean;
   /** `:focus`, from the native focus and blur events. */
   focused?: boolean;
   /** `:active`, set on the responder and every ancestor of it. */
@@ -894,6 +896,7 @@ class RetainedNode {
   styleDirty = true;
   styleCommitted: StyleCache | null = null;
   hostData: unknown = undefined;
+  positionRead = false;
   claimed: true | undefined = undefined;
   dormantHoists: EngineNode[] | null = null;
   committed: Committed | null = null;
@@ -1785,18 +1788,26 @@ export class Engine implements HostEngine {
   private markLaterSiblings(node: EngineNode): void {
     const siblings = node.parent?.children;
     if (!siblings) return;
+    // Only a sibling whose match walked back over its earlier siblings can depend on this one.
     for (let i = indexIn(siblings, node) + 1; i < siblings.length; i++) {
-      siblings[i]!.styleDirty = true;
+      if (siblings[i]!.positionRead) siblings[i]!.styleDirty = true;
     }
   }
 
   private markStructure(node: EngineNode): void {
+    const first = !node.structureDirty;
     node.structureDirty = true;
     // A child list that moved changes what its members match, though nothing about them did:
-    // the old last row is no longer the last. Only sheets that ask about position pay for this.
+    // the old last row is no longer the last. Only sheets that ask about position pay for this,
+    // only for the children whose match read their position, and once per commit: a child added
+    // after is new, and resolves anyway.
     if (this.structuralSheets) {
       node.styleDirty = true;
-      for (const child of node.children) child.styleDirty = true;
+      if (first) {
+        for (const child of node.children) {
+          if (child.positionRead) child.styleDirty = true;
+        }
+      }
     }
     this.markPath(node.parent);
   }
