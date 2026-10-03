@@ -3,8 +3,8 @@
 Branch `perf/mount-styles`, October 2026. Goal: Solid mounting as fast as React, or faster. Builds on
 [performance.md](performance.md), which has the harness and earlier work.
 
-**Verdict.** On mount, Solid's total time is now within 1-3% of React's, with renderer JavaScript
-2-3 ms behind. It wins on append and on every update phase, and still loses on replace (iOS) and
+**Verdict.** On mount, Solid's total time is now level with React's (2% behind on iOS, 2% ahead on
+Android), with renderer JavaScript 2 ms behind. It wins on append and on every update phase, and still loses on replace (iOS) and
 clear. The rest of the gap is this project's renderer layers (the platform's style handling and the
 engine's prop merge and CSS cascade), not Solid.
 
@@ -25,12 +25,12 @@ Device, Release, interleaved launches, 10 rounds each. Renderer JavaScript ms (t
 
 | phase      | iOS React   | iOS Solid       | Android React | Android Solid   |
 | ---------- | ----------- | --------------- | ------------- | --------------- |
-| mount      | 15.0 (53.9) | 17.2 (55.3)     | 13.8 (73.7)   | 17.0 (74.2)     |
-| replace    | 22.3 (61.6) | 39.3 (81.7)     | 17.1 (65.4)   | 21.4 (63.9)     |
-| update10th | 15.2 (21.0) | **1.4 (7.6)**   | 15.3 (23.0)   | **2.0 (12.1)**  |
-| select     | 19.7 (22.3) | **2.6 (9.9)**   | 23.4 (27.5)   | **4.1 (8.4)**   |
-| append     | 43.3 (86.6) | **33.9 (78.6)** | 45.8 (90.5)   | **29.1 (74.6)** |
-| clear      | 6.2 (8.9)   | 13.8 (14.7)     | 1.4 (6.3)     | 5.0 (10.1)      |
+| mount      | 14.2 (51.2) | 16.0 (52.3)     | 14.1 (71.0)   | 16.3 (69.6)     |
+| replace    | 28.2 (76.4) | 38.0 (78.4)     | 14.9 (65.1)   | 21.1 (64.5)     |
+| update10th | 15.4 (20.9) | **3.2 (9.5)**   | 13.6 (20.9)   | **1.8 (10.2)**  |
+| select     | 21.7 (25.3) | **2.7 (10.1)**  | 19.2 (23.0)   | **1.0 (5.3)**   |
+| append     | 45.5 (86.7) | **34.5 (77.3)** | 34.2 (81.8)   | **22.9 (64.7)** |
+| clear      | 7.4 (10.2)  | 15.1 (16.7)     | 1.6 (6.9)     | 5.6 (10.5)      |
 
 ## What worked
 
@@ -58,8 +58,7 @@ Class-styled rows are 36 ms, against 12 ms for inline styles with no sheet.
 Tailwind is set aside for now; these target inline-styled views.
 
 1. **Done: engine fast path** (`plainProps`). Smaller than the ~18% the merge steps cost, because
-   most of their work was the copying, which a node still needs once. Android device numbers
-   pending: the emulator degraded mid-run (every phase 5-7x slower, React's too).
+   most of their work was the copying, which a node still needs once. The table above includes it.
 2. **Static props merged at build time.** `solid-lower.cjs` already rewrites templates. Merge a
    template element's static props and literal styles once, normalized and colour-converted, so a
    node lays only its dynamic props over a copy. This is how Solid's DOM renderer beats React, and
