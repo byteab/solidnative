@@ -903,7 +903,7 @@ interface CascadeResult {
   readonly declarations: Record<string, unknown>;
   /** The important declarations alone, which a deferred value that is not important cannot beat. */
   readonly important: Record<string, unknown> | null;
-  readonly tokens: Record<string, TokenValue> | null;
+  readonly tokens: Readonly<Record<string, TokenValue>> | null;
   readonly deferred: DeferredDeclaration[] | null;
 }
 
@@ -1235,7 +1235,7 @@ export class StyleResolver {
     const normal: Record<string, unknown> = {};
     const important: Record<string, unknown> = {};
     let hasImportant = false;
-    let tokens: Record<string, TokenValue> | null = null;
+    let tokens: Readonly<Record<string, TokenValue>> | null = null;
     let deferred: DeferredDeclaration[] | null = null;
 
     for (const { rule, sheet } of entries) {
@@ -1245,7 +1245,9 @@ export class StyleResolver {
         Object.assign(important, rule.important);
         hasImportant = true;
       }
-      if (rule.tokens) Object.assign((tokens ??= {}), rule.tokens);
+      // One rule's tokens are kept as they are, so a scope built from them can be memoised by
+      // identity (`tokensInScope`); a copy only once a second rule adds to them.
+      if (rule.tokens) tokens = tokens ? Object.assign({}, tokens, rule.tokens) : rule.tokens;
       deferred = carryDeferred(deferred, rule);
     }
 
@@ -1492,13 +1494,31 @@ function settlingOrder(deferred: readonly DeferredDeclaration[]): readonly Defer
  * The tokens in scope at a node: its parent's, overlaid with what its rules define, overlaid with
  * what it sets itself, which wins as inline style does.
  */
+/**
+ * Scopes built from rule tokens alone, by the parent's scope and then the rule tokens. Tailwind's
+ * `*` rule gives every element the same tokens under the same parent scope, so a screen resolves
+ * them once per distinct scope rather than once per element. Neither key is ever mutated.
+ */
+const scopes = new WeakMap<object, WeakMap<object, Readonly<Record<string, TokenValue>>>>();
+
 function tokensInScope(
   parentTokens: Readonly<Record<string, TokenValue>>,
   ruleTokens: Readonly<Record<string, TokenValue>> | null,
   custom: Readonly<Record<string, TokenValue>> | null | undefined,
 ): Readonly<Record<string, TokenValue>> {
-  const own = custom ? { ...ruleTokens, ...custom } : ruleTokens;
-  return own ? resolveAliases(own, { ...parentTokens, ...own }) : parentTokens;
+  if (custom) {
+    const own = { ...ruleTokens, ...custom };
+    return resolveAliases(own, { ...parentTokens, ...own });
+  }
+  if (!ruleTokens) return parentTokens;
+  let byRule = scopes.get(parentTokens);
+  if (!byRule) scopes.set(parentTokens, (byRule = new WeakMap()));
+  let scope = byRule.get(ruleTokens);
+  if (!scope) {
+    scope = resolveAliases(ruleTokens, { ...parentTokens, ...ruleTokens });
+    byRule.set(ruleTokens, scope);
+  }
+  return scope;
 }
 
 function resolveAliases(
