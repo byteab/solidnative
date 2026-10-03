@@ -84,8 +84,13 @@ Tailwind is set aside for now; these target inline-styled views.
 5. **`createSelector`, measured: not worth replacing.** Rows reading `selected()` directly, no
    selector at all, mount 0.09 ms faster of 10.6 headless (0.37 MB less), so a lighter selector
    cannot move mount time. Clear is no faster without it either (2.76 vs 2.73 ms).
-6. **Android small updates.** Fabric time on label1 and swap is 2-3x React's for the same change:
-   find out what our commit sends.
+6. **Android small updates, measured.** Our commit sends what React's does: on label1 one clone
+   with `{text}` (React makes a new text node), the same three clones up the tree and ~1003
+   `appendChild`. Most of the Fabric gap is the CPU, not the calls: React's 17 ms of renderer work
+   warms it, Solid reaches Fabric 2 ms after the bench's 400 ms idle. A 15 ms spin before each
+   Solid step brings swap's Fabric time to React's (12.7 vs 12.9 ms) and label1's from 7.4 to 5.6
+   (React 3.6). What remains: the same ~1000 `appendChild` calls take 2.5 ms for Solid and 1.0 for
+   React. Next is a native profile (Perfetto) of that call, which JavaScript cannot explain.
 
 ## Later, for Tailwind
 
