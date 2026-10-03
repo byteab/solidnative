@@ -9,6 +9,10 @@ write Solid components, signals and stores, then create, run, reload and ship th
 It is a migration of [ng-native](https://github.com/ng-native/ng-native), which did the same for
 Angular, to SolidJS. See [where it came from](#from-ng-native).
 
+> [!WARNING]
+> solid-native is an experiment, built to explore running Solid on React Native's architecture. It
+> is not production ready: expect gaps, rough edges and breaking changes.
+
 ```sh
 npx create-expo-app@latest my-app --template @solid-native/template
 cd my-app && npx expo start
@@ -89,6 +93,19 @@ Fabric / Yoga / iOS and Android views
 Solid has no virtual DOM, so a signal write updates exactly the native props that depend on it.
 Writes in one synchronous run coalesce into a single Fabric commit. `react-native` and `expo` are
 unmodified dependencies: nothing is forked. [ARCHITECTURE.md](ARCHITECTURE.md) has the rules.
+
+## Expo and the React Native ecosystem
+
+solid-native keeps React Native's architecture and swaps only React for Solid. Everything below the
+renderer is unchanged, so the native side of the ecosystem still works:
+
+- **Expo tooling.** `create-expo-app`, `npx expo start`, Expo Go, development builds, config
+  plugins, prebuild, EAS Build, EAS Update and EAS Submit work as they do for a React app.
+- **Expo modules and native libraries.** Expo SDK modules, TurboModules and Fabric native
+  components are plain native code, so they can be called or rendered from Solid.
+- **What doesn't carry over.** A library whose public API is React components or hooks needs a thin
+  Solid wrapper around its native part, the way `@solid-native/expo` and `@solid-native/router`
+  wrap Expo modules and `react-native-screens`.
 
 ## Features
 
@@ -186,7 +203,8 @@ behind each choice is in [docs/decisions.md](docs/decisions.md).
 
 ## Status
 
-solid-native is in alpha, so APIs can change between `0.x` releases. The
+solid-native is an experiment for exploration, not a production-ready framework, and APIs can change
+between `0.x` releases. The
 [known limitations](https://solid-native.com/guide/limitations) list every gap with its workaround.
 
 ## Contributing
