@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/device",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Solid device services for native iOS and Android: keyboard, screen, color scheme, app state, accessibility, hardware back and deep links.",
   "keywords": [
     "solid",

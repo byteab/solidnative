@@ -1,3 +1,9 @@
+## 0.1.2 (2026-10-03)
+
+### 🩹 Fixes
+
+- The project is now solidnative, at github.com/byteab/solidnative. Package READMEs and homepages link to the documentation in the repository, and the web guide gives `.native.css` imports their own type.
+
 ## Unreleased
 
 ### ⚠️ Breaking changes
