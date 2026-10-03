@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Pressable, Text, View } from '@solid-native/components/solid';
-import { ColorScheme, Dialogs, Sharing, useService } from '@solid-native/device/solid';
-import { UiButton, UiDivider, UiHost, UiImage, UiMenu, UiSlot } from '@solid-native/expo/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { nativePlatform } from '@solid-native/fabric';
-import { Show } from '@solid-native/platform/solid';
-import { useNavigation, useRoute } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Pressable, Text, View } from '@solidnative/components/solid';
+import { ColorScheme, Dialogs, Sharing, useService } from '@solidnative/device/solid';
+import { UiButton, UiDivider, UiHost, UiImage, UiMenu, UiSlot } from '@solidnative/expo/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { nativePlatform } from '@solidnative/fabric';
+import { Show } from '@solidnative/platform/solid';
+import { useNavigation, useRoute } from '@solidnative/router/solid';
 import {
   accent,
   ago,

@@ -28,7 +28,7 @@ art: modal
 
 While hidden the native host leaves the tree, as in React Native, so the screen beneath takes
 touches. On iOS it leaves after the dismissal animation, when `onDismiss` fires; on Android, at
-once. `<Show>` (from `@solid-native/platform/solid`) also disposes the content while hidden.
+once. `<Show>` (from `@solidnative/platform/solid`) also disposes the content while hidden.
 
 ## Transparency
 

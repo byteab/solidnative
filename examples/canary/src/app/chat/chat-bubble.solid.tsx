@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Pressable, Text, View } from '@solid-native/components/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Pressable, Text, View } from '@solidnative/components/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import type { ChatMessage } from './chat-backend.solid.ts';
 import sheet from './chat-bubble.native.css';
 export function ChatBubble(props: { message: ChatMessage; onRetry: () => void }) {

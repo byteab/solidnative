@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components';
 
 export interface CommitReuseProps {
   items: readonly { id: number; label: string }[];

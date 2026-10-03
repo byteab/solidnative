@@ -9,7 +9,7 @@
  */
 import assert from 'node:assert/strict';
 import { after, before, describe, it } from 'node:test';
-import { createNativeRoot, type NativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot, type NativeRoot } from '@solidnative/platform/solid';
 import { parseSvg } from '../icons/src/parse-svg.ts';
 import {
   brushOf,

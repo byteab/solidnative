@@ -10,10 +10,10 @@ settle before they return, but the app's own timers and promises finish later. A
 loads on a timer:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
-import { Text } from '@solid-native/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Text } from '@solidnative/components/solid';
 
 export function Later() {
   const [ready, setReady] = createSignal(false);
@@ -30,7 +30,7 @@ export function Later() {
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from '@solid-native/testing';
+import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from '@solidnative/testing';
 import { Later } from './later.solid.tsx';
 
 afterEach(cleanup);

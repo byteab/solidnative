@@ -6,7 +6,7 @@ import {
   useContext,
   type Owner,
 } from 'solid-js';
-import type { Engine, EngineNode } from '@solid-native/fabric';
+import type { Engine, EngineNode } from '@solidnative/fabric';
 
 /**
  * What a node needs once something has to be torn down with it: listeners, a native resource, or

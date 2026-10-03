@@ -11,18 +11,18 @@ language, ecosystem and styling. No benchmarks or speed claims.
 ## React Native
 
 solid-native keeps React Native's Fabric renderer and Expo and replaces React, hooks and the
-reconciler with SolidJS. Compiled JSX calls `@solid-native/platform/solid`, which builds
-`@solid-native/fabric`'s retained tree and commits like `ReactFabric` (see
+reconciler with SolidJS. Compiled JSX calls `@solidnative/platform/solid`, which builds
+`@solidnative/fabric`'s retained tree and commits like `ReactFabric` (see
 [Architecture](/guide/architecture)); both `<View>`s become identical `UIView`s.
 
-`@solid-native/expo` wraps Expo modules as Solid services, resolved with `useService`, and
+`@solidnative/expo` wraps Expo modules as Solid services, resolved with `useService`, and
 `registerExpoView(elementName, moduleName)` registers any Expo module's native view (see
 [Using a module](/packages/expo/using-a-module)). Expo's native code runs unchanged.
 
 Both write JSX, with different semantics. A Solid component runs once: `createSignal` and
 `createMemo` replace `useState` and `useMemo`, and only the props and text that read a signal
 update, with no re-render and no dependency arrays. Context-style sharing uses `ServiceScope` and
-`useService` from `@solid-native/device/solid`. See [Bootstrapping](/packages/platform/bootstrapping)
+`useService` from `@solidnative/device/solid`. See [Bootstrapping](/packages/platform/bootstrapping)
 for mounting a root.
 
 ## NativeScript
@@ -31,11 +31,11 @@ NativeScript generates synchronous JavaScript bindings for 100% of platform APIs
 including marshalling of all data types ([NativeScript iOS Marshalling
 docs](https://docs.nativescript.org/guide/ios-marshalling)), and calls Objective-C and Java directly
 without per-API wrappers. solid-native reuses the RN/Expo module ecosystem instead, so an arbitrary
-native SDK still needs a facade, as each `@solid-native/expo` module is.
+native SDK still needs a facade, as each `@solidnative/expo` module is.
 
 NativeScript integrates with Angular, Vue, Svelte, React and Solid, and its CSS engine emulates
 text-property inheritance like [CSS on native](/packages/fabric/css-engine). It targets iOS, Android
-and visionOS, with no browser counterpart to [`@solid-native/web`](/packages/web).
+and visionOS, with no browser counterpart to [`@solidnative/web`](/packages/web).
 
 ## Ionic and Capacitor
 
@@ -46,7 +46,7 @@ are web components rendered as DOM and styled with CSS and shadow DOM. Solid kno
 browser CSS and DOM calls do not, since solid-native's `<View>` and `<Text>` are `UIView`s and
 Android `View`s (see [Architecture](/guide/architecture)).
 
-Ionic is closest to `@solid-native/web`, which also runs in a browser by URL. But where Capacitor's
+Ionic is closest to `@solidnative/web`, which also runs in a browser by URL. But where Capacitor's
 UI always runs in a WebView, `BrowserEngine` implements the same interface as Fabric (see
 [Native and web](/guide/native-and-web)): a component rendered as DOM here is a `UIView` on a
 device.
@@ -66,8 +66,8 @@ solid-native's `<Switch>` is the platform's switch with current OS styling. Flut
 
 React Native has no CSS engine (NativeWind compiles Tailwind into style objects), Ionic uses DOM
 CSS, and Flutter styles widgets without a cascade. solid-native compiles each `.native.css` with
-lightningcss and matches, inherits and resolves at runtime in `@solid-native/fabric` (see
-[CSS on native](/packages/fabric/css-engine)). `@solid-native/tailwind` uses that cascade, so
+lightningcss and matches, inherits and resolves at runtime in `@solidnative/fabric` (see
+[CSS on native](/packages/fabric/css-engine)). `@solidnative/tailwind` uses that cascade, so
 `class="flex-1 bg-blue-500 p-4"` on a `<View>` matches directly, without an interop layer.
 
 ## Maturity

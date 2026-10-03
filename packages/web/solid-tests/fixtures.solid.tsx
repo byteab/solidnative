@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/web/solid */
+/** @jsxImportSource @solidnative/web/solid */
 /**
  * The shared Solid components the jsdom suite mounts through `mountBrowser`, one factory per
  * scenario. Each returns its own signals beside the view, so a test reads and drives the state
@@ -27,10 +27,10 @@ import {
   type FormError,
   type LayoutEvent,
   type ScrollViewRef,
-} from '@solid-native/components/solid';
-import { Icon } from '@solid-native/icons';
-import { Direction, Screen, StatusBar, createServiceToken, useService } from '@solid-native/device';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/web/solid';
+} from '@solidnative/components/solid';
+import { Icon } from '@solidnative/icons';
+import { Direction, Screen, StatusBar, createServiceToken, useService } from '@solidnative/device';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/web/solid';
 import card from './card.native.css';
 import badge from './badge.native.css';
 import themed from './themed.native.css';

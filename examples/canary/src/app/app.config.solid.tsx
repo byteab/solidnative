@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { provideKeyboardController } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { provideKeyboardController } from '@solidnative/components/solid';
 import { getOwner, runWithOwner } from 'solid-js';
 import {
   DeepLinks,
@@ -8,15 +8,15 @@ import {
   provideService,
   useService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   NativeBarDefaults,
   bindNativeNavigation,
   createNativeNavigation,
   type NativeNavigation,
   type NativeNavigationBinding,
-} from '@solid-native/router/solid';
-import type { HostChild } from '@solid-native/platform/solid';
+} from '@solidnative/router/solid';
+import type { HostChild } from '@solidnative/platform/solid';
 import { palette } from './palette-values.ts';
 import { App } from './app.solid.tsx';
 import { createCanaryRoutes } from './app.routes.solid.ts';

@@ -8,7 +8,7 @@
  *
  * No decorators here: tests import this at runtime.
  */
-import { nativePlatform, registerViewName } from '@solid-native/fabric';
+import { nativePlatform, registerViewName } from '@solidnative/fabric';
 
 /**
  * Element name -> Fabric component. Lowercase, because the compiler drops a template with a

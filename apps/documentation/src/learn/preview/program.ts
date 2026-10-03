@@ -3,8 +3,8 @@
  *
  * Each `.ts` or `.tsx` file goes through `compiler.ts` (Solid's universal JSX transform and
  * TypeScript, as Metro runs them, then CommonJS), and runs in a `Function` whose `require`
- * answers with the modules the page already has - `solid-js`, `@solid-native/platform/solid`,
- * `@solid-native/components/solid` and the rest, whichever renderer the caller chose - and with the
+ * answers with the modules the page already has - `solid-js`, `@solidnative/platform/solid`,
+ * `@solidnative/components/solid` and the rest, whichever renderer the caller chose - and with the
  * learner's other files, compiled the same way the first time something imports them. A
  * `.native.css` import is answered with the stylesheet `css` makes of the file.
  */

@@ -53,8 +53,8 @@ the keyboard from the top of the bar, as in Messages; a short drag springs back.
 `KeyboardLift(dock)` returns a ref binding that moves the content above with it:
 
 ```tsx
-import { provideKeyboardController } from '@solid-native/components/solid';
-import { ServiceScope } from '@solid-native/device/solid';
+import { provideKeyboardController } from '@solidnative/components/solid';
+import { ServiceScope } from '@solidnative/device/solid';
 
 <ServiceScope services={[provideKeyboardController()]}>{props.children}</ServiceScope>;
 ```

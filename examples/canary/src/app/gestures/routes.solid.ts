@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** Original canary paths; compose only after every remaining subtree is migrated. */
 export const motionRoutes: readonly NativeRoute[] = [

@@ -1,7 +1,7 @@
 /**
  * The contract the shared packages actually depend on, rather than the Fabric implementation.
  *
- * `@solid-native/components` is meant to be renderer-agnostic: it describes a view and a press, and
+ * `@solidnative/components` is meant to be renderer-agnostic: it describes a view and a press, and
  * leaves the drawing to a host. In practice they were coupled to Fabric twice over - the `Engine`,
  * which is a concrete class whose constructor wants a `FabricUIManager`, and `EngineNode`, which is
  * a Fabric tree node. A web prototype could only satisfy both by casting a hand-written object

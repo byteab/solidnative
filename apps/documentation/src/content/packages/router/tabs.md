@@ -12,9 +12,9 @@ tabs may hang on feature flags:
 <!-- api: NativeTabsOutlet -->
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { NativeHeader, NativeTabsOutlet } from '@solid-native/router/solid';
+import { NativeHeader, NativeTabsOutlet } from '@solidnative/router/solid';
 
 export function TabsPage() {
   const [unread] = createSignal(3);
@@ -47,7 +47,7 @@ shorthand for `icon`/`selectedIcon`, a `TabIcon` that also takes an `xcasset` na
 `selectedIcon` must be the same kind, since native carries one icon type for both states.
 
 ```ts
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 export const routes: readonly NativeRoute[] = [
   {
@@ -76,8 +76,8 @@ takes an object or a function of the color scheme, and anything an outlet or tab
 <!-- api: NativeBarDefaults -->
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { NativeBarDefaults } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { NativeBarDefaults } from '@solidnative/router/solid';
 import { Shell } from './shell.solid.tsx'; // calls createNativeNavigation(routes)
 
 export function App() {
@@ -126,8 +126,8 @@ and put `<TabSafeAreaView>` inside; the parent grows by the margin:
 Content floating with nothing behind it, such as a mini player, needs no parent:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { NativeStackOutlet } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { NativeStackOutlet } from '@solidnative/router/solid';
 import { MiniPlayer } from './mini-player.solid.tsx';
 
 export function LibraryStack() {

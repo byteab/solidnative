@@ -10,8 +10,8 @@ import { describe, expect, it } from 'vitest';
 import { SOURCES } from './native-css-sources.ts';
 
 const require = createRequire(import.meta.url);
-const cssDir = path.dirname(require.resolve('@solid-native/metro/css/compile.cjs'));
-const flatten = require.resolve('@solid-native/tailwind/flatten.cjs');
+const cssDir = path.dirname(require.resolve('@solidnative/metro/css/compile.cjs'));
+const flatten = require.resolve('@solidnative/tailwind/flatten.cjs');
 
 describe('the native CSS compiler in the page', () => {
   it('has every file the compiler and the Tailwind flattener require', () => {
@@ -24,7 +24,7 @@ describe('the native CSS compiler in the page', () => {
     const required = new Set<string>();
     for (const file of files) {
       for (const [, sibling] of readFileSync(file, 'utf8').matchAll(
-        /require\('(?:\.|@solid-native\/metro\/css)(\/[\w-]+\.cjs)'\)/g,
+        /require\('(?:\.|@solidnative\/metro\/css)(\/[\w-]+\.cjs)'\)/g,
       )) {
         required.add(`.${sibling!}`);
       }

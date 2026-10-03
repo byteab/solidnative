@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { batch, createSignal, For as SolidFor, Show as SolidShow } from 'solid-js';
-import { For, Show, createNativeRoot } from '@solid-native/platform/solid';
+import { For, Show, createNativeRoot } from '@solidnative/platform/solid';
 import { createFixture, UnknownIntrinsic, NumericChildren } from './compiled-fixture.tsx';
 import { createFakeFabric, createClock, type FakeNode } from './fake-fabric.ts';
 

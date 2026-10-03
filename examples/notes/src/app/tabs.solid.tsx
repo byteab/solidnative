@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { NativeHeader, NativeTabsOutlet } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { NativeHeader, NativeTabsOutlet } from '@solidnative/router/solid';
 
 /** A real tab bar: UITabBarController on iOS, a bottom navigation bar on Android. */
 export function Tabs() {

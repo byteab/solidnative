@@ -6,12 +6,12 @@ summary: The phone's motor - for an alarm, a timer or an incoming call, not for 
 # Vibration
 
 `Vibration` drives the phone's motor, for alarms and calls. Button feedback is haptics, in
-`@solid-native/expo`.
+`@solidnative/expo`.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Vibration, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Vibration, useService } from '@solidnative/device/solid';
 
 export function TimerAlarm() {
   const vibration = useService(Vibration);

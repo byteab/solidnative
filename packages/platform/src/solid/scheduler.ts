@@ -1,4 +1,4 @@
-import type { Engine } from '@solid-native/fabric';
+import type { Engine } from '@solidnative/fabric';
 
 export interface NativeClock {
   queueMicrotask(callback: () => void): void;

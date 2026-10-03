@@ -1,5 +1,5 @@
 import { getOwner, runWithOwner } from 'solid-js';
-import type { EngineNode, ResponderHandlers } from '@solid-native/fabric';
+import type { EngineNode, ResponderHandlers } from '@solidnative/fabric';
 import { isLive, lifetimeOf, NodeLifetime, onNativeCleanup, rootOf } from './context.ts';
 import { setStyleProperty } from './styles.ts';
 

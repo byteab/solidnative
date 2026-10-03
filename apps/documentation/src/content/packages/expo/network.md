@@ -17,17 +17,17 @@ npx expo install expo-network
 ```
 
 ```ts
-import { Network } from '@solid-native/expo/solid/network';
+import { Network } from '@solidnative/expo/solid/network';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createMemo } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
-import { Network } from '@solid-native/expo/solid/network';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Network } from '@solidnative/expo/solid/network';
 
 export function Banner() {
   const network = useService(Network);
@@ -65,7 +65,7 @@ For showing cached data, refreshing when `connected` goes true and queuing offli
 
 ## Reference
 
-`Network` is exported from `@solid-native/expo/solid/network`, with the `NetworkStatus` and
+`Network` is exported from `@solidnative/expo/solid/network`, with the `NetworkStatus` and
 `ConnectionType` types.
 
 <!-- api: Network -->

@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
-import { spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
+import { spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import type { Insets, ImageLoadEvent, ImageErrorEvent, ImageProgressEvent } from '../events.ts';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

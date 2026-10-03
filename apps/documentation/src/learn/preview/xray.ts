@@ -4,11 +4,11 @@
  *
  * Drawn as a layer over the phone rather than as attributes or pseudo-elements on the elements
  * themselves, so turning it on cannot change the layout, the styles or anything a test reads.
- * The names come from `@solid-native/fabric`'s own `viewNameOf`, so they are what the engine
+ * The names come from `@solidnative/fabric`'s own `viewNameOf`, so they are what the engine
  * commits, not a copy of its table.
  */
-import { viewNameOf } from '@solid-native/fabric';
-import { nodeOf } from '@solid-native/web/solid';
+import { viewNameOf } from '@solidnative/fabric';
+import { nodeOf } from '@solidnative/web/solid';
 
 export class Xray {
   private readonly layer: HTMLElement;

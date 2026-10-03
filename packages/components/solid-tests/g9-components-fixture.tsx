@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup, createRenderEffect, createComputed } from 'solid-js';
 import {
   ServiceScope,
@@ -7,7 +7,7 @@ import {
   SCREEN_IN_FRONT,
   provideService,
   type KeyboardMetrics,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { View, Text } from '../src/solid/primitive.ts';
 import { Presence } from '../src/solid/presence.ts';
 import { TextInput } from '../src/solid/text-input.ts';

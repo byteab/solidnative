@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const require = createRequire(import.meta.url);
-const { withSolidNative } = require('@solid-native/metro') as {
+const { withSolidNative } = require('@solidnative/metro') as {
   withSolidNative(
     config: object,
     options?: { workspaceRoot?: string; projectRoot?: string },

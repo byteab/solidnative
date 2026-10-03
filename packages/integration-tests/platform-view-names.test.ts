@@ -8,8 +8,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { registerPlatformComponents, viewNameOf } from '@solid-native/fabric';
-import { registerScreenComponents } from '@solid-native/router';
+import { registerPlatformComponents, viewNameOf } from '@solidnative/fabric';
+import { registerScreenComponents } from '@solidnative/router';
 
 const element = (name: string) => ({ kind: 'element' as const, name, parent: null });
 

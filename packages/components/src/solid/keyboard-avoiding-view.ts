@@ -1,12 +1,12 @@
 import { createMemo, createRenderEffect, createSignal, untrack } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import {
   Keyboard,
   LayoutAnimation,
   useService,
   type LayoutEasing,
-} from '@solid-native/device/solid';
-import { insertHostChildren, spreadHostProps } from '@solid-native/platform/solid';
+} from '@solidnative/device/solid';
+import { insertHostChildren, spreadHostProps } from '@solidnative/platform/solid';
 import type { Rect, LayoutEvent } from '../events.ts';
 import { hostProps, primitiveNode, View } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

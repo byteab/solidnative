@@ -27,10 +27,10 @@ Scan the QR code with Expo Go, or press `i` or `a` for a simulator. Swap `canary
 ## A component
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, SafeAreaView, Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, SafeAreaView, Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 export function App() {
@@ -108,7 +108,7 @@ renderer is unchanged, so the native side of the ecosystem still works:
 - **Expo modules and native libraries.** Expo SDK modules, TurboModules and Fabric native
   components are plain native code, so they can be called or rendered from Solid.
 - **What doesn't carry over.** A library whose public API is React components or hooks needs a thin
-  Solid wrapper around its native part, the way `@solid-native/expo` and `@solid-native/router`
+  Solid wrapper around its native part, the way `@solidnative/expo` and `@solidnative/router`
   wrap Expo modules and `react-native-screens`.
 
 ## Features
@@ -126,9 +126,9 @@ renderer is unchanged, so the native side of the ecosystem still works:
 - **Animation.** CSS transitions and keyframes, `Animated` and Reanimated worklets.
 - **Testing.** A Testing Library API that runs components in Node against a fake Fabric, with no
   simulator.
-- **Fits existing workspaces.** An Nx plugin (`nx add @solid-native/nx`) adds an app to any Nx
+- **Fits existing workspaces.** An Nx plugin (`nx add @solidnative/nx`) adds an app to any Nx
   workspace.
-- **The web too.** `@solid-native/web` renders the same components to the DOM.
+- **The web too.** `@solidnative/web` renders the same components to the DOM.
 
 ## Documentation
 
@@ -151,18 +151,18 @@ showcase and regression app every release is checked against.
 
 | Package                    | What it provides                                                                      |
 | -------------------------- | ------------------------------------------------------------------------------------- |
-| `@solid-native/platform`   | The Solid universal renderer, `mountNative()` and the native commit scheduler.        |
-| `@solid-native/components` | The elements: views, text, images, lists, inputs, pressables, gestures, animation.    |
-| `@solid-native/router`     | Native stack and tab navigation over `react-native-screens`.                          |
-| `@solid-native/device`     | Keyboard, screen, color scheme, app state, accessibility, deep links and more.        |
-| `@solid-native/expo`       | Expo's modules as Solid services, and Expo's native views as elements.                |
-| `@solid-native/icons`      | `Icon` with `lucide-static` (or any SVG strings), drawn as native SVG.                |
-| `@solid-native/metro`      | The Metro preset: the Solid transform, the CSS compiler and clean development reload. |
-| `@solid-native/tailwind`   | The Tailwind preset and its platform variants.                                        |
-| `@solid-native/testing`    | Testing Library for solid-native Solid components, running in Node.                   |
-| `@solid-native/web`        | A DOM host for the same components, with a Vite preset.                               |
-| `@solid-native/nx`         | `nx add` and an app generator for Nx workspaces.                                      |
-| `@solid-native/fabric`     | The framework-agnostic retained tree and commit engine the renderer is built on.      |
+| `@solidnative/platform`   | The Solid universal renderer, `mountNative()` and the native commit scheduler.        |
+| `@solidnative/components` | The elements: views, text, images, lists, inputs, pressables, gestures, animation.    |
+| `@solidnative/router`     | Native stack and tab navigation over `react-native-screens`.                          |
+| `@solidnative/device`     | Keyboard, screen, color scheme, app state, accessibility, deep links and more.        |
+| `@solidnative/expo`       | Expo's modules as Solid services, and Expo's native views as elements.                |
+| `@solidnative/icons`      | `Icon` with `lucide-static` (or any SVG strings), drawn as native SVG.                |
+| `@solidnative/metro`      | The Metro preset: the Solid transform, the CSS compiler and clean development reload. |
+| `@solidnative/tailwind`   | The Tailwind preset and its platform variants.                                        |
+| `@solidnative/testing`    | Testing Library for solid-native Solid components, running in Node.                   |
+| `@solidnative/web`        | A DOM host for the same components, with a Vite preset.                               |
+| `@solidnative/nx`         | `nx add` and an app generator for Nx workspaces.                                      |
+| `@solidnative/fabric`     | The framework-agnostic retained tree and commit engine the renderer is built on.      |
 
 ## Requirements
 
@@ -199,8 +199,8 @@ native components and tooling are kept; the Angular layer on top was replaced:
 | component `styles` metadata         | `.native.css` sheets applied with `withNativeStyles`    |
 | dependency injection                | `useService` / `ServiceScope`                           |
 | `@defer`, `HttpClient`, `$localize` | `lazy` + `Suspense`, `fetch`, message catalogs + `Intl` |
-| `ng add` / `ng generate`            | `create-expo-app --template`, `nx add @solid-native/nx` |
-| `@ng-native/*`, `@ng-icons/*`       | `@solid-native/*`, `lucide-static`                      |
+| `ng add` / `ng generate`            | `create-expo-app --template`, `nx add @solidnative/nx` |
+| `@ng-native/*`, `@ng-icons/*`       | `@solidnative/*`, `lucide-static`                      |
 
 Every capability was ported with its tests before the Angular code was removed. The reasoning
 behind each choice is in [docs/decisions.md](docs/decisions.md).

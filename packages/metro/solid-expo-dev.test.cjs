@@ -24,7 +24,7 @@ test('documented per-file Expo override disables native Solid React Refresh whil
     `,
     );
     const src =
-      '/** @jsxImportSource @solid-native/platform/solid */\nexport function NativeView() { return <view><text>native dev</text></view>; }';
+      '/** @jsxImportSource @solidnative/platform/solid */\nexport function NativeView() { return <view><text>native dev</text></view>; }';
     const filename = path.join(projectRoot, 'NativeView.tsx');
     fs.writeFileSync(filename, src);
     const options = {
@@ -41,7 +41,7 @@ test('documented per-file Expo override disables native Solid React Refresh whil
       babelrc: false,
       configFile: false,
     }).code;
-    assert.match(code, /@solid-native\/platform\/solid/);
+    assert.match(code, /@solidnative\/platform\/solid/);
     assert.doesNotMatch(code, /\$Refresh|react\/jsx-runtime|solid-js\/web/);
 
     const react = {

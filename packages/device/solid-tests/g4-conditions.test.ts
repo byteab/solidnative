@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   conditionSources,
   conditionSettingsSource,
@@ -11,8 +11,8 @@ import {
   watchConditions,
   type ConditionSources,
   type ConditionSettings,
-} from '@solid-native/device/solid';
-import type { Conditions } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import type { Conditions } from '@solidnative/fabric';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 import { conditionFixture } from './g4-device-fixture.tsx';
 

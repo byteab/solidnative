@@ -11,11 +11,11 @@ import { afterEach, describe, it } from 'node:test';
 import {
   createObserved as observed,
   type ObservedSource as Observed,
-} from '@solid-native/device/solid';
-import { Battery } from '@solid-native/expo/battery';
-import { Brightness } from '@solid-native/expo/brightness';
-import { Network, type NetworkStatus } from '@solid-native/expo/network';
-import { DeviceOrientation } from '@solid-native/expo/orientation';
+} from '@solidnative/device/solid';
+import { Battery } from '@solidnative/expo/battery';
+import { Brightness } from '@solidnative/expo/brightness';
+import { Network, type NetworkStatus } from '@solidnative/expo/network';
+import { DeviceOrientation } from '@solidnative/expo/orientation';
 import { disposeServices, owned, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

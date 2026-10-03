@@ -1,16 +1,16 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   DeepLinks,
   HardwareBack,
   ServiceScope,
   useService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   bindNativeNavigation,
   createNativeNavigation,
   type NativeNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { App } from './app.solid.tsx';
 import { routes } from './app.routes.solid.ts';
 

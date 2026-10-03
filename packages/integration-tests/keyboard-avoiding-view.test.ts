@@ -4,9 +4,9 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import type { NativeLayoutAnimation } from '@solid-native/device';
-import { createClock, createFakeFabric } from '@solid-native/testing';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import type { NativeLayoutAnimation } from '@solidnative/device';
+import { createClock, createFakeFabric } from '@solidnative/testing';
 import { createKeyboardFixture, type Behavior } from './ui-keyboard-fixture.tsx';
 
 const settle = () => new Promise((resolve) => setTimeout(resolve, 0));

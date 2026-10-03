@@ -7,11 +7,11 @@
  * run. A tarball installed by path proves none of that - it resolves siblings by file path, which
  * is exactly the part a real install does differently.
  *
- * Nothing reaches npmjs. Verdaccio serves `@solid-native/*` itself and proxies the rest, and
+ * Nothing reaches npmjs. Verdaccio serves `@solidnative/*` itself and proxies the rest, and
  * the registry is configured with no uplink for our scope so a package that failed to publish
  * cannot be quietly satisfied by the real registry.
  *
- * `--generators` also adds a native app to a fresh Nx workspace with `nx add @solid-native/nx`, and
+ * `--generators` also adds a native app to a fresh Nx workspace with `nx add @solidnative/nx`, and
  * tests and bundles it. It installs with npm, which refuses a peer range it cannot satisfy where
  * pnpm only warns. It takes minutes, so the release workflow runs it and CI does not.
  *
@@ -21,7 +21,7 @@
  * printing the Solid, Expo, React Native, Nx, TypeScript and Vite it resolved, into the
  * job summary on GitHub Actions, so a failure names the release that caused it.
  *
- * `--web` also sets up a browser app on `@solid-native/web` the way its documentation page does, from
+ * `--web` also sets up a browser app on `@solidnative/web` the way its documentation page does, from
  * the registry, builds it with Vite and checks it renders and responds in Chromium. The `web`
  * scenario runs that alone.
  *
@@ -133,7 +133,7 @@ function generateApp(dir = mkdtempSync(path.join(tmpdir(), 'solid-native-probe-'
       'create-expo-app@latest',
       app,
       '--template',
-      '@solid-native/template',
+      '@solidnative/template',
       '--no-install',
       '--no-agents-md',
     ],
@@ -148,7 +148,7 @@ function generateApp(dir = mkdtempSync(path.join(tmpdir(), 'solid-native-probe-'
  * bundle beside the iOS one.
  */
 function check(app, { pm = 'pnpm', latest = false } = {}) {
-  // The generated app resolves @solid-native/* from the registry, by version, like a stranger.
+  // The generated app resolves @solidnative/* from the registry, by version, like a stranger.
   writeFileSync(path.join(app, '.npmrc'), `registry=${REGISTRY}\n`);
   console.log(`installing from the registry with ${pm}`);
   install(pm, app);
@@ -160,8 +160,8 @@ function check(app, { pm = 'pnpm', latest = false } = {}) {
   console.log('typechecking');
   run('npx', ['tsc', '-p', 'tsconfig.json', '--noEmit'], app);
 
-  // The template's own example test, through `@solid-native/testing/register` as installed: the proof
-  // that Solid's JSX and `.native.css` compile out of `node_modules/@solid-native/*`, which inside
+  // The template's own example test, through `@solidnative/testing/register` as installed: the proof
+  // that Solid's JSX and `.native.css` compile out of `node_modules/@solidnative/*`, which inside
   // this workspace are symlinked source instead.
   console.log('testing');
   run(pm, ['test'], app);
@@ -182,7 +182,7 @@ function check(app, { pm = 'pnpm', latest = false } = {}) {
   }
 
   // The dev bundle too: it carries the HMR blocks a release bundle leaves out, and those broke on
-  // `node_modules/@solid-native/...` paths while the release bundle above still built.
+  // `node_modules/@solidnative/...` paths while the release bundle above still built.
   console.log('bundling for development');
   run(
     'npx',
@@ -247,12 +247,12 @@ async function serve(cmd, args, cwd, port) {
 }
 
 /**
- * A workspace from Nx's TypeScript preset, with an app from `@solid-native/nx`. `latest` also
+ * A workspace from Nx's TypeScript preset, with an app from `@solidnative/nx`. `latest` also
  * installs a second time, and runs the rest of the targets a user would: an Android export, a
  * bare one for every platform, and `nx prebuild`.
  */
 async function nxWorkspace(dir, { pm = 'npm', latest = false, port = 8092 } = {}) {
-  console.log(`\ncreate-nx-workspace --preset=ts with ${pm}, then nx add @solid-native/nx`);
+  console.log(`\ncreate-nx-workspace --preset=ts with ${pm}, then nx add @solidnative/nx`);
   run(
     'npx',
     [
@@ -270,8 +270,8 @@ async function nxWorkspace(dir, { pm = 'npm', latest = false, port = 8092 } = {}
   );
   const workspace = path.join(dir, 'monorepo');
   writeFileSync(path.join(workspace, '.npmrc'), `registry=${REGISTRY}\n`);
-  run('npx', ['nx', 'add', '@solid-native/nx@local'], workspace);
-  run('npx', ['nx', 'g', '@solid-native/nx:app', 'apps/mobile', '--no-interactive'], workspace);
+  run('npx', ['nx', 'add', '@solidnative/nx@local'], workspace);
+  run('npx', ['nx', 'g', '@solidnative/nx:app', 'apps/mobile', '--no-interactive'], workspace);
   // `mobile`, or `@monorepo/mobile` where the root package is scoped, as the TypeScript preset's is.
   const project = readJson(path.join(workspace, 'apps/mobile/package.json')).name;
   if (latest) {
@@ -326,7 +326,7 @@ const WEB_FILES = {
 </html>
 `,
   'vite.config.ts': `import tailwindcss from '@tailwindcss/vite';
-import { solidNativeWeb } from '@solid-native/web/solid/vite';
+import { solidNativeWeb } from '@solidnative/web/solid/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -350,9 +350,9 @@ export default defineConfig({
 `,
   'src/styles.css': `@import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/web.css';
+@import '@solidnative/tailwind/web.css';
 `,
-  'src/main.ts': `import { mount } from '@solid-native/web/solid';
+  'src/main.ts': `import { mount } from '@solidnative/web/solid';
 import { App } from './app.solid.tsx';
 import './styles.css';
 
@@ -366,10 +366,10 @@ mount(document.getElementById('root')!, App);
   background-color: rgb(238, 242, 255);
 }
 `,
-  'src/app.solid.tsx': `/** @jsxImportSource @solid-native/platform/solid */
+  'src/app.solid.tsx': `/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 export function App() {
@@ -393,9 +393,9 @@ export function App() {
 
 /** The install commands `web.md` gives, in order. */
 const WEB_INSTALLS = [
-  ['install', 'solid-js', '@solid-native/components', '@solid-native/web', '@solid-native/metro'],
+  ['install', 'solid-js', '@solidnative/components', '@solidnative/web', '@solidnative/metro'],
   ['install', '--save-dev', 'vite', 'typescript'],
-  ['install', '--save-dev', 'tailwindcss', '@tailwindcss/vite', '@solid-native/tailwind'],
+  ['install', '--save-dev', 'tailwindcss', '@tailwindcss/vite', '@solidnative/tailwind'],
 ];
 
 /**
@@ -403,7 +403,7 @@ const WEB_INSTALLS = [
  * built with Vite, served with `vite preview` and driven in Chromium. The text renders, a press
  * updates the count, and the view's own CSS and a Tailwind class both reach the page.
  *
- * Chromium comes from `@solid-native/web`'s own Playwright in this workspace, so the app installs
+ * Chromium comes from `@solidnative/web`'s own Playwright in this workspace, so the app installs
  * nothing a user would not.
  */
 async function webApp(dir) {
@@ -574,7 +574,7 @@ if (scenario !== undefined && !SCENARIOS[scenario]) {
 }
 
 // The packages publish their `dist`, so what goes out is what the build makes now.
-run('pnpm', ['nx', 'run-many', '-t', 'build', '-p', '@solid-native/*'], root);
+run('pnpm', ['nx', 'run-many', '-t', 'build', '-p', '@solidnative/*'], root);
 console.log(`publishing to ${REGISTRY}`);
 publishAll();
 
@@ -589,14 +589,14 @@ if (scenario) {
   if (process.argv.includes('--generators')) {
     const dir = mkdtempSync(path.join(tmpdir(), 'solid-native-workspace-'));
     console.log(
-      `\nok  nx g @solid-native/nx:app: the native app bundles ${await nxWorkspace(dir)}`,
+      `\nok  nx g @solidnative/nx:app: the native app bundles ${await nxWorkspace(dir)}`,
     );
     rmSync(dir, { recursive: true, force: true });
   }
 
   if (process.argv.includes('--web')) {
     const dir = mkdtempSync(path.join(tmpdir(), 'solid-native-web-'));
-    console.log(`\nok  a browser app on @solid-native/web bundles ${await webApp(dir)}`);
+    console.log(`\nok  a browser app on @solidnative/web bundles ${await webApp(dir)}`);
     rmSync(dir, { recursive: true, force: true });
   }
 }

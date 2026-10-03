@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Text, View } from '@solidnative/components/solid';
 import { user } from '../flock.solid.ts';
 
 /** A profile photo, over initials on the account's colour for while it loads (or if offline). */

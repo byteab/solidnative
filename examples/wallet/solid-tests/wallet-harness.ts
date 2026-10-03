@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
-import { registerPlatformComponents } from '@solid-native/fabric';
-import { DeepLinks, provideService, type ConditionSources } from '@solid-native/device/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { SecureStorage } from '@solid-native/expo/solid/store';
-import type { NativeNavigation } from '@solid-native/router/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
+import { DeepLinks, provideService, type ConditionSources } from '@solidnative/device/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { SecureStorage } from '@solidnative/expo/solid/store';
+import type { NativeNavigation } from '@solidnative/router/solid';
 import {
   createClock,
   createFakeFabric,

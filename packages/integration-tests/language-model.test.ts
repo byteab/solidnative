@@ -14,7 +14,7 @@ import {
   type LanguageModelSchema,
   type NativeLanguageModel,
   type NativeLanguageSession,
-} from '@solid-native/expo/language-model';
+} from '@solidnative/expo/language-model';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

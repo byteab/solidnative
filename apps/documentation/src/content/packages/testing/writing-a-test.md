@@ -1,6 +1,6 @@
 ---
 title: Writing a test
-summary: Render, query, interact and assert with @solid-native/testing - the recipes for forms, async work, services, requests, navigation and styling follow.
+summary: Render, query, interact and assert with @solidnative/testing - the recipes for forms, async work, services, requests, navigation and styling follow.
 ---
 
 # Writing a test
@@ -15,7 +15,7 @@ The template ships this test as `src/app/app.test.ts`:
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);
@@ -59,8 +59,8 @@ subtree.
 A component under test, in its own `.solid.tsx` file:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
 
 export function Greeting(props: { name: string; onGreet?: (name: string) => void }) {
   return (
@@ -76,7 +76,7 @@ Props are reactive: `setProps` merges and commits, so there is no `rerender()`.
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { Greeting } from './greeting.solid.tsx';
 
 afterEach(cleanup);

@@ -24,7 +24,7 @@ async function bundle(source) {
 
 test('production shared controls use the browser source without bundling native code', async () => {
   const result = await bundle(`
-    import { mount } from '@solid-native/web/solid';
+    import { mount } from '@solidnative/web/solid';
     import { HostFixture } from ${JSON.stringify(fileURLToPath(new URL('./host.solid.tsx', import.meta.url)))};
     globalThis.mountFixture = element => mount(element, HostFixture, { inputs: { label: 'build' } });
   `);

@@ -5,14 +5,14 @@ summary: The React Native element set as Solid components, one per native view.
 
 # Components
 
-`@solid-native/components/solid` is the element set: `View`, `Text`, `ScrollView`, `TextInput` and
+`@solidnative/components/solid` is the element set: `View`, `Text`, `ScrollView`, `TextInput` and
 the rest, each a Solid component that commits as a real native view through React Native's Fabric
 renderer, with no DOM and no React. A `View` is a `UIView` on iOS and an Android `View`; a `Switch`
 is the platform's own switch. Styling (`class` against a `.native.css` sheet, and `style`) is in the
 [theming guide](/guide/theming).
 
 Elements are imported functions written as JSX tags. A file using them carries the
-`@jsxImportSource @solid-native/platform/solid` pragma or a `.solid.tsx` suffix.
+`@jsxImportSource @solidnative/platform/solid` pragma or a `.solid.tsx` suffix.
 
 ## One name, two layers
 
@@ -20,12 +20,12 @@ Each component creates a host element named in kebab case (`View` creates `view`
 creates `text-input`), which the engine maps to a native view (`text` is `Paragraph`). The component
 adds typed props, React Native's defaults, accessibility, events, and for `Text` the text layer.
 Stylesheets select on host names (`text-input[data-invalid]`), unprefixed so React Native's docs
-apply directly. On the web, `@solid-native/web` creates `text`, `image` and `switch` as HTML, not
+apply directly. On the web, `@solidnative/web` creates `text`, `image` and `switch` as HTML, not
 SVG.
 
 A misspelled component is an unresolved import; a misspelled prop is a TypeScript error against
 its props type (`TextProps`, `ViewProps`, ...). Declare an undeclared native prop once with
-`declareNativeProps` from `@solid-native/fabric`.
+`declareNativeProps` from `@solidnative/fabric`.
 
 Most elements come from the Solid entry point:
 
@@ -43,20 +43,20 @@ import {
   VirtualList,
   SafeAreaProvider,
   SafeAreaView,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 ```
 
 The gesture, `Animated` and Reanimated backends import React Native's uncompiled source, which
 Node cannot parse, so they live on subpaths the tested entry point does not load:
-`@solid-native/components/solid/gestures`, `@solid-native/components/solid/animations` and
-`@solid-native/components/solid/reanimated` (see [gestures](/packages/components/gestures) and
+`@solidnative/components/solid/gestures`, `@solidnative/components/solid/animations` and
+`@solidnative/components/solid/reanimated` (see [gestures](/packages/components/gestures) and
 [animation](/packages/components/animation)).
 
 The smallest example:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
 
 export function Greeting(props: { name?: string }) {
   return (
@@ -74,7 +74,7 @@ Every element accepts the common native view props, typed as `ViewProps`: access
 `aria-*` aliases), identity and hit testing (`nativeID`/`id`, `testID`, `hitSlop`,
 `pointerEvents`), `class`, `classList`, `style` and `data-*`. Per-element tables omit them.
 
-<!-- api: @solid-native/components#View -->
+<!-- api: @solidnative/components#View -->
 
 ## Events
 
@@ -84,7 +84,7 @@ event once a handler is passed. `Pressable`'s press events are resolved from tou
 negotiation; see [pressable](/packages/components/pressable).
 
 Events bubble to the root as in React Native, except target-only ones (`layout`, the scroll events,
-`load`, `error`). Handlers receive a `NativeSyntheticEvent` (from `@solid-native/fabric`) with the
+`load`, `error`). Handlers receive a `NativeSyntheticEvent` (from `@solidnative/fabric`) with the
 payload on `nativeEvent`, plus `stopPropagation()` and `isPropagationStopped()`.
 `stopPropagation()` ends the bubble after the current view; that view's other handlers still run:
 

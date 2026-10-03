@@ -4,7 +4,7 @@
  */
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
-import { Engine, type EngineNode } from '@solid-native/fabric';
+import { Engine, type EngineNode } from '@solidnative/fabric';
 import {
   cleanup,
   createFakeFabric,
@@ -12,7 +12,7 @@ import {
   render,
   screen,
   type FakeFabric,
-} from '@solid-native/testing';
+} from '@solidnative/testing';
 import { nestedPress } from './metro-nested-press.tsx';
 
 /** The nested pressables, mounted, and the inner label a finger lands on. */

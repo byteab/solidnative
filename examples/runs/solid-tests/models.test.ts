@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot } from 'solid-js';
-import { provideService, useService, withServiceScope } from '@solid-native/device/solid';
+import { provideService, useService, withServiceScope } from '@solidnative/device/solid';
 import { Runs } from '../src/app/data/runs.solid.ts';
 import { LocationSourceSetting } from '../src/app/settings/location-source-setting.solid.ts';
 import type { LocationFix, LocationSource } from '../src/app/tracking/location-source.ts';

@@ -9,8 +9,8 @@
  */
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { createFakeFabric, type FakeFabric } from '@solid-native/testing';
+import { Engine } from '@solidnative/fabric';
+import { createFakeFabric, type FakeFabric } from '@solidnative/testing';
 
 describe('a transform string on a bound style', () => {
   let fabric: FakeFabric;

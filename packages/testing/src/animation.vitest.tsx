@@ -1,18 +1,18 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 // The stand-ins for the native gesture and animation libraries, through the Vitest plugin: a
 // worklet scroll drives a worklet style, and a gesture is found on its view.
 import { afterEach, expect, test } from 'vitest';
 import { Gesture } from 'react-native-gesture-handler';
-import { ScrollView, View } from '@solid-native/components';
-import { NativeGesture } from '@solid-native/components/gestures';
+import { ScrollView, View } from '@solidnative/components';
+import { NativeGesture } from '@solidnative/components/gestures';
 import {
   WorkletScroll,
   WorkletStyle,
   sharedValue,
   workletScroll,
   workletStyle,
-} from '@solid-native/components/reanimated';
-import { cleanup, fireEvent, gestureOf, render, screen } from '@solid-native/testing';
+} from '@solidnative/components/reanimated';
+import { cleanup, fireEvent, gestureOf, render, screen } from '@solidnative/testing';
 
 afterEach(cleanup);
 

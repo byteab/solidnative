@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AppState, DeepLinks, provideService } from '@solid-native/device/solid';
+import { AppState, DeepLinks, provideService } from '@solidnative/device/solid';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer, flatten } from './consumer-harness.ts';
 import { navigationRoutes } from '../src/app/navigation/routes.solid.ts';

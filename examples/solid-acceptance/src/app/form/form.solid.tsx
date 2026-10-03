@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   Pressable,
@@ -12,9 +12,9 @@ import {
   formMinLength,
   formRequired,
   type FormField,
-} from '@solid-native/components';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router';
+} from '@solidnative/components';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router';
 import sheet from './form.native.css';
 
 /** The first message for a field, once it has been touched. */

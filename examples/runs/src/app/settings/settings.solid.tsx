@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Pressable,
   SafeAreaView,
@@ -6,9 +6,9 @@ import {
   Switch,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
 import type { DistanceUnit } from '../tracking/geo.ts';
 import { defaultsToSimulated, LocationSourceSetting } from './location-source-setting.solid.ts';
 import { Units } from './units.solid.ts';

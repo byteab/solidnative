@@ -8,9 +8,9 @@ summary: Light or dark mode, as the user set it, for the decisions CSS cannot ma
 `ColorScheme` reports whether the user has the system in light or dark mode.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image } from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image } from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
 
 export function Logo() {
   const scheme = useService(ColorScheme);

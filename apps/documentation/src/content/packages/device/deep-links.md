@@ -9,9 +9,9 @@ summary: The url an app was launched with, and every link that arrives while it 
 paths.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { DeepLinks, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { DeepLinks, useService } from '@solidnative/device/solid';
 
 export function Root(props: { navigate: (path: string) => void }) {
   const links = useService(DeepLinks);
@@ -31,7 +31,7 @@ The launch url may arrive through either `initialUrl()` or `subscribe()`, so cal
 settles once it has been read, even on failure.
 
 `open(url)` opens a url in another app. `Linking` is an alias. Most apps just pass it to
-`@solid-native/router`'s `bindNativeNavigation(navigation, { links: useService(DeepLinks) })`.
+`@solidnative/router`'s `bindNativeNavigation(navigation, { links: useService(DeepLinks) })`.
 
 ## Off a device and on the web
 

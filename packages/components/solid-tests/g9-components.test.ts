@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot, type HostChild } from '@solid-native/platform/solid';
+import { createNativeRoot, type HostChild } from '@solidnative/platform/solid';
 import {
   registerPlatformComponents,
   type FabricNode,
   type HostNode,
   type ScrollRange,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import {
   createFakeFabric,
   createClock,

@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 // Android in a file of its own: Fabric's platform is process-wide, and node --test gives each file
 // its own process.
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { TextInput } from '@solid-native/components';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { TextInput } from '@solidnative/components';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 
 afterEach(cleanup);
 

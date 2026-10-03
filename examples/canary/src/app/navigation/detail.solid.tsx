@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { NativeHeader, NativeHeaderItem, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function Detail() {

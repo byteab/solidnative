@@ -16,11 +16,11 @@ export function solidNativeWeb() {
         return {
           optimizeDeps: {
             exclude: [
-              '@solid-native/platform',
-              '@solid-native/components',
-              '@solid-native/device',
-              '@solid-native/icons',
-              '@solid-native/web',
+              '@solidnative/platform',
+              '@solidnative/components',
+              '@solidnative/device',
+              '@solidnative/icons',
+              '@solidnative/web',
               'solid-js',
             ],
           },
@@ -30,16 +30,16 @@ export function solidNativeWeb() {
         const require = createRequire(path.join(config.root, 'package.json'));
         let metro;
         try {
-          metro = require.resolve('@solid-native/metro/solid-browser.cjs');
+          metro = require.resolve('@solidnative/metro/solid-browser.cjs');
         } catch {
-          metro = local.resolve('@solid-native/metro/solid-browser.cjs');
+          metro = local.resolve('@solidnative/metro/solid-browser.cjs');
         }
         const tooling = createRequire(metro);
         compiler = tooling('./solid-browser.cjs');
         native = tooling('./solid-transform.cjs');
         dom = tooling('./solid-dom.cjs');
         runtime = tooling('./solid-runtime.cjs').createSolidRuntime(config.root);
-        deviceDirectory = path.dirname(local.resolve('@solid-native/device/solid'));
+        deviceDirectory = path.dirname(local.resolve('@solidnative/device/solid'));
       },
       async resolveId(id, importer) {
         // Replace only the device package's lazy native source. A direct native import still
@@ -57,7 +57,7 @@ export function solidNativeWeb() {
           const resolved = await this.resolve(id, importer, { skipSelf: true });
           if (resolved) return `\0solid-browser-css:${resolved.id}.js`;
         }
-        if (id === '@solid-native/platform/solid') return local.resolve('@solid-native/web/solid');
+        if (id === '@solidnative/platform/solid') return local.resolve('@solidnative/web/solid');
         const resolved =
           id === 'solid-js/web' ? `${runtime.root}/web/dist/web.js` : runtime.resolve(id);
         if (resolved) return resolved;

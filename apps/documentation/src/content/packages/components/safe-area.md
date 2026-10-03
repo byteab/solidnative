@@ -9,7 +9,7 @@ art: safe-area
 The safe area is the screen clear of the status bar, notch or Dynamic Island, home indicator and,
 on Android, the navigation bar. `SafeAreaProvider` measures it once at the root; `SafeAreaView`
 insets content by it. Code reads the numbers from the [`SafeArea`](/packages/device/safe-area)
-service in `@solid-native/device/solid`, which the provider reports into.
+service in `@solidnative/device/solid`, which the provider reports into.
 
 Every `SafeAreaView` needs a provider above it, and a missing one fails silently: the view looks
 for a provider once, on entering the window before layout, then falls back to its own insets,
@@ -38,7 +38,7 @@ inset (`'maximum'`), adds them (`'additive'`, default for a listed edge) or igno
 
 Inside a tab, the provider's insets ignore the tab bar, so a `SafeAreaView` clears only the home
 indicator. For content pinned to a tab's bottom use `TabSafeAreaView` from
-`@solid-native/router/solid`, which asks the tab screen what the bar covers; see
+`@solidnative/router/solid`, which asks the tab screen what the bar covers; see
 [Content above the tab bar](/packages/router/tabs#content-above-the-tab-bar). The custom
 properties below have the same limit.
 

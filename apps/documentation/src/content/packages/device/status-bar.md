@@ -8,9 +8,9 @@ summary: A stack of claims on the status bar's style, visibility and color, not 
 `StatusBar` is a stack of claims, so closing a modal restores the screen's own bar.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { useStatusBar } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { useStatusBar } from '@solidnative/device/solid';
 
 export function PhotoViewer() {
   // Claimed while this screen is in front; released when the component is disposed.

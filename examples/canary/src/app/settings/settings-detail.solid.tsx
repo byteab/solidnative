@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, getOwner, onCleanup, runWithOwner } from 'solid-js';
 import { Check, Lock } from 'lucide-static';
-import { Pressable, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { UiHost, UiSlider } from '@solid-native/expo/solid/expo-ui-components';
-import { Brightness } from '@solid-native/expo/solid/brightness';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useRoute } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { UiHost, UiSlider } from '@solidnative/expo/solid/expo-ui-components';
+import { Brightness } from '@solidnative/expo/solid/brightness';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useRoute } from '@solidnative/router/solid';
 import { NETWORKS, ROWS, Settings, type Appearance } from './settings-model.solid.ts';
 import sheet from './settings-detail.native.css';
 export const ABOUT: readonly [string, string][] = [

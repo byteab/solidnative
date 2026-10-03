@@ -1,14 +1,14 @@
-/** @jsxImportSource @solid-native/web/solid */
+/** @jsxImportSource @solidnative/web/solid */
 /**
  * Fixtures for `layout-browser.mjs`: one of each thing a real browser has to resolve for a style to
  * look right, and jsdom cannot - layout, a transform, paint, a pressed or hovered state, a colour
  * scheme, two components' scoped sheets side by side, and a breakpoint. Everything sits in one
  * wrapping row so the page fits the viewport, and each check measures against its own elements.
  */
-import { ActivityIndicator, Image, Pressable, Text, View } from '@solid-native/components/solid';
-import { Animated, AnimatedStyle, Easing } from '@solid-native/components/animations';
-import { ColorScheme, useService } from '@solid-native/device';
-import { withNativeStyles } from '@solid-native/web/solid';
+import { ActivityIndicator, Image, Pressable, Text, View } from '@solidnative/components/solid';
+import { Animated, AnimatedStyle, Easing } from '@solidnative/components/animations';
+import { ColorScheme, useService } from '@solidnative/device';
+import { withNativeStyles } from '@solidnative/web/solid';
 import { Badge, Card } from './fixtures.solid.tsx';
 import held from './held.native.css';
 

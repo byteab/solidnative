@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
 import { accent } from '../flock.solid.ts';
 
 /** Underline tabs, as X draws them on both platforms: bold when selected, an accent bar under it. */

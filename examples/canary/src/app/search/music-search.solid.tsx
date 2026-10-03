@@ -1,20 +1,20 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   ActivityIndicator,
   Pressable,
   Text,
   View,
   VirtualList,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeSearchBar,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { type CatalogueItem, RecentSearches, type Scope, StoreSearch } from './catalogue.solid.ts';
 import { createSearchState, type SearchRow } from './search-state.solid.ts';
 import styles from './music-search.native.css';

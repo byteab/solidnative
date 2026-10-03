@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createComputed, createMemo, createSignal } from 'solid-js';
 import { Trash2 } from 'lucide-static';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { Dialogs, Keyboard, useService } from '@solid-native/device/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { Dialogs, Keyboard, useService } from '@solidnative/device/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
 import {
   KeyboardAvoidingView,
   Pressable,
@@ -11,14 +11,14 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   useNavigation,
   useRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { wordCount } from '../data/note.ts';
 import { Notes } from '../sync/notes.solid.ts';
 import sheet from './editor.native.css';

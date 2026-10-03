@@ -9,7 +9,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { StatusBar, useService, type StatusBarSource } from '@solid-native/device';
+import { StatusBar, useService, type StatusBarSource } from '@solidnative/device';
 import { serviceWith } from './ui-services.ts';
 
 /** What the platform was told, in order. */

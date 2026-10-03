@@ -1,5 +1,5 @@
-import { claimHost, type HostNode } from '@solid-native/fabric';
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
+import { claimHost, type HostNode } from '@solidnative/fabric';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
 import { registerScreenComponents } from './screens.ts';
 
 /** The edges of the screen. */

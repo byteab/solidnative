@@ -1,14 +1,14 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect } from 'solid-js';
-import { SafeAreaProvider } from '@solid-native/components';
-import { ColorScheme, DeepLinks, HardwareBack, StatusBar, useService } from '@solid-native/device';
-import { nativePlatform } from '@solid-native/fabric';
+import { SafeAreaProvider } from '@solidnative/components';
+import { ColorScheme, DeepLinks, HardwareBack, StatusBar, useService } from '@solidnative/device';
+import { nativePlatform } from '@solidnative/fabric';
 import {
   NativeStackOutlet,
   bindNativeNavigation,
   createNativeNavigation,
   type NativeNavigation,
-} from '@solid-native/router';
+} from '@solidnative/router';
 import { routes } from './app.routes.solid.ts';
 
 /**

@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   ExpoImage,
   ExpoSymbol,
@@ -11,8 +11,8 @@ import {
   ExpoVideo,
   SegmentedControl,
   liquidGlassAvailable,
-} from '@solid-native/expo/solid';
-import type { NativeRef } from '@solid-native/components/solid';
+} from '@solidnative/expo/solid';
+import type { NativeRef } from '@solidnative/components/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 
 test('compiled direct Expo views preserve native props, reactive updates and events', () => {

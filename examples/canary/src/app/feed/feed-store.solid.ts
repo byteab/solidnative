@@ -1,5 +1,5 @@
 import { batch, createMemo, createSignal, onCleanup } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
+import { useService } from '@solidnative/device/solid';
 import { FeedBackend, type Post } from './feed-backend.solid.ts';
 
 export type PageState = 'idle' | 'loading' | 'failed' | 'done';

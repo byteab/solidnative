@@ -17,7 +17,7 @@ The app's Tailwind entry imports the theme, the utilities and the native preset:
 /* src/tailwind.css */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 ```
 
 Importing these instead of `tailwindcss` leaves out preflight's browser reset (`html`,
@@ -30,8 +30,8 @@ as an empty module):
 ```ts
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 
 module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
   input: './src/tailwind.css',
@@ -115,16 +115,16 @@ Variants for absent classes never match, so `ios:pt-2` is harmless on the web.
 Tailwind's default `dark:` uses `@media (prefers-color-scheme: dark)`, which the engine tracks; a
 class also allows palettes such as `.dark { --background: ... }` and in-app overrides.
 
-`watchConditions(root.engine)` from `@solid-native/device/solid` keeps the root's `dark` class in
+`watchConditions(root.engine)` from `@solidnative/device/solid` keeps the root's `dark` class in
 sync with the system. For an in-app switcher, pass `{ darkClass: false }` and set the class
 yourself, or a system-dark root overrides the switcher's light choice.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import type { HostChild } from '@solid-native/platform/solid';
-import { View } from '@solid-native/components/solid';
-import { ColorScheme, createServiceToken, useService } from '@solid-native/device/solid';
+import type { HostChild } from '@solidnative/platform/solid';
+import { View } from '@solidnative/components/solid';
+import { ColorScheme, createServiceToken, useService } from '@solidnative/device/solid';
 
 type Preference = 'light' | 'dark' | 'system';
 

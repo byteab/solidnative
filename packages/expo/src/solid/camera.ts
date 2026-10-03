@@ -1,6 +1,6 @@
-import type { NativeSyntheticEvent } from '@solid-native/fabric';
-import { createNativeRef, type NativeRef, type ViewProps } from '@solid-native/components/solid';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import type { NativeSyntheticEvent } from '@solidnative/fabric';
+import { createNativeRef, type NativeRef, type ViewProps } from '@solidnative/components/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import { expoModule } from '../native.ts';
 import { ownedRequests } from './owned.ts';
 import { nativeView, viewProps } from './view.ts';

@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/components",
+  "name": "@solidnative/components",
   "version": "0.1.1",
   "description": "Solid components for native iOS and Android: view, text, image, pressable, scroll-view, virtual-list, text-input and the rest of React Native's set.",
   "keywords": [
@@ -75,9 +75,9 @@
     }
   },
   "dependencies": {
-    "@solid-native/device": "workspace:*",
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/platform": "workspace:*"
+    "@solidnative/device": "workspace:*",
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/platform": "workspace:*"
   },
   "peerDependencies": {
     "react-native": ">=0.86.0",

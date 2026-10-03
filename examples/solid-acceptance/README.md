@@ -1,7 +1,7 @@
 # Solid acceptance app
 
-The starter template (`template/`, what `create-expo-app --template @solid-native/template` gives a new
-user), extended to exercise the features a real app leans on. It uses public `@solid-native/*` entries
+The starter template (`template/`, what `create-expo-app --template @solidnative/template` gives a new
+user), extended to exercise the features a real app leans on. It uses public `@solidnative/*` entries
 only.
 
 | Screen                        | What it shows                                                                                 |

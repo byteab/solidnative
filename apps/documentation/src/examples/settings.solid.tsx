@@ -1,5 +1,5 @@
 /*
- * @jsxImportSource @solid-native/platform/solid
+ * @jsxImportSource @solidnative/platform/solid
  *
  * Tailwind, with the native preset's variants: one component that follows each platform's
  * conventions (`ios:`, `android:`) and the system appearance (`dark:`). On iOS an inset grouped
@@ -7,10 +7,10 @@
  * Nothing branches in TypeScript.
  */
 import { createSignal } from 'solid-js';
-import { Switch, Text, View } from '@solid-native/components/solid';
-import { ColorScheme, useService, useStatusBar } from '@solid-native/device/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { For } from '@solid-native/platform/solid';
+import { Switch, Text, View } from '@solidnative/components/solid';
+import { ColorScheme, useService, useStatusBar } from '@solidnative/device/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { For } from '@solidnative/platform/solid';
 import { lucideSvg, type IconName } from '../icon.data.ts';
 
 interface Row {

@@ -1,16 +1,16 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { Check, Flame, Plus } from 'lucide-static';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeStackOutlet,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { Habits } from '../data/habits.solid.ts';
 import { HabitRow } from './habit-row.solid.tsx';
 import { ProgressBar } from './progress-bar.solid.tsx';

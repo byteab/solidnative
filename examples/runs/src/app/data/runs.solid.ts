@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 import { splits, totalDistanceMeters, type Split, type TimedPoint } from '../tracking/geo.ts';
 import { SIMULATED_ROUTE } from '../tracking/simulated-route.ts';
 

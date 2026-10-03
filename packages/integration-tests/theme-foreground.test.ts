@@ -29,12 +29,12 @@ import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { StyleSheet } from '@solid-native/fabric';
+import type { StyleSheet } from '@solidnative/fabric';
 import { mountSolid } from './css-solid-harness.ts';
 import { themeForeground } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 /**
  * A theme in the shape an app writes one: the tokens in `:root` and `.dark`, each block setting
@@ -68,7 +68,7 @@ const THEME = `
 /**
  * The app's own stylesheet, built the way an app builds it.
  *
- * From this package's own directory, which has `tailwindcss` and `@solid-native/tailwind`
+ * From this package's own directory, which has `tailwindcss` and `@solidnative/tailwind`
  * installed, because the CLI resolves imports from the entry file's own directory - the same
  * reason `preset-variants.test.ts` builds from here.
  */
@@ -82,7 +82,7 @@ function buildTheme(): string {
     [
       `@import 'tailwindcss/theme.css';`,
       `@import 'tailwindcss/utilities.css';`,
-      `@import '@solid-native/tailwind/native.css';`,
+      `@import '@solidnative/tailwind/native.css';`,
       THEME,
     ].join('\n'),
   );
@@ -102,7 +102,7 @@ describe('text that names no colour', () => {
     // `withTailwind` runs the flatten as part of the Metro transform, so what reaches `compileCss`
     // in a real build is the CLI's output already folded - which is what this hands it.
     sheet = compileCss(
-      require('@solid-native/tailwind/flatten.cjs').flattenTailwind(buildTheme()),
+      require('@solidnative/tailwind/flatten.cjs').flattenTailwind(buildTheme()),
       'global',
       // What the Metro transform passes: Tailwind's own `@theme` carries declarations native has
       // no form for (`--text-xs--line-height` and friends), and a build drops those with a warning

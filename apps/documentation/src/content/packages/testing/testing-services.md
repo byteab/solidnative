@@ -10,10 +10,10 @@ nearest `ServiceScope`, and `provideService` replaces a token's factory in a sco
 the component with `withServiceScope`. An app service declared with `createServiceToken`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createResource } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
 
 export const Weather = createServiceToken('weather', () => ({
   today: (): Promise<string> =>
@@ -30,9 +30,9 @@ export function Forecast() {
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { provideService, withServiceScope } from '@solid-native/device/solid';
-import { createComponent } from '@solid-native/platform/solid';
-import { cleanup, render, screen } from '@solid-native/testing';
+import { provideService, withServiceScope } from '@solidnative/device/solid';
+import { createComponent } from '@solidnative/platform/solid';
+import { cleanup, render, screen } from '@solidnative/testing';
 import { Forecast, Weather } from './forecast.solid.tsx';
 
 afterEach(cleanup);

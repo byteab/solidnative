@@ -32,7 +32,7 @@ Pseudo-elements (`::before`, `::after`, all others) are permanently unsupported;
 
 `:hover` and `:focus-visible` have nothing to answer from on a phone. Use `:active` and `:focus`,
 or an attribute such as `data-hover`; the `hover:` and `focus-visible:` variants in
-[`@solid-native/tailwind`](/packages/tailwind/variants) already map to them.
+[`@solidnative/tailwind`](/packages/tailwind/variants) already map to them.
 
 `:checked`, `:indeterminate`, `:valid`, `:invalid`, `:placeholder-shown` and other form-state
 pseudo-classes are unsupported (native controls keep that state in props); select on an attribute

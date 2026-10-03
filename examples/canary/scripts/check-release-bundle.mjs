@@ -12,9 +12,9 @@ const PLATFORM = process.argv[2] ?? 'ios';
 
 // Development-only wiring, by ASCII identifiers that survive minification (Hermes stores other
 // strings as UTF-16): the clean-reload boundary Metro inserts into every Solid module in a
-// development build (`@solid-native/metro/solid-reload.cjs`), the runtime it requires
+// development build (`@solidnative/metro/solid-reload.cjs`), the runtime it requires
 // (`solid-reload-runtime.cjs`, whose reload reason and failure message are its own strings), and
-// React Refresh registration. `@solid-native/platform`'s `dev-reload.ts` is not listed: the native
+// React Refresh registration. `@solidnative/platform`'s `dev-reload.ts` is not listed: the native
 // root imports it unconditionally, and only its `__DEV__`-gated calls are dead in a release.
 const DEV_ONLY = [
   'solid-reload-runtime',

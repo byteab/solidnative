@@ -3,9 +3,9 @@ const babel = require('@babel/core');
 
 function addSolidReloadBoundary(ast, filename) {
   const guard = babel.parseSync(
-    `if (!require('@solid-native/metro/solid-reload-runtime.cjs').registerModule(
+    `if (!require('@solidnative/metro/solid-reload-runtime.cjs').registerModule(
       module,
-      require('@solid-native/platform/solid/dev-reload'),
+      require('@solidnative/platform/solid/dev-reload'),
       function(reason) { require('react-native').DevSettings.reload(reason); },
       ${JSON.stringify(filename)}
     )) return;`,

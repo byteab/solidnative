@@ -13,8 +13,8 @@ import {
   videoPlayer,
   watchPlayer,
   type NativePlayer,
-} from '@solid-native/expo/player';
-import { withServiceScope } from '@solid-native/device/solid';
+} from '@solidnative/expo/player';
+import { withServiceScope } from '@solidnative/device/solid';
 import { disposeServices, owned } from './expo-service.ts';
 
 afterEach(disposeServices);

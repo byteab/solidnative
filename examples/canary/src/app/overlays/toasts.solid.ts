@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, type Accessor } from 'solid-js';
-import { Accessibility, createServiceToken, useService } from '@solid-native/device/solid';
+import { Accessibility, createServiceToken, useService } from '@solidnative/device/solid';
 
 export interface Toasts {
   readonly message: Accessor<string | null>;

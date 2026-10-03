@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "jsxImportSource": "@solid-native/platform/solid"
+    "jsxImportSource": "@solidnative/platform/solid"
   },
   "include": ["."],
   "exclude": []

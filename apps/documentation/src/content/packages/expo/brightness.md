@@ -16,15 +16,15 @@ npx expo install expo-brightness
 ```
 
 ```ts
-import { Brightness } from '@solid-native/expo/solid/brightness';
+import { Brightness } from '@solidnative/expo/solid/brightness';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { Brightness } from '@solid-native/expo/solid/brightness';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { Brightness } from '@solidnative/expo/solid/brightness';
 
 export function BoardingPass() {
   const brightness = useService(Brightness);
@@ -59,6 +59,6 @@ On the web, and in a test with no fake `Brightness.SOURCE`, `level` stays at `1`
 
 ## Reference
 
-`Brightness` is exported from `@solid-native/expo/solid/brightness`.
+`Brightness` is exported from `@solidnative/expo/solid/brightness`.
 
 <!-- api: Brightness -->

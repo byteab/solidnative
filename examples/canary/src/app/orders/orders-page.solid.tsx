@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { OrdersApi } from './orders-api.solid.ts';
 
 export function OrdersPage() {

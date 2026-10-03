@@ -53,4 +53,4 @@ arriving after the commit is first treated as a refusal, then applied. Leave `va
 `onChange` receives the raw native event. `disabled` ignores touches, greys the control and changes
 the announced state.
 
-<!-- api: @solid-native/components#Switch -->
+<!-- api: @solidnative/components#Switch -->

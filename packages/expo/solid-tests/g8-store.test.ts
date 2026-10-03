@@ -8,7 +8,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRoot } from 'solid-js';
-import { Store, type NativeStore } from '@solid-native/expo/solid/store';
+import { Store, type NativeStore } from '@solidnative/expo/solid/store';
 
 const disposers: (() => void)[] = [];
 afterEach(() => {

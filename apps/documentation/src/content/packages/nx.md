@@ -5,16 +5,16 @@ summary: nx add and an app generator for an Nx workspace, with Expo's targets in
 
 # Nx
 
-`@solid-native/nx` adds a solid-native app to an Nx workspace as an ordinary project:
+`@solidnative/nx` adds a solid-native app to an Nx workspace as an ordinary project:
 
 ```sh
-nx add @solid-native/nx
-nx g @solid-native/nx:app apps/mobile
+nx add @solidnative/nx
+nx g @solidnative/nx:app apps/mobile
 nx start mobile
 ```
 
 `nx start` runs Metro, like `npx expo start`. Workspace libraries opt into the native transform as
-the app does, with the `@jsxImportSource @solid-native/platform/solid` pragma or a `.solid.tsx`
+the app does, with the `@jsxImportSource @solidnative/platform/solid` pragma or a `.solid.tsx`
 suffix. With a scoped root package (as the TypeScript preset makes), the project takes the scope:
 `nx start @org/mobile`. The generators emit Solid only; there is no component generator.
 
@@ -41,12 +41,12 @@ every `nx start`.
 | `nx export mobile`      | `@nx/expo`     | `expo export`; `--platform ios` for one platform                    |
 | `nx prebuild mobile`    | `@nx/expo`     | `expo prebuild`                                                     |
 | `nx build mobile`       | `@nx/expo`     | an EAS build, on Expo's machines                                    |
-| `nx test mobile`        | `project.json` | `node --test` over `src/**/*.test.ts`, with `@solid-native/testing` |
+| `nx test mobile`        | `project.json` | `node --test` over `src/**/*.test.ts`, with `@solidnative/testing` |
 | `nx typecheck mobile`   | `project.json` | `tsc -p tsconfig.json --noEmit`                                     |
 
 `@nx/expo` provides no `typecheck` (Expo's `tsconfig` sets `noEmit`, so `@nx/js` skips it) or
 `test`, so the generator writes both. `test` is Node's test runner with
-`@solid-native/testing/register` first, no simulator needed; see [Testing](/packages/testing).
+`@solidnative/testing/register` first, no simulator needed; see [Testing](/packages/testing).
 `start` runs `expo start` directly because Nx 23 deprecates `@nx/expo:start`; `nx prebuild` and
 `nx build` still use `@nx/expo`'s executors and print that warning.
 
@@ -63,10 +63,10 @@ differ because of Nx:
   `Cannot resolve @org/ui`. The preset is outermost so it can resolve a library's `./lib/ui.js`
   import to `ui.ts`, as TypeScript does.
 - **`tsconfig.json`** keeps the template's Solid settings (`jsx: preserve`,
-  `jsxImportSource: @solid-native/platform/solid`). With a `tsconfig.base.json` it extends that
+  `jsxImportSource: @solidnative/platform/solid`). With a `tsconfig.base.json` it extends that
   after Expo's (for the path aliases) and restores the Expo settings the base overrides.
 - **`test-register.mjs`** exists only when a workspace base provides path aliases. It imports
-  `@solid-native/testing/register` and adds a resolve hook for the aliases, since Node's test
+  `@solidnative/testing/register` and adds a resolve hook for the aliases, since Node's test
   runner ignores tsconfig; the `test` target imports it instead of the plain register.
 
 ## Where the dependencies go
@@ -79,5 +79,5 @@ native modules at the root's ranges, because Expo links only those.
 
 ## Options
 
-`nx g @solid-native/nx:app <directory>` takes `--name` (the directory's last segment by default),
+`nx g @solidnative/nx:app <directory>` takes `--name` (the directory's last segment by default),
 `--tags` and `--skipInstall`.

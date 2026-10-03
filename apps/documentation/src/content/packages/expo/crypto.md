@@ -19,16 +19,16 @@ npx expo install expo-crypto
 ```
 
 ```ts
-import { Crypto, CryptoDigestAlgorithm, CryptoEncoding } from '@solid-native/expo/solid/crypto';
+import { Crypto, CryptoDigestAlgorithm, CryptoEncoding } from '@solidnative/expo/solid/crypto';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Crypto, CryptoDigestAlgorithm } from '@solid-native/expo/solid/crypto';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Crypto, CryptoDigestAlgorithm } from '@solidnative/expo/solid/crypto';
 
 export function NewNote() {
   const crypto = useService(Crypto);
@@ -80,6 +80,6 @@ On the web, and in a test with no fake, every method throws (or rejects) with an
 
 ## Reference
 
-`Crypto` is exported from `@solid-native/expo/solid/crypto`.
+`Crypto` is exported from `@solidnative/expo/solid/crypto`.
 
 <!-- api: Crypto -->

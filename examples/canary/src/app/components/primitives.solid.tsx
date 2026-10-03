@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import {
   ActivityIndicator,
@@ -10,9 +10,9 @@ import {
   TextInput,
   View,
   type TextInputRef,
-} from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { palette } from '../palette-values.ts';
 import { page } from '../screen-styles.ts';
 const localImage = require('../../../assets/local.png');

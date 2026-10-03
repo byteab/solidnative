@@ -6,7 +6,7 @@ import {
   useService,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { AppInfo } from '../src/solid/app-info.ts';
 import { Assets, assetResource, type AssetLike } from '../src/solid/assets.ts';
 import { FontRegistry, Fonts, registrationsFor } from '../src/solid/fonts.ts';

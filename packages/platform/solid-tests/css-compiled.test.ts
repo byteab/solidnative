@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { createCssFixture } from './css-compiled-fixture.tsx';
 import { createFakeFabric, createClock, type FakeNode } from './fake-fabric.ts';
 

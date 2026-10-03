@@ -10,9 +10,9 @@ import {
   markComponentHost,
   type EngineNode,
   type StyleSheet,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import { resetStyleStats, styleStats } from '../fabric/src/css.ts';
-import { createFakeFabric, type FakeFabric } from '@solid-native/testing';
+import { createFakeFabric, type FakeFabric } from '@solidnative/testing';
 
 const sheet: StyleSheet = {
   rules: [

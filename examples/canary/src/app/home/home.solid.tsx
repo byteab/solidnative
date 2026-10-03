@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { NativeHeader, type NativeRouteProps } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { NativeHeader, type NativeRouteProps } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import { features } from './home-features.ts';
 

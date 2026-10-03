@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { View, Text, ScrollView, Pressable } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { View, Text, ScrollView, Pressable } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { Example, Section } from '../example.solid.tsx';
 import { page } from '../screen-styles.ts';
 import sheet from './surfaces.native.css';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
 
 export function SurfacesPage() {
   const radii = [0, 6, 16, 999];

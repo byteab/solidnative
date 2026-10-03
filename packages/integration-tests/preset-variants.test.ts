@@ -13,8 +13,8 @@
 import assert from 'node:assert/strict';
 import { before, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { Engine, type StyleSheet } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type StyleSheet } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { build, committedProps } from './tailwind-cli.ts';
 
 const CLASSES =
@@ -65,7 +65,7 @@ describe('the two Tailwind presets', () => {
 
     // And the native compiler turns it into a rule the engine matches while a touch is down.
     const { compileSheetModule } = createRequire(import.meta.url)(
-      '@solid-native/tailwind/config.cjs',
+      '@solidnative/tailwind/config.cjs',
     ) as { compileSheetModule(css: string): string };
     const code = compileSheetModule(native);
     const sheet = JSON.parse(
@@ -139,11 +139,11 @@ describe('the two Tailwind presets', () => {
       'peer peer-focus:bg-red-500 peer-disabled:bg-green-500 peer-[.is-on]:bg-blue-500 ' +
         'peer-data-[state=on]:bg-yellow-500 peer-checked:bg-pink-500',
     );
-    const { flattenTailwind } = createRequire(import.meta.url)('@solid-native/tailwind') as {
+    const { flattenTailwind } = createRequire(import.meta.url)('@solidnative/tailwind') as {
       flattenTailwind(css: string): string;
     };
     const { compileCss } = createRequire(import.meta.url)(
-      '@solid-native/metro/css/compile.cjs',
+      '@solidnative/metro/css/compile.cjs',
     ) as {
       compileCss(css: string, context: string, options: object): StyleSheet;
     };

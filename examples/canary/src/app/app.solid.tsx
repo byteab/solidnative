@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect } from 'solid-js';
-import { SafeAreaProvider } from '@solid-native/components/solid';
-import { ColorScheme, StatusBar, useService } from '@solid-native/device/solid';
-import { NativeStackOutlet, type NativeNavigation } from '@solid-native/router/solid';
+import { SafeAreaProvider } from '@solidnative/components/solid';
+import { ColorScheme, StatusBar, useService } from '@solidnative/device/solid';
+import { NativeStackOutlet, type NativeNavigation } from '@solidnative/router/solid';
 import { ToastHost } from './overlays/toast-host.solid.tsx';
 
 /** The actual canary shell. The caller supplies the complete application route navigation. */

@@ -20,7 +20,7 @@ import {
   type ResponderEvent,
   type ResponderHandlers,
   type WindowFrame,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import {
   makeAnchorNode,
   makeElementNode,
@@ -115,7 +115,7 @@ const COMMANDS: Record<string, (el: HTMLElement, args: readonly unknown[]) => vo
  * `scroll-view`'s `(scroll)` reads `nativeEvent.contentOffset`, and handing it a raw DOM `Event`
  * would turn a binding that quietly does nothing into one that throws on the first scroll.
  *
- * The list is the events `@solid-native/components` actually binds, found by
+ * The list is the events `@solidnative/components` actually binds, found by
  * reading their host and template bindings rather than guessed. Anything outside it is a plain
  * DOM event and is bound as one.
  *

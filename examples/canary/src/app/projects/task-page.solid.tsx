@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal, onCleanup } from 'solid-js';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { Dialogs, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { NativeHeader, useNavigation, useRoute } from '@solid-native/router/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { Dialogs, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { NativeHeader, useNavigation, useRoute } from '@solidnative/router/solid';
 import { PEOPLE, ProjectServer, ProjectStore } from './project-data.solid.ts';
 import sheet from './task-page.native.css';
 

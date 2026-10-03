@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { ColorScheme, provideService, ServiceScope, type Scheme } from '@solid-native/device/solid';
+import { ColorScheme, provideService, ServiceScope, type Scheme } from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   type NativeNavigation,

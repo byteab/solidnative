@@ -1,18 +1,18 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { SafeAreaProvider } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { SafeAreaProvider } from '@solidnative/components/solid';
 import {
   DeepLinks,
   HardwareBack,
   ServiceScope,
   useService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   NativeStackOutlet,
   bindNativeNavigation,
   createNativeNavigation,
   type NativeNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { routes } from './app.routes.solid.ts';
 
 /** The shell: a native stack, with the tab bar as its first screen. */

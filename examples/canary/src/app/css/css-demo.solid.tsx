@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { View, Text, TextInput, Pressable } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View, Text, TextInput, Pressable } from '@solidnative/components/solid';
 import sheet from './css-demo.native.css';
-import { withNativeStyles, setNativeStyleHost } from '@solid-native/platform/solid';
+import { withNativeStyles, setNativeStyleHost } from '@solidnative/platform/solid';
 
 export function CssDemo() {
   return withNativeStyles(sheet, () => (

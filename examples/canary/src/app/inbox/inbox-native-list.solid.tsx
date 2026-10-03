@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
 import {
   UiButton,
@@ -9,9 +9,9 @@ import {
   UiText,
   UiVStack,
   type UiModifier,
-} from '@solid-native/expo/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For } from '@solid-native/platform/solid';
+} from '@solidnative/expo/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For } from '@solidnative/platform/solid';
 import type { Mail } from './inbox-model.solid.ts';
 const modifier = (type: string, params: Record<string, unknown>): UiModifier => ({
   $type: type,

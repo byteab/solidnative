@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 /*
- * The navigation showcase: @solid-native/router/solid, a native stack, and a native header with a
+ * The navigation showcase: @solidnative/router/solid, a native stack, and a native header with a
  * large title. Each trip is a postcard drawn with gradients; pressing one pushes its itinerary with
  * the platform's own transition and back button. Photographed on the iOS simulator for the landing
  * page; it is not mounted on the page, because the router is native-only - see
@@ -13,8 +13,8 @@ import {
   ScrollView,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { For, Show } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { For, Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeStackOutlet,
@@ -22,7 +22,7 @@ import {
   useNavigation,
   useRoute,
   type NativeRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 
 const TRIPS = [
   {

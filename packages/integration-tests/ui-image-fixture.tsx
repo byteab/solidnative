@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, ImageBackground } from '@solid-native/components';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, ImageBackground } from '@solidnative/components';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './ui-image.native.css';
 
 const art = { uri: 'a.jpg', width: 600, height: 300 };

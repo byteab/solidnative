@@ -2,13 +2,13 @@
  * The site's unit tests: the course's in-browser compile pipeline, the lesson model and the
  * checks, run in Node against the fake Fabric, plus the plain tests under `build/`.
  *
- * `solidNative()` from `@solid-native/testing/vitest` is what an app's tests run with: `solid-js` as its
+ * `solidNative()` from `@solidnative/testing/vitest` is what an app's tests run with: `solid-js` as its
  * client build, as Metro resolves it for a device, and the native libraries' stand-ins. The
  * learner's code in these tests is compiled the way the preview compiles it, by
- * `src/learn/preview/compiler.ts`: Babel and Solid's JSX transform, from `@solid-native/metro`'s own
+ * `src/learn/preview/compiler.ts`: Babel and Solid's JSX transform, from `@solidnative/metro`'s own
  * dependencies, as `vite.config.ts` resolves them.
  */
-import { solidNative } from '@solid-native/testing/vitest';
+import { solidNative } from '@solidnative/testing/vitest';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import url from 'node:url';
@@ -18,7 +18,7 @@ import { markdown } from './build/markdown.ts';
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const tooling = createRequire(
   createRequire(path.join(dirname, 'package.json')).resolve(
-    '@solid-native/metro/solid-browser.cjs',
+    '@solidnative/metro/solid-browser.cjs',
   ),
 );
 

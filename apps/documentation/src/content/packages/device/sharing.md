@@ -8,9 +8,9 @@ summary: The system share sheet, and what its result does and does not confirm.
 `Sharing` opens the system share sheet.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Sharing, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Sharing, useService } from '@solidnative/device/solid';
 
 export function ShareArticle(props: { onShared: () => void }) {
   const sharing = useService(Sharing);

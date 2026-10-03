@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 export const photoRoutes: readonly NativeRoute[] = [
   { path: 'photos', lazy: () => import('./gallery.solid.tsx').then((m) => m.Gallery) },
   {

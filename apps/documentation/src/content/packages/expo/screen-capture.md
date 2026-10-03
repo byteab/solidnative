@@ -19,16 +19,16 @@ npx expo install expo-screen-capture
 ```
 
 ```ts
-import { ScreenCapture } from '@solid-native/expo/solid/screen-capture';
+import { ScreenCapture } from '@solidnative/expo/solid/screen-capture';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
-import { ScreenCapture } from '@solid-native/expo/solid/screen-capture';
+import { Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
+import { ScreenCapture } from '@solidnative/expo/solid/screen-capture';
 
 export function CardDetails() {
   const capture = useService(ScreenCapture);
@@ -64,7 +64,7 @@ export function CardDetails() {
 
 In a test, provide a `NativeScreenCapture` fake with
 `provideService(ScreenCapture.SOURCE, () => fake)` inside a `ServiceScope` (both from
-`@solid-native/device/solid`).
+`@solidnative/device/solid`).
 
 ## Without the module
 
@@ -77,6 +77,6 @@ the permission is refused, and every other method resolves without doing anythin
 
 ## Reference
 
-`ScreenCapture` is exported from `@solid-native/expo/solid/screen-capture`.
+`ScreenCapture` is exported from `@solidnative/expo/solid/screen-capture`.
 
 <!-- api: ScreenCapture -->

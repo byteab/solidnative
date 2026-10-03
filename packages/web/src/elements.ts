@@ -65,7 +65,7 @@ const SPECS: Record<string, ElementSpec> = {
   'text-input': { tag: 'textarea', attrs: { rows: '1' } },
   switch: { tag: 'input', attrs: { type: 'checkbox' } },
   'activity-indicator': { tag: 'activity-indicator', attrs: { role: 'progressbar' } },
-  // The shapes `@solid-native/icons`' `svg-elements.ts` registers. Real SVG tag names, not the prefixed
+  // The shapes `@solidnative/icons`' `svg-elements.ts` registers. Real SVG tag names, not the prefixed
   // template names - `svg-path` would otherwise ask the DOM for an element literally called
   // `<svg-path>`, which the SVG namespace has no such thing as and so mints as an unstyled,
   // unpainted `SVGUnknownElement` instead of a `<path>`.

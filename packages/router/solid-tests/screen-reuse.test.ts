@@ -5,7 +5,7 @@
  */
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   createClock,
   createFakeFabric,

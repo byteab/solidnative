@@ -5,15 +5,15 @@ summary: Platform, dark-mode, hover and focus-visible variants, and what they me
 
 # Variants
 
-`@solid-native/tailwind` ships three stylesheets: `shared.css` (platform-independent), and
+`@solidnative/tailwind` ships three stylesheets: `shared.css` (platform-independent), and
 `native.css` and `web.css`, which import it and resolve the variants where touch and browser
 disagree. Import `native.css` in an Expo app, `web.css` in a browser build.
 
 ## Platform, disabled and dark variants
 
 The platform variants match an ancestor class: `platform-ios`, `platform-android` or
-`platform-web`. `@solid-native/web/solid` adds `platform-web` to its root; on a phone, put the
-class on your outermost view from `nativePlatform()` in `@solid-native/fabric`:
+`platform-web`. `@solidnative/web/solid` adds `platform-web` to its root; on a phone, put the
+class on your outermost view from `nativePlatform()` in `@solidnative/fabric`:
 
 ```tsx
 <View class={`platform-${nativePlatform()}`} style={{ flex: 1 }}>

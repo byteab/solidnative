@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { For } from '@solid-native/platform/solid';
+import { For } from '@solidnative/platform/solid';
 import { Compass, GraduationCap, Heart, Target, Waves, Zap } from 'lucide-static';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 /** Heroicons' solid `fire` and `star` (MIT), markup copied verbatim: filled, not stroked. */

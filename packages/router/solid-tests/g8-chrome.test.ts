@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { registerPlatformComponents } from '@solid-native/fabric';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   createClock,
   createFakeFabric,

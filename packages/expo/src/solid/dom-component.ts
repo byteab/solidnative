@@ -1,7 +1,7 @@
 import { createComputed, createMemo, onCleanup, untrack } from 'solid-js';
-import type { NativeSyntheticEvent } from '@solid-native/fabric';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { createNativeRef, type ViewProps } from '@solid-native/components/solid';
+import type { NativeSyntheticEvent } from '@solidnative/fabric';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { createNativeRef, type ViewProps } from '@solidnative/components/solid';
 import { optional } from '../native.ts';
 import { registerExpoView } from '../register-expo-view.ts';
 import { nativeView, viewProps } from './view.ts';

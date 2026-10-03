@@ -1,5 +1,5 @@
 /**
- * `nx add @solid-native/nx`, and the first step of every app generated here.
+ * `nx add @solidnative/nx`, and the first step of every app generated here.
  *
  * A native Solid app is an Expo app, so its targets are Expo's, and `@nx/expo`'s plugin already
  * infers them from any project with an `app.json`, a `metro.config.js` and a `package.json`:

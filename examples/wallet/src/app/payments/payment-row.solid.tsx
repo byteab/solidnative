@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
 import { TINTS, dayOf, money, type Payment } from './ledger.solid.ts';
 
 /** One payment: who, what kind and when, and how much. */

@@ -474,10 +474,10 @@ const VIEW_NAMES: Record<string, string | PlatformViewName> = {
 /**
  * The element names above, as they were before any app registered its own.
  *
- * Only these have a component in `@solid-native/components` to forget to import, which is what
+ * Only these have a component in `@solidnative/components` to forget to import, which is what
  * the dev-mode check below is about. A name added by `registerViewName` may have nothing behind
  * it on purpose: an Expo view driven as a plain element is the whole point of
- * `@solid-native/expo`, and warning about it would be noise.
+ * `@solidnative/expo`, and warning about it would be noise.
  */
 const PRIMITIVE_NAMES = new Set(Object.keys(VIEW_NAMES));
 
@@ -490,7 +490,7 @@ const PRIMITIVE_NAMES = new Set(Object.keys(VIEW_NAMES));
 const DECLARED_PROPS = new Map<string, Set<string>>();
 
 /**
- * Declare props the native view behind an element accepts. `@solid-native/components` calls this
+ * Declare props the native view behind an element accepts. `@solidnative/components` calls this
  * once per host primitive with the component's inputs; an app driving a primitive's native view
  * with a prop the component has no input for can declare that prop too.
  */
@@ -808,7 +808,7 @@ export interface ViewNameNode {
  * a component renders under a name of its own (see `markComponentHost`).
  *
  * Exported for tools that show a template beside what it becomes, such as the X-ray in the
- * documentation's course, which labels `@solid-native/web`'s DOM with these names. It reads the
+ * documentation's course, which labels `@solidnative/web`'s DOM with these names. It reads the
  * same table the commit does, so after `registerPlatformComponents('android')` it answers for
  * Android.
  */

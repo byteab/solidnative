@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot } from 'solid-js';
-import { useService, withServiceScope } from '@solid-native/device/solid';
+import { useService, withServiceScope } from '@solidnative/device/solid';
 import { MissingModuleError } from '../src/native.ts';
 import { AppInfo } from '../src/solid/app-info.ts';
 import { Assets, assets } from '../src/solid/assets.ts';

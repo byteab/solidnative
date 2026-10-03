@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { nativePlatform } from '@solid-native/fabric';
-import { NativeHeader, NativeTabsOutlet, type TabIcon } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { nativePlatform } from '@solidnative/fabric';
+import { NativeHeader, NativeTabsOutlet, type TabIcon } from '@solidnative/router/solid';
 
 /**
  * SF Symbols on iOS. Android has no symbol set, so it gets an image, drawn as a mask so the bar

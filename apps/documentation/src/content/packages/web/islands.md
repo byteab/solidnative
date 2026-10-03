@@ -13,9 +13,9 @@ in ownership:
 - **A root of its own.** Mounted imperatively, sharing nothing with the page - a plain
   `mount(element, App)`.
 
-Either way the page builds with `solidNativeWeb()` from `@solid-native/web/solid/vite` (see
+Either way the page builds with `solidNativeWeb()` from `@solidnative/web/solid/vite` (see
 [Web](/packages/web)), which compiles `@jsxImportSource solid-js` (or `.dom.tsx`) files with Solid's
-DOM compiler and universal files (`@jsxImportSource @solid-native/platform/solid`, or `.solid.tsx`)
+DOM compiler and universal files (`@jsxImportSource @solidnative/platform/solid`, or `.solid.tsx`)
 for the browser host.
 
 ## In a page: `Island`
@@ -26,7 +26,7 @@ A DOM page's JSX can't contain `View`, `Text` or `Pressable`; the DOM compiler d
 ```tsx
 /** @jsxImportSource solid-js */
 import { createSignal } from 'solid-js';
-import { Island } from '@solid-native/web/solid';
+import { Island } from '@solidnative/web/solid';
 import { Wallet } from './wallet.solid.tsx';
 
 export function AccountPage() {
@@ -53,7 +53,7 @@ export function AccountPage() {
   place without remounting, so state survives. Callbacks such as `onPaid` are ordinary props; no
   separate outputs map.
 - **`class`** goes on the island's element, a `<solid-native-island>`.
-- **`services`** adds `ServiceBinding`s from `@solid-native/device/solid` for this island only;
+- **`services`** adds `ServiceBinding`s from `@solidnative/device/solid` for this island only;
   **`onError`** receives its errors.
 - **Teardown is automatic** with its owner: a `<Show>` turning false, a route change, page disposal.
 
@@ -64,7 +64,7 @@ export function AccountPage() {
 `Island` wraps `mount`; call `mount` directly to place an island into an element you created:
 
 ```ts
-import { mount } from '@solid-native/web/solid';
+import { mount } from '@solidnative/web/solid';
 import { Wallet } from './wallet.solid.tsx';
 
 const element = document.querySelector('#wallet')!;
@@ -114,7 +114,7 @@ check stylesheets on a device.
 
 - **No `View` in the page's own JSX.** Solid-native components need an island, where the
   universal renderer lives.
-- **No native-only packages.** `@solid-native/router/solid`, worklet animation and gesture handling
+- **No native-only packages.** `@solidnative/router/solid`, worklet animation and gesture handling
   have no web build; see [What does not carry over](/packages/web/limits).
 - **One component per island.** Nest freely inside, but the island's props are the component's, so
   wrap several in a small component to share a region.
@@ -128,7 +128,7 @@ Each island is as tall as its content by default: the reset gives the root `heig
 resolves against the containing box - full screen on native, an auto-height `<div>` here.
 
 The reset is a `<style>` in `@layer base`; pass `injectReset: false` if your bundler already
-imports `@solid-native/web/reset.css`. It targets the `[data-rn]` attribute every node carries, not
+imports `@solidnative/web/reset.css`. It targets the `[data-rn]` attribute every node carries, not
 tag names, since `text-input` and `switch` commit as a real `<textarea>` and `<input>`. `text` is
 excluded from the flex reset because React Native's `Text` lays out as wrapping text, not a flex
 container; a `Text` needing an explicit size on the web needs `class="block"` from its caller - the

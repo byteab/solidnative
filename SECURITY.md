@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-solid-native is in alpha. Only the latest published alpha of each `@solid-native/*` package is
+solid-native is in alpha. Only the latest published alpha of each `@solidnative/*` package is
 supported; there are no older release lines to backport a fix to.
 
 ## Reporting a vulnerability

@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import { bootRuns } from './runs-harness.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(source: string, context: string, options: object): unknown;
 };
 const read = (file: string) => readFileSync(new URL(`../src/app/${file}`, import.meta.url), 'utf8');

@@ -1,6 +1,6 @@
 name: Triage
 
-# Labels a new issue from what its form says: a `pkg:` label for every @solid-native/* package it
+# Labels a new issue from what its form says: a `pkg:` label for every @solidnative/* package it
 # names, and a `platform:` label when the bug report picks a single platform.
 on:
   issues:
@@ -23,7 +23,7 @@ jobs:
         run: |
           labels=$(gh label list --repo "$REPO" --limit 200 --json name --jq '.[].name')
           add=()
-          for name in $(grep -oE '@solid-native/[a-z-]+' <<< "$BODY" | sort -u | cut -d/ -f2); do
+          for name in $(grep -oE '@solidnative/[a-z-]+' <<< "$BODY" | sort -u | cut -d/ -f2); do
             grep -qx "pkg: $name" <<< "$labels" && add+=("pkg: $name")
           done
           platform=$(awk '/^### Platform/{getline; getline; print; exit}' <<< "$BODY")

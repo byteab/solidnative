@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot, createRenderEffect } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { registerPlatformComponents, type FabricNode } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { registerPlatformComponents, type FabricNode } from '@solidnative/fabric';
 import { createForm, bindFormField } from '../src/solid/forms.ts';
 import {
   formRequired,

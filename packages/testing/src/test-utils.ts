@@ -2,8 +2,8 @@
  * Fake `global.nativeFabricUIManager`. Records every host call so tests can assert on
  * the committed tree without a simulator. This is what lets the whole seam be tested in Node.
  */
-import type { FabricNode, FabricNodeSet, FabricUIManager } from '@solid-native/fabric';
-import type { NativeClock } from '@solid-native/platform/solid';
+import type { FabricNode, FabricNodeSet, FabricUIManager } from '@solidnative/fabric';
+import type { NativeClock } from '@solidnative/platform/solid';
 
 export interface FakeFabricNode {
   handle: number;

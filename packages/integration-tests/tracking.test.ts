@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { Tracking, type NativeTracking } from '@solid-native/expo/tracking';
+import { Tracking, type NativeTracking } from '@solidnative/expo/tracking';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

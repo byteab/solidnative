@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal, untrack } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import type { EngineNode } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import type { EngineNode } from '@solidnative/fabric';
 import { View } from '../src/solid/primitive.ts';
 import {
   AnimatedStyle,

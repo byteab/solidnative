@@ -10,7 +10,7 @@ import {
   DocumentPicker,
   type NativeDocumentPicker,
   type PickedDocument,
-} from '@solid-native/expo/document-picker';
+} from '@solidnative/expo/document-picker';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

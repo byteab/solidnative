@@ -5,7 +5,7 @@ import {
   dialogSource,
   type NativeDialogs,
   type ReactNative,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { scope, service } from './g7-device-utils.ts';
 
 function recorder(platform = 'ios') {

@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/metro",
+  "name": "@solidnative/metro",
   "version": "0.1.1",
   "description": "Metro config preset and transformer for solid-native on Solid: Solid's native JSX transform, build-time CSS compiler, icon inlining and clean reload.",
   "keywords": [

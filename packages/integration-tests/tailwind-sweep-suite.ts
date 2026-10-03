@@ -13,15 +13,15 @@
  * and does nothing, with nothing to say so. What is refused, and why, is kept as a snapshot, so
  * a change that refuses something new, or stops refusing something, is a diff to read:
  *
- *   TAILWIND_SWEEP_UPDATE=1 node --import @solid-native/testing/register --test tailwind-sweep.test.ts
+ *   TAILWIND_SWEEP_UPDATE=1 node --import @solidnative/testing/register --test tailwind-sweep.test.ts
  */
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { after, before, describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { Engine, StyleResolver, type StyleSheet, type StyleTarget } from '@solid-native/fabric';
-import { createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { Engine, StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
+import { createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
 import { committedProps } from './tailwind-cli.ts';
 import { compare, isDuplicate, ours, sameComposedTransform } from './computed-style.ts';
 import { layOut, MEASURED, SCENE, type Box } from './layout.ts';
@@ -37,10 +37,10 @@ import {
 } from './fixtures/tailwind-sweep.ts';
 
 const require = createRequire(import.meta.url);
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(css: string, context: string, options: object): StyleSheet;
 };
 
@@ -824,7 +824,7 @@ function sweepSuite(config: SweepConfig) {
 
   it('lays every case out where the web host does', () => {
     // `layout.ts`'s scene, laid out by Yoga as React Native configures it, against Chrome with
-    // `@solid-native/web`'s reset: the promise that one class string lays out alike on both hosts.
+    // `@solidnative/web`'s reset: the promise that one class string lays out alike on both hosts.
     const oracle = JSON.parse(readFileSync(ORACLE, 'utf8')) as Record<string, unknown>;
     const layout = oracle['layout'] as {
       viewport: Recorded['viewport'];
@@ -878,7 +878,7 @@ function sweepSuite(config: SweepConfig) {
     // What an app loads is the module `withTailwind` writes, not this test's own compile: a value
     // that does not survive being written out as a module and read back never reaches a device.
     // Compiled afresh, since the engine keeps notes on the rules of a sheet it has matched.
-    const { compileSheetModule } = require('@solid-native/tailwind/config.cjs') as {
+    const { compileSheetModule } = require('@solidnative/tailwind/config.cjs') as {
       compileSheetModule(css: string): string;
     };
     const { css } = await config.sweep();

@@ -1,5 +1,5 @@
 import { createSignal, getOwner, onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 
 export function sourcedService<T, S>(name: string, source: () => S, create: (source: S) => T) {
   const SOURCE = createServiceToken(`${name}.source`, source);

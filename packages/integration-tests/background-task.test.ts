@@ -14,7 +14,7 @@ import {
   BackgroundTaskResult,
   BackgroundTaskStatus,
   type NativeBackgroundTask,
-} from '@solid-native/expo/background-task';
+} from '@solidnative/expo/background-task';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

@@ -24,15 +24,15 @@ import {
   DeviceMotion,
   Barometer,
   LightSensor,
-} from '@solid-native/expo/solid/sensors';
+} from '@solidnative/expo/solid/sensors';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Accelerometer } from '@solid-native/expo/solid/sensors';
+import { Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Accelerometer } from '@solidnative/expo/solid/sensors';
 
 export function ShakeDetector() {
   const motion = useService(Accelerometer);
@@ -81,6 +81,6 @@ test provides a `NativeSensor` fake with `provideService(Accelerometer.SOURCE, (
 
 ## Reference
 
-`Sensor` and the six sensor tokens are exported from `@solid-native/expo/solid/sensors`.
+`Sensor` and the six sensor tokens are exported from `@solidnative/expo/solid/sensors`.
 
 <!-- api: Sensor -->

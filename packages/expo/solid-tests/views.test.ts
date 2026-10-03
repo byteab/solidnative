@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { registerHooks } from 'node:module';
 import { after, afterEach, test } from 'node:test';
-import { Engine } from '@solid-native/fabric';
+import { Engine } from '@solidnative/fabric';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 
 // Import the real public entry. A wrapper or optional module import is a startup regression.
@@ -14,7 +14,7 @@ const imports = registerHooks({
 });
 after(() => imports.deregister());
 const { registerExpoViews, registerExpoUiViews, registerExpoMap, registerNativeViews } =
-  await import('@solid-native/expo/views');
+  await import('@solidnative/expo/views');
 
 const host = globalThis as { expo?: { __expo_app_identifier__?: string } };
 const original = host.expo;

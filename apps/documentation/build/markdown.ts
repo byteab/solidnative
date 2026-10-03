@@ -49,7 +49,7 @@ export interface DocHeading {
  * re-split segments the first pass had already cut.
  *
  * An API reference is a class name, optionally qualified by its package where two of them share a
- * name - `@solid-native/components#Switch`. See `build/api.ts`.
+ * name - `@solidnative/components#Switch`. See `build/api.ts`.
  */
 const BLOCK_MARKER = /^[ \t]*<!--\s*(example|api):\s*([@a-zA-Z0-9/#-]+)\s*-->[ \t]*$/gm;
 

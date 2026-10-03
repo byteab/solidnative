@@ -6,7 +6,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { Gesture } from 'react-native-gesture-handler';
-import { cleanup, gestureOf, render } from '@solid-native/testing';
+import { cleanup, gestureOf, render } from '@solidnative/testing';
 import { GestureHost } from './ui-gesture-fixture.tsx';
 
 afterEach(cleanup);

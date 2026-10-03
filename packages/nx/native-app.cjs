@@ -14,10 +14,10 @@
  * - `tsconfig.json` also extends the workspace's `tsconfig.base.json` when there is one, which is
  *   where those aliases live, and puts back the Expo settings the workspace's base overrides.
  * - When there is a workspace base, the test command imports a `test-register.mjs` of the app's
- *   own, which loads the template's `@solid-native/testing/register` and also resolves those aliases,
+ *   own, which loads the template's `@solidnative/testing/register` and also resolves those aliases,
  *   since Node's test runner does not read tsconfig either.
  *
- * The `@solid-native/*` packages are pinned to this package's own version, because every one of them
+ * The `@solidnative/*` packages are pinned to this package's own version, because every one of them
  * is released in lockstep with it.
  */
 const { readFileSync } = require('node:fs');
@@ -27,11 +27,11 @@ const semver = require('semver');
 const { version } = require('./package.json');
 
 const FRAMEWORK = [
-  '@solid-native/components',
-  '@solid-native/device',
-  '@solid-native/fabric',
-  '@solid-native/metro',
-  '@solid-native/platform',
+  '@solidnative/components',
+  '@solidnative/device',
+  '@solidnative/fabric',
+  '@solidnative/metro',
+  '@solidnative/platform',
 ];
 
 /** @type {Record<string, string>} */
@@ -61,7 +61,7 @@ const devDependencies = {
   // React Native's Babel peer would otherwise take the newest copy there is.
   '@babel/core': '^7.29.7',
   // The template's test: render, screen and userEvent over a fake Fabric, and the compile hook.
-  '@solid-native/testing': version,
+  '@solidnative/testing': version,
   // The test's `node:test` and `node:assert`, for the typecheck.
   '@types/node': '^26.6.3',
   '@types/react': '~19.2.2',
@@ -71,7 +71,7 @@ const devDependencies = {
 /** The template's commands, which the project's targets run. */
 const COMMANDS = {
   typecheck: 'tsc -p tsconfig.json --noEmit',
-  test: 'node --import @solid-native/testing/register --test "src/**/*.test.ts"',
+  test: 'node --import @solidnative/testing/register --test "src/**/*.test.ts"',
 };
 
 /** The template's files, copied verbatim into the new app. */
@@ -129,7 +129,7 @@ function appJson(name) {
 
 const METRO_CONFIG = `const { withNxMetro } = require('@nx/expo');
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
 
 // withNxMetro resolves the workspace's libraries, through its tsconfig path aliases or its package
 // manager's links, and watches them. withSolidNative registers the transformer that compiles
@@ -149,7 +149,7 @@ function tsconfig(workspaceBase, conditions = []) {
     strict: true,
     allowImportingTsExtensions: true,
     jsx: 'preserve',
-    jsxImportSource: '@solid-native/platform/solid',
+    jsxImportSource: '@solidnative/platform/solid',
     types: ['node'],
   };
   if (!workspaceBase) {
@@ -182,7 +182,7 @@ function tsconfig(workspaceBase, conditions = []) {
 
 /**
  * The app's own `test-register.mjs` when there is a workspace base: the template's compile hook,
- * `@solid-native/testing/register`, and a resolve hook for the workspace's tsconfig path aliases, so a
+ * `@solidnative/testing/register`, and a resolve hook for the workspace's tsconfig path aliases, so a
  * test can import a library the way Metro and tsc do. Without a base there are no aliases, the app
  * runs the template's command as it is, and there is no file to write.
  *
@@ -194,7 +194,7 @@ function testRegister(workspaceBase) {
   return `// The template's compile hook for Node's test runner, and the workspace's tsconfig path aliases,
 // which Node does not read. Registered after it, the alias hook resolves first. The first target of
 // each alias wins.
-import '@solid-native/testing/register';
+import '@solidnative/testing/register';
 import { readFileSync } from 'node:fs';
 import { registerHooks } from 'node:module';
 
@@ -230,7 +230,7 @@ registerHooks({
  */
 function testCommand(workspaceBase) {
   return workspaceBase
-    ? COMMANDS.test.replace('@solid-native/testing/register', './test-register.mjs')
+    ? COMMANDS.test.replace('@solidnative/testing/register', './test-register.mjs')
     : COMMANDS.test;
 }
 
@@ -276,7 +276,7 @@ function conflicts(manifest) {
   for (const [name, installed] of Object.entries({ ...dependencies, ...devDependencies })) {
     const range = existing[name];
     const wanted = accepted[name] ?? installed;
-    if (!range || name.startsWith('@solid-native/')) continue;
+    if (!range || name.startsWith('@solidnative/')) continue;
     if (semver.validRange(range) && !semver.intersects(range, wanted)) {
       problems.push(
         `${name} is ${range} here, and solid-native needs ${wanted}. ` +

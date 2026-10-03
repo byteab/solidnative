@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components';
-import { NativeHeader, useNavigation, useRoute } from '@solid-native/router';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components';
+import { NativeHeader, useNavigation, useRoute } from '@solidnative/router';
 
 /** A pushed screen that reads its `id` route param. */
 export function Detail() {

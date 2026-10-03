@@ -298,7 +298,7 @@ test("the learner's code runs in an opaque origin, away from the site's cookies 
   await write(
     page,
     [
-      "import { Text, View } from '@solid-native/components/solid';",
+      "import { Text, View } from '@solidnative/components/solid';",
       '',
       'function attempt(read: () => unknown): string {',
       '  try {',

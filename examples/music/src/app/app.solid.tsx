@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   ChevronDown,
   Pause,
@@ -9,21 +9,21 @@ import {
   SkipBack,
   SkipForward,
 } from 'lucide-static';
-import { SafeAreaProvider } from '@solid-native/components/solid';
+import { SafeAreaProvider } from '@solidnative/components/solid';
 import {
   DeepLinks,
   HardwareBack,
   ServiceScope,
   useService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import { IconProvider } from '@solid-native/icons/solid';
+} from '@solidnative/device/solid';
+import { IconProvider } from '@solidnative/icons/solid';
 import {
   NativeStackOutlet,
   bindNativeNavigation,
   createNativeNavigation,
   type NativeNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { routes } from './app.routes.solid.ts';
 
 /**

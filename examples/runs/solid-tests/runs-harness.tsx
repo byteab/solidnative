@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import assert from 'node:assert/strict';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import {
   Accessibility,
   ColorScheme,
@@ -16,13 +16,13 @@ import {
   type Scheme,
   type ServiceBinding,
   type ShareRequest,
-} from '@solid-native/device/solid';
-import { FileSystem, type NativeFile } from '@solid-native/expo/solid/file-system';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import { Location } from '@solid-native/expo/solid/location';
-import { MapView, registerExpoMap } from '@solid-native/expo/solid/map-view';
-import { Storage } from '@solid-native/expo/solid/store';
-import type { NativeNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { FileSystem, type NativeFile } from '@solidnative/expo/solid/file-system';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import { Location } from '@solidnative/expo/solid/location';
+import { MapView, registerExpoMap } from '@solidnative/expo/solid/map-view';
+import { Storage } from '@solidnative/expo/solid/store';
+import type { NativeNavigation } from '@solidnative/router/solid';
 import {
   createClock,
   createFakeFabric,

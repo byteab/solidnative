@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Engine } from '@solid-native/fabric';
-import { ScrollView, Text, VirtualList } from '@solid-native/components/solid';
-import { useHostEngine, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Engine } from '@solidnative/fabric';
+import { ScrollView, Text, VirtualList } from '@solidnative/components/solid';
+import { useHostEngine, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './list.native.css';
 

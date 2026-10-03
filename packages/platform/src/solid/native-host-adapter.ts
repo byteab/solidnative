@@ -1,4 +1,4 @@
-import type { EngineNode, HostNode } from '@solid-native/fabric';
+import type { EngineNode, HostNode } from '@solidnative/fabric';
 import { currentRoot, NodeLifetime, onNativeCleanup, type RootContext } from './context.ts';
 import { useHostAdapter, type HostAdapter } from './host-context.ts';
 import { createElementIn, renderer, spread } from './renderer.ts';

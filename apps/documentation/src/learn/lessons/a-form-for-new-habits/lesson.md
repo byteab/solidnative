@@ -2,7 +2,7 @@
 title: A form for new habits
 ---
 
-The form comes from `@solid-native/components/solid`: `createForm` holds the values and runs the
+The form comes from `@solidnative/components/solid`: `createForm` holds the values and runs the
 rules, and `bindFormField` connects a field of it to a control. What is new is the control.
 `<TextInput>` commits as the platform's own text field, a `UITextField` on iOS and an `EditText` on
 Android, so the keyboard, the cursor, autocorrect and the return key all belong to the phone. The
@@ -14,8 +14,8 @@ Add a file, `new-habit.tsx`, with the + after the file tabs. Give it a `NewHabit
 form over one name, and bind a `<TextInput>` to it:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { bindFormField, createForm, TextInput, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { bindFormField, createForm, TextInput, View } from '@solidnative/components/solid';
 
 export function NewHabit() {
   const form = createForm({ name: '' });

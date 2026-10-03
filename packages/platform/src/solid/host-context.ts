@@ -1,5 +1,5 @@
 import { createComponent, createContext, getOwner, useContext } from 'solid-js';
-import type { HostEngine, HostNode } from '@solid-native/fabric';
+import type { HostEngine, HostNode } from '@solidnative/fabric';
 
 /** Shared JSX values; native handles stay behind the host adapter. */
 export type HostChild =

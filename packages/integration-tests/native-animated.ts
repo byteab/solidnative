@@ -1,5 +1,5 @@
 /** A stand-in for React Native's animated module that records what it is asked to build. */
-import type { NativeAnimated } from '@solid-native/fabric';
+import type { NativeAnimated } from '@solidnative/fabric';
 
 export function recorder() {
   let next = 1;

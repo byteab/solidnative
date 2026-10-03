@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal, onCleanup, untrack } from 'solid-js';
-import { createNativeRoot, type HostChild } from '@solid-native/platform/solid';
+import { createNativeRoot, type HostChild } from '@solidnative/platform/solid';
 import {
   registerPlatformComponents,
   type FabricNode,
   type ScrollRange,
   type HostNode,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import { VirtualList, type VirtualListRef } from '../src/solid/virtual-list.ts';
 import { SectionList, type SectionListRef } from '../src/solid/section-list.ts';
 import { ScrollView } from '../src/solid/scroll-view.ts';

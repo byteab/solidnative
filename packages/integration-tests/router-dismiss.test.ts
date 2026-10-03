@@ -4,8 +4,8 @@
  */
 import assert from 'node:assert/strict';
 import { it } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createClock, createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createClock, createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
 import { createDismissFixture } from './ui-dismiss-fixture.tsx';
 
 const flatten = (nodes: readonly FakeFabricNode[]): FakeFabricNode[] =>

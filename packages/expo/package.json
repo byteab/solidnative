@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/expo",
+  "name": "@solidnative/expo",
   "version": "0.1.1",
   "description": "Expo modules as Solid services for solid-native, plus registerExpoView for a module's native view.",
   "keywords": [
@@ -413,10 +413,10 @@
     }
   },
   "dependencies": {
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/device": "workspace:*",
-    "@solid-native/platform": "workspace:*",
-    "@solid-native/components": "workspace:*"
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/device": "workspace:*",
+    "@solidnative/platform": "workspace:*",
+    "@solidnative/components": "workspace:*"
   },
   "nx": {
     "tags": [

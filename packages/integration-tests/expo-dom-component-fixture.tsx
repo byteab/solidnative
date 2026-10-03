@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { provideService, withServiceScope } from '@solid-native/device/solid';
-import { DomComponent } from '@solid-native/expo/dom-component';
+import { provideService, withServiceScope } from '@solidnative/device/solid';
+import { DomComponent } from '@solidnative/expo/dom-component';
 
 type DomSource = ReturnType<(typeof DomComponent.SOURCE)['create']>;
 

@@ -6,7 +6,7 @@
  * Each block is written out as its own file under `.docs-samples/`, exactly as it appears in the
  * docs (no wrapping), then compiled together in one TypeScript program so resolution sees the
  * same `node_modules` a real app would, under an app's Solid settings: JSX preserved and typed by
- * `@solid-native/platform/solid`, bundler resolution. Browser samples (`DocSample.dom`) compile in a
+ * `@solidnative/platform/solid`, bundler resolution. Browser samples (`DocSample.dom`) compile in a
  * second program with the DOM lib; a DOM component's own `@jsxImportSource solid-js` pragma picks
  * Solid's DOM JSX types.
  *
@@ -106,7 +106,7 @@ function typecheck(files: string[], dom: boolean): ts.Diagnostic[] {
     module: ts.ModuleKind.Preserve,
     moduleResolution: ts.ModuleResolutionKind.Bundler,
     jsx: ts.JsxEmit.Preserve,
-    jsxImportSource: '@solid-native/platform/solid',
+    jsxImportSource: '@solidnative/platform/solid',
     strict: true,
     noEmit: true,
     skipLibCheck: true,

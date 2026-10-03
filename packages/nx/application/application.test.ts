@@ -1,5 +1,5 @@
 /**
- * `nx g @solid-native/nx:app`, in the two shapes an Nx workspace comes in.
+ * `nx g @solidnative/nx:app`, in the two shapes an Nx workspace comes in.
  *
  * Integrated: one root `package.json` and tsconfig path aliases, which is what the `@nx/angular`
  * and `@nx/react` presets make. Package-manager workspaces: each project its own package, which is Nx's default
@@ -268,7 +268,7 @@ describe('in a pnpm workspace', () => {
     ]);
     assert.equal(
       readProjectConfiguration(tree, '@proj/mobile').targets?.test?.options.command,
-      'node --conditions=@proj/source --import @solid-native/testing/register --test "src/**/*.test.ts"',
+      'node --conditions=@proj/source --import @solidnative/testing/register --test "src/**/*.test.ts"',
     );
   });
 });

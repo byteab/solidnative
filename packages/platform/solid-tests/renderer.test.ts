@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { batch, createSignal, mapArray, onCleanup, onMount } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import type { EngineNode, ResponderHandlers } from '@solid-native/fabric';
+import type { EngineNode, ResponderHandlers } from '@solidnative/fabric';
 import {
   createElement,
   createNativeRoot,

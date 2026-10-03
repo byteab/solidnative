@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
 
 /** A real lucide icon, verbatim as `lucide-static` ships it: multi-line markup, `currentColor`. */
 export const Flame = `

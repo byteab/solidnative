@@ -7,7 +7,7 @@
  *
  * Pure registration data: this native path imports no framework or upstream React component.
  */
-import { registerHoist, registerViewName } from '@solid-native/fabric';
+import { registerHoist, registerViewName } from '@solidnative/fabric';
 
 /**
  * Element name -> codegen'd Fabric component name, and the base style that component's React

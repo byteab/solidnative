@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, onCleanup } from 'solid-js';
 import { Gesture, type GestureType } from 'react-native-gesture-handler';
 import { cancelAnimation, withSpring, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { NativeGesture } from '@solid-native/components/solid/gestures';
-import { WorkletStyle, sharedValue, workletStyle } from '@solid-native/components/solid/reanimated';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { NativeGesture } from '@solidnative/components/solid/gestures';
+import { WorkletStyle, sharedValue, workletStyle } from '@solidnative/components/solid/reanimated';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import type { Mail } from './inbox-model.solid.ts';
 import sheet from './inbox-row.native.css';
 const REVEAL = 160,

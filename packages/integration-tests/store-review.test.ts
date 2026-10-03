@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { StoreReview, type NativeStoreReview } from '@solid-native/expo/store-review';
+import { StoreReview, type NativeStoreReview } from '@solidnative/expo/store-review';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

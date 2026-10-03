@@ -17,7 +17,7 @@ import { mountSolid } from './css-solid-harness.ts';
 import { mixHost } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 describe('color-mix with a token', () => {
   let mounted: ReturnType<typeof mountSolid> | undefined;

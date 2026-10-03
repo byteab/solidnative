@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/fabric",
+  "name": "@solidnative/fabric",
   "version": "0.1.1",
   "description": "solid-native's engine: a retained view tree committed to React Native's Fabric, with events, the responder system and a CSS cascade.",
   "keywords": [

@@ -1,4 +1,4 @@
-import type { useNavigation } from '@solid-native/router/solid';
+import type { useNavigation } from '@solidnative/router/solid';
 
 type Navigation = ReturnType<typeof useNavigation>;
 

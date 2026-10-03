@@ -16,15 +16,15 @@ npx expo install expo-application expo-device
 ```
 
 ```ts
-import { AppInfo } from '@solid-native/expo/solid/app-info';
+import { AppInfo } from '@solidnative/expo/solid/app-info';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { AppInfo } from '@solid-native/expo/solid/app-info';
+import { Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { AppInfo } from '@solidnative/expo/solid/app-info';
 
 export function About() {
   const info = useService(AppInfo);
@@ -68,6 +68,6 @@ The modules are independent: either one alone fills in its own fields. A test su
 
 ## Reference
 
-`AppInfo` is exported from `@solid-native/expo/solid/app-info`.
+`AppInfo` is exported from `@solidnative/expo/solid/app-info`.
 
 <!-- api: AppInfo -->

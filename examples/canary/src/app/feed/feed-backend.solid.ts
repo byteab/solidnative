@@ -1,4 +1,4 @@
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 
 export type PostKind = 'text' | 'photo' | 'gallery';
 

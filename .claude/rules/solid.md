@@ -6,7 +6,7 @@ General Solid knowledge applies to signals, stores and components; its DOM parts
 (`solid-js/web`, `render()`, `<Portal>`, `onClick`, `<div>`) do not.
 
 - **App code** (examples/, template/, docs samples): follow `template/AGENTS.md`. It covers
-  `.solid.tsx` / the `@jsxImportSource @solid-native/platform/solid` pragma, native components,
+  `.solid.tsx` / the `@jsxImportSource @solidnative/platform/solid` pragma, native components,
   `<Text>`-only text, native event props, `withNativeStyles` + `.native.css`, `VirtualList`, the
   router and tests.
 - **Toolkit code** (packages/): the rules in `ARCHITECTURE.md` are load-bearing; read it before
@@ -19,14 +19,14 @@ General Solid knowledge applies to signals, stores and components; its DOM parts
 - Derive with `createMemo`; keep effects for side effects. Clean up with `onCleanup`.
 - Keyed lists: `<For>`; index-stable lists: `<Index>`. Immutable list replacement through a store
   uses `reconcile(..., { key })`.
-- Control flow comes from `@solid-native/platform/solid`, never `solid-js/web`.
-- Shared services: `useService`/`ServiceScope` from `@solid-native/device`, not module singletons
+- Control flow comes from `@solidnative/platform/solid`, never `solid-js/web`.
+- Shared services: `useService`/`ServiceScope` from `@solidnative/device`, not module singletons
   holding reactive state.
 - Prefer `unknown` over `any`; let inference handle obvious types.
 
 ## Toolkit layering
 
-- `@solid-native/fabric` (the engine) imports no UI framework and no React Native; the host
+- `@solidnative/fabric` (the engine) imports no UI framework and no React Native; the host
   injects what it needs. Lint through `pnpm run lint` (Nx), which enforces this; bare `eslint`
   cannot.
 - No React in `packages/*/src`: Metro treats the toolkit's own sources as Solid (React Refresh

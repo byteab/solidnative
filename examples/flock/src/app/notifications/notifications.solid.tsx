@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { Dialogs, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { Dialogs, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   UiButton,
   UiHStack,
@@ -14,11 +14,11 @@ import {
   UiText,
   UiVStack,
   type UiModifier,
-} from '@solid-native/expo/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { nativePlatform } from '@solid-native/fabric';
-import { For, Show } from '@solid-native/platform/solid';
-import { NativeHeader, NativeHeaderItem, useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/expo/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { nativePlatform } from '@solidnative/fabric';
+import { For, Show } from '@solidnative/platform/solid';
+import { NativeHeader, NativeHeaderItem, useNavigation } from '@solidnative/router/solid';
 import {
   accent,
   activity,

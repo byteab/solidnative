@@ -11,8 +11,8 @@
  * This file is not `.tsx`, so the stand-ins are written with `h`, which is what JSX compiles to.
  */
 import { createComponent, createSignal, type JSX } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
 import { expect } from 'vitest';
 import { check, type CheckContext, type TestOutcome } from '../../check.ts';
 import { NewHabit } from './solution/new-habit.tsx';

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine, markComponentHost, type EngineNode, type StyleSheet } from '@solid-native/fabric';
+import { Engine, markComponentHost, type EngineNode, type StyleSheet } from '@solidnative/fabric';
 import { createFakeFabric, type FakeNode } from './fake-fabric.ts';
 
 const flatten = (nodes: readonly FakeNode[]): FakeNode[] =>

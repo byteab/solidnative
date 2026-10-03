@@ -9,7 +9,7 @@ Expo modules expose permissions as `getXPermissionsAsync`, `requestXPermissionsA
 `useXPermissions()` hook combining them with React state. `Permission` rebuilds that hook as Solid
 accessors for any module's pair, so the module stays your app's own dependency.
 [`ImagePicker`](/packages/expo/image-picker), [`Location`](/packages/expo/location) and
-[`Camera`](/packages/expo/camera) are built on it. It lives on the bare `@solid-native/expo/solid`
+[`Camera`](/packages/expo/camera) are built on it. It lives on the bare `@solidnative/expo/solid`
 import.
 
 ## Install
@@ -17,7 +17,7 @@ import.
 Nothing extra: use it with whichever module's permission functions you call.
 
 ```ts
-import { Permission } from '@solid-native/expo/solid';
+import { Permission } from '@solidnative/expo/solid';
 ```
 
 ## The smallest thing that works
@@ -25,8 +25,8 @@ import { Permission } from '@solid-native/expo/solid';
 ```tsx
 import * as Camera from 'expo-camera';
 import { createSignal } from 'solid-js';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Permission } from '@solid-native/expo/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Permission } from '@solidnative/expo/solid';
 
 export function Scanner() {
   const camera = Permission.of(

@@ -1,11 +1,11 @@
 /**
  * Tailwind in the phone: Tailwind's own compiler, run in the page over the class names in the
- * learner's files, with `@solid-native/tailwind`'s native preset as its stylesheet - the input an
+ * learner's files, with `@solidnative/tailwind`'s native preset as its stylesheet - the input an
  * app's `styles.css` gives it:
  *
  *     @import "tailwindcss/theme.css";
  *     @import "tailwindcss/utilities.css";
- *     @import "@solid-native/tailwind/native.css";
+ *     @import "@solidnative/tailwind/native.css";
  *
  * `native.css`, not `web.css`: this is a phone, so `hover:` is the pressed state, as on a device.
  *
@@ -19,9 +19,9 @@
  * place before the app mounts and a rerun never paints unstyled for a frame. Anything that looks
  * like a class name is a candidate; Tailwind ignores the ones that are not.
  */
-import native from '@solid-native/tailwind/native.css?raw';
-import shared from '@solid-native/tailwind/shared.css?raw';
-import reset from '@solid-native/web/reset.css?raw';
+import native from '@solidnative/tailwind/native.css?raw';
+import shared from '@solidnative/tailwind/shared.css?raw';
+import reset from '@solidnative/web/reset.css?raw';
 import { compile } from 'tailwindcss';
 import theme from 'tailwindcss/theme.css?raw';
 

@@ -22,7 +22,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const require = createRequire(import.meta.url);
-const cacheFile = require.resolve('@solid-native/metro/solid-cache.cjs');
+const cacheFile = require.resolve('@solidnative/metro/solid-cache.cjs');
 const cacheSource = readFileSync(cacheFile, 'utf8');
 const { solidCompilerFingerprint } = require(cacheFile) as { solidCompilerFingerprint(): string };
 
@@ -107,7 +107,7 @@ describe('the compiler fingerprint', () => {
     const real = solidCompilerFingerprint();
     assert.match(real, /^[0-9a-f]{20}$/);
     assert.equal(fingerprintOf(path.dirname(cacheFile)), real);
-    const { withSolidNative } = require('@solid-native/metro') as {
+    const { withSolidNative } = require('@solidnative/metro') as {
       withSolidNative(config: object, options: object): { transformer: { cacheVersion: string } };
     };
     const config = withSolidNative({}, { projectRoot: import.meta.dirname });

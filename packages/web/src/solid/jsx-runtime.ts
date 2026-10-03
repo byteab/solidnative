@@ -1,4 +1,4 @@
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import type { HostChild } from './context.ts';
 export namespace JSX {
   export type Element = HostChild;

@@ -16,7 +16,7 @@ npx expo install expo-sqlite
 ```
 
 ```ts
-import { database } from '@solid-native/expo/solid/database';
+import { database } from '@solidnative/expo/solid/database';
 ```
 
 ## The smallest useful example
@@ -25,7 +25,7 @@ It is a value rather than a service, since a schema belongs to a feature and an 
 one. Created at a module's top level, outside any Solid owner, it lives as long as the app:
 
 ```ts
-import { database } from '@solid-native/expo/solid/database';
+import { database } from '@solidnative/expo/solid/database';
 
 export const notes = database('notes.db', [
   { to: 1, up: (db) => db.execAsync('CREATE TABLE note (id INTEGER PRIMARY KEY, body TEXT)') },
@@ -34,7 +34,7 @@ export const notes = database('notes.db', [
 
 ```tsx
 import { createSignal, onMount } from 'solid-js';
-import { Text } from '@solid-native/components/solid';
+import { Text } from '@solidnative/components/solid';
 import { notes } from './notes-db.ts';
 
 export function NoteList() {

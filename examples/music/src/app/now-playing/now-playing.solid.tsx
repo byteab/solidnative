@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Image,
   Pressable,
@@ -6,12 +6,12 @@ import {
   SafeAreaView,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { UiHost, UiSlider } from '@solid-native/expo/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { Show } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { UiHost, UiSlider } from '@solidnative/expo/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { Show } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import { album, formatDuration } from '../catalogue/catalogue.solid.ts';
 import { Playback } from '../player/playback.solid.ts';
 

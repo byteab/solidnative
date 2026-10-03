@@ -7,10 +7,10 @@
  * `?source`, which `build/source.ts` answers with the file read off disk and highlighted - so the
  * code on the page is the code that ran, not a transcription of it that can quietly go stale.
  *
- * Lazy on purpose. Each example imports its own slice of `@solid-native/components`; loading
+ * Lazy on purpose. Each example imports its own slice of `@solidnative/components`; loading
  * every example for whichever page a reader opened would mean the whole set on every page.
  */
-import type { BrowserComponent } from '@solid-native/web/solid';
+import type { BrowserComponent } from '@solidnative/web/solid';
 import type { LoadedExample } from './example.tsx';
 
 interface ExampleModule {

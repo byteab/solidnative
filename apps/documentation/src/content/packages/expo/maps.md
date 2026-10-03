@@ -16,7 +16,7 @@ npx expo install expo-maps
 ```
 
 ```ts
-import { MapView, registerExpoMap } from '@solid-native/expo/solid/map-view';
+import { MapView, registerExpoMap } from '@solidnative/expo/solid/map-view';
 ```
 
 `expo-maps` needs a native rebuild (`npx expo run:ios`, `npx expo run:android`, or a new EAS
@@ -65,13 +65,13 @@ user's location needs neither.
 ```tsx
 import { createSignal } from 'solid-js';
 import { Platform } from 'react-native';
-import { Pressable, Text } from '@solid-native/components/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
 import {
   MapView,
   registerExpoMap,
   type MapMarker,
   type MapViewRef,
-} from '@solid-native/expo/solid/map-view';
+} from '@solidnative/expo/solid/map-view';
 
 registerExpoMap(Platform.OS as 'ios' | 'android'); // once, before the app mounts
 
@@ -141,7 +141,7 @@ A growing route is a `createMemo` over the fixes; the map redraws the line on ea
 
 ```tsx
 import { createMemo, createSignal } from 'solid-js';
-import { MapView, type MapCoordinates, type MapPolyline } from '@solid-native/expo/solid/map-view';
+import { MapView, type MapCoordinates, type MapPolyline } from '@solidnative/expo/solid/map-view';
 
 export function Route() {
   const [fixes, setFixes] = createSignal<MapCoordinates[]>([]);
@@ -174,7 +174,7 @@ Calls made before the map is on screen are held and sent in order once it is, so
 `ref` callback or an opening effect is safe. The first camera move marks the map present;
 **`ready`** is an accessor of that. A held call resolves to `false` if the map is disposed first.
 While an optional **`foreground`** accessor prop reads `false` (pass `SCREEN_IN_FRONT` from
-`@solid-native/device/solid`), calls resolve to `false` instead of reaching an off-screen map.
+`@solidnative/device/solid`), calls resolve to `false` instead of reaching an off-screen map.
 
 These are view functions `expo-maps` defines, addressed by the view's committed tag, which
 `MapView` supplies. In a test, `provideService(MapView.SOURCE, () => fake)` inside a
@@ -203,6 +203,6 @@ These are view functions `expo-maps` defines, addressed by the view's committed 
 
 ## Reference
 
-`MapView` is exported from `@solid-native/expo/solid/map-view`.
+`MapView` is exported from `@solidnative/expo/solid/map-view`.
 
 <!-- api: MapView -->

@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import { Basket, FREE_DELIVERY, price, type Line } from './shop-model.solid.ts';
 import sheet from './basket-sheet.native.css';
 

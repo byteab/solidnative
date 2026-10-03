@@ -8,13 +8,13 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { Engine, interpolate, type StyleSheet } from '@solid-native/fabric';
-import { createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { Engine, interpolate, type StyleSheet } from '@solidnative/fabric';
+import { createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
 
 const require = createRequire(import.meta.url);
 const flatten = (n: FakeFabricNode[]): FakeFabricNode[] =>
   n.flatMap((x) => [x, ...flatten(x.children)]);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 const declarationsOf = (css: string): Record<string, unknown> =>
   compileCss(`view { ${css} }`).rules[0].declarations;

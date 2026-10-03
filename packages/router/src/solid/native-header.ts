@@ -1,7 +1,7 @@
 import { createMemo } from 'solid-js';
-import { useService, SCREEN_IN_FRONT } from '@solid-native/device/solid';
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
-import { nativePlatform, type HostNode } from '@solid-native/fabric';
+import { useService, SCREEN_IN_FRONT } from '@solidnative/device/solid';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
+import { nativePlatform, type HostNode } from '@solidnative/fabric';
 import { useNativeBarDefaults } from './native-bar-defaults.ts';
 
 /** RN Screens header configuration, frozen while its retained screen is covered. */

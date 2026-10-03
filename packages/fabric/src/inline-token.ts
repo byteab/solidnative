@@ -3,7 +3,7 @@
  * `style="--gap: 4px"`, as a token the cascade can read.
  *
  * A stylesheet's custom properties are converted when the app is built, where there is a CSS
- * parser (`@solid-native/metro/css/values.cjs`). A bound one only exists here, where there is not,
+ * parser (`@solidnative/metro/css/values.cjs`). A bound one only exists here, where there is not,
  * so this takes the shapes a binding actually holds and nothing more: a length in `px` or `%`, a
  * number, a colour as React Native writes one, and a word. Anything else is kept as a word, which
  * a use site that wants a length or a colour ignores, as it ignores an undefined token.

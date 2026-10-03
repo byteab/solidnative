@@ -12,12 +12,12 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { StyleResolver, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleTarget } from '@solidnative/fabric';
 import { mountSolid } from './css-solid-harness.ts';
 import { shadowed } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 /** Every side of a border, spelled out: what the `border` shorthand compiles to. */
 const everySide = (part: 'Width' | 'Color', value: unknown) =>
@@ -734,7 +734,7 @@ describe('unsupported CSS, through the build', () => {
     }
   }
   // A `.native.css` import, as Metro's Solid transformer compiles it. The rule sits on line 3.
-  const { transformNativeCss } = require('@solid-native/metro/solid-css.cjs') as {
+  const { transformNativeCss } = require('@solidnative/metro/solid-css.cjs') as {
     transformNativeCss(css: string, file: string, options: object): { code: string };
   };
   const build = (css: string, file: string) =>

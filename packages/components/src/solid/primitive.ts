@@ -1,6 +1,6 @@
 import { $PROXY, createMemo } from 'solid-js';
-import { nativePlatform, type HostNode } from '@solid-native/fabric';
-import { insertHostChildren, spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import { nativePlatform, type HostNode } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { createNativeRef } from './ref.ts';
 import { definedHostProps, forwardsAsIs, primitiveNode } from './host-props.ts';
 import { installPressBehavior, PRESS_KEYS } from './pressable.ts';

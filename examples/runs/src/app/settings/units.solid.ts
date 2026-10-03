@@ -1,5 +1,5 @@
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Storage } from '@solid-native/expo/solid/store';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Storage } from '@solidnative/expo/solid/store';
 import type { DistanceUnit } from '../tracking/geo.ts';
 
 /** Kilometres or miles, persisted so the choice survives a restart. */

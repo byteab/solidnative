@@ -5,7 +5,7 @@ summary: Render lucide-static icons, or any SVG string, as real native shapes wi
 
 # Icons
 
-`@solid-native/icons/solid` renders web icons as real native shapes.
+`@solidnative/icons/solid` renders web icons as real native shapes.
 [`lucide-static`](https://lucide.dev/guide/packages/lucide-static) exports each Lucide icon as an
 SVG string; `Icon` parses it into react-native-svg's native views. React Native has no `innerHTML`
 and no CSS engine to size an SVG, so this is the only way to get one on screen.
@@ -15,13 +15,13 @@ and no CSS engine to size an SVG, so this is the only way to get one on screen.
 Install `react-native-svg` and `lucide-static`, then pass the icons to an `IconProvider`:
 
 ```sh
-npm install @solid-native/icons lucide-static
+npm install @solidnative/icons lucide-static
 npx expo install react-native-svg
 ```
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Icon, IconProvider } from '@solid-native/icons/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Icon, IconProvider } from '@solidnative/icons/solid';
 import { BookOpen, GraduationCap } from 'lucide-static';
 
 export function App() {
@@ -33,7 +33,7 @@ export function App() {
 }
 ```
 
-`@solid-native/metro` replaces a named import from `lucide-static` with the strings it names at
+`@solidnative/metro` replaces a named import from `lucide-static` with the strings it names at
 build time, so only imported icons reach the bundle.
 
 Providers nest: an `Icon` looks a name up in the nearest `IconProvider`, then outer ones. `name`
@@ -82,4 +82,4 @@ drawn from their `viewBox`. It defaults to 24.
 
 ## API
 
-<!-- api: @solid-native/icons#Icon -->
+<!-- api: @solidnative/icons#Icon -->

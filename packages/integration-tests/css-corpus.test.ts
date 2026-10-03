@@ -25,7 +25,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { after, describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { StyleResolver, type StyleSheet, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
 import type { CaseNode } from './fixtures/css-oracle-cases.ts';
 import {
   CORPUS_CASES,
@@ -38,14 +38,14 @@ import {
 } from './fixtures/css-corpus.ts';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(
     source: string,
     context?: string,
     options?: { onUnsupported?: (message: string) => void },
   ): StyleSheet;
 };
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
 

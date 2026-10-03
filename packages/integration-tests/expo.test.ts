@@ -9,26 +9,26 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { provideService, useService, withServiceScope } from '@solid-native/device/solid';
+import { Engine } from '@solidnative/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { provideService, useService, withServiceScope } from '@solidnative/device/solid';
 import {
   expoViewName,
   registerExpoView,
   registerExpoViews,
   registerNativeViews,
   registerExpoUiViews,
-} from '@solid-native/expo';
+} from '@solidnative/expo';
 import { EXPO_UI_VIEWS } from '../expo/src/expo-ui.ts';
-import { Clipboard } from '@solid-native/expo/clipboard';
-import { FileSystem, type NativeFile } from '@solid-native/expo/file-system';
-import { Haptics } from '@solid-native/expo/haptics';
+import { Clipboard } from '@solidnative/expo/clipboard';
+import { FileSystem, type NativeFile } from '@solidnative/expo/file-system';
+import { Haptics } from '@solidnative/expo/haptics';
 import { disposeServices, owned, serviceWith } from './expo-service.ts';
 import {
   createFakeFabric,
   type FakeFabric,
   type FakeFabricNode as FakeNode,
-} from '@solid-native/testing';
+} from '@solidnative/testing';
 import { expoUiControlsFixture, expoUiFixture, expoUiListFixture } from './expo-ui-fixture.tsx';
 
 afterEach(disposeServices);

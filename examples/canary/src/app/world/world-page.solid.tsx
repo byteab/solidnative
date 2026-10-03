@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { Accessibility, useService } from '@solid-native/device/solid';
-import { For, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { Accessibility, useService } from '@solidnative/device/solid';
+import { For, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { LOCALES, SCRIPTS, message, samples } from './world-model.solid.ts';
 import sheet from './world-page.native.css';
 export function WorldPage() {

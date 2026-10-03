@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 /**
  * The component trees the CSS suites mount, each with its stylesheet compiled as Metro compiles a
  * `.native.css` import.
@@ -14,8 +14,8 @@ import {
   setNativeStyleHost,
   setProp,
   withNativeStyles,
-} from '@solid-native/platform/solid';
-import type { EngineNode, StyleSheet } from '@solid-native/fabric';
+} from '@solidnative/platform/solid';
+import type { EngineNode, StyleSheet } from '@solidnative/fabric';
 import {
   Pressable,
   ScrollView,
@@ -28,10 +28,10 @@ import {
   type WorkletBackend,
   type WorkletScrollSpec,
   type WorkletStyleSpec,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(css: string, file?: string, options?: object): StyleSheet;
 };
 

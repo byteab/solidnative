@@ -1,4 +1,4 @@
-# @solid-native/router
+# @solidnative/router
 
 Routing for Solid over `react-native-screens` instead of the DOM: a real native stack, tabs and
 header, not something drawn to look like one, with route config, lazy routes and deep links.
@@ -7,18 +7,18 @@ Alpha: APIs may change before 1.0.
 
 ## Install
 
-Most apps start from `npx create-expo-app@latest my-app --template @solid-native/template` and add
+Most apps start from `npx create-expo-app@latest my-app --template @solidnative/template` and add
 routing on top. Otherwise:
 
 ```sh
-npm install @solid-native/router solid-js react-native-screens
+npm install @solidnative/router solid-js react-native-screens
 ```
 
 ## Example
 
 ```tsx
-import { SafeAreaProvider } from '@solid-native/components';
-import { NativeStackOutlet, createNativeNavigation, type NativeRoute } from '@solid-native/router';
+import { SafeAreaProvider } from '@solidnative/components';
+import { NativeStackOutlet, createNativeNavigation, type NativeRoute } from '@solidnative/router';
 
 const routes: readonly NativeRoute[] = [
   { path: '', lazy: () => import('./home.tsx').then((m) => m.Home) },

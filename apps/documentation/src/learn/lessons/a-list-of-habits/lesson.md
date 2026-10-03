@@ -9,11 +9,11 @@ a phone.
 ## Draw a card for every habit
 
 Keep the habits in a signal, and draw the card for each with `<For>`, imported from
-`@solid-native/platform/solid` along with `withNativeStyles`:
+`@solidnative/platform/solid` along with `withNativeStyles`:
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
 
 interface Habit {
   readonly id: string;

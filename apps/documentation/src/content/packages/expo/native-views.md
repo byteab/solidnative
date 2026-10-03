@@ -12,7 +12,7 @@ its own docs say. A module that _renders_ reaches its Fabric component through
 props onto the shadow node, and Expo's Fabric views take an untyped prop map. What is left is the
 name, which this page covers.
 
-All of these are on `@solid-native/expo/solid`, not tied to one optional module.
+All of these are on `@solidnative/expo/solid`, not tied to one optional module.
 
 ```ts
 import {
@@ -20,7 +20,7 @@ import {
   registerExpoViews,
   registerNativeViews,
   expoViewName,
-} from '@solid-native/expo/solid';
+} from '@solidnative/expo/solid';
 ```
 
 ## The smallest thing that works
@@ -28,7 +28,7 @@ import {
 The most common views have a typed Solid component that registers its element on first render:
 
 ```tsx
-import { ExpoImage } from '@solid-native/expo/solid';
+import { ExpoImage } from '@solidnative/expo/solid';
 
 export function Cover(props: { uri: string }) {
   return (
@@ -41,7 +41,7 @@ Its props are those the native view declares, as the React component would pass 
 JavaScript resolving. For any other view, register the element by name once, before the app mounts:
 
 ```ts
-import { registerExpoViews, registerNativeViews } from '@solid-native/expo/solid';
+import { registerExpoViews, registerNativeViews } from '@solidnative/expo/solid';
 
 registerExpoViews('expo-blur');
 registerNativeViews('web-view', 'slider');
@@ -102,11 +102,11 @@ what the module's React component does first, and register their own element:
 | `AppleSignInButton`  | `apple-sign-in-button` | `buttonType` and `buttonStyle` by name. See [Sign in with Apple](/packages/expo/apple-sign-in).           |
 | `SegmentedControl`   | `segmented-control`    | `values`, `selectedIndex`, `onChange`. See below.                                                         |
 
-`AppleSignInButton` comes from `@solid-native/expo/solid/apple-sign-in`; the rest from
-`@solid-native/expo/solid`.
+`AppleSignInButton` comes from `@solidnative/expo/solid/apple-sign-in`; the rest from
+`@solidnative/expo/solid`.
 
 ```tsx
-import { ExpoGlass, ExpoSymbol } from '@solid-native/expo/solid';
+import { ExpoGlass, ExpoSymbol } from '@solidnative/expo/solid';
 
 export function Like() {
   return (
@@ -145,7 +145,7 @@ registers the element itself; pass `onChange` or nothing fires:
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { SegmentedControl } from '@solid-native/expo/solid';
+import { SegmentedControl } from '@solidnative/expo/solid';
 
 export function Units() {
   const [index, setIndex] = createSignal(0);

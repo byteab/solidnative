@@ -1,5 +1,5 @@
 import { createMemo, type Accessor } from 'solid-js';
-import { createObserved, type ObservedSource } from '@solid-native/device/solid';
+import { createObserved, type ObservedSource } from '@solidnative/device/solid';
 import { expoModule } from '../native.ts';
 import { observedFrom } from './observed.ts';
 import { sourcedService } from './owned.ts';

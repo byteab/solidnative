@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { Text, View, type FormField } from '@solid-native/components/solid';
-import { Show, withNativeStyles, type HostChild } from '@solid-native/platform/solid';
+import { Text, View, type FormField } from '@solidnative/components/solid';
+import { Show, withNativeStyles, type HostChild } from '@solidnative/platform/solid';
 import styles from './form-row.native.css';
 
 export function FormRow(props: {

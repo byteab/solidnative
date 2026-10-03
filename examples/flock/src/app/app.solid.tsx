@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { SafeAreaProvider } from '@solid-native/components/solid';
-import { DeepLinks, HardwareBack, ServiceScope, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { SafeAreaProvider } from '@solidnative/components/solid';
+import { DeepLinks, HardwareBack, ServiceScope, useService } from '@solidnative/device/solid';
 import {
   NativeBarDefaults,
   NativeStackOutlet,
   bindNativeNavigation,
   createNativeNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { routes } from './app.routes.solid.ts';
 import { accent } from './flock.solid.ts';
 

@@ -1,5 +1,5 @@
-import { onHostCleanup, useHostAdapter, useHostEngine } from '@solid-native/platform/solid';
-import type { HostNode } from '@solid-native/fabric';
+import { onHostCleanup, useHostAdapter, useHostEngine } from '@solidnative/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
 import type { NativeRef } from './types.ts';
 
 /** Capture host ownership once: native event callbacks do not run under a Solid owner. */

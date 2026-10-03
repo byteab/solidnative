@@ -12,8 +12,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { Engine } from '@solidnative/fabric';
+import { createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
 
 const flatten = (n: FakeFabricNode[]): FakeFabricNode[] =>
   n.flatMap((x) => [x, ...flatten(x.children)]);

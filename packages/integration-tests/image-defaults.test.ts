@@ -6,7 +6,7 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { after, before, describe, it } from 'node:test';
-import { cleanup, render, screen, type FakeFabricNode } from '@solid-native/testing';
+import { cleanup, render, screen, type FakeFabricNode } from '@solidnative/testing';
 import {
   IntrinsicBackground,
   IntrinsicImage,
@@ -17,7 +17,7 @@ import {
 const require = createRequire(import.meta.url);
 const flatten = (nodes: FakeFabricNode[]): FakeFabricNode[] =>
   nodes.flatMap((node) => [node, ...flatten(node.children)]);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 describe('an image', () => {
   it('clips to its own rounded corners', () => {

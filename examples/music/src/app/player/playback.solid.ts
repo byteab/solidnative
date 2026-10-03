@@ -1,6 +1,6 @@
 import { createEffect, createMemo, untrack } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
 import { TRACKS, type Track } from '../catalogue/catalogue.solid.ts';
 import { Queue } from './queue.solid.ts';
 import { TRACK_PLAYER, type TrackPlayer } from './track-player.solid.ts';

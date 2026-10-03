@@ -16,7 +16,7 @@ and follow a switch:
 ```ts
 // formatting.ts
 import { createMemo } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import { Localisation } from './localisation.ts';
 
 export const Formats = createServiceToken('app.formats', () => {

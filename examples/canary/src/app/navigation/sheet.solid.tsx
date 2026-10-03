@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Pressable,
   SafeAreaProvider,
@@ -6,10 +6,10 @@ import {
   ScrollView,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import styles from './sheet.native.css';
 
 export function Sheet() {

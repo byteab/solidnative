@@ -15,7 +15,7 @@ npx expo install @react-native-async-storage/async-storage expo-secure-store
 ```
 
 ```ts
-import { Storage, SecureStorage } from '@solid-native/expo/solid/store';
+import { Storage, SecureStorage } from '@solidnative/expo/solid/store';
 ```
 
 Install only what you use: `Storage` needs `@react-native-async-storage/async-storage`,
@@ -24,9 +24,9 @@ Install only what you use: `Storage` needs `@react-native-async-storage/async-st
 ## The smallest useful example
 
 ```tsx
-import { Pressable, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Storage } from '@solid-native/expo/solid/store';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Storage } from '@solidnative/expo/solid/store';
 
 export function Settings() {
   const store = useService(Storage);
@@ -89,10 +89,10 @@ rejections:
 - **`remove(key)`** - rejects with its own failure.
 
 ```tsx
-import { Show } from '@solid-native/platform/solid';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Storage } from '@solid-native/expo/solid/store';
+import { Show } from '@solidnative/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Storage } from '@solidnative/expo/solid/store';
 
 export function Draft() {
   const store = useService(Storage);

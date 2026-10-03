@@ -149,7 +149,7 @@ function Reference(props: { entry: ApiEntry }) {
 }
 
 export function ApiReference(props: {
-  /** `Button`, or `@solid-native/components#Switch` where two packages share a name. */
+  /** `Button`, or `@solidnative/components#Switch` where two packages share a name. */
   reference: string;
 }) {
   const entry = createMemo(() => findApi(props.reference));

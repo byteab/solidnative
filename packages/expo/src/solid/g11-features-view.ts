@@ -1,6 +1,6 @@
 import { createComputed } from 'solid-js';
-import { Engine, type EngineNode, type HostNode } from '@solid-native/fabric';
-import { useHostAdapter } from '@solid-native/platform/solid';
+import { Engine, type EngineNode, type HostNode } from '@solidnative/fabric';
+import { useHostAdapter } from '@solidnative/platform/solid';
 import { optional } from '../native.ts';
 
 /** Native-only commands never reach retained detached nodes or a browser host. */

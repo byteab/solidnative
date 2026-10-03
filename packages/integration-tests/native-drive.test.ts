@@ -4,8 +4,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine, pinnedRange, type NativeAnimated } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, pinnedRange, type NativeAnimated } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { recorder } from './native-animated.ts';
 
 function scene(native: NativeAnimated | null) {

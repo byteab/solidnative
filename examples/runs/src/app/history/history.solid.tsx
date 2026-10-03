@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, NativeStackOutlet, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, NativeStackOutlet, useNavigation } from '@solidnative/router/solid';
 import { Runs } from '../data/runs.solid.ts';
 import { Units } from '../settings/units.solid.ts';
 import { RunRow } from './run-row.solid.tsx';

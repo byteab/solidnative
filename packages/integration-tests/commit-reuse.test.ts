@@ -10,7 +10,7 @@ import {
   render,
   type ComponentRenderResult,
   type FakeFabricNode,
-} from '@solid-native/testing';
+} from '@solidnative/testing';
 import { CommitReuse, type CommitReuseProps } from './commit-reuse-fixture.tsx';
 
 function byID(nodes: readonly FakeFabricNode[], id: string): FakeFabricNode | undefined {

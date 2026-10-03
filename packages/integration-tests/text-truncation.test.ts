@@ -11,12 +11,12 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { cleanup, render, screen } from '@solid-native/testing';
+import { cleanup, render, screen } from '@solidnative/testing';
 import { Truncated, TruncatedByCss } from './ui-truncated-fixture.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
 

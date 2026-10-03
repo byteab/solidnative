@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import {
   Pressable,
@@ -6,15 +6,15 @@ import {
   View,
   VirtualList,
   type VirtualListRef,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 import {
   SCREEN_IN_FRONT,
   ServiceScope,
   provideService,
   useService,
-} from '@solid-native/device/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { BrowseShelf } from './browse-shelf.solid.tsx';
 import {
   ShelfPositions,

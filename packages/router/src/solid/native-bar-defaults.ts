@@ -1,6 +1,6 @@
 import { createComponent, createContext, useContext, type Accessor } from 'solid-js';
-import { ColorScheme, useService, type Scheme } from '@solid-native/device/solid';
-import type { HostChild } from '@solid-native/platform/solid';
+import { ColorScheme, useService, type Scheme } from '@solidnative/device/solid';
+import type { HostChild } from '@solidnative/platform/solid';
 import type { NativeHeaderProps } from './native-header.ts';
 import type { TabAppearance } from './tab-appearance.ts';
 

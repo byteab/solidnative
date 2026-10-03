@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { createNativeRoot, type NativeRootOptions } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { createNativeRoot, type NativeRootOptions } from '@solidnative/platform/solid';
 import {
   ServiceScope,
   conditionSources,
@@ -8,9 +8,9 @@ import {
   watchConditions,
   type ConditionSources,
   type ServiceBinding,
-} from '@solid-native/device';
-import type { StyleSheet } from '@solid-native/fabric';
-import type { NativeNavigation } from '@solid-native/router';
+} from '@solidnative/device';
+import type { StyleSheet } from '@solidnative/fabric';
+import type { NativeNavigation } from '@solidnative/router';
 import { App } from './app/app.solid.tsx';
 
 export interface AppMountOptions extends NativeRootOptions {

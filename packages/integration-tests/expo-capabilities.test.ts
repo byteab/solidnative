@@ -9,16 +9,16 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createFakeFabric } from '@solid-native/testing';
-import { registerExpoViews } from '@solid-native/expo';
-import { AppInfo } from '@solid-native/expo/app-info';
-import { Biometrics, type NativeBiometrics } from '@solid-native/expo/biometrics';
-import { Browser, type NativeBrowser } from '@solid-native/expo/browser';
-import type { CameraPicture } from '@solid-native/expo/camera';
-import { ImagePicker, type NativeImagePicker } from '@solid-native/expo/image-picker';
-import { Location, type NativeLocation, type Position } from '@solid-native/expo/location';
-import type { PermissionResponse } from '@solid-native/expo';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createFakeFabric } from '@solidnative/testing';
+import { registerExpoViews } from '@solidnative/expo';
+import { AppInfo } from '@solidnative/expo/app-info';
+import { Biometrics, type NativeBiometrics } from '@solidnative/expo/biometrics';
+import { Browser, type NativeBrowser } from '@solidnative/expo/browser';
+import type { CameraPicture } from '@solidnative/expo/camera';
+import { ImagePicker, type NativeImagePicker } from '@solidnative/expo/image-picker';
+import { Location, type NativeLocation, type Position } from '@solidnative/expo/location';
+import type { PermissionResponse } from '@solidnative/expo';
 import { expoCameraFixture } from './expo-camera-fixture.tsx';
 import { disposeServices, serviceWith } from './expo-service.ts';
 

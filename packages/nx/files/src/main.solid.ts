@@ -1,12 +1,12 @@
 import { AppRegistry, Image, Platform, processColor } from 'react-native';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   conditionSources,
   currentConditions,
   deviceTokens,
   watchConditions,
-} from '@solid-native/device/solid';
-import { getFabricUIManager, registerPlatformComponents } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { App } from './app/app.solid.tsx';
 
 // The `.solid.ts` suffix gives this file Metro's clean reload in development: an edit disposes the

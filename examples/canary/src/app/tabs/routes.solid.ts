@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** Migrated tab subtree for eventual composition into the complete application route table. */
 export const tabRoute: NativeRoute = {

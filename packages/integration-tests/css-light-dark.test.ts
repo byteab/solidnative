@@ -9,10 +9,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { StyleResolver, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleTarget } from '@solidnative/fabric';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 /** What an element wearing `classes` resolves to, in a scheme and at a width. */
 function resolvedStyle(

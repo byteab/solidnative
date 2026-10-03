@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   createEffect,
   createMemo,
@@ -14,13 +14,13 @@ import {
   Text,
   View,
   type ScrollViewRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, Screen, useService } from '@solid-native/device/solid';
-import { For, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation, useRoute } from '@solid-native/router/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, Screen, useService } from '@solidnative/device/solid';
+import { For, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation, useRoute } from '@solidnative/router/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
 import { Gesture } from 'react-native-gesture-handler';
-import type { NativeSyntheticEvent } from '@solid-native/fabric';
+import type { NativeSyntheticEvent } from '@solidnative/fabric';
 import { PHOTOS } from './photos.solid.ts';
 import sheet from './photo-viewer.native.css';
 

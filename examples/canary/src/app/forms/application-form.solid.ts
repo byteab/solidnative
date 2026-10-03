@@ -1,4 +1,4 @@
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 import {
   formRequired,
   formEmail,
@@ -6,7 +6,7 @@ import {
   formMaxLength,
   formPattern,
   type FormSchema,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 
 export type Country = 'GB' | 'US' | 'IE';
 

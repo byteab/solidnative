@@ -9,12 +9,12 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   createFakeFabric,
   type FakeFabric,
   type FakeFabricNode as FakeNode,
-} from '@solid-native/testing';
+} from '@solidnative/testing';
 import { expoDomComponentFixture } from './expo-dom-component-fixture.tsx';
 
 describe('a DOM component in the app', () => {

@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, createRenderEffect, onCleanup } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { Example, Section } from '../example.solid.tsx';
 import { page } from '../screen-styles.ts';
 import sheet from './scrolling.native.css';

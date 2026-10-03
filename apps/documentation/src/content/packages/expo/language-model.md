@@ -34,7 +34,7 @@ iOS 16.4+, Expo SDK 57's default deployment target; if you lowered yours, raise 
 `expo-build-properties`.
 
 ```ts
-import { LanguageModel } from '@solid-native/expo/solid/language-model';
+import { LanguageModel } from '@solidnative/expo/solid/language-model';
 ```
 
 ### Android does not build yet
@@ -63,10 +63,10 @@ The same code runs on both: the service only uses the module on iOS, so Android 
 
 ```tsx
 import { createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, TextInput } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
-import { LanguageModel, type LanguageModelStream } from '@solid-native/expo/solid/language-model';
+import { Pressable, Text, TextInput } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
+import { LanguageModel, type LanguageModelStream } from '@solidnative/expo/solid/language-model';
 
 export function Ask() {
   const model = useService(LanguageModel);
@@ -212,6 +212,6 @@ that should not go to a server.
 
 ## Reference
 
-`LanguageModel` is exported from `@solid-native/expo/solid/language-model`.
+`LanguageModel` is exported from `@solidnative/expo/solid/language-model`.
 
 <!-- api: LanguageModel -->

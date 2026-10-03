@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, userEvent } from '@solid-native/testing';
+import { fireEvent, render, screen, userEvent } from '@solidnative/testing';
 import { expect, vi } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';

@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { FakeFabric, FakeFabricNode } from '@solid-native/testing';
+import type { FakeFabric, FakeFabricNode } from '@solidnative/testing';
 
 /**
  * Tailwind 4's CLI, by path. `npx` would run whichever `tailwindcss` binary is linked into
@@ -19,7 +19,7 @@ const CLI = join(
   'dist/index.mjs',
 );
 
-/** This package, so the CLI resolves `@solid-native/tailwind` the way an app would. */
+/** This package, so the CLI resolves `@solidnative/tailwind` the way an app would. */
 const HERE = fileURLToPath(new URL('.', import.meta.url));
 
 /**
@@ -27,7 +27,7 @@ const HERE = fileURLToPath(new URL('.', import.meta.url));
  *
  * Run from this package, which has the workspace dependency installed - the CLI resolves imports
  * from the entry file's own directory, so a temp directory somewhere else cannot see
- * `@solid-native/tailwind` at all.
+ * `@solidnative/tailwind` at all.
  */
 export function build(preset: 'native' | 'web', classes: string): string {
   const dir = HERE;
@@ -41,7 +41,7 @@ export function build(preset: 'native' | 'web', classes: string): string {
       // Only the classes asked for: scanning this package would pick up every class named in
       // any test or fixture here, and make each test's sheet depend on all the others.
       `@import 'tailwindcss/utilities.css' source(none);`,
-      `@import '@solid-native/tailwind/${preset}.css';`,
+      `@import '@solidnative/tailwind/${preset}.css';`,
       `@source inline("${classes}");`,
     ].join('\n'),
   );

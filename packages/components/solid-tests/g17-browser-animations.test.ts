@@ -3,8 +3,8 @@ import { execFileSync } from 'node:child_process';
 import { registerHooks } from 'node:module';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import type { LayoutEvent, ScrollPayload, TextInputChangeEvent } from '@solid-native/components';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import type { LayoutEvent, ScrollPayload, TextInputChangeEvent } from '@solidnative/components';
 import { untrack } from 'solid-js';
 import { View } from '../src/solid/primitive.ts';
 import { createFakeFabric, createClock } from '../../platform/solid-tests/fake-fabric.ts';
@@ -25,8 +25,8 @@ function resolveFor(conditions: string[], specifier: string) {
 
 test('a browser build resolves both animation subpaths to the React-Native-free module', () => {
   for (const specifier of [
-    '@solid-native/components/animations',
-    '@solid-native/components/solid/animations',
+    '@solidnative/components/animations',
+    '@solidnative/components/solid/animations',
   ]) {
     assert.match(resolveFor(['browser'], specifier), /\/src\/solid\/animations-web\.ts$/);
     assert.match(resolveFor([], specifier), /\/src\/solid\/animations\.ts$/);
@@ -63,8 +63,8 @@ test('browser animations drive a Solid binding without loading react-native', as
 });
 
 test('the root entry is the Solid barrel and carries the event payload types', async () => {
-  const root = await import('@solid-native/components');
-  const solid = await import('@solid-native/components/solid');
+  const root = await import('@solidnative/components');
+  const solid = await import('@solidnative/components/solid');
   assert.equal(root.View, solid.View);
   assert.equal(root.Text, solid.Text);
   const layout: LayoutEvent['nativeEvent'] = { layout: { x: 0, y: 0, width: 1, height: 2 } };

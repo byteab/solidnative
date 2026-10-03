@@ -9,8 +9,8 @@ import {
   untrack,
   type Owner,
 } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
 import { View } from './primitive.ts';
 import type { ViewProps } from './types.ts';
 

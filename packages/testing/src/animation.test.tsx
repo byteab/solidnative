@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 /**
- * Components using `@solid-native/components/gestures` and `/reanimated`, whose native libraries Node
+ * Components using `@solidnative/components/gestures` and `/reanimated`, whose native libraries Node
  * cannot load: the register stands in for them, so the screen renders, a gesture's callbacks can be
  * called through `gestureOf`, and a worklet style settles where its animation ends.
  */
@@ -10,16 +10,16 @@ import { createSignal } from 'solid-js';
 import { Gesture } from 'react-native-gesture-handler';
 import { Extrapolation, interpolate, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components';
-import { GestureRoot, NativeGesture } from '@solid-native/components/gestures';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components';
+import { GestureRoot, NativeGesture } from '@solidnative/components/gestures';
 import {
   WorkletScroll,
   WorkletStyle,
   sharedValue,
   workletScroll,
   workletStyle,
-} from '@solid-native/components/reanimated';
-import { cleanup, fireEvent, gestureOf, render, screen, userEvent } from '@solid-native/testing';
+} from '@solidnative/components/reanimated';
+import { cleanup, fireEvent, gestureOf, render, screen, userEvent } from '@solidnative/testing';
 
 afterEach(cleanup);
 

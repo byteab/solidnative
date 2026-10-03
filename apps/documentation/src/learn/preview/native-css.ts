@@ -1,5 +1,5 @@
 /**
- * The native CSS compiler (`@solid-native/metro/css/*.cjs`), unmodified, running in the page on
+ * The native CSS compiler (`@solidnative/metro/css/*.cjs`), unmodified, running in the page on
  * lightningcss's WebAssembly build, so the preview can say what a device build would say about a
  * component's CSS: a browser will happily draw `display: grid`, and a phone build drops it with a
  * warning.
@@ -51,7 +51,7 @@ async function load(): Promise<Compiler> {
   const require = (specifier: string): unknown => {
     if (specifier === 'lightningcss') return { ...lightning, transform };
     // `flatten.cjs` names the compiler by its package; the rest are siblings.
-    const id = specifier.replace(/^@solid-native\/metro\/css\//, './');
+    const id = specifier.replace(/^@solidnative\/metro\/css\//, './');
     if (id in cache) return cache[id];
     const source = SOURCES[id];
     if (!source) throw new Error(`The native CSS compiler asked for ${id}, which is not here.`);
@@ -113,7 +113,7 @@ export async function compileNativeCss(
 
 /**
  * Tailwind's CSS as a device build compiles it: flattened, then compiled with every declaration
- * native cannot express dropped and reported, as `@solid-native/tailwind`'s build step does.
+ * native cannot express dropped and reported, as `@solidnative/tailwind`'s build step does.
  * `dropped` is what a device build would warn about.
  */
 export async function compileNativeTailwind(

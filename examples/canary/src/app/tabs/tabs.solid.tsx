@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { nativePlatform } from '@solid-native/fabric';
-import { useService } from '@solid-native/device/solid';
-import { NativeHeader, NativeTabsOutlet, type TabIcon } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { nativePlatform } from '@solidnative/fabric';
+import { useService } from '@solidnative/device/solid';
+import { NativeHeader, NativeTabsOutlet, type TabIcon } from '@solidnative/router/solid';
 import { Unread } from './unread.solid.ts';
 
 /** The actual native tab declarations; each visited tab retains its own screen/stack. */

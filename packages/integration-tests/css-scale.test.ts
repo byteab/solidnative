@@ -15,11 +15,11 @@ import { createRequire } from 'node:module';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { StyleResolver, type StyleSheet, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
 import { resetStyleStats, styleStats } from '../fabric/src/css.ts';
 
 const require = createRequire(import.meta.url);
-const { withTailwind } = require('@solid-native/tailwind/config.cjs') as {
+const { withTailwind } = require('@solidnative/tailwind/config.cjs') as {
   withTailwind(config: object, options: { input: string; output: string; watch: boolean }): void;
 };
 

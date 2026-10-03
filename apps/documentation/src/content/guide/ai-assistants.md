@@ -6,7 +6,7 @@ summary: What a coding agent needs to build with solid-native, and where it find
 # Using AI assistants
 
 An agent that knows Solid and React Native but not solid-native may import `solid-js/web`, use
-`document`, write `<div onClick>` or drop the `@jsxImportSource @solid-native/platform/solid`
+`document`, write `<div onClick>` or drop the `@jsxImportSource @solidnative/platform/solid`
 comment: code that compiles but renders nothing. Two resources fix this without setup.
 
 ## `AGENTS.md` in every new app
@@ -14,7 +14,7 @@ comment: code that compiles but renders nothing. Two resources fix this without 
 The template ships a root `AGENTS.md` and a `CLAUDE.md` pointing to it, which Claude Code, Cursor,
 GitHub Copilot, Codex and most other agents read automatically. They cover `.solid.tsx` and the
 pragma, native components, the absence of a DOM, `<Text>`, native event props, styling, lists,
-navigation, and the run and test commands. `nx g @solid-native/nx:app` writes both into the new
+navigation, and the run and test commands. `nx g @solidnative/nx:app` writes both into the new
 app's directory with that workspace's `nx` commands, leaving the workspace's own agent files alone.
 
 The file defers to [docs.solidjs.com](https://docs.solidjs.com) for signals, effects, stores and

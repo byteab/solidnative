@@ -1,8 +1,8 @@
 /**
  * A `.native.css` file as the phone's browser host draws it: scoped to the components that pass
- * it to `withNativeStyles`, in the shape `@solid-native/web/solid` takes, `{ browser, id, css }`.
+ * it to `withNativeStyles`, in the shape `@solidnative/web/solid` takes, `{ browser, id, css }`.
  *
- * `@solid-native/metro/solid-browser.cjs` does the same for a Vite build with lightningcss. The page
+ * `@solidnative/metro/solid-browser.cjs` does the same for a Vite build with lightningcss. The page
  * already has a CSS parser, so the preview uses that instead and leaves the 3.8 MB WebAssembly
  * build to the native compiler (`native-css.ts`), which only some runs need. The scoping is the
  * same: every compound selector gets the sheet's `data-s-<id>` attribute, before any

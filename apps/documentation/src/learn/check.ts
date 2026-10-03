@@ -15,7 +15,7 @@
  * The same module is the registry the preview's runner reads, so there is one definition of what
  * a check is.
  */
-import type { FakeFabricNode } from '@solid-native/testing';
+import type { FakeFabricNode } from '@solidnative/testing';
 
 export interface TestOutcome {
   readonly name: string;

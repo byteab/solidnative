@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 import { DomComponentsPage } from './dom-components.solid.tsx';
 
 export const domComponentRoutes: readonly NativeRoute[] = [

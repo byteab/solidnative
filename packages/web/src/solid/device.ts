@@ -8,7 +8,7 @@ import {
   StatusBar,
   provideService,
   type ServiceBinding,
-} from '@solid-native/device';
+} from '@solidnative/device';
 import {
   browserColorSchemeSource,
   browserDirectionSource,

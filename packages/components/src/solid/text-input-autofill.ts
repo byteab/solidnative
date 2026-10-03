@@ -1,4 +1,4 @@
-import { nativePlatform } from '@solid-native/fabric';
+import { nativePlatform } from '@solidnative/fabric';
 import type { TextInputProps } from './types.ts';
 
 // React Native 0.86.3 TextInput.js translates these web-style hints in JavaScript;

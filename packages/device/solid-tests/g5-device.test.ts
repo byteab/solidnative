@@ -23,7 +23,7 @@ import {
   type DeepLinkSource,
   type HardwareBackSource,
   type KeyboardMetrics,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import type { NativeKeyboardEvent } from '../src/react-native.ts';
 
 function scope<T>(render: () => T) {

@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 import { signedIn, type Session } from '../auth/session.solid.ts';
 
 /** The original public and protected order routes, with lazy session binding. */

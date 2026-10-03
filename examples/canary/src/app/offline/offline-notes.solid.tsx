@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
 import {
   Pressable,
@@ -7,10 +7,10 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { FieldNotes, type Note } from './field-notes.solid.ts';
 import { NotesServer } from './notes-server.solid.ts';
 import sheet from './offline-notes.native.css';

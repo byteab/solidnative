@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { ExpoImage, SegmentedControl } from '@solid-native/expo';
+import { ExpoImage, SegmentedControl } from '@solidnative/expo';
 import {
   UiButton,
   UiColorPicker,
@@ -25,7 +25,7 @@ import {
   UiTextField,
   UiToggle,
   UiVStack,
-} from '@solid-native/expo/expo-ui-components';
+} from '@solidnative/expo/expo-ui-components';
 
 /** A menu, a date picker and a segmented control, as one SwiftUI screen uses them. */
 export function expoUiFixture() {

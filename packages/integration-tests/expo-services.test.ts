@@ -8,11 +8,11 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createSignal } from 'solid-js';
-import { withServiceScope } from '@solid-native/device/solid';
-import { assetResource, assets } from '@solid-native/expo/assets';
-import { Database, type Migration, type NativeDatabase } from '@solid-native/expo/database';
-import { KeepAwake } from '@solid-native/expo/keep-awake';
-import { Updates } from '@solid-native/expo/updates';
+import { withServiceScope } from '@solidnative/device/solid';
+import { assetResource, assets } from '@solidnative/expo/assets';
+import { Database, type Migration, type NativeDatabase } from '@solidnative/expo/database';
+import { KeepAwake } from '@solidnative/expo/keep-awake';
+import { Updates } from '@solidnative/expo/updates';
 import { disposeServices, owned, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

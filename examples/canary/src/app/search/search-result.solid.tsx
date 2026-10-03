@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { ScrollView, Text } from '@solid-native/components/solid';
-import { NativeHeader, useRoute } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { ScrollView, Text } from '@solidnative/components/solid';
+import { NativeHeader, useRoute } from '@solidnative/router/solid';
 export function SearchResult() {
   const route = useRoute();
   const title = typeof route.state?.['title'] === 'string' ? route.state['title'] : 'Result';

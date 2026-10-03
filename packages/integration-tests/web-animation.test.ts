@@ -1,7 +1,7 @@
 /**
  * The animation graph a browser build gets in place of React Native's.
  *
- * `@solid-native/components/animations` hands a device React Native's own `Animated`, and a
+ * `@solidnative/components/animations` hands a device React Native's own `Animated`, and a
  * browser this one, so the same component animates on both. What has to hold is that the numbers
  * agree: a timing curve lands where React Native's lands at the same moment, a spring settles the
  * way the same spring settles there, and an interpolation maps a value through the same ranges.

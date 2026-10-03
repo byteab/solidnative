@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createSignal } from 'solid-js';
-import { registerPlatformComponents } from '@solid-native/fabric';
-import type { PlayerState } from '@solid-native/expo/solid/player';
+import { registerPlatformComponents } from '@solidnative/fabric';
+import type { PlayerState } from '@solidnative/expo/solid/player';
 import {
   ColorScheme,
   DeepLinks,
@@ -10,10 +10,10 @@ import {
   Screen,
   provideService,
   type ConditionSources,
-} from '@solid-native/device/solid';
-import { registerExpoUiViews } from '@solid-native/expo/views';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import type { NativeNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { registerExpoUiViews } from '@solidnative/expo/views';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import type { NativeNavigation } from '@solidnative/router/solid';
 import {
   createClock,
   createFakeFabric,

@@ -1,15 +1,15 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { Pressable, Text, View, VirtualList } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
+import { Pressable, Text, View, VirtualList } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeSearchBar,
   NativeStackOutlet,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { Ledger } from '../payments/ledger.solid.ts';
 import { PaymentRow } from '../payments/payment-row.solid.tsx';
 

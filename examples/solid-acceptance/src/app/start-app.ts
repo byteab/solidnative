@@ -1,6 +1,6 @@
-import { DeepLinks, provideService, type ConditionSources } from '@solid-native/device';
-import type { NativeNavigation } from '@solid-native/router';
-import { fireEvent, renderWith, waitFor, type FakeFabricNode } from '@solid-native/testing';
+import { DeepLinks, provideService, type ConditionSources } from '@solidnative/device';
+import type { NativeNavigation } from '@solidnative/router';
+import { fireEvent, renderWith, waitFor, type FakeFabricNode } from '@solidnative/testing';
 import { mountApp } from '../bootstrap.solid.tsx';
 
 export interface StartOptions {

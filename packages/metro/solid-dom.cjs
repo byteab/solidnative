@@ -12,7 +12,7 @@ function isSolidDomSource(source, filename) {
 }
 
 // The root `./web-view` export is the Solid entry (D040); `./solid/web-view` is its alias.
-const WEB_VIEW = new Set(['@solid-native/web/web-view', '@solid-native/web/solid/web-view']);
+const WEB_VIEW = new Set(['@solidnative/web/web-view', '@solidnative/web/solid/web-view']);
 
 function isSolidDomComponent(source) {
   if (!source.includes('use dom') || !source.includes('/web-view')) return false;

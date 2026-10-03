@@ -11,8 +11,8 @@ import {
   androidPermissionOf,
   useService,
   type NativeLayoutAnimation,
-} from '@solid-native/device';
-import { Permission } from '@solid-native/expo';
+} from '@solidnative/device';
+import { Permission } from '@solidnative/expo';
 import { serviceWith } from './ui-services.ts';
 
 describe('animating a layout change', () => {

@@ -69,7 +69,7 @@ type Builder =
 
 function gesture(kind: string, gestures: readonly TestGesture[]): TestGesture {
   const callbacks: Record<string, (...args: never[]) => unknown> = {};
-  // What `@solid-native/components/gestures` calls to prepare a gesture for attaching; nothing native
+  // What `@solidnative/components/gestures` calls to prepare a gesture for attaching; nothing native
   // is attached here, so there is nothing to prepare.
   const fields: Record<string, unknown> = {
     kind,

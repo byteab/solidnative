@@ -11,9 +11,9 @@ language and serves its catalog:
 ```ts
 // localisation.ts
 import { createMemo } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Locale } from '@solid-native/expo/solid/locale';
-import { SecureStorage } from '@solid-native/expo/solid/store';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Locale } from '@solidnative/expo/solid/locale';
+import { SecureStorage } from '@solidnative/expo/solid/store';
 import { en, type Messages } from './locale/en.ts';
 import { fr } from './locale/fr.ts';
 
@@ -49,8 +49,8 @@ export const Localisation = createServiceToken('app.localisation', () => {
 service and everything below shares it:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { ServiceScope } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { ServiceScope } from '@solidnative/device/solid';
 import { Home } from './home.solid.tsx';
 
 export function App() {

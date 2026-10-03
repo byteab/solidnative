@@ -8,7 +8,7 @@
  * The CSS runtime lives here rather than in a package of its own because the cascade is driven
  * from the commit walk - the resolver runs per node, per tick - and because it is as
  * framework-agnostic as the rest of the engine. The build-time half of CSS is a different
- * animal and lives in `@solid-native/metro`.
+ * animal and lives in `@solidnative/metro`.
  */
 export {
   StyleResolver,

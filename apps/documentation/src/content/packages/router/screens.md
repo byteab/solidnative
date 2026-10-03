@@ -13,15 +13,15 @@ stack; `<NativeStackOutlet>` renders it. Screens below the top stay mounted, kee
 <!-- api: createNativeNavigation -->
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { SafeAreaProvider } from '@solid-native/components/solid';
-import { DeepLinks, HardwareBack, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { SafeAreaProvider } from '@solidnative/components/solid';
+import { DeepLinks, HardwareBack, useService } from '@solidnative/device/solid';
 import {
   NativeStackOutlet,
   bindNativeNavigation,
   createNativeNavigation,
   type NativeRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 
 const routes: readonly NativeRoute[] = [
   { path: '', lazy: () => import('./home.solid.tsx').then((m) => m.Home) },
@@ -54,9 +54,9 @@ in before the screen is created, a default `presentation`, `redirectTo`/`pathMat
 <!-- api: useNavigation -->
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { useNavigation } from '@solidnative/router/solid';
 
 export function Editor() {
   const nav = useNavigation();
@@ -108,7 +108,7 @@ are reactive, so `params`, `inputs`, `query` and `state` update. In both cases `
 `reuseScreen` applies to leaf routes.
 
 ```ts
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 import { Photo } from './photo.solid.tsx';
 import { User } from './user.solid.tsx';
 
@@ -146,9 +146,9 @@ and hear the attempt so it can ask. It binds to the page's own screen, so call i
 component:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { useNativeDismissGuard } from '@solid-native/router/solid';
+import { useNativeDismissGuard } from '@solidnative/router/solid';
 
 export function Editor() {
   const [dirty, setDirty] = createSignal(false);
@@ -166,10 +166,10 @@ A presented screen is shown outside the stack's navigation controller, like `exp
 provides its own way out and its own `<SafeAreaView>`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, SafeAreaProvider, SafeAreaView, Text } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, SafeAreaProvider, SafeAreaView, Text } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import sheet from './sheet.native.css'; // .fill { flex: 1; }
 
 export function Sheet() {
@@ -199,7 +199,7 @@ renders `<NativeStackOutlet />` (without `navigation` it takes the route's child
 the pushed screens as `children`.
 
 ```ts
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 import { Compose, ComposeRecipients, ComposeStart } from './compose.solid.tsx';
 
 export const routes: readonly NativeRoute[] = [
@@ -225,7 +225,7 @@ option; pushes from a screen inherit the presentation it was opened with.
 
 ## Whether a screen is in front
 
-`SCREEN_IN_FRONT` from `@solid-native/device/solid` is a service whose accessor is true while the
+`SCREEN_IN_FRONT` from `@solidnative/device/solid` is a service whose accessor is true while the
 screen is showing, false while it is covered, presenting, or in an unselected tab; outside a route
 it is always true. Track `useService(SCREEN_IN_FRONT)` in an effect to act while covered.
 `<KeyboardDock>` uses it to release the keyboard, and `<NativeHeader>` to freeze a covered bar.

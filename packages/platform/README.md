@@ -1,18 +1,18 @@
-# @solid-native/platform
+# @solidnative/platform
 
 The Solid renderer for the rendering stack: a universal renderer that turns Solid's JSX into
-mutations on `@solid-native/fabric`'s retained tree, and `mountNative()`, which mounts a Solid
+mutations on `@solidnative/fabric`'s retained tree, and `mountNative()`, which mounts a Solid
 component onto a React Native surface without React reconciliation.
 
 Alpha: APIs may change before 1.0.
 
 ## Install
 
-Most apps start from `npx create-expo-app@latest my-app --template @solid-native/template`, which
+Most apps start from `npx create-expo-app@latest my-app --template @solidnative/template`, which
 already calls `mountNative()` in its entry. Otherwise:
 
 ```sh
-npm install @solid-native/platform
+npm install @solidnative/platform
 npm install solid-js react-native
 ```
 
@@ -21,8 +21,8 @@ npm install solid-js react-native
 ```ts
 // src/main.solid.ts
 import { AppRegistry, Image, Platform, processColor } from 'react-native';
-import { mountNative } from '@solid-native/platform';
-import { getFabricUIManager, registerPlatformComponents } from '@solid-native/fabric';
+import { mountNative } from '@solidnative/platform';
+import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { App } from './app.solid.tsx';
 
 registerPlatformComponents(Platform.OS);

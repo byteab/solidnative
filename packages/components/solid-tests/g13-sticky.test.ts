@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal } from 'solid-js';
-import { registerPlatformComponents, type EngineNode } from '@solid-native/fabric';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { registerPlatformComponents, type EngineNode } from '@solidnative/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { ScrollView } from '../src/solid/scroll-view.ts';
 import { View } from '../src/solid/primitive.ts';
 import { createFakeFabric, createClock } from '../../platform/solid-tests/fake-fabric.ts';

@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 'use dom';
 import { createEffect, onCleanup, onMount } from 'solid-js';
-import { mountInWebView } from '@solid-native/web/solid/web-view';
+import { mountInWebView } from '@solidnative/web/solid/web-view';
 import { signatureStyle } from './signature-style.solid.ts';
 
 interface SignatureProps {

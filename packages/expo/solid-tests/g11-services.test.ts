@@ -6,7 +6,7 @@ import {
   useService,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { BackgroundTask, BackgroundTaskStatus } from '../src/solid/background-task.ts';
 import { Biometrics } from '../src/solid/biometrics.ts';
 import { DocumentPicker } from '../src/solid/document-picker.ts';

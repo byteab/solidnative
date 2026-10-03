@@ -1,4 +1,4 @@
-import type { EngineNode, ResponderHandlers } from '@solid-native/fabric';
+import type { EngineNode, ResponderHandlers } from '@solidnative/fabric';
 import type { NativeChild } from './root.ts';
 
 /** Initial raw native host types; semantic primitives are migrated separately. */

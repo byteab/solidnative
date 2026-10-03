@@ -9,7 +9,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createComponent, createRoot, createSignal, getOwner, type Owner } from 'solid-js';
-import { provideService, useService, withServiceScope, type Screen } from '@solid-native/device';
+import { provideService, useService, withServiceScope, type Screen } from '@solidnative/device';
 import { installJsdomEnvironment } from '../src/jsdom-env.ts';
 import { Island, mount, mountBrowser, type BrowserComponent } from '../src/solid/index.ts';
 import { settle } from './boot.ts';

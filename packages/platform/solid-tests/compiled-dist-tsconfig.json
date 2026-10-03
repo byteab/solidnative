@@ -2,9 +2,9 @@
   "extends": "./compiled-tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@solid-native/platform/solid": ["../dist/solid.d.ts"],
-      "@solid-native/platform/solid/jsx-runtime": ["../dist/solid/jsx-runtime.d.ts"],
-      "@solid-native/fabric": ["../../fabric/dist/index.d.ts"]
+      "@solidnative/platform/solid": ["../dist/solid.d.ts"],
+      "@solidnative/platform/solid/jsx-runtime": ["../dist/solid/jsx-runtime.d.ts"],
+      "@solidnative/fabric": ["../../fabric/dist/index.d.ts"]
     }
   },
   "include": ["./compiled-fixture.tsx", "./compiled-types.tsx"]

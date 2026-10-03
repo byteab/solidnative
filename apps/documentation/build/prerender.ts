@@ -15,7 +15,7 @@
  *
  * Three things are deliberately not in a snapshot:
  *
- * - **The live examples.** Each one is an island (`<solid-native-island>`, from `@solid-native/web/solid`)
+ * - **The live examples.** Each one is an island (`<solid-native-island>`, from `@solidnative/web/solid`)
  *   rendering `<view>` and `<text>`, element names no browser knows and no crawler can read. They are emptied here and mount on the client,
  *   which is the only place they can run. The prose around them is the point of this file.
  * - **A theme.** `index.html`'s pre-paint script decides `dark` from the reader's own storage and
@@ -349,7 +349,7 @@ async function writeLlms(): Promise<void> {
     `# ${SITE_NAME}\n\n> ${DEFAULT_DESCRIPTION}\n\n` +
     "Solid components render real iOS and Android views on React Native's Fabric renderer, " +
     'with an Expo app around them. Components are TSX using the native components from ' +
-    '`@solid-native/components/solid` (`<View>`, `<Text>`, `<Pressable>`), styled with React Native ' +
+    '`@solidnative/components/solid` (`<View>`, `<Text>`, `<Pressable>`), styled with React Native ' +
     'style objects, `.native.css` stylesheets or Tailwind. There is no DOM.\n\n' +
     `${outline.join('\n\n')}\n\n` +
     `## Optional\n\n- [Everything above in one file](${urlFor('/llms-full.txt')})\n` +

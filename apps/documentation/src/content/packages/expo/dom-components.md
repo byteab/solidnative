@@ -23,24 +23,24 @@ live in one app.
 ## Setup
 
 The web view, `@expo/dom-webview`, comes with `expo`. The component needs Solid's DOM runtime
-(`solid-js/web`, part of `solid-js`) and `@solid-native/web`:
+(`solid-js/web`, part of `solid-js`) and `@solidnative/web`:
 
 ```sh
-npx expo install solid-js @solid-native/web
+npx expo install solid-js @solidnative/web
 ```
 
 ## Writing one
 
 A DOM component is its own file, compiled for the browser: it ends in `.dom.tsx` or starts with the
 `@jsxImportSource solid-js` pragma. Its first statement is `'use dom'`, and its default export is
-`mountInWebView(...)` from `@solid-native/web/solid/web-view` - the import that marks it as Solid's
+`mountInWebView(...)` from `@solidnative/web/solid/web-view` - the import that marks it as Solid's
 rather than an Expo React DOM component:
 
 ```tsx
 // web/signature.dom.tsx
 /** @jsxImportSource solid-js */
 'use dom';
-import { mountInWebView } from '@solid-native/web/solid/web-view';
+import { mountInWebView } from '@solidnative/web/solid/web-view';
 
 interface SignatureProps {
   name?: string;
@@ -82,8 +82,8 @@ Import the file from native code and hand it to `DomComponent` as `src`:
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { Text, View } from '@solid-native/components/solid';
-import { DomComponent } from '@solid-native/expo/solid/dom-component';
+import { Text, View } from '@solidnative/components/solid';
+import { DomComponent } from '@solidnative/expo/solid/dom-component';
 import signature from './web/signature.dom.tsx';
 
 export function Sign() {
@@ -105,14 +105,14 @@ export function Sign() {
 ```
 
 In native code the build replaces the file with a reference to its page, so no web code or its
-imports reach the native bundle. Importing `@solid-native/expo/solid/dom-component` registers the
+imports reach the native bundle. Importing `@solidnative/expo/solid/dom-component` registers the
 native view.
 
 Size `DomComponent` like any native view - a height, or `flex-1` in a sized container; it does not
 grow to fit the page. Besides `src`, `inputs`, `outputs` and the usual view props it takes:
 
 - **`foreground`** - an accessor; while it reads `false` no inputs are sent to the page. Pass the
-  screen's `SCREEN_IN_FRONT` from `@solid-native/device/solid`.
+  screen's `SCREEN_IN_FRONT` from `@solidnative/device/solid`.
 - **`onError`** - receives errors from the page instead of throwing them.
 - **`webviewDebuggingEnabled`** - defaults to on in development builds.
 
@@ -159,7 +159,7 @@ time the screen opens; there is no hot reload inside the web view.
   app (`www.bundle` on iOS, the assets folder on Android), loaded with no server.
 - **`eas update`:** pages go, and are looked up, where Expo puts DOM components' pages. Untested.
 
-`@solid-native/metro`'s Solid transformer does both halves: imported from native, a `'use dom'` file
+`@solidnative/metro`'s Solid transformer does both halves: imported from native, a `'use dom'` file
 becomes a page reference carrying the marker Expo's `'use dom'` plugin records (how the export finds
 it); built for web, it is compiled with Solid's DOM compiler and mounts itself. A DOM-compiled file
 imported from native outside a `'use dom'` page is a build error.
@@ -175,9 +175,9 @@ imported from native outside a `'use dom'` page is a build error.
 
 ## Reference
 
-`mountInWebView(component, options?)` (from `@solid-native/web/solid/web-view`) mounts the component
+`mountInWebView(component, options?)` (from `@solidnative/web/solid/web-view`) mounts the component
 and returns the reference the file exports. `DomComponent` is exported from
-`@solid-native/expo/solid/dom-component`; a test replaces the page URL and web view functions with
+`@solidnative/expo/solid/dom-component`; a test replaces the page URL and web view functions with
 `provideService(DomComponent.SOURCE, () => fake)` in a `ServiceScope`.
 
 <!-- api: DomComponent -->

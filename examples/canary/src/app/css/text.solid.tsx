@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { ScrollView, Text, View } from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { ScrollView, Text, View } from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { palette } from '../palette-values.ts';
 import { page } from '../screen-styles.ts';
 import sheet from './text.native.css';

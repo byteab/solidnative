@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 export type ColumnId = 'backlog' | 'doing' | 'review' | 'done';
 export type Tag = 'design' | 'build' | 'bug' | 'research';

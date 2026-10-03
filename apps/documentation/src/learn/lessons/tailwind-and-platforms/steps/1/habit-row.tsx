@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './habit-row.native.css';
 
 export interface HabitRowProps {

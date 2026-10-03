@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import { cancelAnimation, withTiming } from 'react-native-reanimated';
-import { Pressable, SafeAreaView, ScrollView, Switch, Text, View } from '@solid-native/components';
-import { WorkletStyle, sharedValue, workletStyle } from '@solid-native/components/reanimated';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, SafeAreaView, ScrollView, Switch, Text, View } from '@solidnative/components';
+import { WorkletStyle, sharedValue, workletStyle } from '@solidnative/components/reanimated';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './motion.native.css';
 
 /**

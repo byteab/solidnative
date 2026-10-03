@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Accessibility,
   ColorScheme,
@@ -10,12 +10,12 @@ import {
   useService,
   type KeyboardMetrics,
   type ServiceBinding,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   type NativeNavigation,
   type NativeRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { App } from '../src/app/app.solid.tsx';
 import { CanaryProviders } from '../src/app/app.config.solid.tsx';
 import { createSession, Session } from '../src/app/auth/session.solid.ts';

@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { Pressable, SafeAreaView, ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { SecureStorage } from '@solid-native/expo/solid/store';
-import { For } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+import { Pressable, SafeAreaView, ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { SecureStorage } from '@solidnative/expo/solid/store';
+import { For } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import { Ledger, money, type Payment } from '../payments/ledger.solid.ts';
 import { PaymentRow } from '../payments/payment-row.solid.tsx';
 

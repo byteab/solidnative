@@ -1,4 +1,4 @@
-import { render, screen } from '@solid-native/testing';
+import { render, screen } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';

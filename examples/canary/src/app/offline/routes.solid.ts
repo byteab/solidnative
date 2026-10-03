@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 export const offlineRoutes: readonly NativeRoute[] = [
   {
     path: 'field-notes',

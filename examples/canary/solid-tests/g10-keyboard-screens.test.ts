@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { DeviceOrientation } from '@solid-native/expo/solid/orientation';
+import { provideService } from '@solidnative/device/solid';
+import { DeviceOrientation } from '@solidnative/expo/solid/orientation';
 import type { FakeNode } from '../../../packages/platform/solid-tests/fake-fabric.ts';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';

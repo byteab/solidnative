@@ -17,16 +17,16 @@ npx expo install expo-document-picker
 ```
 
 ```ts
-import { DocumentPicker } from '@solid-native/expo/solid/document-picker';
+import { DocumentPicker } from '@solidnative/expo/solid/document-picker';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { DocumentPicker } from '@solid-native/expo/solid/document-picker';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { DocumentPicker } from '@solidnative/expo/solid/document-picker';
 
 export function Attach() {
   const documents = useService(DocumentPicker);
@@ -72,6 +72,6 @@ component is disposed.
 
 ## Reference
 
-`DocumentPicker` is exported from `@solid-native/expo/solid/document-picker`.
+`DocumentPicker` is exported from `@solidnative/expo/solid/document-picker`.
 
 <!-- api: DocumentPicker -->

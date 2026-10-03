@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(source: string, context: string, options: object): { rules: unknown[] };
 };
 

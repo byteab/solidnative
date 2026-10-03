@@ -47,14 +47,14 @@ export interface SweepCase {
 
 /**
  * An app's entry file, as `packages/tailwind/README.md` tells one to write it, with a theme of the
- * app's own (`tailwind-sweep-theme.css`). The web one is what an app hosted by `@solid-native/web`
+ * app's own (`tailwind-sweep-theme.css`). The web one is what an app hosted by `@solidnative/web`
  * writes instead.
  */
 const entry = (preset: 'native' | 'web') =>
   [
     `@import 'tailwindcss/theme.css';`,
     `@import 'tailwindcss/utilities.css';`,
-    `@import '@solid-native/tailwind/${preset}.css';`,
+    `@import '@solidnative/tailwind/${preset}.css';`,
     `@import './tailwind-sweep-theme.css';`,
   ].join('\n');
 const ENTRY = entry('native');
@@ -105,7 +105,7 @@ export interface World {
 }
 
 export const WORLDS: readonly World[] = [
-  // The same classes on the web host: the web preset's build, `@solid-native/web`'s reset, and a
+  // The same classes on the web host: the web preset's build, `@solidnative/web`'s reset, and a
   // root on the web platform - held to what the engine resolves on a phone, which is the promise
   // one class string makes across the two.
   { name: 'web', width: 1000, rootClasses: 'platform-web sweep-root', states: false },

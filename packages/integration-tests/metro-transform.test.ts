@@ -14,7 +14,7 @@ import path from 'node:path';
 import { stripVTControlCharacters } from 'node:util';
 
 const require = createRequire(import.meta.url);
-const { transformNativeCss } = require('@solid-native/metro/solid-css.cjs') as {
+const { transformNativeCss } = require('@solidnative/metro/solid-css.cjs') as {
   transformNativeCss(
     src: string,
     filename: string,
@@ -77,11 +77,11 @@ describe('the transform chain', () => {
 
 describe('a file that does not compile', () => {
   it('reports a syntax error in a Solid component at the line and column it is on', () => {
-    const transformer = require('@solid-native/metro/solid-transformer.cjs') as {
+    const transformer = require('@solidnative/metro/solid-transformer.cjs') as {
       transform(params: object): unknown;
     };
     const src = [
-      '/** @jsxImportSource @solid-native/platform/solid */',
+      '/** @jsxImportSource @solidnative/platform/solid */',
       '',
       'export function Broken() {',
       '  const label = ;',
@@ -115,11 +115,11 @@ describe('a file that does not compile', () => {
 
 describe("the transformer's cache key", () => {
   it("adds the compiler's own fingerprint to Expo's, so an edit to the compiler invalidates it", () => {
-    const ours = require('@solid-native/metro/solid-transformer.cjs') as { getCacheKey(): string };
-    const { solidCompilerFingerprint } = require('@solid-native/metro/solid-cache.cjs') as {
+    const ours = require('@solidnative/metro/solid-transformer.cjs') as { getCacheKey(): string };
+    const { solidCompilerFingerprint } = require('@solidnative/metro/solid-cache.cjs') as {
       solidCompilerFingerprint(): string;
     };
-    const fromMetro = createRequire(require.resolve('@solid-native/metro/solid-transformer.cjs'));
+    const fromMetro = createRequire(require.resolve('@solidnative/metro/solid-transformer.cjs'));
     const expo = fromMetro('@expo/metro-config/build/babel-transformer') as {
       getCacheKey?(): string;
     };

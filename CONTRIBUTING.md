@@ -57,7 +57,7 @@ pnpm --filter documentation dev  # the documentation site, on http://localhost:5
 - Each package and example keeps its Solid tests in `solid-tests/`, run by Node's test runner in
   both export-condition modes (the default, and `--conditions=worker --conditions=development`).
 - `packages/web` has its own suites: `node:test` suites in `src/` and `solid-tests/`, and a
-  Chromium suite (`pnpm --filter @solid-native/web test:browser`).
+  Chromium suite (`pnpm --filter @solidnative/web test:browser`).
 - `packages/testing` has tests of its own, for the fake Fabric and the Testing Library layer it
   ships to everyone else.
 
@@ -81,7 +81,7 @@ and holds each case to:
 - the build does not throw, and the case either takes effect or is refused with a warning;
 - what it commits is a prop React Native declares, with a keyword it takes;
 - what it resolves to agrees with what Chrome computes, on iOS and on the web host (the web preset
-  and `@solid-native/web`'s reset); and each variant probe agrees again on Android, in dark mode, at
+  and `@solidnative/web`'s reset); and each variant probe agrees again on Android, in dark mode, at
   two more widths and with every state an attribute sets, with the `android:` pairs on Android;
 - what a view hands down to a text inside it agrees too;
 - its transform comes to the matrix Chrome's does, and its animation paints what Chrome's does at
@@ -96,7 +96,7 @@ against:
 ```sh
 cd packages/integration-tests
 pnpm tailwind-oracle                                   # Chrome's answers, after a Tailwind upgrade
-TAILWIND_SWEEP_UPDATE=1 node --import @solid-native/testing/register --test tailwind-sweep.test.ts
+TAILWIND_SWEEP_UPDATE=1 node --import @solidnative/testing/register --test tailwind-sweep.test.ts
 ```
 
 Read the diff of the second before committing it: each line is a utility that is refused
@@ -127,9 +127,9 @@ node scripts/verify-publish.mjs         # publish, generate an app, bundle it
 ```
 
 It publishes every package and the starter template to that registry, runs
-`create-expo-app --template @solid-native/template`, installs from the registry so the packages
+`create-expo-app --template @solidnative/template`, installs from the registry so the packages
 find each other **by version** rather than through workspace links, then typechecks and bundles the
-result. Nothing reaches npmjs, and the registry has no uplink for `@solid-native/*` so a package
+result. Nothing reaches npmjs, and the registry has no uplink for `@solidnative/*` so a package
 that failed to publish cannot be quietly satisfied by the real one.
 
 See [RELEASING.md](./RELEASING.md) for how an actual release goes out.

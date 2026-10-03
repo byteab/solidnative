@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { MapView, type MapMarker, type MapViewRef } from '@solid-native/expo/solid/map-view';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { MapView, type MapMarker, type MapViewRef } from '@solidnative/expo/solid/map-view';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 const KINGS_CROSS = { latitude: 51.5308, longitude: -0.1238 };

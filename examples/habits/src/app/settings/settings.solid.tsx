@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import { Flame } from 'lucide-static';
-import { SafeAreaView, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Notifications, TriggerType } from '@solid-native/expo/solid/notifications';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { For, Show } from '@solid-native/platform/solid';
+import { SafeAreaView, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Notifications, TriggerType } from '@solidnative/expo/solid/notifications';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { For, Show } from '@solidnative/platform/solid';
 import { Habits } from '../data/habits.solid.ts';
 
 const icons = { Flame };

@@ -11,7 +11,7 @@ so every screen has something to show on first launch.
 | Settings (`src/app/settings/settings.solid.tsx`)           | Daily reminders through `expo-notifications`, with the `Notifications` service covering the request and the denied state, and every streak at a glance |
 
 Habits and their completions are kept in SQLite through `database()` from
-`@solid-native/expo/solid/database`, written through best-effort: the signals in
+`@solidnative/expo/solid/database`, written through best-effort: the signals in
 `src/app/data/habits.solid.ts` are the source of truth for the UI, and persistence happens in the
 background, so a device with no SQLite module - Node under the tests - falls back to the seeded
 data rather than breaking anything.

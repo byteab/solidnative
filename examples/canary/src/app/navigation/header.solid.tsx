@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { NativeHeader, NativeHeaderItem } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { NativeHeader, NativeHeaderItem } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
-import { For } from '@solid-native/platform/solid';
+import { For } from '@solidnative/platform/solid';
 import { createSignal } from 'solid-js';
 
 export function Header() {

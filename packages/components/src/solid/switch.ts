@@ -1,5 +1,5 @@
-import { nativePlatform, type HostNode, type NativeSyntheticEvent } from '@solid-native/fabric';
-import { spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import { nativePlatform, type HostNode, type NativeSyntheticEvent } from '@solidnative/fabric';
+import { spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { createControlled, FORM_KEYS, formProps } from './controlled.ts';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { commitTask, createNativeRef } from './ref.ts';

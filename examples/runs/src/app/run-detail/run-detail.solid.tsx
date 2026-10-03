@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
 import { Share } from 'lucide-static';
-import { Icon } from '@solid-native/icons/solid';
-import { FileSystem } from '@solid-native/expo/solid/file-system';
-import { ColorScheme, Sharing, useService } from '@solid-native/device/solid';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, NativeHeaderItem, useRoute } from '@solid-native/router/solid';
-import { MapView, type MapMarker, type MapPolyline } from '@solid-native/expo/solid/map-view';
+import { Icon } from '@solidnative/icons/solid';
+import { FileSystem } from '@solidnative/expo/solid/file-system';
+import { ColorScheme, Sharing, useService } from '@solidnative/device/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, NativeHeaderItem, useRoute } from '@solidnative/router/solid';
+import { MapView, type MapMarker, type MapPolyline } from '@solidnative/expo/solid/map-view';
 import { Runs, type Run } from '../data/runs.solid.ts';
 import { Units } from '../settings/units.solid.ts';
 import {

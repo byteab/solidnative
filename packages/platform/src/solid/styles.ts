@@ -5,7 +5,7 @@ import {
   type Engine,
   type EngineNode,
   type StyleSheet,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import { lifetimeOf, NodeLifetime, rootOf } from './context.ts';
 
 const styles = createContext<StyleSheet | null>(null);

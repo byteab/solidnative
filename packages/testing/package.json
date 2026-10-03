@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/testing",
+  "name": "@solidnative/testing",
   "version": "0.1.1",
   "description": "Test solid-native Solid components in Node with no simulator: a fake Fabric, Testing Library queries and events, and node:test and Vitest integration.",
   "keywords": [
@@ -45,9 +45,9 @@
     }
   },
   "dependencies": {
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/metro": "workspace:*",
-    "@solid-native/platform": "workspace:*"
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/metro": "workspace:*",
+    "@solidnative/platform": "workspace:*"
   },
   "peerDependencies": {
     "solid-js": "^1.9.15",
@@ -63,7 +63,7 @@
     }
   },
   "devDependencies": {
-    "@solid-native/components": "workspace:*",
+    "@solidnative/components": "workspace:*",
     "solid-js": "1.9.15",
     "vite": "^8.3.1",
     "vitest": "^5.0.2"

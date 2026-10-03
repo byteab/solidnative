@@ -1,6 +1,6 @@
 /**
  * Every Tailwind 3 utility, as cases: the same sweep as `tailwind-sweep.ts`, built by Tailwind 3
- * through `@solid-native/tailwind/preset.cjs`.
+ * through `@solidnative/tailwind/preset.cjs`.
  *
  * The list comes from Tailwind 3's own context, `getClassList()` and `getVariants()`, with the
  * preset and an app's theme loaded, so a utility the preset or a Tailwind 3 release adds is
@@ -44,7 +44,7 @@ const { generateRules } = require(`${V3}/lib/lib/generateRules`) as {
 const postcss = createRequire(require.resolve(`${V3}/package.json`))('postcss') as (
   plugins: object[],
 ) => { process(css: string, options: object): Promise<{ css: string }> };
-const preset = require('@solid-native/tailwind/preset.cjs') as object;
+const preset = require('@solidnative/tailwind/preset.cjs') as object;
 
 interface Context {
   getClassList(options: { includeMetadata: true }): (string | [string, object])[];

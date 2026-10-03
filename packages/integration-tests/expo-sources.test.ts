@@ -1,5 +1,5 @@
 /**
- * The default factories behind `@solid-native/expo`'s `SOURCE` tokens.
+ * The default factories behind `@solidnative/expo`'s `SOURCE` tokens.
  *
  * Same argument as `device-sources.test.ts`: every test of these services provides a fake source,
  * so the services are covered and the translation between Expo's API and this one is not. That
@@ -18,26 +18,26 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { Battery } from '@solid-native/expo/battery';
-import { Clipboard } from '@solid-native/expo/clipboard';
-import { FileSystem } from '@solid-native/expo/file-system';
-import { LanguageModel } from '@solid-native/expo/language-model';
-import { Network } from '@solid-native/expo/network';
-import { AppleSignIn } from '@solid-native/expo/apple-sign-in';
-import { Notifications } from '@solid-native/expo/notifications';
-import { MediaLibrary } from '@solid-native/expo/media-library';
-import { ImageEditor } from '@solid-native/expo/image-editor';
-import { ScreenCapture } from '@solid-native/expo/screen-capture';
-import { BackgroundTask } from '@solid-native/expo/background-task';
-import { Crypto } from '@solid-native/expo/crypto';
-import { DocumentPicker } from '@solid-native/expo/document-picker';
-import { Tracking } from '@solid-native/expo/tracking';
-import { StoreReview } from '@solid-native/expo/store-review';
-import { DeviceOrientation } from '@solid-native/expo/orientation';
-import { Locale } from '@solid-native/expo/locale';
-import { SecureStorage, Storage } from '@solid-native/expo/store';
-import { Updates } from '@solid-native/expo/updates';
-import { useService, type ServiceToken } from '@solid-native/device/solid';
+import { Battery } from '@solidnative/expo/battery';
+import { Clipboard } from '@solidnative/expo/clipboard';
+import { FileSystem } from '@solidnative/expo/file-system';
+import { LanguageModel } from '@solidnative/expo/language-model';
+import { Network } from '@solidnative/expo/network';
+import { AppleSignIn } from '@solidnative/expo/apple-sign-in';
+import { Notifications } from '@solidnative/expo/notifications';
+import { MediaLibrary } from '@solidnative/expo/media-library';
+import { ImageEditor } from '@solidnative/expo/image-editor';
+import { ScreenCapture } from '@solidnative/expo/screen-capture';
+import { BackgroundTask } from '@solidnative/expo/background-task';
+import { Crypto } from '@solidnative/expo/crypto';
+import { DocumentPicker } from '@solidnative/expo/document-picker';
+import { Tracking } from '@solidnative/expo/tracking';
+import { StoreReview } from '@solidnative/expo/store-review';
+import { DeviceOrientation } from '@solidnative/expo/orientation';
+import { Locale } from '@solidnative/expo/locale';
+import { SecureStorage, Storage } from '@solidnative/expo/store';
+import { Updates } from '@solidnative/expo/updates';
+import { useService, type ServiceToken } from '@solidnative/device/solid';
 import { disposeServices, servicesWith } from './expo-service.ts';
 
 /** Modules by specifier, for one call. Anything not listed throws, which reads as "not installed". */

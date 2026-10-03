@@ -99,7 +99,7 @@ jobs:
 
   # What nothing else checks: that the packages publish, find each other by version through a
   # registry, that `create-expo-app --template` gives an app that typechecks and bundles, and that a
-  # browser app on `@solid-native/web` renders. Only when something it publishes could have changed:
+  # browser app on `@solidnative/web` renders. Only when something it publishes could have changed:
   # a pull request to the docs or the canary alone has nothing new to publish.
   distribution:
     needs: changes
@@ -123,9 +123,9 @@ jobs:
             http://localhost:4873/-/user/org.couchdb.user:ci | jq -r .token)
           echo "//localhost:4873/:_authToken=$token" >> ~/.npmrc
 
-      # `--web` checks a browser app on `@solid-native/web` in Chromium, through this workspace's
+      # `--web` checks a browser app on `@solidnative/web` in Chromium, through this workspace's
       # Playwright.
-      - run: pnpm --filter @solid-native/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @solidnative/web exec playwright install --with-deps chromium
 
       - run: node scripts/verify-publish.mjs --web
 

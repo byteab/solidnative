@@ -17,7 +17,7 @@ npx expo install expo-tracking-transparency
 ```
 
 ```ts
-import { Tracking } from '@solid-native/expo/solid/tracking';
+import { Tracking } from '@solidnative/expo/solid/tracking';
 ```
 
 The config plugin sets the dialog text (`NSUserTrackingUsageDescription`) from its
@@ -26,9 +26,9 @@ The config plugin sets the dialog text (`NSUserTrackingUsageDescription`) from i
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Tracking } from '@solid-native/expo/solid/tracking';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Tracking } from '@solidnative/expo/solid/tracking';
 
 export function Consent() {
   const tracking = useService(Tracking);
@@ -65,6 +65,6 @@ asked for, `available()` is `false`, and `advertisingId()` is `null`.
 
 ## Reference
 
-`Tracking` is exported from `@solid-native/expo/solid/tracking`.
+`Tracking` is exported from `@solidnative/expo/solid/tracking`.
 
 <!-- api: Tracking -->

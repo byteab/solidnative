@@ -5,10 +5,10 @@
     "outDir": "dist",
     // The root map still names `dist/index.d.ts` for device, whose Solid entry is `dist/solid.d.ts`.
     "paths": {
-      "@solid-native/fabric": ["../fabric/dist/index.d.ts"],
-      "@solid-native/fabric/*": ["../fabric/dist/*.d.ts"],
-      "@solid-native/device": ["../device/dist/solid.d.ts"],
-      "@solid-native/device/*": ["../device/dist/*.d.ts"]
+      "@solidnative/fabric": ["../fabric/dist/index.d.ts"],
+      "@solidnative/fabric/*": ["../fabric/dist/*.d.ts"],
+      "@solidnative/device": ["../device/dist/solid.d.ts"],
+      "@solidnative/device/*": ["../device/dist/*.d.ts"]
     }
   },
   "include": ["src"],

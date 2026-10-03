@@ -10,15 +10,15 @@ import {
   type NativeDialogs,
   type ObservedSource,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import { Battery, type BatteryState } from '@solid-native/expo/solid/battery';
-import { Brightness } from '@solid-native/expo/solid/brightness';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import { Locale } from '@solid-native/expo/solid/locale';
-import { Network, type NetworkStatus } from '@solid-native/expo/solid/network';
-import { DeviceOrientation, type Orientation } from '@solid-native/expo/solid/orientation';
-import { Accelerometer, type VectorMeasurement } from '@solid-native/expo/solid/sensors';
-import { SecureStorage, Storage } from '@solid-native/expo/solid/store';
+} from '@solidnative/device/solid';
+import { Battery, type BatteryState } from '@solidnative/expo/solid/battery';
+import { Brightness } from '@solidnative/expo/solid/brightness';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import { Locale } from '@solidnative/expo/solid/locale';
+import { Network, type NetworkStatus } from '@solidnative/expo/solid/network';
+import { DeviceOrientation, type Orientation } from '@solidnative/expo/solid/orientation';
+import { Accelerometer, type VectorMeasurement } from '@solidnative/expo/solid/sensors';
+import { SecureStorage, Storage } from '@solidnative/expo/solid/store';
 import { verifyRoutes } from '../src/app/device/verify-routes.solid.ts';
 import { stressRoutes } from '../src/app/stress/routes.solid.ts';
 import { stressRows } from '../src/app/stress/stress-rows.solid.ts';

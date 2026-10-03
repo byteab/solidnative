@@ -15,15 +15,15 @@ npx expo install expo-local-authentication
 ```
 
 ```ts
-import { Biometrics } from '@solid-native/expo/solid/biometrics';
+import { Biometrics } from '@solidnative/expo/solid/biometrics';
 ```
 
 ## The smallest thing that works
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Biometrics } from '@solid-native/expo/solid/biometrics';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Biometrics } from '@solidnative/expo/solid/biometrics';
 
 export function Wallet() {
   const biometrics = useService(Biometrics);
@@ -86,6 +86,6 @@ its sensor is not a lock. `available()` resolves to `false` and `kinds()` to an 
 
 ## Reference
 
-`Biometrics` is exported from `@solid-native/expo/solid/biometrics`.
+`Biometrics` is exported from `@solidnative/expo/solid/biometrics`.
 
 <!-- api: Biometrics -->

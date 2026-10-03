@@ -125,14 +125,14 @@ const SUITES = [
     imports: [COMPILED, CSS_COMPILED],
     tests: ['solid-tests/*.test.ts'],
   }),
-  // Through `@solid-native/testing`'s public register, as an app's own tests run: its gesture-handler,
+  // Through `@solidnative/testing`'s public register, as an app's own tests run: its gesture-handler,
   // reanimated and worklets stand-ins are part of what the suite exercises.
   suite('integration', 'packages/integration-tests', {
-    imports: ['@solid-native/testing/register'],
+    imports: ['@solidnative/testing/register'],
     tests: ['*.test.ts'],
     concurrency: true,
   }),
-  // `@solid-native/testing`'s own node:test half, through its public register hook.
+  // `@solidnative/testing`'s own node:test half, through its public register hook.
   suite('testing', 'packages/testing', {
     imports: ['./register.mjs'],
     tests: ['src/**/*.test.ts', 'src/**/*.test.tsx'],

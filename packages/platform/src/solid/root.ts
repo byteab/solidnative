@@ -5,7 +5,7 @@ import {
   type EngineOptions,
   type EngineNode,
   type FabricUIManager,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import { DEAD, DROPPED, NodeLifetime, withRoot, type RootContext } from './context.ts';
 import { reserveSurface } from './events.ts';
 import { renderer } from './renderer.ts';
@@ -88,7 +88,7 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
     onError: report,
   });
   surface.attach(engine, report);
-  // What `@solid-native/tailwind`'s `ios:`/`android:` variants match beneath, on the root so they
+  // What `@solidnative/tailwind`'s `ios:`/`android:` variants match beneath, on the root so they
   // work with nothing for the app to set up.
   engine.addClass(engine.root, `platform-${nativePlatform()}`);
 

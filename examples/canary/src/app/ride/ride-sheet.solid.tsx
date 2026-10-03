@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
 import {
   ActivityIndicator,
@@ -7,10 +7,10 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import {
   OPTIONS,
   Trip,

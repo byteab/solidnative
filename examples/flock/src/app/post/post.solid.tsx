@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { For, Show } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation, useRoute } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { For, Show } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation, useRoute } from '@solidnative/router/solid';
 import { accent, compact, post, repliesTo, textSize, user } from '../flock.solid.ts';
 import { Avatar } from '../ui/avatar.solid.tsx';
 import { Glyph } from '../ui/glyph.solid.tsx';

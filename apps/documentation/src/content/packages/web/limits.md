@@ -5,19 +5,19 @@ summary: The router, animation backends and gesture handling have no browser bui
 
 # What does not carry over
 
-`@solid-native/router/solid` is `react-native-screens` throughout and has no browser build:
+`@solidnative/router/solid` is `react-native-screens` throughout and has no browser build:
 `NativeStackOutlet`, `NativeTabsOutlet` and `NativeHeader` render native screen containers. A routed
 web build needs its own web router over Solid DOM pages, with shared screens in islands.
 
 Reanimated worklets and `react-native-gesture-handler` are native-only:
-`@solid-native/components/solid/reanimated` and `@solid-native/components/solid/gestures` import
+`@solidnative/components/solid/reanimated` and `@solidnative/components/solid/gestures` import
 packages a browser can't load, so the build fails. `solidNativeWeb()` rejects a `react-native`
 import outright with `Unsupported runtime import in a Solid browser build`, naming it. Keep all of
 these out of what a web build imports.
 
-`@solid-native/components/solid/animations` builds on React Native's `Animated`, and Solid has no
+`@solidnative/components/solid/animations` builds on React Native's `Animated`, and Solid has no
 browser animation backend yet. `AnimatedStyle`, `WorkletStyle`, `WorkletScroll` and
-`NativeGesture` from `@solid-native/components/solid` take a backend argument, and only native
+`NativeGesture` from `@solidnative/components/solid` take a backend argument, and only native
 backends exist. Animate shared components with CSS `transition` and `@keyframes`.
 
 Device services need a browser source; one without throws
@@ -31,7 +31,7 @@ Everything else runs the same code: popovers, dialogs and toasts use the host's 
 ## Sharing screens between native and web
 
 Keep native-only imports out of modules a web build reaches. Unlike Metro, Rollup/Vite fails the
-build when a screen statically imports something native-only (`@solid-native/router/solid`,
+build when a screen statically imports something native-only (`@solidnative/router/solid`,
 `react-native-svg`, an `expo-*` module): a module graph can't have an unresolvable edge, dynamic
 import or not. A runtime `.catch()` on a lazy loader can't fix a build that already failed; use
 browser-compatible dependencies or separate native and web route configs. A `.catch()` is still
@@ -39,12 +39,12 @@ worth adding for chunks that built but fail to load at runtime (a flaky connecti
 
 ## The build
 
-A browser build is Vite with `solidNativeWeb()` from `@solid-native/web/solid/vite`, as
+A browser build is Vite with `solidNativeWeb()` from `@solidnative/web/solid/vite`, as
 [Web](/packages/web) describes:
 
 - **No React Native runtime is loaded.** Importing `react-native` is an error.
 - **`solid-js` resolves to the app's own copy.** The plugin maps `solid-js` and subpaths to the
-  app's browser build and excludes `@solid-native/*` and `solid-js` from Vite's pre-bundling, so the
+  app's browser build and excludes `@solidnative/*` and `solid-js` from Vite's pre-bundling, so the
   plugin compiles them.
 - **A Solid file edit reloads the page.** Editing a `.solid.tsx`, `.solid.ts` or `.native.css`
   file disposes every root and listener with a full reload; no hot replacement.

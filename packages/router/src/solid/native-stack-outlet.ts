@@ -1,6 +1,6 @@
 import { createRenderEffect, onCleanup } from 'solid-js';
-import { useHostAdapter } from '@solid-native/platform/solid';
-import type { HostNode } from '@solid-native/fabric';
+import { useHostAdapter } from '@solidnative/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
 import type { NativeNavigation } from './native-navigation.ts';
 import { useRouteOutlet } from './route-context.ts';
 import { notifyNativeDismissAttempt } from './native-dismiss.ts';

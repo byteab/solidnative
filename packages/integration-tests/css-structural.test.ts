@@ -13,13 +13,13 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { Engine } from '@solid-native/fabric';
-import { createFakeFabric, type FakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { Engine } from '@solidnative/fabric';
+import { createFakeFabric, type FakeFabric, type FakeFabricNode } from '@solidnative/testing';
 import { mountSolid } from './css-solid-harness.ts';
 import { structuralHost } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 describe('compiling a structural selector', () => {
   const compoundOf = (selector: string) =>

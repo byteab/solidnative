@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { provideService, withServiceScope } from '@solid-native/device/solid';
-import type { NativeRef } from '@solid-native/components/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { provideService, withServiceScope } from '@solidnative/device/solid';
+import type { NativeRef } from '@solidnative/components/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 import { Camera, type CameraRef } from '../src/solid/camera.ts';
 import { MapView, registerExpoMap, type MapViewRef } from '../src/solid/map-view.ts';

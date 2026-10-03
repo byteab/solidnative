@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { batch, createSelector, createSignal } from 'solid-js';
-import { For } from '@solid-native/platform/solid';
+import { For } from '@solidnative/platform/solid';
 
 import {
   ROWS,

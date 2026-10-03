@@ -1,6 +1,6 @@
 import { untrack } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
-import { insertHostChildren, spreadHostProps } from '@solid-native/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps } from '@solidnative/platform/solid';
 import { Image, type ImageProps } from './image.ts';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

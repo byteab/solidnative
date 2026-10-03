@@ -8,14 +8,14 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
-import { Engine, type StyleSheet } from '@solid-native/fabric';
+import { createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
+import { Engine, type StyleSheet } from '@solidnative/fabric';
 import { createRequire } from 'node:module';
 import { mountSolid, type FakeNode } from './css-solid-harness.ts';
 import { crossParent, inheritUpdate } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 const flatten = (n: FakeFabricNode[]): FakeFabricNode[] =>
   n.flatMap((x) => [x, ...flatten(x.children)]);

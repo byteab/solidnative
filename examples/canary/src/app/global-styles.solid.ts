@@ -1,4 +1,4 @@
-import type { StyleSheet } from '@solid-native/fabric';
+import type { StyleSheet } from '@solidnative/fabric';
 import globalStyles from './global-styles.native.css';
 
 /** Preserve application rules before Tailwind utilities in one native global cascade. */

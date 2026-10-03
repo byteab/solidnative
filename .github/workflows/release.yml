@@ -98,7 +98,7 @@ jobs:
       # tarball is what speaks npm's OIDC for provenance and trusted publishing.
       # The packages publish their `dist`: JavaScript and declarations, built by `tsc`.
       - name: Build
-        run: npx nx run-many -t build -p '@solid-native/*'
+        run: npx nx run-many -t build -p '@solidnative/*'
 
       - name: Pack
         run: |

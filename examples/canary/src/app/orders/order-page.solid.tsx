@@ -1,14 +1,14 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Show } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Show } from '@solidnative/platform/solid';
 import {
   ActivityIndicator,
   Pressable,
   ScrollView,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { AppState, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { NativeHeader, useNavigation, useRoute } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { AppState, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { NativeHeader, useNavigation, useRoute } from '@solidnative/router/solid';
 import { OrdersApi, ORDER_POLL_MS } from './orders-api.solid.ts';
 import { createOrderState } from './order-state.solid.ts';
 

@@ -1,6 +1,6 @@
 import { createSignal, onCleanup } from 'solid-js';
-import { nativePlatform, type HostEngine, type HostNode } from '@solid-native/fabric';
-import { useHostAdapter } from '@solid-native/platform/solid';
+import { nativePlatform, type HostEngine, type HostNode } from '@solidnative/fabric';
+import { useHostAdapter } from '@solidnative/platform/solid';
 import type { NativeNavigation } from './native-navigation.ts';
 import { useRouteOutlet } from './route-context.ts';
 import { useNativeBarDefaults, type TabDefaults } from './native-bar-defaults.ts';

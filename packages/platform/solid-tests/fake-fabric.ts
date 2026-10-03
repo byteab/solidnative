@@ -1,4 +1,4 @@
-import type { EngineNode, FabricNode, FabricNodeSet, FabricUIManager } from '@solid-native/fabric';
+import type { EngineNode, FabricNode, FabricNodeSet, FabricUIManager } from '@solidnative/fabric';
 
 export interface FakeNode {
   readonly tag: number;

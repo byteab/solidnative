@@ -15,7 +15,7 @@ import {
   MediaLibrary,
   MediaType,
   type NativeMediaLibrary,
-} from '@solid-native/expo/media-library';
+} from '@solidnative/expo/media-library';
 import { disposeServices, ownedService, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

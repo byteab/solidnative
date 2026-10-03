@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
 import { Gesture } from 'react-native-gesture-handler';
 import { Playback, clock, seekTarget } from './player-model.solid.ts';
-import { UiHost, UiSlider } from '@solid-native/expo/solid';
+import { UiHost, UiSlider } from '@solidnative/expo/solid';
 import sheet from './now-playing.native.css';
 
 export function NowPlaying() {

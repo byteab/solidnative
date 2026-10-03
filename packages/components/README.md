@@ -1,4 +1,4 @@
-# @solid-native/components
+# @solidnative/components
 
 The React Native element set as Solid components: `View`, `Text`, `ScrollView`, `TextInput` and the
 rest, each committing as a real native view through React Native's Fabric renderer.
@@ -7,11 +7,11 @@ Alpha: APIs may change before 1.0.
 
 ## Install
 
-Most apps start from `npx create-expo-app@latest my-app --template @solid-native/template`, which
+Most apps start from `npx create-expo-app@latest my-app --template @solidnative/template`, which
 already has this and its peers set up. Otherwise:
 
 ```sh
-npm install @solid-native/components solid-js react-native
+npm install @solidnative/components solid-js react-native
 ```
 
 `react-native-gesture-handler` and `react-native-reanimated` are optional peers, needed only for
@@ -20,7 +20,7 @@ gestures and Reanimated worklets.
 ## Example
 
 ```tsx
-import { View, Text } from '@solid-native/components';
+import { View, Text } from '@solidnative/components';
 
 export function Greeting(props: { name?: string }) {
   return (

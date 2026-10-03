@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { DomComponent } from '@solid-native/expo/solid/dom-component';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { DomComponent } from '@solidnative/expo/solid/dom-component';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import signature from './signature.dom.tsx';
 import { page } from '../screen-styles.ts';
 

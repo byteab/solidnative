@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router';
+import type { NativeRoute } from '@solidnative/router';
 
 /** Every screen loads when it is first opened, which keeps start-up fast. */
 export const routes: readonly NativeRoute[] = [

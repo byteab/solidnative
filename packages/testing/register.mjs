@@ -1,5 +1,5 @@
 /**
- * `node --import @solid-native/testing/register --test "src/**\/*.test.ts"`: compiles an app for
+ * `node --import @solidnative/testing/register --test "src/**\/*.test.ts"`: compiles an app for
  * Node's own test runner the way Metro compiles it for a device. See `compile.mjs` for what that
  * covers. Synchronous hooks, so `require(esm)` and both export-condition modes go through them.
  *
@@ -17,7 +17,7 @@ const runtime = solidRuntime();
 /** The app's own files and solid-native's packages; any other installed package is left as it is. */
 const ours = (filename) =>
   !/[\\/]node_modules[\\/]/.test(filename) ||
-  /[\\/]node_modules[\\/]@solid-native[\\/]/.test(filename);
+  /[\\/]node_modules[\\/]@solidnative[\\/]/.test(filename);
 
 registerHooks({
   resolve(specifier, context, nextResolve) {

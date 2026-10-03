@@ -1,5 +1,5 @@
-import type { NativeRoot } from '@solid-native/platform/solid';
-import { render, screen, settle, type FakeFabricNode } from '@solid-native/testing';
+import type { NativeRoot } from '@solidnative/platform/solid';
+import { render, screen, settle, type FakeFabricNode } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check, parentOf } from '../../check.ts';
 import { App } from './solution/app.tsx';

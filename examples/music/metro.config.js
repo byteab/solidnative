@@ -1,6 +1,6 @@
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 const path = require('node:path');
 
 // The framework packages are workspace members, so their real files live under packages/ rather

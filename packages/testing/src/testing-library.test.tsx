@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 /**
- * The whole Testing Library surface under `node --import @solid-native/testing/register --test`,
+ * The whole Testing Library surface under `node --import @solidnative/testing/register --test`,
  * written as an app's test would be: Solid components declared here, everything imported by
  * package name. The edges an app has no reason to show are here too: what every query throws, and
  * exactly what each event sends.
@@ -9,7 +9,7 @@ import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { inspect } from 'node:util';
 import { createSignal } from 'solid-js';
-import { Pressable, ScrollView, Text, TextInput, View } from '@solid-native/components';
+import { Pressable, ScrollView, Text, TextInput, View } from '@solidnative/components';
 import {
   cleanup,
   createClock,
@@ -24,8 +24,8 @@ import {
   within,
   type FakeFabric,
   type FakeFabricNode,
-} from '@solid-native/testing';
-import { Show, createNativeRoot } from '@solid-native/platform/solid';
+} from '@solidnative/testing';
+import { Show, createNativeRoot } from '@solidnative/platform/solid';
 
 declare const __DEV__: boolean;
 

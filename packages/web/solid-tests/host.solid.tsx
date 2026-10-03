@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/web/solid */
+/** @jsxImportSource @solidnative/web/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import {
   View,
@@ -8,8 +8,8 @@ import {
   Pressable,
   ScrollView,
   VirtualList,
-} from '@solid-native/components/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/web/solid';
+} from '@solidnative/components/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/web/solid';
 import sheet from './host.native.css';
 
 export function HostFixture(props: {

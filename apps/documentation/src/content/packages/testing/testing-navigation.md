@@ -6,20 +6,20 @@ summary: Pushing a screen on the native stack, route parameters, and the transit
 # Testing navigation
 
 Continues from [Writing a test](/packages/testing/writing-a-test). Tests route with the app's own
-`createNativeNavigation` and `NativeStackOutlet` from `@solid-native/router/solid`. Routes, and a
+`createNativeNavigation` and `NativeStackOutlet` from `@solidnative/router/solid`. Routes, and a
 root that hands its navigation to the test:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { ServiceScope } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { ServiceScope } from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   NativeStackOutlet,
   type NativeNavigation,
   type NativeRoute,
   type NativeRouteProps,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 
 function Home(props: NativeRouteProps) {
   return (
@@ -63,8 +63,8 @@ reaches:
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import type { NativeNavigation } from '@solid-native/router/solid';
-import { cleanup, fireEvent, render, screen, userEvent } from '@solid-native/testing';
+import type { NativeNavigation } from '@solidnative/router/solid';
+import { cleanup, fireEvent, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);

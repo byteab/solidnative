@@ -31,7 +31,7 @@ const read = (specifier: string) => readFileSync(require.resolve(specifier), 'ut
  * The Tailwind CLI's output for the corpus entry.
  *
  * Run from this package, because the CLI resolves `@import`s from the entry's own directory and
- * `@solid-native/tailwind` is only installed here.
+ * `@solidnative/tailwind` is only installed here.
  */
 function tailwind(): string {
   const cli = join(require.resolve('@tailwindcss/cli/package.json'), '..', 'dist', 'index.mjs');
@@ -81,7 +81,7 @@ function tailwindV3(): string {
   const patterns = [...entry.matchAll(/@source inline\("([^"]+)"\)/g)].map((m) => m[1]!);
   const classes = [...patterns, ...V3_ONLY.split(' ')].flatMap(expandBraces).join(' ');
   const dir = mkdtempSync(join(tmpdir(), 'css-corpus-v3-'));
-  const preset = require.resolve('@solid-native/tailwind/preset.cjs');
+  const preset = require.resolve('@solidnative/tailwind/preset.cjs');
   writeFileSync(
     join(dir, 'tailwind.config.js'),
     `module.exports = { presets: [require(${JSON.stringify(preset)})], content: [{ raw: ${JSON.stringify(classes)} }] };`,

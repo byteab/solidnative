@@ -17,7 +17,7 @@ const { getDefaultConfig } = require('@expo/metro-config');
 const { withSolidNative } = require('./solid-config.cjs');
 
 const source = `'use dom';
-import { mountInWebView as mount } from '@solid-native/web/solid/web-view';
+import { mountInWebView as mount } from '@solidnative/web/solid/web-view';
 function Signature(props: {name: string}) { return <div>{props.name}</div>; }
 export default mount(Signature);`;
 const projectRoot = path.resolve(__dirname, '../platform');
@@ -43,7 +43,7 @@ test('only explicit Solid DOM author files use the browser compiler', () => {
   assert.equal(isSolidDomComponent(source), true);
   for (const text of [
     `'use dom'; export default function ReactView() { return <div />; }`,
-    `const quoted = "use dom @solid-native/web/solid/web-view";`,
+    `const quoted = "use dom @solidnative/web/solid/web-view";`,
     source.replace("'use dom';", 'const first = 0;'),
   ])
     assert.equal(isSolidDomComponent(text), false);
@@ -74,7 +74,7 @@ test('web DOM compilation removes Expo React directive and retains reactive DOM 
   const compiled = transformSolidDom(source, filename);
   assert.match(compiled.code, /solid-js\/web/);
   assert.match(compiled.code, /props.name/);
-  assert.doesNotMatch(compiled.code, /use dom|react\/|@solid-native\/platform|delegateEvents/);
+  assert.doesNotMatch(compiled.code, /use dom|react\/|@solidnative\/platform|delegateEvents/);
   assert.deepEqual(compiled.map.sourcesContent, [source]);
   const result = transformer.transform({
     src: source,

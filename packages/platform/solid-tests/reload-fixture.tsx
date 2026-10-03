@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, createRenderEffect, onCleanup } from 'solid-js';
-import { onNativeCleanup } from '@solid-native/platform/solid';
+import { onNativeCleanup } from '@solidnative/platform/solid';
 
 export function createReloadFixture(fail = false) {
   const [count, setCount] = createSignal(0);

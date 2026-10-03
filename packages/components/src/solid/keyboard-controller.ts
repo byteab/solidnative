@@ -3,8 +3,8 @@ import {
   provideService,
   withServiceScope,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import type { HostChild } from '@solid-native/platform/solid';
+} from '@solidnative/device/solid';
+import type { HostChild } from '@solidnative/platform/solid';
 
 /** Whether the app has installed the native keyboard-controller views. No module is loaded. */
 export const KEYBOARD_CONTROLLER = createServiceToken('KEYBOARD_CONTROLLER', () => false);

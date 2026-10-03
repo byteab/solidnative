@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { View, WorkletStyle, type WorkletBackend } from '@solid-native/components/solid';
+import { View, WorkletStyle, type WorkletBackend } from '@solidnative/components/solid';
 import { SVG_NAMESPACE } from '../src/elements.ts';
 import { nodeOf } from '../src/dom-node.ts';
 import { createElement, insert, mountBrowser, spread } from '../src/solid/index.ts';

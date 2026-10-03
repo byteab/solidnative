@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { registerExpoUiViews } from '@solid-native/expo/solid';
+import { provideService } from '@solidnative/device/solid';
+import { registerExpoUiViews } from '@solidnative/expo/solid';
 import { FeedBackend, FeedBackendSource } from '../src/app/feed/feed-backend.solid.ts';
 import { FeedPage } from '../src/app/feed/feed.solid.tsx';
 import { ChatBackend, ChatBackendSource } from '../src/app/chat/chat-backend.solid.ts';

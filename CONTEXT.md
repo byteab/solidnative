@@ -8,13 +8,13 @@ its own concepts, so that a name means one thing everywhere.
 
 **Engine**:
 The framework-agnostic retained tree and the code that commits it to Fabric. Knows nothing about
-Solid or any other UI framework. Lives in `@solid-native/fabric`, which is named for what it talks to.
+Solid or any other UI framework. Lives in `@solidnative/fabric`, which is named for what it talks to.
 _Avoid_: renderer, reconciler
 
 **Platform**:
 The one Solid-aware layer: Solid's universal renderer over the engine, the native root with its
 commit scheduler, and the mount onto a React Native surface. The same role `solid-js/web` plays for
-the DOM. Lives in `@solid-native/platform`.
+the DOM. Lives in `@solidnative/platform`.
 _Avoid_: bridge, integration
 
 **Node**:
@@ -81,7 +81,7 @@ safe-area inset on the page's behalf.
 _Avoid_: navbar, toolbar, app bar
 
 **Host primitive**:
-A component in `@solid-native/components` whose host element is one native view: `View`,
+A component in `@solidnative/components` whose host element is one native view: `View`,
 `Text`, `Image`, `ScrollView` and the rest. Each carries the typed props its native view
 accepts, plus whatever React Native's JavaScript wrapper adds on top, and is imported by the file
 that uses it. `Primitive` on its own means the behavioural kind below.
@@ -91,7 +91,7 @@ _Avoid_: element, tag, primitive
 One control's behaviour and none of its looks, installed on a host primitive's node: what it does
 with touches and keyboard focus, and what it announces to a screen reader. Press handling
 (`installPressBehavior`, behind `Pressable` and a pressable `View`) is the one
-`@solid-native/components` ships. It never adds a view of its own.
+`@solidnative/components` ships. It never adds a view of its own.
 _Avoid_: headless component, behaviour, host primitive
 
 **Component**:

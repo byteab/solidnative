@@ -9,7 +9,7 @@ Solid compiles JSX into calls on a renderer. `solid-js/web` implements it with
 `document.createElement`; `solid-js/universal`'s `createRenderer` lets any host supply its own
 `createElement`, `insertNode` and `setProperty`.
 
-`@solid-native/platform/solid` is such a renderer: it builds a retained tree for React Native's
+`@solidnative/platform/solid` is such a renderer: it builds a retained tree for React Native's
 Fabric renderer, which turns it into `UIView`s and Android `View`s. Solid replaces React's
 JavaScript and drives the same C++ renderer with no React element tree, reconciler or virtual DOM;
 signals update exactly the props and text nodes that read them.
@@ -17,17 +17,17 @@ signals update exactly the props and text nodes that read them.
 ## Rendering packages and responsibilities
 
 ```
-@solid-native/components  one component per native view, plus the behaviour composed into them
-@solid-native/platform    the Solid universal renderer over the engine, and native roots
-@solid-native/fabric      the engine: retained tree, commit, events, CSS
-@solid-native/metro       build time: Solid's JSX transform for the native renderer, .native.css
+@solidnative/components  one component per native view, plus the behaviour composed into them
+@solidnative/platform    the Solid universal renderer over the engine, and native roots
+@solidnative/fabric      the engine: retained tree, commit, events, CSS
+@solidnative/metro       build time: Solid's JSX transform for the native renderer, .native.css
 ```
 
 The engine has no framework dependency: `@nx/enforce-module-boundaries` bans `solid-js`, `react`
-and `react-native` imports in `@solid-native/fabric`. The host supplies what it needs, such as
+and `react-native` imports in `@solidnative/fabric`. The host supplies what it needs, such as
 `processColor` and `resolveAssetSource`, through `engineOptions`.
 
-`@solid-native/platform/solid` holds the only Solid-aware renderer code, the counterpart of
+`@solidnative/platform/solid` holds the only Solid-aware renderer code, the counterpart of
 `solid-js/web`, and re-exports Solid's control flow (`Show`, `For`, `Index`, `Switch`, `Match`,
 `ErrorBoundary`, `Suspense`) bound to this renderer.
 
@@ -45,9 +45,9 @@ needs native handles.
 
 ## The host seam
 
-`HostEngine` and `HostNode`, in `@solid-native/fabric`, define only the calls the shared packages
+`HostEngine` and `HostNode`, in `@solidnative/fabric`, define only the calls the shared packages
 make. Fabric's `Engine` implements the former and `EngineNode` extends the latter;
-`@solid-native/web`'s `BrowserEngine` implements both over the DOM without casts. Components reach
+`@solidnative/web`'s `BrowserEngine` implements both over the DOM without casts. Components reach
 the current host through `useHostAdapter()` and `createHostElement()`, so one component file renders
 on either.
 
@@ -101,7 +101,7 @@ React Refresh for React files and disables it for Solid ones. Release bundles ha
 
 ## Routing
 
-`@solid-native/router/solid` handles paths, guards, resolvers and lazy loading itself, with no DOM
+`@solidnative/router/solid` handles paths, guards, resolvers and lazy loading itself, with no DOM
 router underneath. A `NativeRoute[]` describes the screens, `createNativeNavigation(routes)` holds
 the stack, and `<NativeStackOutlet navigation={...} />` renders each entry into a react-native-screens
 `RNSScreen`, with native transitions and back gestures. Screens below the top stay mounted, keeping

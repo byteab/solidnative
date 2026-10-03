@@ -1,6 +1,6 @@
 import { createMemo, mapArray, mergeProps, type Accessor } from 'solid-js';
-import { nativePlatform } from '@solid-native/fabric';
-import type { HostChild } from '@solid-native/platform/solid';
+import { nativePlatform } from '@solidnative/fabric';
+import type { HostChild } from '@solidnative/platform/solid';
 import { View } from './primitive.ts';
 import { VirtualList, type VirtualListProps, type VirtualListRef } from './virtual-list.ts';
 

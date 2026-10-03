@@ -20,15 +20,15 @@ npx expo install expo-store-review
 ```
 
 ```ts
-import { StoreReview } from '@solid-native/expo/solid/store-review';
+import { StoreReview } from '@solidnative/expo/solid/store-review';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { StoreReview } from '@solid-native/expo/solid/store-review';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { StoreReview } from '@solidnative/expo/solid/store-review';
 
 export function WorkoutDone() {
   const review = useService(StoreReview);
@@ -64,6 +64,6 @@ resolve to `false`, `storeUrl()` is `null`, and `request()` does nothing.
 
 ## Reference
 
-`StoreReview` is exported from `@solid-native/expo/solid/store-review`.
+`StoreReview` is exported from `@solidnative/expo/solid/store-review`.
 
 <!-- api: StoreReview -->

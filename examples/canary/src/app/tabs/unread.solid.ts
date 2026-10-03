@@ -1,5 +1,5 @@
 import { createSignal, onCleanup } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 /** Shared by the retained profile screen and the native tab bar, scoped to this app. */
 export const Unread = createServiceToken('CanaryUnread', () => {

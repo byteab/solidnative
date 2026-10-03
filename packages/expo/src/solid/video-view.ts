@@ -1,5 +1,5 @@
-import type { ViewProps } from '@solid-native/components/solid';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
+import type { ViewProps } from '@solidnative/components/solid';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
 import { registerExpoViews } from '../register-expo-view.ts';
 import { nativeView, viewProps } from './view.ts';
 

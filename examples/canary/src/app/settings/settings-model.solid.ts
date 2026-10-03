@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js';
-import { ColorScheme, createServiceToken, useService } from '@solid-native/device/solid';
+import { ColorScheme, createServiceToken, useService } from '@solidnative/device/solid';
 
 export type Appearance = 'light' | 'dark' | 'automatic';
 

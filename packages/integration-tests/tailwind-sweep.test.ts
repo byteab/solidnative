@@ -2,7 +2,7 @@
  * Every Tailwind 4 utility, swept: see `tailwind-sweep-suite.ts` for the checks and
  * `fixtures/tailwind-sweep.ts` for the cases. Update the refusal snapshot with
  *
- *   TAILWIND_SWEEP_UPDATE=1 node --import @solid-native/testing/register --test tailwind-sweep.test.ts
+ *   TAILWIND_SWEEP_UPDATE=1 node --import @solidnative/testing/register --test tailwind-sweep.test.ts
  */
 import { defineSweep, type Accounted } from './tailwind-sweep-suite.ts';
 import { buildFor, measuredIn, sweep, WORLDS } from './fixtures/tailwind-sweep.ts';

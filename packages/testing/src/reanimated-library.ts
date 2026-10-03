@@ -82,7 +82,7 @@ const mappers = new Map<number, readonly SharedValue<unknown>[]>();
 let nextMapper = 0;
 
 /**
- * What `@solid-native/components/reanimated` starts a worklet style with: run now, and again whenever
+ * What `@solidnative/components/reanimated` starts a worklet style with: run now, and again whenever
  * a shared value it was given changes, as the UI runtime's mapper does.
  */
 export function startMapper(worklet: () => void, inputs: unknown[] = []): number {

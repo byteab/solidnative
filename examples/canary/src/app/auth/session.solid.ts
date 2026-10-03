@@ -1,6 +1,6 @@
 import { createRenderEffect, createMemo, createSignal, onCleanup } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
-import type { NativeNavigation, NavigationContext } from '@solid-native/router/solid';
+import { createServiceToken } from '@solidnative/device/solid';
+import type { NativeNavigation, NavigationContext } from '@solidnative/router/solid';
 
 export interface User {
   readonly email: string;

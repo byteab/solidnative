@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { provideService, withServiceScope } from '@solid-native/device/solid';
+import { provideService, withServiceScope } from '@solidnative/device/solid';
 import {
   MapView,
   type MapCircle,
@@ -8,7 +8,7 @@ import {
   type MapPolyline,
   type MapViewFunctions,
   type MapViewRef,
-} from '@solid-native/expo/map-view';
+} from '@solidnative/expo/map-view';
 
 /** A map of central London, under a scope that provides `functions` as the module. */
 export function expoMapFixture(functions: MapViewFunctions | null) {

@@ -3,14 +3,14 @@ title: Tailwind and platforms
 ---
 
 Stylesheets work, and for a small app they are plenty. Tailwind is the other way to style one.
-`@solid-native/tailwind` takes the CSS Tailwind generates and passes it through the same native CSS
+`@solidnative/tailwind` takes the CSS Tailwind generates and passes it through the same native CSS
 compiler as a `.native.css` file, so the two treat a declaration a device cannot draw the same way:
 it is dropped with a build warning, and a utility with no native equivalent does nothing on the
 device. The preset also adds what a phone needs and a browser does not: `ios:` and `android:`
 variants, and safe-area utilities such as `pt-safe`.
 
 The course sets Tailwind up for you. In an Expo app, a stylesheet imports Tailwind's theme and
-utilities and `@solid-native/tailwind/native.css`, but not Tailwind's preflight, which is a browser
+utilities and `@solidnative/tailwind/native.css`, but not Tailwind's preflight, which is a browser
 reset; `withTailwind` in the Metro config builds it; and the generated stylesheet goes to the native
 root as `globalStyles`, so every component sees it without a `withNativeStyles` of its own.
 [Tailwind](/packages/tailwind) covers the setup.
@@ -81,6 +81,6 @@ Give the screen, the title and the rows their dark colors: `dark:bg-black` on th
 `dark:text-white` on the text, and `dark:bg-zinc-900` and `dark:active:bg-zinc-800` on the row.
 
 Code that needs the scheme itself, to pick an image say, reads it from the `ColorScheme` service in
-`@solid-native/device/solid`: `useService(ColorScheme).current()` is `'light'` or `'dark'`, and
+`@solidnative/device/solid`: `useService(ColorScheme).current()` is `'light'` or `'dark'`, and
 follows the phone. An app with a theme switch of its own calls
 `watchConditions(root.engine, { darkClass: false })` and puts the class on its root itself.

@@ -1,6 +1,6 @@
-import type { HostNode } from '@solid-native/fabric';
-import { nativePlatform, registerViewName } from '@solid-native/fabric';
-import { insertHostChildren, spreadHostProps } from '@solid-native/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { nativePlatform, registerViewName } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps } from '@solidnative/platform/solid';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';
 import type { ViewProps } from './types.ts';

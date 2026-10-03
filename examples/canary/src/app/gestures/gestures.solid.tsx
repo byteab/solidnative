@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   Pressable,
@@ -6,8 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { captureGuard, Slider } from './slider.solid.tsx';
 import { page } from '../screen-styles.ts';
 

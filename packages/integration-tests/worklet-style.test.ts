@@ -9,7 +9,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import type { WorkletStyleSpec, WorkletTarget } from '@solid-native/components/solid';
+import type { WorkletStyleSpec, WorkletTarget } from '@solidnative/components/solid';
 import { mountSolid } from './css-solid-harness.ts';
 import { sliding } from './css-solid-fixtures.tsx';
 

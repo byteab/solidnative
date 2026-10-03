@@ -22,7 +22,7 @@ import {
 } from '../fabric/src/css.ts';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(
     source: string,
     context?: string,

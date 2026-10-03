@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import assert from 'node:assert/strict';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import {
   ColorScheme,
   Dialogs,
@@ -10,12 +10,12 @@ import {
   provideService,
   type KeyboardMetrics,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import { Database } from '@solid-native/expo/solid/database';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { Network, type NetworkStatus } from '@solid-native/expo/solid/network';
-import { Storage } from '@solid-native/expo/solid/store';
-import type { NativeNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { Database } from '@solidnative/expo/solid/database';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { Network, type NetworkStatus } from '@solidnative/expo/solid/network';
+import { Storage } from '@solidnative/expo/solid/store';
+import type { NativeNavigation } from '@solidnative/router/solid';
 import {
   createClock,
   createFakeFabric,

@@ -9,9 +9,9 @@ summary: The software keyboard's height, position and animation timing.
 subscribed for its scope's life, so late-mounting components get the current height.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { Keyboard, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { Keyboard, useService } from '@solidnative/device/solid';
 
 export function Composer() {
   const keyboard = useService(Keyboard);
@@ -33,15 +33,15 @@ To move with the keyboard on iOS, pass its timing to [`LayoutAnimation`](/packag
 before the change, as `<KeyboardAvoidingView>` does:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createSignal } from 'solid-js';
-import { View } from '@solid-native/components/solid';
+import { View } from '@solidnative/components/solid';
 import {
   Keyboard,
   LayoutAnimation,
   useService,
   type LayoutEasing,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 
 export function Composer() {
   const keyboard = useService(Keyboard);

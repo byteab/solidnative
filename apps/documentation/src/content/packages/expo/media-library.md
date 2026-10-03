@@ -20,15 +20,15 @@ npx expo install expo-media-library
 ```
 
 ```ts
-import { MediaLibrary, AssetField, MediaType } from '@solid-native/expo/solid/media-library';
+import { MediaLibrary, AssetField, MediaType } from '@solidnative/expo/solid/media-library';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { MediaLibrary } from '@solid-native/expo/solid/media-library';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { MediaLibrary } from '@solidnative/expo/solid/media-library';
 
 export function SavePhoto() {
   const library = useService(MediaLibrary);
@@ -110,6 +110,6 @@ other methods are no-ops.
 
 ## Reference
 
-`MediaLibrary` is exported from `@solid-native/expo/solid/media-library`.
+`MediaLibrary` is exported from `@solidnative/expo/solid/media-library`.
 
 <!-- api: MediaLibrary -->

@@ -13,7 +13,7 @@ import {
   dialogSource,
   useService,
   type NativeDialogs,
-} from '@solid-native/device';
+} from '@solidnative/device';
 import { serviceWith } from './ui-services.ts';
 
 /** A platform that records what it was asked to show and lets a test answer. */

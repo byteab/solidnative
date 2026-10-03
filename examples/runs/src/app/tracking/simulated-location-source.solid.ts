@@ -1,5 +1,5 @@
 import { onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import type { LocationFix, LocationSource } from './location-source.ts';
 import { SIMULATED_ROUTE } from './simulated-route.ts';
 

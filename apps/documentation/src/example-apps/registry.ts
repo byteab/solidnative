@@ -61,7 +61,7 @@ export const EXAMPLE_APPS: readonly ExampleApp[] = [
       {
         label: 'Router',
         detail:
-          "@solid-native/router/solid on a native stack: a payment's id arrives through useRoute().",
+          "@solidnative/router/solid on a native stack: a payment's id arrives through useRoute().",
         docs: '/packages/router/screens',
       },
       {
@@ -185,7 +185,7 @@ export const EXAMPLE_APPS: readonly ExampleApp[] = [
       {
         label: 'Icons',
         detail:
-          'Lucide icons through @solid-native/icons, drawn as native shapes for the checkmark, flame and more.',
+          'Lucide icons through @solidnative/icons, drawn as native shapes for the checkmark, flame and more.',
         docs: '/packages/icons',
       },
       {
@@ -368,7 +368,7 @@ export const EXAMPLE_APPS: readonly ExampleApp[] = [
       {
         label: 'Icons',
         detail:
-          'Lucide icons through @solid-native/icons, drawn as native shapes for every icon in the app.',
+          'Lucide icons through @solidnative/icons, drawn as native shapes for every icon in the app.',
         docs: '/packages/icons',
       },
     ],
@@ -463,7 +463,7 @@ export const EXAMPLE_APPS: readonly ExampleApp[] = [
       {
         label: 'Icons',
         detail:
-          'Lucide icons through @solid-native/icons, drawn as native shapes for the pin, the sync status and more.',
+          'Lucide icons through @solidnative/icons, drawn as native shapes for the pin, the sync status and more.',
         docs: '/packages/icons',
       },
     ],

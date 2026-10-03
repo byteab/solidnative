@@ -1,12 +1,12 @@
 import { createRenderEffect, untrack } from 'solid-js';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
-import { Direction, useService } from '@solid-native/device/solid';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
+import { Direction, useService } from '@solidnative/device/solid';
 import {
   insertHostChildren,
   onHostCleanup,
   spreadHostProps,
   useHostEngine,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 import type { OrientationChangeEvent } from '../events.ts';
 import { hostProps, primitiveNode, View } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

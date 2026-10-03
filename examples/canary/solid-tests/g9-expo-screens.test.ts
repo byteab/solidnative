@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { Clipboard } from '@solid-native/expo/solid/clipboard';
-import { FileSystem, type NativeFile } from '@solid-native/expo/solid/file-system';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { AppleSignIn } from '@solid-native/expo/solid/apple-sign-in';
+import { provideService } from '@solidnative/device/solid';
+import { Clipboard } from '@solidnative/expo/solid/clipboard';
+import { FileSystem, type NativeFile } from '@solidnative/expo/solid/file-system';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { AppleSignIn } from '@solidnative/expo/solid/apple-sign-in';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';
 import { ExpoPage } from '../src/app/expo/expo.solid.tsx';

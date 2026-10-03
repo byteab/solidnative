@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
 import {
   NativeHeader,
   NativeStackOutlet,
   useNavigation,
   useRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function TabLibrary() {

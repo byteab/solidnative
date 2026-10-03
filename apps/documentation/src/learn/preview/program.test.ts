@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { libraries } from './native-entry.ts';
 import { createProgram, ProblemError, type Problem } from './program.ts';
 
-const ROW = `import { Pressable, Text } from '@solid-native/components/solid';
+const ROW = `import { Pressable, Text } from '@solidnative/components/solid';
 
 export function HabitRow(props: { name: string; done?: boolean; onToggle: () => void }) {
   return (
@@ -15,8 +15,8 @@ export function HabitRow(props: { name: string; done?: boolean; onToggle: () => 
 `;
 
 const APP = `import { createMemo, createSignal } from 'solid-js';
-import { Text, View } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
 import { HabitRow } from './habit-row';
 
 export function App() {
@@ -84,7 +84,7 @@ describe('createProgram', () => {
       program({ 'app.tsx': "import { useState } from 'react';" }).load('app.tsx'),
     );
     expect(problem.kind).toBe('import');
-    expect(problem.message).toContain('@solid-native/components/solid');
+    expect(problem.message).toContain('@solidnative/components/solid');
   });
 
   it('reports an error thrown while a file runs at its line', () => {

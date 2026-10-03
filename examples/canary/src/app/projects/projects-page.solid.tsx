@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { ActivityIndicator, Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { ActivityIndicator, Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { ProjectStore } from './project-data.solid.ts';
 import sheet from './projects-page.native.css';
 

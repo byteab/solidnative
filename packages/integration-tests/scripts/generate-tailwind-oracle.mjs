@@ -77,7 +77,7 @@ function element(world, test, attributes) {
   const own = `${attributes}${world.states ? STATES : ''}`;
   // A sibling after the child, so `space-*` and `divide-*`, which skip the last child, reach it.
   const child = world.name === 'base' ? '<span data-child></span><span></span>' : '';
-  // On the web host a view is marked as `@solid-native/web` marks the elements it creates, which is
+  // On the web host a view is marked as `@solidnative/web` marks the elements it creates, which is
   // what its reset applies to: React Native's flex and border defaults.
   const rn = world.name === 'web' ? ' data-rn="view"' : '';
   const node = `<div class="${classes}"${own}${rn}>${child}</div>`;
@@ -88,7 +88,7 @@ function element(world, test, attributes) {
 
 /**
  * The web host's reset, in Tailwind's `base` layer as `mount` injects it: the web world is the
- * page a component is on in `@solid-native/web`, which has this and not preflight.
+ * page a component is on in `@solidnative/web`, which has this and not preflight.
  */
 const reset = readFileSync(
   fileURLToPath(new URL('../../web/src/reset.css', import.meta.url)),
@@ -168,7 +168,7 @@ addEventListener('DOMContentLoaded', () => {
 }
 
 /**
- * Where each case's boxes land, in `layout.ts`'s scene, on the web host: `@solid-native/web`'s reset
+ * Where each case's boxes land, in `layout.ts`'s scene, on the web host: `@solidnative/web`'s reset
  * in Tailwind's `base` layer, as `mount` injects it, under the same utilities. Only a case whose
  * boxes differ from the control scene's is recorded, so every other case is held to the control.
  */

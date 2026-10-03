@@ -1,6 +1,6 @@
 /**
  * `solidNative()`: the Vite plugin that lets Vitest run solid-native's Solid code in Node, compiled as
- * `@solid-native/testing/register` compiles it for `node --test` (see `compile.mjs`).
+ * `@solidnative/testing/register` compiles it for `node --test` (see `compile.mjs`).
  *
  * The environment is Vitest's default, `node`: the renderer talks to a fake Fabric, not a DOM.
  */
@@ -20,7 +20,7 @@ export function solidNative() {
       // Inlined, so their imports of `solid-js` and the native libraries come through the plugin:
       // left to Node, `solid-js/universal`'s own import of `solid-js` would take the server build.
       test: {
-        server: { deps: { inline: [/[\\/]node_modules[\\/](?:@solid-native|solid-js)[\\/]/] } },
+        server: { deps: { inline: [/[\\/]node_modules[\\/](?:@solidnative|solid-js)[\\/]/] } },
       },
     }),
     configResolved(config) {

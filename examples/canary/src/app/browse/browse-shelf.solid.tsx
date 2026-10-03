@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal } from 'solid-js';
 import {
   Pressable,
@@ -6,9 +6,9 @@ import {
   View,
   VirtualList,
   type VirtualListRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import { ShelfPositions, type Album, type Shelf } from './browse-shelves.solid.ts';
 import sheet from './browse-shelf.native.css';
 const CARD = 132;

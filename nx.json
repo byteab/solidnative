@@ -52,19 +52,19 @@
   },
   "release": {
     "projects": [
-      "@solid-native/components",
-      "@solid-native/device",
-      "@solid-native/expo",
-      "@solid-native/fabric",
-      "@solid-native/icons",
-      "@solid-native/metro",
-      "@solid-native/nx",
-      "@solid-native/platform",
-      "@solid-native/router",
-      "@solid-native/tailwind",
-      "@solid-native/testing",
-      "@solid-native/web",
-      "@solid-native/template"
+      "@solidnative/components",
+      "@solidnative/device",
+      "@solidnative/expo",
+      "@solidnative/fabric",
+      "@solidnative/icons",
+      "@solidnative/metro",
+      "@solidnative/nx",
+      "@solidnative/platform",
+      "@solidnative/router",
+      "@solidnative/tailwind",
+      "@solidnative/testing",
+      "@solidnative/web",
+      "@solidnative/template"
     ],
     "projectsRelationship": "fixed",
     "releaseTag": {

@@ -1,5 +1,5 @@
 import { batch, createRenderEffect, createSignal, onCleanup, type Accessor } from 'solid-js';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import { ChatBackend, type ChatMessage } from './chat-backend.solid.ts';
 
 /** A retained conversation with foreground-owned live work and disposal-safe requests. */

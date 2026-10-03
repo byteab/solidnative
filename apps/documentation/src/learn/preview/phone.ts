@@ -1,15 +1,15 @@
 /**
- * The screen: the learner's app mounted with `@solid-native/web/solid`, replaced on every good run
+ * The screen: the learner's app mounted with `@solidnative/web/solid`, replaced on every good run
  * and kept on every bad one, so an error is shown over the last thing that worked.
  *
  * The platform is fixed for the life of the frame, because `registerPlatformComponents` changes a
- * table in `@solid-native/fabric` that cannot be put back; the lesson page reloads the frame to
+ * table in `@solidnative/fabric` that cannot be put back; the lesson page reloads the frame to
  * switch. The colour scheme is not: the toggle drives `ColorScheme` directly, in place of
  * `prefers-color-scheme`, and keeps the `dark` class on the app's root, as `watchConditions`
  * does on a device.
  */
-import { ColorScheme, provideService, type Scheme } from '@solid-native/device/solid';
-import { mount, type BrowserComponent, type MountResult } from '@solid-native/web/solid';
+import { ColorScheme, provideService, type Scheme } from '@solidnative/device/solid';
+import { mount, type BrowserComponent, type MountResult } from '@solidnative/web/solid';
 import type { Platform } from '../protocol.ts';
 
 /** Where the status bar and home indicator are, as `<SafeAreaProvider>` would report them. */

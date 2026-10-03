@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { Direction, provideService } from '@solid-native/device/solid';
+import { Direction, provideService } from '@solidnative/device/solid';
 import type { FakeNode } from '../../../packages/platform/solid-tests/fake-fabric.ts';
 import { ComponentsPage } from '../src/app/components/components.solid.tsx';
 import { ScrollingPage } from '../src/app/lists/scrolling.solid.tsx';

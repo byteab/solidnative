@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { onCleanup } from 'solid-js';
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation, useRoute } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation, useRoute } from '@solidnative/router/solid';
 import { Toasts } from './toasts.solid.ts';
 
 /** The same app-owned overlay can cover a screen or its presented sheet. */

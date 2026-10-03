@@ -3,7 +3,7 @@ import {
   type HostNode,
   type ScrollDrive,
   pinnedRange,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 
 interface Extent {
   readonly start: number;

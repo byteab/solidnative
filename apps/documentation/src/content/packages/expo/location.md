@@ -15,17 +15,17 @@ npx expo install expo-location
 ```
 
 ```ts
-import { Location } from '@solid-native/expo/solid/location';
+import { Location } from '@solidnative/expo/solid/location';
 ```
 
 ## The smallest thing that works
 
 ```tsx
 import { onMount } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
-import { Text } from '@solid-native/components/solid';
-import { Location } from '@solid-native/expo/solid/location';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Text } from '@solidnative/components/solid';
+import { Location } from '@solidnative/expo/solid/location';
 
 export function Run() {
   const location = useService(Location);
@@ -83,6 +83,6 @@ refused above.
 
 ## Reference
 
-`Location` is exported from `@solid-native/expo/solid/location`.
+`Location` is exported from `@solidnative/expo/solid/location`.
 
 <!-- api: Location -->

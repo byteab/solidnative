@@ -1,8 +1,8 @@
 /** Universal native JSX compiler. Expo owns the subsequent native Babel pass. */
 const babel = require('@babel/core');
 
-const IMPORT_SOURCE = '@solid-native/platform/solid';
-const PRAGMA = /@jsxImportSource[\t ]+@solid-native\/platform\/solid(?=[\s*]|$)/;
+const IMPORT_SOURCE = '@solidnative/platform/solid';
+const PRAGMA = /@jsxImportSource[\t ]+@solidnative\/platform\/solid(?=[\s*]|$)/;
 
 /** Explicit author opt-in: a header pragma or the .solid.tsx/.solid.jsx suffix. */
 function isSolidSource(source, filename) {

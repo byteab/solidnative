@@ -1,7 +1,7 @@
 import { createRenderEffect, onCleanup, type Accessor } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
-import { useHostAdapter } from '@solid-native/platform/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { useHostAdapter } from '@solidnative/platform/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import { useRouteScreen } from './route-context.ts';
 
 const guards = new WeakMap<HostNode, () => void>();

@@ -6,37 +6,37 @@ summary: One set of components for native and the browser, through a shared rend
 # Native and web
 
 The same Solid components run on native and in browsers through a shared renderer interface. Every
-example on this site is a real `@solid-native/components/solid` component on the browser host, not
+example on this site is a real `@solidnative/components/solid` component on the browser host, not
 a screenshot or a React port. Each control has one implementation:
 `packages/components/src/solid/switch.ts`, for example, serves both hosts.
 
 ## The seam
 
-`HostEngine` and `HostNode` in `@solid-native/fabric` define only the renderer calls components
+`HostEngine` and `HostNode` in `@solidnative/fabric` define only the renderer calls components
 use. Depending on Fabric's `Engine` (whose constructor needs a `FabricUIManager`) or `EngineNode`
 would tie components to native, and casting a browser object `as unknown as Engine` would bypass
 type checking.
 
 Fabric's `Engine` implements `HostEngine` and `EngineNode` extends `HostNode`; `BrowserEngine`
 implements both over the DOM without casts, leaving the native path unchanged. Components reach
-their host through `useHostAdapter()` from `@solid-native/platform/solid`.
+their host through `useHostAdapter()` from `@solidnative/platform/solid`.
 
 ## Mounting on the web
 
-The browser host is `@solid-native/web/solid`. Its Vite plugin, `solidNativeWeb()` from
-`@solid-native/web/solid/vite`, compiles the universal components and resolves every
-`@solid-native/platform/solid` import to `@solid-native/web/solid`:
+The browser host is `@solidnative/web/solid`. Its Vite plugin, `solidNativeWeb()` from
+`@solidnative/web/solid/vite`, compiles the universal components and resolves every
+`@solidnative/platform/solid` import to `@solidnative/web/solid`:
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { solidNativeWeb } from '@solid-native/web/solid/vite';
+import { solidNativeWeb } from '@solidnative/web/solid/vite';
 
 export default defineConfig({ plugins: [solidNativeWeb()] });
 ```
 
 ```ts
-import { mount } from '@solid-native/web/solid';
+import { mount } from '@solidnative/web/solid';
 import { App } from './app/app.solid.tsx';
 
 const app = mount(document.getElementById('app-root')!, App);
@@ -58,7 +58,7 @@ same on both, but with no flex properties Yoga defaults to
 `display: flex; flex-direction: column; align-items: stretch; flex-shrink: 0`, while browsers give
 the unknown `<view>` element `display: inline; flex-shrink: 1`.
 
-`@solid-native/web`'s `reset.css` aligns them through `[data-rn]`, which marks every created node;
+`@solidnative/web`'s `reset.css` aligns them through `[data-rn]`, which marks every created node;
 tag selectors would miss `text-input` and `switch`, rendered as `<textarea>` and `<input>`.
 
 `<Text>` is left out of the flex reset, since `display: flex` would stop wrapping and nested inline
@@ -68,7 +68,7 @@ web.
 
 ## What does not survive the trip
 
-`@solid-native/router/solid` renders into react-native-screens and has no web build. A browser page
+`@solidnative/router/solid` renders into react-native-screens and has no web build. A browser page
 uses its own router; this site uses a small History-API router.
 
 Reanimated worklets and react-native-gesture-handler are native-only: their modules fail to load in
@@ -89,12 +89,12 @@ Fabric: running one component against two hosts exposes bugs either would hide a
 meant as a deployment target. It also powers this site's examples, with the same source, cascade
 and press semantics as native.
 
-In a Solid web app, `Island` from `@solid-native/web/solid` embeds these components in a
+In a Solid web app, `Island` from `@solidnative/web/solid` embeds these components in a
 `solid-js/web` page, inheriting its services, so a mobile screen can be reused without a second
 implementation; the native router and other native-only features stay on the phone. See
 [Islands](/packages/web/islands).
 
-Conversely, `DomComponent` from `@solid-native/expo/solid/dom-component` renders a browser page in a
+Conversely, `DomComponent` from `@solidnative/expo/solid/dom-component` renders a browser page in a
 native screen's web view, with `inputs` and `outputs` bound from the native side, for canvas,
 charting libraries or editors. Its runtime is separate, so only JSON crosses. See
 [DOM components](/packages/expo/dom-components).

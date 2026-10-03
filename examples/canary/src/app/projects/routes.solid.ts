@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** Actual task manager routes for eventual composition into the complete application. */
 export const projectRoutes: readonly NativeRoute[] = [

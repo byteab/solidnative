@@ -1,7 +1,7 @@
 /**
  * The layer between React Native's API and this package's `Source` interfaces.
  *
- * Every capability in `@solid-native/device` is a service reading a `SOURCE` token, and every
+ * Every capability in `@solidnative/device` is a service reading a `SOURCE` token, and every
  * test of those services provides a fake source - which is what makes the services well covered
  * and left the *default* factories, the ones that actually talk to React Native, almost entirely
  * unrun. That is the wrong half to leave untested. A service's logic is ordinary TypeScript that
@@ -29,7 +29,7 @@ import {
   screenSource,
   sharingSource,
   statusBarSource,
-} from '@solid-native/device';
+} from '@solidnative/device';
 
 type Native = Record<string, unknown>;
 

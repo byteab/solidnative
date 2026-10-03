@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { View, Text, ScrollView } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View, Text, ScrollView } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { Example, Section } from '../example.solid.tsx';
 import { page } from '../screen-styles.ts';
 import sheet from './layout.native.css';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
 
 const box = (color: string, extra: object = {}) => ({
   backgroundColor: color,

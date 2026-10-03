@@ -14,8 +14,8 @@ import {
   type HostNode,
   type ScrollDrive,
   type StaticTransform,
-} from '@solid-native/fabric';
-import { insertHostChildren, useHostAdapter, type HostChild } from '@solid-native/platform/solid';
+} from '@solidnative/fabric';
+import { insertHostChildren, useHostAdapter, type HostChild } from '@solidnative/platform/solid';
 import type { LayoutEvent, ScrollEvent } from '../events.ts';
 import { HeightIndex } from '../height-index.ts';
 import { View } from './primitive.ts';

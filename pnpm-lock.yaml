@@ -85,31 +85,31 @@ importers:
       '@lezer/highlight':
         specifier: ^1.2.4
         version: 1.2.4
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
-      '@solid-native/web':
+      '@solidnative/web':
         specifier: workspace:*
         version: link:../../packages/web
       front-matter:
@@ -143,10 +143,10 @@ importers:
       '@playwright/test':
         specifier: 1.63.0
         version: 1.63.0
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@solid-native/template':
+      '@solidnative/template':
         specifier: workspace:*
         version: link:../../template
       '@tailwindcss/vite':
@@ -173,28 +173,28 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
         version: 2.2.0(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
-      '@solid-native/web':
+      '@solidnative/web':
         specifier: workspace:*
         version: link:../../packages/web
       expo:
@@ -294,13 +294,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -318,25 +318,25 @@ importers:
       '@expo/ui':
         specifier: ~57.0.16
         version: 57.0.16(@babel/core@7.29.7)(@types/react@19.2.18)(expo@57.0.20)(react-dom@19.2.8(react@19.2.3))(react-native-worklets@0.10.1(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))(react@19.2.3))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))(react@19.2.3)
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -382,10 +382,10 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
       '@tailwindcss/cli':
@@ -403,25 +403,25 @@ importers:
 
   examples/habits:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -464,13 +464,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -491,25 +491,25 @@ importers:
       '@expo/ui':
         specifier: ~57.0.16
         version: 57.0.16(@babel/core@7.29.7)(@types/react@19.2.18)(expo@57.0.20)(react-dom@19.2.8(react@19.2.3))(react-native-worklets@0.10.1(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))(react@19.2.3))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))(react@19.2.3)
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -552,13 +552,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -579,25 +579,25 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
         version: 2.2.0(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -640,13 +640,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -667,25 +667,25 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: ~2.2.0
         version: 2.2.0(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.3))
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -731,13 +731,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -755,22 +755,22 @@ importers:
 
   examples/solid-acceptance:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -804,10 +804,10 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -828,25 +828,25 @@ importers:
 
   examples/wallet:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../../packages/device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../../packages/expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../../packages/fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../../packages/router
       expo:
@@ -883,13 +883,13 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../../packages/metro
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../../packages/testing
       '@tailwindcss/cli':
@@ -907,13 +907,13 @@ importers:
 
   packages/components:
     dependencies:
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
       react-native:
@@ -938,14 +938,14 @@ importers:
 
   packages/device:
     dependencies:
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
       react-native:
         specifier: 0.86.3
         version: 0.86.3(@babel/core@8.0.1)(@react-native/metro-config@0.86.3(@babel/core@8.0.1))(@types/react@19.2.18)(react@19.2.3)
     devDependencies:
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
       solid-js:
@@ -954,16 +954,16 @@ importers:
 
   packages/expo:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
       expo-clipboard:
@@ -1101,13 +1101,13 @@ importers:
 
   packages/icons:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../components
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
       react-native-svg:
@@ -1129,37 +1129,37 @@ importers:
       '@picocss/pico':
         specifier: 2.1.1
         version: 2.1.1
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../device
-      '@solid-native/expo':
+      '@solidnative/expo':
         specifier: workspace:*
         version: link:../expo
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../icons
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../metro
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
-      '@solid-native/router':
+      '@solidnative/router':
         specifier: workspace:*
         version: link:../router
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../tailwind
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../testing
-      '@solid-native/web':
+      '@solidnative/web':
         specifier: workspace:*
         version: link:../web
       '@tailwindcss/cli':
@@ -1295,11 +1295,11 @@ importers:
 
   packages/platform:
     dependencies:
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
     devDependencies:
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../metro
       solid-js:
@@ -1308,13 +1308,13 @@ importers:
 
   packages/router:
     dependencies:
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
       react-native-screens:
@@ -1327,7 +1327,7 @@ importers:
 
   packages/tailwind:
     dependencies:
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../metro
       '@tailwindcss/cli':
@@ -1342,17 +1342,17 @@ importers:
 
   packages/testing:
     dependencies:
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../metro
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../platform
     devDependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../components
       solid-js:
@@ -1367,23 +1367,23 @@ importers:
 
   packages/web:
     dependencies:
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../fabric
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../metro
     devDependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../components
-      '@solid-native/icons':
+      '@solidnative/icons':
         specifier: workspace:*
         version: link:../icons
-      '@solid-native/tailwind':
+      '@solidnative/tailwind':
         specifier: workspace:*
         version: link:../tailwind
       '@tailwindcss/vite':
@@ -1410,19 +1410,19 @@ importers:
 
   template:
     dependencies:
-      '@solid-native/components':
+      '@solidnative/components':
         specifier: workspace:*
         version: link:../packages/components
-      '@solid-native/device':
+      '@solidnative/device':
         specifier: workspace:*
         version: link:../packages/device
-      '@solid-native/fabric':
+      '@solidnative/fabric':
         specifier: workspace:*
         version: link:../packages/fabric
-      '@solid-native/metro':
+      '@solidnative/metro':
         specifier: workspace:*
         version: link:../packages/metro
-      '@solid-native/platform':
+      '@solidnative/platform':
         specifier: workspace:*
         version: link:../packages/platform
       expo:
@@ -1447,7 +1447,7 @@ importers:
       '@babel/core':
         specifier: ^7.29.7
         version: 7.29.7
-      '@solid-native/testing':
+      '@solidnative/testing':
         specifier: workspace:*
         version: link:../packages/testing
       '@types/node':

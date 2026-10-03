@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js';
-import { nativePlatform, type HostNode } from '@solid-native/fabric';
-import { spreadHostProps } from '@solid-native/platform/solid';
+import { nativePlatform, type HostNode } from '@solidnative/fabric';
+import { spreadHostProps } from '@solidnative/platform/solid';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';
 import type { ViewProps } from './types.ts';

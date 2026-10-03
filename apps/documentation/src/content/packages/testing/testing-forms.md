@@ -6,13 +6,13 @@ summary: Typing into a field, touched state, and a field a form has disabled.
 # Testing a form
 
 Continues from [Writing a test](/packages/testing/writing-a-test). A sign-up form built with
-`createForm` from `@solid-native/components/solid`: a required email field, an error shown once it
+`createForm` from `@solidnative/components/solid`: a required email field, an error shown once it
 is touched, a checkbox that disables it, and a button disabled while the form is invalid.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   bindFormField,
   createForm,
@@ -21,7 +21,7 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 
 export function SignUp() {
   const [busy, setBusy] = createSignal(false);
@@ -72,7 +72,7 @@ export function SignUp() {
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { SignUp } from './sign-up.solid.tsx';
 
 afterEach(cleanup);

@@ -10,7 +10,7 @@ art: layout
 `class` and the component's `.native.css` sheet.
 
 ```tsx
-import { Text, View } from '@solid-native/components/solid';
+import { Text, View } from '@solidnative/components/solid';
 
 <View class="card" style={{ backgroundColor: tint() }}>
   <Text>Card content</Text>

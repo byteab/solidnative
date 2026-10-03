@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { tabIconProps } from '@solid-native/router';
+import { tabIconProps } from '@solidnative/router';
 
 describe('a tab icon pair', () => {
   it('refuses an icon pair native cannot express, rather than dropping half of it', () => {

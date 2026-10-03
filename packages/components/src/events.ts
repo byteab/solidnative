@@ -7,7 +7,7 @@
  * component registered itself would opt every instance into events such as `topLayout`, which
  * native only sends when something asks.
  */
-import type { NativeSyntheticEvent, TouchPayload } from '@solid-native/fabric';
+import type { NativeSyntheticEvent, TouchPayload } from '@solidnative/fabric';
 
 export interface Rect {
   readonly x: number;

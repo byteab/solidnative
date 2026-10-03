@@ -1,7 +1,7 @@
 /**
  * One learner file, compiled the way Metro compiles it for a device: Solid's JSX transform in its
- * universal mode against `@solid-native/platform/solid`, with TypeScript's types stripped, exactly
- * as `@solid-native/metro/solid-transform.cjs` configures Babel. Sucrase then turns the ES module
+ * universal mode against `@solidnative/platform/solid`, with TypeScript's types stripped, exactly
+ * as `@solidnative/metro/solid-transform.cjs` configures Babel. Sucrase then turns the ES module
  * into the `require`/`exports` shape `program.ts` runs in a `Function`.
  *
  * Babel keeps each line where it was (`retainLines`), and sucrase never moves one, so a line in a
@@ -65,7 +65,7 @@ function babel(file: string, source: string): string {
       retainLines: true,
       highlightCode: false,
       presets: [
-        [solid, { generate: 'universal', moduleName: '@solid-native/platform/solid', dev: false }],
+        [solid, { generate: 'universal', moduleName: '@solidnative/platform/solid', dev: false }],
       ],
       plugins: [
         [

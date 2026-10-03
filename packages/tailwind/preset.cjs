@@ -3,7 +3,7 @@
  *
  *   // tailwind.config.js
  *   module.exports = {
- *     presets: [require('@solid-native/tailwind/preset.cjs')],
+ *     presets: [require('@solidnative/tailwind/preset.cjs')],
  *     content: ['./src/**\/*.{ts,tsx}'],
  *   };
  *

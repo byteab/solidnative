@@ -1,4 +1,4 @@
-import type { EngineNode, HostEngine, HostNode } from '@solid-native/fabric';
+import type { EngineNode, HostEngine, HostNode } from '@solidnative/fabric';
 
 export type KeyboardShouldPersistTaps = 'always' | 'never' | 'handled';
 

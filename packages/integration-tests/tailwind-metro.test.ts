@@ -13,12 +13,12 @@ import { createRequire } from 'node:module';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { Engine, type StyleSheet } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type StyleSheet } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 
 const require = createRequire(import.meta.url);
 const { withTailwind, compileSheetModule, localImports, watchesByDefault } =
-  require('@solid-native/tailwind/config.cjs') as {
+  require('@solidnative/tailwind/config.cjs') as {
     withTailwind(
       config: object,
       options: { input: string; output?: string; watch?: boolean },
@@ -130,7 +130,7 @@ describe('wiring Tailwind into Metro', () => {
 
     assert.match(
       readFileSync(path.join(dir, 'app.tailwind.d.ts'), 'utf8'),
-      /import\('@solid-native\/fabric'\)\.StyleSheet/,
+      /import\('@solidnative\/fabric'\)\.StyleSheet/,
     );
     rmSync(dir, { recursive: true, force: true });
   });
@@ -325,7 +325,7 @@ describe('wiring Tailwind into Metro', () => {
     const dir = scratch({
       'styles.css': '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n',
       'tailwind.config.js': `module.exports = {
-        presets: [require(${JSON.stringify(require.resolve('@solid-native/tailwind/preset.cjs'))})],
+        presets: [require(${JSON.stringify(require.resolve('@solidnative/tailwind/preset.cjs'))})],
         content: ['./*.html'],
       };`,
       'screen.html': '<view class="transform rotate-45 translate-x-4 bg-blue-500 ios:p-4"></view>',
@@ -398,7 +398,7 @@ describe('watching', () => {
       'styles.css': ENTRY,
       'screen.html': '<view class="p-4"></view>',
       'load.cjs': [
-        `const { withTailwind } = require(${JSON.stringify(require.resolve('@solid-native/tailwind/config.cjs'))});`,
+        `const { withTailwind } = require(${JSON.stringify(require.resolve('@solidnative/tailwind/config.cjs'))});`,
         `withTailwind({ projectRoot: __dirname, transformer: {}, resolver: { sourceExts: ['ts'] } },`,
         `  { input: __dirname + '/styles.css', output: __dirname + '/app.tailwind.js' });`,
       ].join('\n'),
@@ -434,12 +434,12 @@ describe('the imports worth watching', () => {
    */
   /**
    * An app directory, which is where the entry sits and so where its imports resolve from. This
-   * package serves: it has `tailwindcss` and a workspace link to `@solid-native/tailwind`.
+   * package serves: it has `tailwindcss` and a workspace link to `@solidnative/tailwind`.
    */
   const app = fileURLToPath(new URL('.', import.meta.url));
 
   it('finds a workspace package behind its symlink', () => {
-    const found = localImports(`@import '@solid-native/tailwind/native.css';`, app);
+    const found = localImports(`@import '@solidnative/tailwind/native.css';`, app);
     assert.equal(found.length, 1);
     assert.ok(found[0]!.endsWith(path.join('packages', 'tailwind', 'native.css')), found[0]);
     assert.ok(!found[0]!.includes('node_modules'), 'resolved through the link, not to it');
@@ -465,7 +465,7 @@ describe('the imports worth watching', () => {
   });
 
   it('reads every import in the sheet, in both quote styles', () => {
-    const css = `@import "./fixtures/tailwind-utilities.css";\n@import '@solid-native/tailwind/native.css';`;
+    const css = `@import "./fixtures/tailwind-utilities.css";\n@import '@solidnative/tailwind/native.css';`;
     assert.equal(localImports(css, app).length, 2);
   });
 });

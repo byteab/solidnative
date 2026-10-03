@@ -8,12 +8,12 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { StyleResolver, matches, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, matches, type StyleTarget } from '@solidnative/fabric';
 import { mountSolid } from './css-solid-harness.ts';
 import { hostParent } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 describe(':host', () => {
   let mounted: ReturnType<typeof mountSolid> | undefined;

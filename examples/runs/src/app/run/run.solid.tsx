@@ -1,19 +1,19 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, onCleanup } from 'solid-js';
 import { Pause, Play, Square } from 'lucide-static';
-import { Icon } from '@solid-native/icons/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import { Location } from '@solid-native/expo/solid/location';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { TabSafeAreaView, useNavigation } from '@solid-native/router/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import { Location } from '@solidnative/expo/solid/location';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { TabSafeAreaView, useNavigation } from '@solidnative/router/solid';
 import {
   MapView,
   type MapMarker,
   type MapPolyline,
   type MapViewRef,
-} from '@solid-native/expo/solid/map-view';
+} from '@solidnative/expo/solid/map-view';
 import { LocationSourceSetting } from '../settings/location-source-setting.solid.ts';
 import { Units } from '../settings/units.solid.ts';
 import { Tracking } from '../tracking/tracking.solid.ts';

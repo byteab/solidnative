@@ -1,7 +1,7 @@
 /**
  * Where Yoga puts things: the layout half of the Tailwind sweep.
  *
- * Every case is laid out in one scene, the same in Chrome (with `@solid-native/web`'s reset, which is
+ * Every case is laid out in one scene, the same in Chrome (with `@solidnative/web`'s reset, which is
  * what a component meets on the web) and in Yoga (configured as React Native configures it): a
  * container of a fixed size holding a box, the case, and another box, with three boxes inside the
  * case. The case is an item in the first and a container of the second, so a margin, a size, an

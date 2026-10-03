@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { Direction, provideService, type ServiceBinding } from '@solid-native/device/solid';
-import { registerExpoUiViews } from '@solid-native/expo/views';
+import { Direction, provideService, type ServiceBinding } from '@solidnative/device/solid';
+import { registerExpoUiViews } from '@solidnative/expo/views';
 import { regressionRoutes } from '../src/app/navigation/regressions-routes.solid.ts';
 import { systemFixture as consumerFixture } from './g13-system-fixture.tsx';
 import { bootConsumer, flatten } from './consumer-harness.ts';

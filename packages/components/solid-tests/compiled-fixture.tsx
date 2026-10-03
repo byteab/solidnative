@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal, getOwner, onCleanup, type Owner } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   View,
   Text,
@@ -10,7 +10,7 @@ import {
   type NativeRef,
   type TextInputRef,
   type TextSelection,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 
 export function primitiveFixture() {
   const [disabled, setDisabled] = createSignal(false);

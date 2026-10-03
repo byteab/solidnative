@@ -1,15 +1,15 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRequire } from 'node:module';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import * as registry from '../src/solid/dev-reload.ts';
 const { registerModule } = createRequire(import.meta.url)(
-  '@solid-native/metro/solid-reload-runtime.cjs',
+  '@solidnative/metro/solid-reload-runtime.cjs',
 );
 import { createReloadFixture, createCleanupFailureFixture } from './reload-fixture.tsx';
 import { createFakeFabric, createClock } from './fake-fabric.ts';
 
-const key = Symbol.for('@solid-native/platform/solid/dev-reload/v1');
+const key = Symbol.for('@solidnative/platform/solid/dev-reload/v1');
 const globals = globalThis as typeof globalThis & { __DEV__?: boolean; [key]?: unknown };
 
 function freshDevelopmentVM() {

@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { SafeAreaView, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
+import { SafeAreaView, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
 import { MiniPlayerBar } from '../now-playing/mini-player-bar.solid.tsx';
 
 const row = (label: string, on: boolean) => {

@@ -6,7 +6,7 @@ summary: Wiring the framework into an Expo app you already have, one file at a t
 # Adding it to an existing app
 
 The [Getting started](/guide/getting-started) template is shorter. For a blank or existing Expo
-app, do every step below. In an Nx workspace, `nx g @solid-native/nx:app` does it all ([Nx](/packages/nx)).
+app, do every step below. In an Nx workspace, `nx g @solidnative/nx:app` does it all ([Nx](/packages/nx)).
 
 ## Start the project
 
@@ -31,8 +31,8 @@ rm App.tsx index.ts
 
 ```sh
 npm install solid-js@1.9.15 \
-  @solid-native/platform @solid-native/fabric \
-  @solid-native/components @solid-native/device @solid-native/metro
+  @solidnative/platform @solidnative/fabric \
+  @solidnative/components @solidnative/device @solidnative/metro
 npm install --save-dev @babel/core@^7.29.7
 ```
 
@@ -44,8 +44,8 @@ npx expo install react-native-safe-area-context
 ```
 
 Expo Go bundles it, so a missing install only shows in a dev or release build as
-`Unimplemented component: <RNCSafeAreaView>`. Add `@solid-native/router`, `@solid-native/expo` and
-`@solid-native/icons` as needed (each has a `/solid` entry); `@solid-native/expo` installs no native
+`Unimplemented component: <RNCSafeAreaView>`. Add `@solidnative/router`, `@solidnative/expo` and
+`@solidnative/icons` as needed (each has a `/solid` entry); `@solidnative/expo` installs no native
 code, so install modules such as `expo-haptics` yourself.
 
 ## Configure Metro
@@ -53,7 +53,7 @@ code, so install modules such as `expo-haptics` yourself.
 ```js
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
 
 module.exports = withSolidNative(getDefaultConfig(__dirname));
 ```
@@ -66,7 +66,7 @@ client build (`solid-js/web` is rejected). In a monorepo with the packages outsi
 
 ```js
 // babel.config.js
-const { isSolidFile } = require('@solid-native/metro/solid-babel.cjs');
+const { isSolidFile } = require('@solidnative/metro/solid-babel.cjs');
 
 const preset = require.resolve('expo/internal/babel-preset');
 
@@ -90,7 +90,7 @@ direct dependency is needed.
     "strict": true,
     "allowImportingTsExtensions": true,
     "jsx": "preserve",
-    "jsxImportSource": "@solid-native/platform/solid",
+    "jsxImportSource": "@solidnative/platform/solid",
     "types": ["node"]
   }
 }
@@ -101,7 +101,7 @@ direct dependency is needed.
 
 ```ts
 declare module '*.native.css' {
-  const sheet: import('@solid-native/fabric').StyleSheet;
+  const sheet: import('@solidnative/fabric').StyleSheet;
   export default sheet;
 }
 ```
@@ -111,14 +111,14 @@ declare module '*.native.css' {
 ```ts
 // src/main.solid.ts
 import { AppRegistry, Image, Platform, processColor } from 'react-native';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   conditionSources,
   currentConditions,
   deviceTokens,
   watchConditions,
-} from '@solid-native/device/solid';
-import { getFabricUIManager, registerPlatformComponents } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { App } from './app/app.solid.tsx';
 
 registerPlatformComponents(Platform.OS);
@@ -156,10 +156,10 @@ The `.solid.ts` suffix gives the entry a clean reload.
 
 ```tsx
 // src/app/app.solid.tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 export function App() {
@@ -190,14 +190,14 @@ renders. Run `npx expo start`, open in Expo Go or press `i`/`a`, and check each 
 
 ## Add tests
 
-Install `@solid-native/testing` as a dev dependency; its `register` hook compiles JSX and
+Install `@solidnative/testing` as a dev dependency; its `register` hook compiles JSX and
 `.native.css` for Node's test runner as Metro does. Copy `src/app/app.test.ts` from
 [the template](https://github.com/byteab/solid-native/tree/main/template) and add:
 
 ```json
 {
   "scripts": {
-    "test": "node --import @solid-native/testing/register --test \"src/**/*.test.ts\""
+    "test": "node --import @solidnative/testing/register --test \"src/**/*.test.ts\""
   }
 }
 ```
@@ -207,19 +207,19 @@ Install `@solid-native/testing` as a dev dependency; its `register` hook compile
 Skip Tailwind if you use `.native.css` sheets or plain `style` objects.
 
 ```sh
-npm install @solid-native/tailwind tailwindcss @tailwindcss/cli
+npm install @solidnative/tailwind tailwindcss @tailwindcss/cli
 ```
 
 ```css
 /* src/styles.css */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 ```
 
 ```js
 // metro.config.js
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 
 module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
   input: './src/styles.css',

@@ -8,7 +8,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import type { WorkletScrollSpec, WorkletTarget } from '@solid-native/components/solid';
+import type { WorkletScrollSpec, WorkletTarget } from '@solidnative/components/solid';
 import { mountSolid } from './css-solid-harness.ts';
 import { scrolling } from './css-solid-fixtures.tsx';
 

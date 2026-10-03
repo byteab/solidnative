@@ -1,6 +1,6 @@
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 const path = require('node:path');
 
 // The starter's config plus two things: the workspace root, because the framework packages live

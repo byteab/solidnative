@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 interface Habit {

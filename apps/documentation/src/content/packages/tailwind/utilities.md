@@ -26,7 +26,7 @@ padding that only needs to grow where the device needs more:
 <View class="min-pt-safe-4">...</View>
 ```
 
-Native insets come at runtime from `SafeAreaProvider` in `@solid-native/components/solid`; the
+Native insets come at runtime from `SafeAreaProvider` in `@solidnative/components/solid`; the
 web uses `env(safe-area-inset-*)`.
 
 ## Hairline utilities

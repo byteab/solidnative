@@ -6,9 +6,9 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { liquidGlassAvailable } from '@solid-native/expo';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createFakeFabric, type FakeFabricNode as FakeNode } from '@solid-native/testing';
+import { liquidGlassAvailable } from '@solidnative/expo';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createFakeFabric, type FakeFabricNode as FakeNode } from '@solidnative/testing';
 import { expoViewsFixture } from './expo-views-fixture.tsx';
 
 const all = (nodes: readonly FakeNode[]): FakeNode[] =>

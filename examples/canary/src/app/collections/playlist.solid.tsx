@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, TextInput, View, VirtualList } from '@solid-native/components/solid';
-import { LayoutAnimation, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, Text, TextInput, View, VirtualList } from '@solidnative/components/solid';
+import { LayoutAnimation, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import {
   initialTracks,
   makeTrack,

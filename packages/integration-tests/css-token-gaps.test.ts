@@ -5,10 +5,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { StyleResolver, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleTarget } from '@solidnative/fabric';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 function resolvedStyle(css: string): Record<string, unknown> {
   const target = (parent: StyleTarget | null, own: string[]): StyleTarget => ({
@@ -189,7 +189,7 @@ describe('a logical border side with a token in it', () => {
 });
 
 describe('the direction a flex box lays out in', () => {
-  // Every node is a column, on native and in @solid-native/web's reset alike, so one class string lays
+  // Every node is a column, on native and in @solidnative/web's reset alike, so one class string lays
   // out the same on both hosts: `display: flex` does not make a row, as it does in a plain browser.
   // A row is written, as `flex-row`. See components/layout.md.
   const direction = (css: string, classes = ['a']) => {

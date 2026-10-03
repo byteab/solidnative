@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/icons",
+  "name": "@solidnative/icons",
   "version": "0.1.1",
   "description": "SVG icon strings, such as lucide-static, rendered as native react-native-svg shapes from Solid.",
   "keywords": [
@@ -17,9 +17,9 @@
   "type": "module",
   "main": "src/solid.ts",
   "dependencies": {
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/platform": "workspace:*",
-    "@solid-native/components": "workspace:*"
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/platform": "workspace:*",
+    "@solidnative/components": "workspace:*"
   },
   "peerDependencies": {
     "react-native-svg": ">=15",

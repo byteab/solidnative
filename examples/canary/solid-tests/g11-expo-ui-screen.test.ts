@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { NATIVE_STATE_SOURCE, registerExpoUiViews } from '@solid-native/expo/solid';
+import { provideService } from '@solidnative/device/solid';
+import { NATIVE_STATE_SOURCE, registerExpoUiViews } from '@solidnative/expo/solid';
 import { ExpoUiPage } from '../src/app/expo/expo-ui.solid.tsx';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';

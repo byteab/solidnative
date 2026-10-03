@@ -1,15 +1,15 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { Pressable, ScrollView, Text, View, VirtualList } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show } from '@solid-native/platform/solid';
+import { Pressable, ScrollView, Text, View, VirtualList } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeSearchBar,
   NativeStackOutlet,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { ALBUMS, TRACKS, album, type Album, type Track } from '../catalogue/catalogue.solid.ts';
 import { MiniPlayerBar } from '../now-playing/mini-player-bar.solid.tsx';
 import { Playback } from '../player/playback.solid.ts';

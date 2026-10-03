@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal } from 'solid-js';
-import { provideService, Screen } from '@solid-native/device/solid';
-import { registerExpoMap, registerExpoUiViews } from '@solid-native/expo/views';
-import type { PlayerState } from '@solid-native/expo/solid/player';
+import { provideService, Screen } from '@solidnative/device/solid';
+import { registerExpoMap, registerExpoUiViews } from '@solidnative/expo/views';
+import type { PlayerState } from '@solidnative/expo/solid/player';
 import type { FakeNode } from '../../../packages/platform/solid-tests/fake-fabric.ts';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer, flatten } from './consumer-harness.ts';

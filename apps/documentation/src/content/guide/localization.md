@@ -60,9 +60,9 @@ export type Messages = typeof en;
 the current catalog. Reading it in JSX subscribes, so text follows a language change:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
 import { Localisation } from './localisation.ts';
 
 export function BasketHeader(props: { name: string; count: number }) {
@@ -98,7 +98,7 @@ There is no ICU syntax. A plural is a function that picks a form, as `basket.cou
 has no `Intl.PluralRules` (`new Intl.PluralRules(...)` throws on device), so each catalog writes its
 own rule: English needs `one` and `other`; Polish also has `few` and `many`.
 
-A select is a branch: `<Switch>`/`<Match>` from `@solid-native/platform/solid` for an element, a
+A select is a branch: `<Switch>`/`<Match>` from `@solidnative/platform/solid` for an element, a
 catalog function for a string:
 
 ```ts

@@ -16,15 +16,15 @@ npx expo install expo-updates
 ```
 
 ```ts
-import { Updates } from '@solid-native/expo/solid/updates';
+import { Updates } from '@solidnative/expo/solid/updates';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createEffect } from 'solid-js';
-import { AppState, useService } from '@solid-native/device/solid';
-import { Updates } from '@solid-native/expo/solid/updates';
+import { AppState, useService } from '@solidnative/device/solid';
+import { Updates } from '@solidnative/expo/solid/updates';
 
 export function UpdateOnForeground() {
   const updates = useService(Updates);
@@ -79,6 +79,6 @@ A `check()` still running when the calling component is disposed resolves `false
 
 ## Reference
 
-`Updates` is exported from `@solid-native/expo/solid/updates`.
+`Updates` is exported from `@solidnative/expo/solid/updates`.
 
 <!-- api: Updates -->

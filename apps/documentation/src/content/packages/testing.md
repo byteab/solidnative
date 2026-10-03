@@ -1,6 +1,6 @@
 ---
 title: Testing
-summary: Testing Solid components in Node with @solid-native/testing, on a fake Fabric, with no simulator and no device.
+summary: Testing Solid components in Node with @solidnative/testing, on a fake Fabric, with no simulator and no device.
 ---
 
 # Testing
@@ -12,7 +12,7 @@ Library's `render()` and `screen` and RNTL's `fireEvent` and `userEvent`. The te
 // src/app/app.test.ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);
@@ -50,11 +50,11 @@ see [End-to-end tests](/packages/testing/end-to-end) with Maestro.
 
 ## Which runner
 
-Node's own runner; `@solid-native/testing` is the only test dependency:
+Node's own runner; `@solidnative/testing` is the only test dependency:
 
 ```sh
-node --import @solid-native/testing/register --test "src/**/*.test.ts"
+node --import @solidnative/testing/register --test "src/**/*.test.ts"
 ```
 
-The register hook compiles the app the way Metro does. [`@solid-native/nx`](/packages/nx) apps run
+The register hook compiles the app the way Metro does. [`@solidnative/nx`](/packages/nx) apps run
 the same command; Vitest uses `solidNative()` instead. [Setup](/packages/testing/setup) has both.

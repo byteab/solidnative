@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { createNativeRoot, type NativeRootOptions } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { createNativeRoot, type NativeRootOptions } from '@solidnative/platform/solid';
 import {
   conditionSources,
   currentConditions,
   deviceTokens,
   watchConditions,
   type ConditionSources,
-} from '@solid-native/device/solid';
-import type { StyleSheet } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import type { StyleSheet } from '@solidnative/fabric';
 import { MusicApplication, type MusicApplicationOptions } from './app/app.solid.tsx';
 
 export interface MusicMountOptions extends NativeRootOptions, MusicApplicationOptions {

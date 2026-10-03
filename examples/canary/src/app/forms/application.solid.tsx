@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 import {
   createForm,
@@ -11,11 +11,11 @@ import {
   View,
   type FormField,
   type TextInputProps,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { UiDatePicker, UiHost, UiPicker, type UiPickerOption } from '@solid-native/expo/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { UiDatePicker, UiHost, UiPicker, type UiPickerOption } from '@solidnative/expo/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import {
   Usernames,
   applicationSchema,

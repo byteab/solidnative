@@ -10,13 +10,13 @@ import {
   nativePlatform,
   registerPlatformComponents,
   type EngineOptions,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 import {
   createNativeRoot,
   type NativeChild,
   type NativeClock,
   type NativeRoot,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 import { bindQueries, describeTree, flatten, type BoundQueries } from './queries.ts';
 import { createFakeFabric, type FakeFabric, type FakeFabricNode } from './test-utils.ts';
 import { waitFor, type WaitForOptions } from './wait-for.ts';

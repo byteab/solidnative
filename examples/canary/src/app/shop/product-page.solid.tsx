@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useRoute } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useRoute } from '@solidnative/router/solid';
 import { Basket, PRODUCTS, price, saving } from './shop-model.solid.ts';
 import sheet from './product-page.native.css';
 

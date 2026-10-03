@@ -1,4 +1,4 @@
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 export interface ServerNote {
   readonly id: string;

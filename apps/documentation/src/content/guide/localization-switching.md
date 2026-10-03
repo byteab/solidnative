@@ -9,10 +9,10 @@ After [Loading a language](/guide/localization-loading), switching is a signal w
 message read through `t()` in JSX re-renders in place, with no reload or remount.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For } from '@solidnative/platform/solid';
 import { Localisation } from './localisation.ts';
 
 const LANGUAGES = [

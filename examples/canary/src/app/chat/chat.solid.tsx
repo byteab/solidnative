@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal, onMount } from 'solid-js';
 import {
   ActivityIndicator,
@@ -12,10 +12,10 @@ import {
   type KeyboardDockRef,
   type TextInputRef,
   type VirtualListRef,
-} from '@solid-native/components/solid';
-import { ColorScheme, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { ColorScheme, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { palette } from '../palette-values.ts';
 import { ChatBackend } from './chat-backend.solid.ts';
 import { ChatBubble } from './chat-bubble.solid.tsx';

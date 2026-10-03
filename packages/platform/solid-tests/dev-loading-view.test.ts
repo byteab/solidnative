@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { calmLoadingBanner, type LoadingBanner } from '../src/dev-loading-view.ts';
 import { createFakeFabric } from './fake-fabric.ts';
 

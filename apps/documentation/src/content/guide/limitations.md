@@ -12,12 +12,12 @@ Known gaps in the alpha, with workarounds where they exist. See
 
 `document`, `window` and DOM APIs do not exist. `solid-js/web` is not a native runtime (Metro's
 resolver throws on it), so there is no `render()`, `<Portal>` or DOM events. A `ref` receives a
-`NativeRef` from `@solid-native/components/solid`, for native commands, not an `HTMLElement`.
+`NativeRef` from `@solidnative/components/solid`, for native commands, not an `HTMLElement`.
 `<Image>` from the same package loads images; local assets need `resolveAssetSource` in the root's
 `engineOptions`.
 
-**Workaround:** use `@solid-native/components/solid` for elements, `useHostEngine()` from
-`@solid-native/platform/solid` for imperative native work, and `@solid-native/device/solid` for what
+**Workaround:** use `@solidnative/components/solid` for elements, `useHostEngine()` from
+`@solidnative/platform/solid` for imperative native work, and `@solidnative/device/solid` for what
 browsers expose through `window` or `navigator`.
 
 ## Every edit is a full reload
@@ -27,13 +27,13 @@ state. Expo's React Refresh is disabled for Solid files by the `isSolidFile` ove
 `babel.config.js`; `withSolidNative` alone cannot turn it off. Compiler or Metro config edits need a
 Metro restart.
 
-**Workaround:** keep state that must survive a reload in storage, such as `@solid-native/expo`'s
+**Workaround:** keep state that must survive a reload in storage, such as `@solidnative/expo`'s
 store, and name non-JSX helpers `.solid.ts` so their edits take the same guarded reload.
 
 ## No i18n framework
 
 There is no message-extraction tool or translation runtime. `Locale` from
-`@solid-native/expo/solid/locale` reports the device's languages and text direction; Hermes has
+`@solidnative/expo/solid/locale` reports the device's languages and text direction; Hermes has
 `Intl.NumberFormat` and `Intl.DateTimeFormat` but no `Intl.PluralRules`. See
 [Localization](/guide/localization).
 
@@ -48,7 +48,7 @@ renderer's committed tree (`root.engine`).
 ## No SSR or hydration
 
 Neither native nor web supports server rendering or hydration. `createNativeRoot` targets a
-device's Fabric UI manager; `@solid-native/web/solid`'s `mount()` and `mountBrowser()` need a real
+device's Fabric UI manager; `@solidnative/web/solid`'s `mount()` and `mountBrowser()` need a real
 `document`. For prerendered pages, build prose statically and mount live examples on the client.
 
 ## `fetch` responses have no body stream

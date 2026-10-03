@@ -7,7 +7,7 @@
  * alpha, interpolated (a hue the shorter way round), and brought back to the sRGB native paints,
  * inside its gamut by CSS Color 4's chroma reduction rather than a clip.
  *
- * The matrices and the gamut mapping are the ones `@solid-native/metro`'s `color-spaces.cjs` uses to
+ * The matrices and the gamut mapping are the ones `@solidnative/metro`'s `color-spaces.cjs` uses to
  * convert a literal colour at build time, copied here because the engine cannot depend on the
  * build step; the tests hold the two to the same answers.
  */

@@ -15,16 +15,16 @@ npx expo install expo-image-picker
 ```
 
 ```ts
-import { ImagePicker, type PickedAsset } from '@solid-native/expo/solid/image-picker';
+import { ImagePicker, type PickedAsset } from '@solidnative/expo/solid/image-picker';
 ```
 
 ## The smallest thing that works
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { ImagePicker, type PickedAsset } from '@solid-native/expo/solid/image-picker';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { ImagePicker, type PickedAsset } from '@solidnative/expo/solid/image-picker';
 
 export function Avatar() {
   const picker = useService(ImagePicker);
@@ -99,6 +99,6 @@ list, and both permissions report `denied` with `canAskAgain: false`.
 
 ## Reference
 
-`ImagePicker` is exported from `@solid-native/expo/solid/image-picker`.
+`ImagePicker` is exported from `@solidnative/expo/solid/image-picker`.
 
 <!-- api: ImagePicker -->

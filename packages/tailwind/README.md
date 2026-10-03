@@ -1,8 +1,8 @@
-# @solid-native/tailwind
+# @solidnative/tailwind
 
 A Tailwind CSS preset for solid-native's Solid renderer, for Tailwind 4 on native and web and
 Tailwind 3 on native: `<view class="flex-1 bg-blue-500 p-4">` works because
-[`@solid-native/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric) already has
+[`@solidnative/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric) already has
 a real cascade, and `class` already matches against it.
 
 Alpha: APIs may change before 1.0.
@@ -10,7 +10,7 @@ Alpha: APIs may change before 1.0.
 ## Install (Tailwind 4)
 
 ```sh
-npm install @solid-native/tailwind @solid-native/metro @tailwindcss/cli tailwindcss
+npm install @solidnative/tailwind @solidnative/metro @tailwindcss/cli tailwindcss
 ```
 
 ## Example (Tailwind 4)
@@ -19,14 +19,14 @@ npm install @solid-native/tailwind @solid-native/metro @tailwindcss/cli tailwind
 /* styles.css */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 ```
 
 ```js
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 
 module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
   input: './styles.css',
@@ -45,13 +45,13 @@ in preflight, a browser reset that means nothing on a phone.
 ## Tailwind 3 (native only)
 
 ```sh
-npm install @solid-native/tailwind @solid-native/metro tailwindcss@3
+npm install @solidnative/tailwind @solidnative/metro tailwindcss@3
 ```
 
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@solid-native/tailwind/preset.cjs')],
+  presets: [require('@solidnative/tailwind/preset.cjs')],
   content: ['./src/**/*.{ts,tsx}'],
 };
 ```
@@ -70,7 +70,7 @@ own CLI, so there is no `@tailwindcss/cli` to install. The preset turns prefligh
 
 - `./native.css` - the preset: platform variants, safe-area and hairline utilities, and
   touch-appropriate `hover:`/`focus-visible:` meanings.
-- `./web.css` - the same preset's web entry point, for `@solid-native/web`.
+- `./web.css` - the same preset's web entry point, for `@solidnative/web`.
 - `./preset.cjs` - the native preset for Tailwind 3, used from `tailwind.config.js`.
 - `./config.cjs` - `withTailwind`, the Metro config step that runs the app's Tailwind CLI and
   flattens its output for the CSS compiler.

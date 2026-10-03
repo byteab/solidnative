@@ -11,7 +11,7 @@
 
 import { createRequire } from 'node:module';
 
-const { compileCss } = createRequire(import.meta.url)('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = createRequire(import.meta.url)('@solidnative/metro/css/compile.cjs') as {
   compileCss(css: string, context: string): { rules: { declarations: Record<string, unknown> }[] };
 };
 

@@ -6,7 +6,7 @@ test('browser universal compiler preserves host imports and source positions wit
     'export const App = () => <view><text>Hello</text></view>;',
     '/fixture.solid.tsx',
   );
-  assert.match(result.code, /@solid-native\/platform\/solid/);
+  assert.match(result.code, /@solidnative\/platform\/solid/);
   assert.doesNotMatch(result.code, /solid-js\/web|React/);
   assert.ok(result.map.sources.some((source) => source.endsWith('/fixture.solid.tsx')));
 });

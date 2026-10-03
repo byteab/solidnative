@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Show, withNativeStyles, setNativeStyleHost } from '@solid-native/platform/solid';
-import type { EngineNode } from '@solid-native/fabric';
+import { Show, withNativeStyles, setNativeStyleHost } from '@solidnative/platform/solid';
+import type { EngineNode } from '@solidnative/fabric';
 import outer from './css-compiled-outer.native.css';
 import inner from './css-compiled-inner.native.css';
 

@@ -9,7 +9,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { ServiceToken } from '@solid-native/device/solid';
+import type { ServiceToken } from '@solidnative/device/solid';
 import {
   Accessibility,
   AppState,
@@ -17,17 +17,17 @@ import {
   Direction,
   Keyboard,
   Screen,
-} from '@solid-native/device/solid';
-import type { ObservedSource as Observed } from '@solid-native/device/solid';
-import { Battery } from '@solid-native/expo/battery';
-import { Clipboard } from '@solid-native/expo/clipboard';
-import { LanguageModel } from '@solid-native/expo/language-model';
-import { Locale } from '@solid-native/expo/locale';
-import { Network } from '@solid-native/expo/network';
-import { AppleSignIn } from '@solid-native/expo/apple-sign-in';
-import { Notifications } from '@solid-native/expo/notifications';
-import { DeviceOrientation } from '@solid-native/expo/orientation';
-import { ScreenCapture } from '@solid-native/expo/screen-capture';
+} from '@solidnative/device/solid';
+import type { ObservedSource as Observed } from '@solidnative/device/solid';
+import { Battery } from '@solidnative/expo/battery';
+import { Clipboard } from '@solidnative/expo/clipboard';
+import { LanguageModel } from '@solidnative/expo/language-model';
+import { Locale } from '@solidnative/expo/locale';
+import { Network } from '@solidnative/expo/network';
+import { AppleSignIn } from '@solidnative/expo/apple-sign-in';
+import { Notifications } from '@solidnative/expo/notifications';
+import { DeviceOrientation } from '@solidnative/expo/orientation';
+import { ScreenCapture } from '@solidnative/expo/screen-capture';
 import { ownedService } from './expo-service.ts';
 
 /** Listeners attached and not yet removed, across every fake below. */

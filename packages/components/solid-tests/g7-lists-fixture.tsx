@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import { VirtualList } from '../src/solid/virtual-list.ts';
 import { SectionList } from '../src/solid/section-list.ts';

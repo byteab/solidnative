@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Pressable, Text, View } from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { Show } from '@solid-native/platform/solid';
-import { TabSafeAreaView, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Pressable, Text, View } from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { Show } from '@solidnative/platform/solid';
+import { TabSafeAreaView, useNavigation } from '@solidnative/router/solid';
 import { album } from '../catalogue/catalogue.solid.ts';
 import { Playback } from '../player/playback.solid.ts';
 

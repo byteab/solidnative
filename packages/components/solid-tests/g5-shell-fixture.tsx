@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
-import { ServiceScope, useService } from '@solid-native/device/solid';
-import { Text, View, type NativeRef, type NativeStyle } from '@solid-native/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { ServiceScope, useService } from '@solidnative/device/solid';
+import { Text, View, type NativeRef, type NativeStyle } from '@solidnative/components/solid';
 import { ActivityIndicator } from '../src/solid/activity-indicator.ts';
 import {
   KEYBOARD_CONTROLLER,

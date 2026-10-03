@@ -1,39 +1,39 @@
 /**
  * The course's second module graph: `?learn-native`.
  *
- * `solidNativeWeb()` resolves `@solid-native/platform/solid` to the browser host for the whole build,
+ * `solidNativeWeb()` resolves `@solidnative/platform/solid` to the browser host for the whole build,
  * which is what the phone in the preview frame renders with. The checks and the learner's tests
  * render with the native renderer instead, over a fake Fabric, as an app's tests do in Node. So
  * `src/learn/preview/frame.ts` imports `./native-entry.ts?learn-native`, and this plugin carries
  * the query on to every workspace module that graph imports - the components, the device
- * services, the engine - and resolves `@solid-native/platform/solid` there to the real package. The
+ * services, the engine - and resolves `@solidnative/platform/solid` there to the real package. The
  * result is a second copy of each of those, separate from the phone's.
  *
  * Modules from `node_modules` keep their ids, so the two graphs share one `solid-js`, as two
  * renderers in one app would. So do virtual modules and ids that already carry a query.
  *
- * Listed before `solidNativeWeb()`, so it sees `@solid-native/platform/solid` first.
+ * Listed before `solidNativeWeb()`, so it sees `@solidnative/platform/solid` first.
  */
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import type { Plugin } from 'vite';
 
 const QUERY = '?learn-native';
-/** `solidNativeWeb()`'s stand-in for `@solid-native/device`'s lazy React Native lookup. */
+/** `solidNativeWeb()`'s stand-in for `@solidnative/device`'s lazy React Native lookup. */
 const NATIVE_UNAVAILABLE = '\0solid-browser-native-unavailable';
 
 const inGraph = (id: string | undefined): id is string => !!id?.endsWith(QUERY);
 const tag = (id: string) => `${id}${QUERY}`;
 
 export function learnNative(): Plugin {
-  const platform = createRequire(import.meta.url).resolve('@solid-native/platform/solid');
+  const platform = createRequire(import.meta.url).resolve('@solidnative/platform/solid');
   return {
     name: 'documentation:learn-native',
     enforce: 'pre',
     async resolveId(id, importer, options) {
       if (!inGraph(importer)) return null;
       const from = importer.slice(0, -QUERY.length);
-      if (id === '@solid-native/platform/solid') return tag(platform);
+      if (id === '@solidnative/platform/solid') return tag(platform);
       // The renderer's guarded `require`s of React Native's own modules, which answer nothing here
       // (see the `require` in `frame.ts`): left for run time, as Metro would leave them to the app.
       if (/^react-native(?:\/|$)/.test(id)) return { id, external: true };

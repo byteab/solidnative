@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { onCleanup } from 'solid-js';
-import { ServiceScope } from '@solid-native/device/solid';
+import { ServiceScope } from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   NativeStackOutlet,
   useRoute,
   type NativeNavigation,
   type NativeRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { deferred } from './navigation-fixture.tsx';
 
 export function createPresentationFixture() {

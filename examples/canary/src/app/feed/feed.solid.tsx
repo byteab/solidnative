@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createSignal, onMount, untrack } from 'solid-js';
 import {
   ActivityIndicator,
@@ -7,11 +7,11 @@ import {
   View,
   VirtualList,
   type VirtualListRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Engine } from '@solid-native/fabric';
-import { Show, useHostEngine, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Engine } from '@solidnative/fabric';
+import { Show, useHostEngine, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { FeedBackend, type Post } from './feed-backend.solid.ts';
 import { FeedPost } from './feed-post.solid.tsx';
 import { createFeedStore } from './feed-store.solid.ts';

@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a problem with an @solid-native/* package
+description: Report a problem with an @solidnative/* package
 labels: [bug]
 body:
   - type: markdown
@@ -11,9 +11,9 @@ body:
   - type: input
     id: versions
     attributes:
-      label: '@solid-native/* versions'
-      description: The package(s) affected and their versions, e.g. `@solid-native/platform@0.1.0-alpha.3`
-      placeholder: '@solid-native/platform@0.1.0-alpha.3, @solid-native/router@0.1.0-alpha.3'
+      label: '@solidnative/* versions'
+      description: The package(s) affected and their versions, e.g. `@solidnative/platform@0.1.0-alpha.3`
+      placeholder: '@solidnative/platform@0.1.0-alpha.3, @solidnative/router@0.1.0-alpha.3'
     validations:
       required: true
 

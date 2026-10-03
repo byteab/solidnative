@@ -1,4 +1,4 @@
-# @solid-native/expo
+# @solidnative/expo
 
 Expo's native modules as Solid services, and Expo's native views as elements.
 
@@ -7,7 +7,7 @@ Alpha: APIs may change before 1.0.
 ## Install
 
 ```sh
-npm install @solid-native/expo
+npm install @solidnative/expo
 npm install solid-js expo
 ```
 
@@ -17,17 +17,17 @@ optional peer dependency: install only the ones the app actually uses.
 ## Services
 
 One entry point per module, so importing haptics does not bundle the file system. The `exports`
-map takes `@solid-native/expo/haptics` to `src/solid/haptics.ts` (the `@solid-native/expo/solid/haptics`
+map takes `@solidnative/expo/haptics` to `src/solid/haptics.ts` (the `@solidnative/expo/solid/haptics`
 spelling resolves to the same file). Each service is a token carrying its own factory, so there is
 nothing to provide and nothing to register: `useService` inside a component is the whole setup, and
 a service nobody asks for is never constructed. Whatever a service holds - a listener, a pending
 request - is released with the owner that asked for it.
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Clipboard } from '@solid-native/expo/clipboard';
-import { FileSystem } from '@solid-native/expo/file-system';
-import { Haptics } from '@solid-native/expo/haptics';
+import { useService } from '@solidnative/device/solid';
+import { Clipboard } from '@solidnative/expo/clipboard';
+import { FileSystem } from '@solidnative/expo/file-system';
+import { Haptics } from '@solidnative/expo/haptics';
 
 export function Notes() {
   const clipboard = useService(Clipboard);
@@ -55,7 +55,7 @@ The names say what the thing is rather than who ships it. A few shapes are worth
 
 ## What this package costs to install
 
-One package. Every Expo module is an **optional peer dependency**, so `pnpm add @solid-native/expo`
+One package. Every Expo module is an **optional peer dependency**, so `pnpm add @solidnative/expo`
 adds exactly itself. Nothing in the package statically imports an Expo module: each is reached by
 a `require` inside the service's source factory, which Metro still resolves and bundles, while
 Node (and a test) simply sees the module as absent and the service goes inert. On a device, a module
@@ -76,8 +76,8 @@ in CSS, collected at build time, and registered before the app mounts. The nativ
 itself on the first frame, so hold it at module scope and hide it once the fonts are in:
 
 ```ts
-import { splashScreen } from '@solid-native/expo/splash-screen';
-import { loadFonts } from '@solid-native/expo/fonts';
+import { splashScreen } from '@solidnative/expo/splash-screen';
+import { loadFonts } from '@solidnative/expo/fonts';
 
 splashScreen.hold();
 
@@ -130,7 +130,7 @@ import {
   registerExpoViews,
   registerExpoUiViews,
   registerNativeViews,
-} from '@solid-native/expo/views';
+} from '@solidnative/expo/views';
 
 registerExpoViews('expo-image', 'expo-blur'); // Expo's own
 registerNativeViews('web-view', 'slider'); // the community libraries in Expo's bundled list
@@ -147,5 +147,5 @@ one the control has no size.
 
 The views apps reach for most (`UiHost`, `UiButton`, `UiSlider`, `UiPicker`, `UiDatePicker`, ...),
 `ExpoImage`, `ExpoGlass`, `ExpoSymbol` and `SegmentedControl` have typed Solid components exported
-from `@solid-native/expo`; keep registering the names too, since the registration is what makes the
+from `@solidnative/expo`; keep registering the names too, since the registration is what makes the
 element commit as the native view.

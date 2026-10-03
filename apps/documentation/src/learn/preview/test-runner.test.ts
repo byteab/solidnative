@@ -4,12 +4,12 @@ import { libraries as nativeLibraries } from './native-entry.ts';
 import { runChecks, runTestFile } from './test-runner.ts';
 
 const libraries = nativeLibraries();
-const { compileCss } = createRequire(import.meta.url)('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = createRequire(import.meta.url)('@solidnative/metro/css/compile.cjs') as {
   compileCss: (css: string, context: string) => object;
 };
 
 const APP = `import { createSignal } from 'solid-js';
-import { Pressable, Text } from '@solid-native/components/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
 
 export function App() {
   const [count, setCount] = createSignal(0);
@@ -21,7 +21,7 @@ export function App() {
 }
 `;
 
-const SPEC = `import { render, screen, userEvent } from '@solid-native/testing';
+const SPEC = `import { render, screen, userEvent } from '@solidnative/testing';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from './app';
 
@@ -48,7 +48,7 @@ describe('App', () => {
 });
 `;
 
-const CHECKS = `import { render, screen } from '@solid-native/testing';
+const CHECKS = `import { render, screen } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';
@@ -116,7 +116,7 @@ describe('runChecks', () => {
   });
 
   it('asks for native styles only for a check that reads them, and only runs that one with them', async () => {
-    const checks = `import { render, screen } from '@solid-native/testing';
+    const checks = `import { render, screen } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';
@@ -150,15 +150,15 @@ check(1, 'Reads a style', async () => {
   });
 
   it("gives a check that reads styles each .native.css file's compiled sheet", async () => {
-    const app = `import { Text } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+    const app = `import { Text } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 export function App() {
   return withNativeStyles(sheet, () => <Text class="title">Today</Text>);
 }
 `;
-    const checks = `import { render, screen } from '@solid-native/testing';
+    const checks = `import { render, screen } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';
@@ -181,7 +181,7 @@ check(1, 'The title is large', async () => {
   });
 
   it('fails only the checks about a file the learner has not written', async () => {
-    const checks = `import { render, screen } from '@solid-native/testing';
+    const checks = `import { render, screen } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 import { App } from './solution/app.tsx';
@@ -204,7 +204,7 @@ check(1, 'Has Later', () => {
   });
 
   it('can run the learner tests against a component of its own', async () => {
-    const checks = `import { Text } from '@solid-native/components/solid';
+    const checks = `import { Text } from '@solidnative/components/solid';
 import { expect } from 'vitest';
 import { check } from '../../check.ts';
 

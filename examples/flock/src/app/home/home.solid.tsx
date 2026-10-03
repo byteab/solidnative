@@ -1,17 +1,17 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { Pressable, View, VirtualList } from '@solid-native/components/solid';
-import { ExpoGlass, liquidGlassAvailable } from '@solid-native/expo/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
+import { Pressable, View, VirtualList } from '@solidnative/components/solid';
+import { ExpoGlass, liquidGlassAvailable } from '@solidnative/expo/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeStackOutlet,
   TabSafeAreaView,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { accent, refresh, timeline } from '../flock.solid.ts';
 import { openCompose, openSettings } from '../sheets.solid.ts';
 import { Glyph } from '../ui/glyph.solid.tsx';

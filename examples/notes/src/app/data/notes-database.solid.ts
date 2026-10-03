@@ -1,4 +1,4 @@
-import { database, type Migration } from '@solid-native/expo/solid/database';
+import { database, type Migration } from '@solidnative/expo/solid/database';
 
 /**
  * The notes cache and its write queue, as [Working offline](/guide/offline) describes: `note` is

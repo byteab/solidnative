@@ -9,9 +9,9 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { watchConditions } from '@solid-native/device';
-import { createFakeFabric, type FakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { Engine } from '@solidnative/fabric';
+import { watchConditions } from '@solidnative/device';
+import { createFakeFabric, type FakeFabric, type FakeFabricNode } from '@solidnative/testing';
 
 function flatten(nodes: FakeFabricNode[]): FakeFabricNode[] {
   return nodes.flatMap((node) => [node, ...flatten(node.children)]);

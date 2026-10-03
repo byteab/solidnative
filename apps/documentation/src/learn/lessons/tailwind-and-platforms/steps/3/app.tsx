@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
-import { ScrollView, Text, View } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
+import { ScrollView, Text, View } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
 import { HabitRow } from './habit-row';
 
 interface Habit {

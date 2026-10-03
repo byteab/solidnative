@@ -1,7 +1,7 @@
 import { createRenderEffect, createSignal, untrack } from 'solid-js';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { useHostAdapter } from '@solid-native/platform/solid';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { useHostAdapter } from '@solidnative/platform/solid';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
 
 export type SearchBarPlacement =
   'automatic' | 'inline' | 'stacked' | 'integrated' | 'integratedButton' | 'integratedCentered';

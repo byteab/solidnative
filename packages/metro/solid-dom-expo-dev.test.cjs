@@ -15,7 +15,7 @@ const transformer = require('./solid-transformer.cjs');
 const expo = require('@expo/metro-config/build/babel-transformer');
 
 const source = `'use dom';
-import { mountInWebView as mount } from '@solid-native/web/solid/web-view';
+import { mountInWebView as mount } from '@solidnative/web/solid/web-view';
 function Signature(props: {name: string}) { return <div>{props.name}</div>; }
 export default mount(Signature);`;
 const projectRoot = path.resolve(__dirname, '../platform');

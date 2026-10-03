@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
 import {
   KeyboardDock,
@@ -8,16 +8,16 @@ import {
   TextInput,
   View,
   type TextInputRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   For,
   Show,
   setNativeStyleHost,
   useHostAdapter,
   withNativeStyles,
-} from '@solid-native/platform/solid';
-import { NativeHeader, NativeHeaderItem, useRoute } from '@solid-native/router/solid';
+} from '@solidnative/platform/solid';
+import { NativeHeader, NativeHeaderItem, useRoute } from '@solidnative/router/solid';
 import {
   Notes,
   inline,

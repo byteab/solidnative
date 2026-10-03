@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
 import { Gesture } from 'react-native-gesture-handler';
 import {
@@ -8,12 +8,12 @@ import {
   View,
   VirtualList,
   type ScrollViewRef,
-} from '@solid-native/components/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
-import { SCREEN_IN_FRONT, createServiceToken, useService } from '@solid-native/device/solid';
-import { nativePlatform } from '@solid-native/fabric';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
+import { SCREEN_IN_FRONT, createServiceToken, useService } from '@solidnative/device/solid';
+import { nativePlatform } from '@solidnative/fabric';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { createInbox, type Mail } from './inbox-model.solid.ts';
 import { InboxNativeList } from './inbox-native-list.solid.tsx';
 import { InboxRow } from './inbox-row.solid.tsx';

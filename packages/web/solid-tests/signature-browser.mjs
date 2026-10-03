@@ -5,8 +5,8 @@ import { chromium } from 'playwright';
 import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { isSolidDomSource, transformSolidDom } from '@solid-native/metro/solid-dom.cjs';
-import { createSolidRuntime } from '@solid-native/metro/solid-runtime.cjs';
+import { isSolidDomSource, transformSolidDom } from '@solidnative/metro/solid-dom.cjs';
+import { createSolidRuntime } from '@solidnative/metro/solid-runtime.cjs';
 
 const workspace = fileURLToPath(new URL('../../../', import.meta.url));
 const root = process.env.SOLID_NATIVE_G12_CONSUMER ?? workspace;

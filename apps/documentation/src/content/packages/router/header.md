@@ -10,9 +10,9 @@ A screen gets a navigation bar by rendering `<NativeHeader>` in its own JSX:
 <!-- api: NativeHeader -->
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { NativeHeader, NativeHeaderItem } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { NativeHeader, NativeHeaderItem } from '@solidnative/router/solid';
 
 export function Detail() {
   const star = () => {
@@ -73,7 +73,7 @@ Left alone, iOS follows the system appearance and Android uses the theme's `colo
 `largeTitleColor` to a neutral pair for the color scheme, `DEFAULT_HEADER_PALETTE`:
 
 ```ts
-import { DEFAULT_HEADER_PALETTE } from '@solid-native/router/solid';
+import { DEFAULT_HEADER_PALETTE } from '@solidnative/router/solid';
 
 DEFAULT_HEADER_PALETTE.dark; // { background: 'rgb(10, 10, 10)', foreground: 'rgb(250, 250, 250)' }
 ```
@@ -87,8 +87,8 @@ It is a frozen constant, not an injectable token; retune it with `<NativeBarDefa
 every `<NativeHeader>`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { NativeBarDefaults } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { NativeBarDefaults } from '@solidnative/router/solid';
 import { Shell } from './shell.solid.tsx'; // calls createNativeNavigation(routes)
 
 export function App() {
@@ -110,7 +110,7 @@ export function App() {
 ```
 
 Pass an object, or a function of the color scheme (`'light'` or `'dark'`, from `ColorScheme` in
-`@solid-native/device/solid`). It runs in each header's reactive computation, so signals it reads,
+`@solidnative/device/solid`). It runs in each header's reactive computation, so signals it reads,
 such as an in-app theme, are tracked. Nested `<NativeBarDefaults>` merge inner over outer.
 
 The defaults (`HeaderDefaults`) take any `NativeHeader` prop except `title`, `testID` and

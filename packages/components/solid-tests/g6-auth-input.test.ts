@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot, type HostChild } from '@solid-native/platform/solid';
-import { registerPlatformComponents, type FabricNode } from '@solid-native/fabric';
+import { createNativeRoot, type HostChild } from '@solidnative/platform/solid';
+import { registerPlatformComponents, type FabricNode } from '@solidnative/fabric';
 import { autofillFixture, keyboardTapFixture } from './g6-auth-input-fixture.tsx';
 import {
   createFakeFabric,

@@ -6,9 +6,9 @@ import {
   Accessibility,
   provideService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import { registerExpoUiViews } from '@solid-native/expo/views';
-import { Brightness } from '@solid-native/expo/solid/brightness';
+} from '@solidnative/device/solid';
+import { registerExpoUiViews } from '@solidnative/expo/views';
+import { Brightness } from '@solidnative/expo/solid/brightness';
 import { settingsRoutes } from '../src/app/settings/routes.solid.ts';
 import { walletRoutes } from '../src/app/wallet/routes.solid.ts';
 import { worldRoutes } from '../src/app/world/routes.solid.ts';

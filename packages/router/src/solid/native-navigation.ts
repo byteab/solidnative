@@ -7,13 +7,13 @@ import {
   runWithOwner,
   type Accessor,
 } from 'solid-js';
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
 import {
   provideService,
   SCREEN_IN_FRONT,
   useService,
   withServiceScope,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { createRouteOwner, type RouteOwner } from './route-owner.ts';
 import { createRetainedStack, type StackTransition } from './retained-stack.ts';
 import { ActivityState, registerScreenComponents } from './screens.ts';

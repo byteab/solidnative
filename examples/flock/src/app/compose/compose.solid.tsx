@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, TextInput, View } from '@solid-native/components/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { UiGauge, UiHost, UiPicker } from '@solid-native/expo/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { nativePlatform } from '@solid-native/fabric';
-import { Show } from '@solid-native/platform/solid';
-import { useNavigation, useRoute } from '@solid-native/router/solid';
+import { Pressable, Text, TextInput, View } from '@solidnative/components/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { UiGauge, UiHost, UiPicker } from '@solidnative/expo/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { nativePlatform } from '@solidnative/fabric';
+import { Show } from '@solidnative/platform/solid';
+import { useNavigation, useRoute } from '@solidnative/router/solid';
 import { ME, accent, audience, post, publish, setAudience } from '../flock.solid.ts';
 import { Avatar } from '../ui/avatar.solid.tsx';
 import { useMuted } from '../ui/post-row.solid.tsx';

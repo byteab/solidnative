@@ -1,6 +1,6 @@
 # My native Solid app
 
-A SolidJS app rendering real native views, created from `@solid-native/template`.
+A SolidJS app rendering real native views, created from `@solidnative/template`.
 
 ```sh
 npm start          # Metro; scan the QR code with Expo Go, or press i / a for a simulator

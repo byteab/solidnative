@@ -22,7 +22,7 @@ writeFileSync(
 );
 writeFileSync(
   path.join(fixture, 'entry.mjs'),
-  `import {mount} from '@solid-native/web/solid'; import {HostFixture} from '../host.solid.tsx'; window.mounted=mount(document.getElementById('app'),HostFixture,{inputs:{label:'Browser label',onChange:value=>window.changed=value}});`,
+  `import {mount} from '@solidnative/web/solid'; import {HostFixture} from '../host.solid.tsx'; window.mounted=mount(document.getElementById('app'),HostFixture,{inputs:{label:'Browser label',onChange:value=>window.changed=value}});`,
 );
 const config = {
   root: fixture,

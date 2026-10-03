@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Keyboard,
   LayoutAnimation,
@@ -6,10 +6,10 @@ import {
   provideService,
   type KeyboardMetrics,
   type NativeLayoutAnimation,
-} from '@solid-native/device';
-import { KeyboardAvoidingView, ScrollView, Text, View } from '@solid-native/components';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import type { StyleSheet } from '@solid-native/fabric';
+} from '@solidnative/device';
+import { KeyboardAvoidingView, ScrollView, Text, View } from '@solidnative/components';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import type { StyleSheet } from '@solidnative/fabric';
 
 export type Behavior = 'padding' | 'height' | 'position';
 

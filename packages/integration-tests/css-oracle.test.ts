@@ -13,11 +13,11 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { StyleResolver, type StyleSheet, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
 import { CASES, INITIAL, PROPERTIES, type CaseNode } from './fixtures/css-oracle-cases.ts';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 const recorded = require('./fixtures/css-oracle.json') as {
   name: string;
   expected: Record<string, string>;

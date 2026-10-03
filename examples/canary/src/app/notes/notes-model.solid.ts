@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 export type BlockKind = 'paragraph' | 'heading' | 'bullet' | 'check' | 'quote';
 

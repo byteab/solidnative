@@ -4,7 +4,7 @@
  *
  * Built from the page's own `<!-- api: -->` markers and the extracted API, never written by hand:
  * the import path is wherever the export is really published (the package's Solid entry, or a
- * subpath such as `@solid-native/expo/solid/battery`), a component shows its JSX tag, and a function
+ * subpath such as `@solidnative/expo/solid/battery`), a component shows its JSX tag, and a function
  * shows the call. Every page that documents an export gets the same strip, and none of it can
  * drift from the source.
  */
@@ -14,7 +14,7 @@ import type { ApiEntry } from '../build/api.ts';
 import { Icon } from './icon.tsx';
 import './doc-usage.css';
 
-/** `Button`, or `@solid-native/components#Switch`, the way an `api` marker names an export. */
+/** `Button`, or `@solidnative/components#Switch`, the way an `api` marker names an export. */
 export function findApi(reference: string): ApiEntry | undefined {
   const all = API as Record<string, ApiEntry>;
   return all[reference] ?? Object.values(all).find((item) => item.name === reference);

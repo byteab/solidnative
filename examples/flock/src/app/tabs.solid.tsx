@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { nativePlatform } from '@solid-native/fabric';
+/** @jsxImportSource @solidnative/platform/solid */
+import { nativePlatform } from '@solidnative/fabric';
 import {
   NativeHeader,
   NativeStackOutlet,
   NativeTabsOutlet,
   type TabIcon,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { unreadCount } from './flock.solid.ts';
 
 /** SF Symbols on iOS; on Android a white PNG drawn as a mask, so the bar tints it. */

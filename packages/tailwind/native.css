@@ -3,7 +3,7 @@
  *
  *   @import "tailwindcss/theme.css";
  *   @import "tailwindcss/utilities.css";
- *   @import "@solid-native/tailwind/native.css";
+ *   @import "@solidnative/tailwind/native.css";
  *
  * `active:` needs nothing added: it lands on the `:active` the engine already tracks. Everything
  * that is not about the input device lives in `shared.css`, which this imports - the safe-area

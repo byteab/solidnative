@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Pressable, ScrollView } from '@solid-native/components/solid';
-import { For, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Pressable, ScrollView } from '@solidnative/components/solid';
+import { For, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { PHOTOS } from './photos.solid.ts';
 import sheet from './gallery.native.css';
 

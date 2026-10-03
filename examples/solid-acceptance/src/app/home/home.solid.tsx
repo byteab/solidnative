@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, SafeAreaView, Text, View } from '@solid-native/components';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router';
+import { Pressable, SafeAreaView, Text, View } from '@solidnative/components';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router';
 import sheet from './home.native.css';
 
 /** The starter's counter, plus the ways out of it: a pushed detail screen and a form. */

@@ -3,7 +3,7 @@
  * builds the app, and shipped the way Expo ships its own DOM components.
  *
  * A DOM component is a file that starts with `'use dom'` and mounts through
- * `@solid-native/web/solid/web-view`. Imported from native code it is not compiled at all: it becomes
+ * `@solidnative/web/solid/web-view`. Imported from native code it is not compiled at all: it becomes
  * a reference to its page, carrying the same metadata Expo's `'use dom'` plugin records, so Expo's
  * dev server serves the page and `expo export:embed` writes it into the app for a release build.
  *
@@ -22,7 +22,7 @@ import { describe, it } from 'node:test';
 
 const require = createRequire(import.meta.url);
 const { isSolidDomComponent, solidDomPage, domComponentReference } =
-  require('@solid-native/metro/solid-dom.cjs') as {
+  require('@solidnative/metro/solid-dom.cjs') as {
     isSolidDomComponent(source: string): boolean;
     solidDomPage(filename: string, options: object): Buffer | null;
     domComponentReference(
@@ -35,7 +35,7 @@ const { isSolidDomComponent, solidDomPage, domComponentReference } =
   };
 
 const mounts =
-  "\nimport { mountInWebView } from '@solid-native/web/solid/web-view';\n" +
+  "\nimport { mountInWebView } from '@solidnative/web/solid/web-view';\n" +
   'export default mountInWebView(() => null);';
 
 const WEB_COMPONENT = `'use dom';${mounts}\n`;
@@ -53,7 +53,7 @@ describe("recognising a Solid DOM component: 'use dom' and the Solid web-view mo
 
   // D040 made the root `./web-view` the Solid entry: a page written against it must become a page
   // too, not be compiled as native Solid.
-  it('recognises the root `@solid-native/web/web-view` alias too', () => {
+  it('recognises the root `@solidnative/web/web-view` alias too', () => {
     assert.equal(isSolidDomComponent(mounts.replace('/solid/web-view', '/web-view')), false);
     assert.equal(
       isSolidDomComponent("'use dom';" + mounts.replace('/solid/web-view', '/web-view')),

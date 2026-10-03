@@ -1,5 +1,5 @@
 /**
- * Lower `<View>` and `<Text>` from `@solid-native/components` to the `<view>` and `<text>`
+ * Lower `<View>` and `<Text>` from `@solidnative/components` to the `<view>` and `<text>`
  * intrinsics they render, where nothing the components do is needed.
  *
  * Both components are a host element plus a spread of their props: View's props as they are, and
@@ -12,7 +12,7 @@
  * no namespaced attribute, and on Text nothing that makes it pressable or disabled.
  */
 
-const SOURCES = new Set(['@solid-native/components', '@solid-native/components/solid']);
+const SOURCES = new Set(['@solidnative/components', '@solidnative/components/solid']);
 
 /** What View rewrites rather than forwards (`host-props.ts`). */
 const VIEW_KEEPS = new Set([

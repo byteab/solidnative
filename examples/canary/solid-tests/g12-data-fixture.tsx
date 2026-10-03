@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import { FeedGallery } from '../src/app/feed/feed-post.solid.tsx';
 /** Reassigns the actual gallery exactly as a recycled VirtualList slot does. */

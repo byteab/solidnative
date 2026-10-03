@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { catchError, createEffect, createRoot, createSignal, onCleanup } from 'solid-js';
-import { mountNative } from '@solid-native/platform/solid';
+import { mountNative } from '@solidnative/platform/solid';
 import {
   createServiceToken,
   provideService,
   useService,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 import { serviceFixture } from './service-fixture.tsx';
 

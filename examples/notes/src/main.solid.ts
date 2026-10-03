@@ -1,5 +1,5 @@
 import { AppRegistry, Image, Platform, processColor } from 'react-native';
-import { getFabricUIManager, registerPlatformComponents } from '@solid-native/fabric';
+import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { mountNotes } from './bootstrap.solid.tsx';
 // The generated stylesheet. The Tailwind CLI writes CSS; the Metro config compiles it into this
 // module, because Expo's transform worker turns a `.css` import into an empty module on native.

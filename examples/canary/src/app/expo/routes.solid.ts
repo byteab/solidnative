@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** The converted native-module screens; other Expo routes remain explicit migration work. */
 export const expoRoutes: readonly NativeRoute[] = [

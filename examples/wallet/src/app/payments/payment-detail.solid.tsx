@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show } from '@solid-native/platform/solid';
-import { NativeHeader, useRoute } from '@solid-native/router/solid';
+import { ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show } from '@solidnative/platform/solid';
+import { NativeHeader, useRoute } from '@solidnative/router/solid';
 import { Ledger, TINTS, dayOf, money } from './ledger.solid.ts';
 
 /** One payment in full. `id` is the route param. */

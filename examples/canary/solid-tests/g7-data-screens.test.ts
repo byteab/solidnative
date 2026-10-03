@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AppState, Dialogs, provideService } from '@solid-native/device/solid';
-import { linkAncestry } from '@solid-native/router/solid';
+import { AppState, Dialogs, provideService } from '@solidnative/device/solid';
+import { linkAncestry } from '@solidnative/router/solid';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';
 import {

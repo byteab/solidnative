@@ -1,6 +1,6 @@
 import { performance } from 'node:perf_hooks';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { Engine } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { Engine } from '@solidnative/fabric';
 import {
   createFakeFabric,
   createClock,

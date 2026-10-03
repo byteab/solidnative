@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createComputed, createRoot, createSignal } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import {
   afterHostCommit,
   createHostElement,

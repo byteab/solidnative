@@ -8,7 +8,7 @@
  *
  * No decorators here: tests import this at runtime.
  */
-import { registerViewName } from '@solid-native/fabric';
+import { registerViewName } from '@solidnative/fabric';
 
 /** The edges of the screen, as both components name them. */
 export type SafeAreaEdge = 'top' | 'right' | 'bottom' | 'left';

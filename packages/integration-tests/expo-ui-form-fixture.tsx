@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { UiDatePicker, UiHost, UiPicker } from '@solid-native/expo/expo-ui-components';
+import { UiDatePicker, UiHost, UiPicker } from '@solidnative/expo/expo-ui-components';
 
 /** A booking form: a date and a choice, both controlled fields on SwiftUI/Compose controls. */
 export function expoUiFormFixture() {

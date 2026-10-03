@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   SafeArea,
   Screen,
@@ -8,8 +8,8 @@ import {
   provideService,
   useService,
   type Sizes,
-} from '@solid-native/device/solid';
-import type { HostNode } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import type { HostNode } from '@solidnative/fabric';
 import { FullWindowOverlay } from '../src/solid/full-window-overlay.ts';
 
 export function overlayFixture() {

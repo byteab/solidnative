@@ -8,10 +8,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { matches, type StyleRule, type StyleTarget } from '@solid-native/fabric';
+import { matches, type StyleRule, type StyleTarget } from '@solidnative/fabric';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 /** A standalone node, with no parent, carrying the given props and classes. */
 function node(

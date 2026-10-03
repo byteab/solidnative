@@ -10,7 +10,7 @@ ng-native's Fabric engine (retained tree, clone-on-write commit, events, CSS run
 framework-agnostic, so it was kept as is. Solid drives it through the same host boundary
 (`packages/fabric/src/host.ts`) that the browser host implements. Only the layer above it changed:
 Angular's renderer and compiler were replaced by Solid's universal renderer
-(`solid-js/universal`) in `@solid-native/platform`. Every capability was ported with its tests
+(`solid-js/universal`) in `@solidnative/platform`. Every capability was ported with its tests
 before the Angular code was deleted, and the 95% coverage floor was kept.
 
 ## Solid's universal renderer, not `solid-js/web`
@@ -22,7 +22,7 @@ never in a native bundle; React stays installed only because React Native and Ex
 ## Compile at build time, opt in per file
 
 Hermes has no runtime compiler, so JSX and `.native.css` compile in Metro. A file is Solid when
-its name ends in `.solid.tsx` or it carries the `@jsxImportSource @solid-native/platform/solid`
+its name ends in `.solid.tsx` or it carries the `@jsxImportSource @solidnative/platform/solid`
 pragma; everything else, React Native's own sources included, keeps Expo's transform.
 
 ## One commit per reactive run
@@ -39,7 +39,7 @@ nodes it creates. Tailwind and app-wide rules are the root's global sheet.
 
 ## Services instead of dependency injection
 
-Angular's DI became `useService`/`ServiceScope` in `@solid-native/device`: device APIs and Expo
+Angular's DI became `useService`/`ServiceScope` in `@solidnative/device`: device APIs and Expo
 modules are scoped Solid services, created lazily and disposed with their owner.
 
 ## Clean reload, not hot reload
@@ -52,12 +52,12 @@ state survives; nothing pretends to.
 
 These only adapted Angular features: `provideNativeHttpClient` (use `fetch`), `$localize` (typed
 message catalogs and `Intl`), the `Date.parse` shim, `@defer` (use `lazy`, `Suspense`, `Show`),
-the Angular CLI schematics (use `create-expo-app --template @solid-native/template` or
-`nx add @solid-native/nx`) and the `@ng-icons/*` sets (now `lucide-static` or any SVG string).
+the Angular CLI schematics (use `create-expo-app --template @solidnative/template` or
+`nx add @solidnative/nx`) and the `@ng-icons/*` sets (now `lucide-static` or any SVG string).
 
 ## The name
 
-Everything Angular-derived was renamed: packages moved to the `@solid-native/*` scope (the
+Everything Angular-derived was renamed: packages moved to the `@solidnative/*` scope (the
 unscoped `solid-native` npm name is taken), diagnostics read `[solid-native]` and bundle ids
 `dev.solidnative.*`. The documentation site was rewritten as a Solid DOM app.
 

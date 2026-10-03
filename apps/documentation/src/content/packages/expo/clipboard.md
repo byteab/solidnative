@@ -16,15 +16,15 @@ npx expo install expo-clipboard
 ```
 
 ```ts
-import { Clipboard } from '@solid-native/expo/solid/clipboard';
+import { Clipboard } from '@solidnative/expo/solid/clipboard';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Clipboard } from '@solid-native/expo/solid/clipboard';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Clipboard } from '@solidnative/expo/solid/clipboard';
 
 export function ShareLink() {
   const clipboard = useService(Clipboard);
@@ -60,6 +60,6 @@ to `''` and `write()` does nothing.
 
 ## Reference
 
-`Clipboard` is exported from `@solid-native/expo/solid/clipboard`.
+`Clipboard` is exported from `@solidnative/expo/solid/clipboard`.
 
 <!-- api: Clipboard -->

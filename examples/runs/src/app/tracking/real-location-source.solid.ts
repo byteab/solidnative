@@ -1,6 +1,6 @@
 import { createEffect, createRoot, getOwner, runWithOwner } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Location } from '@solid-native/expo/solid/location';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Location } from '@solidnative/expo/solid/location';
 import type { LocationSource } from './location-source.ts';
 
 /**

@@ -13,7 +13,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { getFabricUIManager } from '@solid-native/fabric';
+import { getFabricUIManager } from '@solidnative/fabric';
 import { FABRIC_METHODS } from '../fabric/src/fabric.ts';
 
 describe('the Fabric facade', () => {

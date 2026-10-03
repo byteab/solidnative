@@ -1,5 +1,5 @@
 import { getOwner, onCleanup } from 'solid-js';
-import type { Conditions, TokenValue } from '@solid-native/fabric';
+import type { Conditions, TokenValue } from '@solidnative/fabric';
 import { reactNative } from '../react-native.ts';
 import { conditionSources, type ConditionSources } from './condition-sources.ts';
 

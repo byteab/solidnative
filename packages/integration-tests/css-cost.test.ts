@@ -12,13 +12,13 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { StyleResolver, type StyleSheet, type StyleTarget } from '@solid-native/fabric';
+import { StyleResolver, type StyleSheet, type StyleTarget } from '@solidnative/fabric';
 import { resetStyleStats, styleStats } from '../fabric/src/css.ts';
 import { createRequire } from 'node:module';
 import { mountSolid } from './css-solid-harness.ts';
 import { scaleList } from './css-solid-fixtures.tsx';
 
-const { compileCss } = createRequire(import.meta.url)('@solid-native/metro/css/compile.cjs');
+const { compileCss } = createRequire(import.meta.url)('@solidnative/metro/css/compile.cjs');
 
 const ROWS = 1000;
 

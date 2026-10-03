@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { For } from '@solid-native/platform/solid';
+import { For } from '@solidnative/platform/solid';
 import { initial, styles } from '../../../examples/canary/src/bench/rows.ts';
 
 /** The bench tree on raw intrinsics: isolates components' cost from the renderer's. */

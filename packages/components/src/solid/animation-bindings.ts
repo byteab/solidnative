@@ -6,7 +6,7 @@ import {
   untrack,
   type Accessor,
 } from 'solid-js';
-import { useHostAdapter } from '@solid-native/platform/solid';
+import { useHostAdapter } from '@solidnative/platform/solid';
 import type { AnimatedPropsHandle, AnimationBackend } from './animation-types.ts';
 import type { GestureBackend, GestureSpec } from './animation-types.ts';
 import type { WorkletBackend, WorkletStyleSpec, WorkletScrollSpec } from './animation-types.ts';

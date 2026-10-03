@@ -6,7 +6,7 @@
  * one piece of real arithmetic, solving a cubic bezier, is the engine's own: CSS transitions
  * already need it, and two solvers would be two chances to disagree.
  */
-import { bezier } from '@solid-native/fabric';
+import { bezier } from '@solidnative/fabric';
 
 export type EasingFunction = (t: number) => number;
 

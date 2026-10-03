@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './progress-bar.native.css';
 
 /** The day's progress: a rounded track with an animated fill, and how many of how many. */

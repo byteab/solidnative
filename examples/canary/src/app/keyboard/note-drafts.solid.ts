@@ -1,5 +1,5 @@
 import { createSignal, type Accessor } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 export interface NoteDrafts {
   readonly saved: Accessor<string | null>;

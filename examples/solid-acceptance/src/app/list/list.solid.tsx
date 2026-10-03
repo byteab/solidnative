@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Pressable, SafeAreaView, Text, View, VirtualList } from '@solid-native/components';
-import { useNavigation } from '@solid-native/router';
+import { Pressable, SafeAreaView, Text, View, VirtualList } from '@solidnative/components';
+import { useNavigation } from '@solidnative/router';
 
 const ROW_HEIGHT = 56;
 const ROWS = Array.from({ length: 200 }, (_, i) => ({ id: String(i + 1) }));

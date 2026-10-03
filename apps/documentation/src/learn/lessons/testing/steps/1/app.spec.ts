@@ -1,4 +1,4 @@
-import { render, screen } from '@solid-native/testing';
+import { render, screen } from '@solidnative/testing';
 import { describe, expect, it } from 'vitest';
 import { App } from './app';
 

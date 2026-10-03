@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import {
   ServiceScope,
   useService,
   SCREEN_IN_FRONT,
   provideService,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   type NativeNavigation,
@@ -13,7 +13,7 @@ import {
   type NativeRouteProps,
   NativeStackOutlet,
   NativeHeader,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 
 export function deferred<T>() {
   let resolve!: (value: T) => void;

@@ -1,4 +1,4 @@
-import { render, screen, type FakeFabricNode } from '@solid-native/testing';
+import { render, screen, type FakeFabricNode } from '@solidnative/testing';
 import { expect } from 'vitest';
 import { check, parentOf } from '../../check.ts';
 import { App } from './solution/app.tsx';

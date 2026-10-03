@@ -5,7 +5,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import type { Engine, FabricUIManager } from '@solid-native/fabric';
+import type { Engine, FabricUIManager } from '@solidnative/fabric';
 import { reserveSurface } from '../src/solid/events.ts';
 
 type Handler = (target: unknown, type: string, event: unknown) => void;

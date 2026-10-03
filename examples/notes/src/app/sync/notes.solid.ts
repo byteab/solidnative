@@ -6,10 +6,10 @@ import {
   type Accessor,
   type Setter,
 } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Network } from '@solid-native/expo/solid/network';
-import { Storage, type StoredSignal } from '@solid-native/expo/solid/store';
-import type { SQLiteDatabase } from '@solid-native/expo/solid/database';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Network } from '@solidnative/expo/solid/network';
+import { Storage, type StoredSignal } from '@solidnative/expo/solid/store';
+import type { SQLiteDatabase } from '@solidnative/expo/solid/database';
 import { NOTES_API, type NoteWrite, type NotesApi } from '../api/notes-api.solid.ts';
 import { nextId, sortNotes, type Note } from '../data/note.ts';
 import { SEED_NOTES } from '../data/seed-notes.ts';

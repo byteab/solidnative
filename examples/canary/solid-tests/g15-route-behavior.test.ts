@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AppState, provideService } from '@solid-native/device/solid';
-import type { NativeRoute } from '@solid-native/router/solid';
+import { AppState, provideService } from '@solidnative/device/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 import { createCanaryRoutes } from '../src/app/app.routes.solid.ts';
 import { OrdersApi, OrdersBackend } from '../src/app/orders/orders-api.solid.ts';
 import { consumerFixture } from './consumer-fixture.tsx';

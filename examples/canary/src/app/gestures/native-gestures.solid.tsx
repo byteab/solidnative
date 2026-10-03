@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import { Gesture } from 'react-native-gesture-handler';
-import { ScrollView, Text, View } from '@solid-native/components/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
-import { WorkletStyle, sharedValue, workletStyle } from '@solid-native/components/solid/reanimated';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { ScrollView, Text, View } from '@solidnative/components/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
+import { WorkletStyle, sharedValue, workletStyle } from '@solidnative/components/solid/reanimated';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './native-gestures.native.css';
 

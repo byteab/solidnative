@@ -17,14 +17,14 @@ device](/packages/fabric/supported-css) and [Metro](/packages/metro/configuratio
 
 ### Applying a sheet
 
-`withNativeStyles(sheet, render)` from `@solid-native/platform/solid` puts the sheet in Solid
+`withNativeStyles(sheet, render)` from `@solidnative/platform/solid` puts the sheet in Solid
 context; every element created inside `render`, including later branches and child components
 without their own sheet, is matched against it:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import shared from '../shared/cards.native.css';
 import sheet from './card.native.css';
 
@@ -83,5 +83,5 @@ development warning per name.
 `prefers-color-scheme` and `prefers-reduced-motion`. Those are the only features a device can
 answer; `hover`, `pointer`, `print` and `not` are build errors. Rotation or a theme change writes
 no signal, which is why
-`@solid-native/device/solid`'s `watchConditions(engine)` exists; see
+`@solidnative/device/solid`'s `watchConditions(engine)` exists; see
 [Bootstrapping](/packages/platform/bootstrapping).

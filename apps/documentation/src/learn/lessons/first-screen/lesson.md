@@ -9,14 +9,14 @@ difference.
 
 On a device, Solid's universal renderer drives React Native's Fabric renderer directly, with no
 React component tree in between, and Expo provides the app runtime and the build tooling. The
-preview beside the editor runs the same components in the browser, through `@solid-native/web/solid`.
+preview beside the editor runs the same components in the browser, through `@solidnative/web/solid`.
 X-ray labels each element with the native view it becomes on a device; it does not inspect a
 running iOS or Android app.
 
 There is no `<div>` or `<span>` on a phone. A screen is made of native components instead: `<View>`
 becomes a plain native view, and `<Text>` native text. They come from
-`@solid-native/components/solid`, imported like any other component. The comment on the first line,
-`@jsxImportSource @solid-native/platform/solid`, is what tells the build to compile the file's JSX for
+`@solidnative/components/solid`, imported like any other component. The comment on the first line,
+`@jsxImportSource @solidnative/platform/solid`, is what tells the build to compile the file's JSX for
 the native renderer rather than for a DOM.
 
 ## Name the screen

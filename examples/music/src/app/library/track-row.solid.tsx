@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Text, View } from '@solidnative/components/solid';
 import { formatDuration, type Album, type Track } from '../catalogue/catalogue.solid.ts';
 
 /** One track: artwork, title, artist and album, and its length. Highlights while it is playing. */

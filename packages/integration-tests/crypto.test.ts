@@ -14,7 +14,7 @@ import {
   CryptoDigestAlgorithm,
   CryptoEncoding,
   type NativeCrypto,
-} from '@solid-native/expo/crypto';
+} from '@solidnative/expo/crypto';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

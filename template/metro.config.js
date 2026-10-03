@@ -1,5 +1,5 @@
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
 
 // Registers the transformer that compiles Solid's JSX into native renderer calls, compiles each
 // `.native.css` import into the sheet the engine reads, and resolves `solid-js` to its client

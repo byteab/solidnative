@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, onCleanup } from 'solid-js';
 import { Gesture, type GestureType } from 'react-native-gesture-handler';
-import { Text, View } from '@solid-native/components/solid';
-import { NativeGesture } from '@solid-native/components/solid/gestures';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { NativeGesture } from '@solidnative/components/solid/gestures';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import { TAG_TONES, type Card } from './kanban-model.solid.ts';
 import sheet from './kanban-card.native.css';
 export interface Hold {

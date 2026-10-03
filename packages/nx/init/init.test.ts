@@ -1,5 +1,5 @@
 /**
- * `nx add @solid-native/nx`: `@nx/expo` at the workspace's Nx version, and its plugin registered.
+ * `nx add @solidnative/nx`: `@nx/expo` at the workspace's Nx version, and its plugin registered.
  */
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';

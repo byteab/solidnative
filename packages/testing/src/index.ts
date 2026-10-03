@@ -2,7 +2,7 @@
  * The fake `nativeFabricUIManager`, and a Testing Library on top of it, for Solid components on
  * solid-native. Kept out of the engine so nothing in a shipped bundle can reach it.
  *
- * Run under `node --import @solid-native/testing/register --test`, which compiles Solid TSX and
+ * Run under `node --import @solidnative/testing/register --test`, which compiles Solid TSX and
  * `.native.css` as Metro does and stands in for the native gesture and animation libraries.
  */
 export {

@@ -15,15 +15,15 @@ npx expo install expo-keep-awake
 ```
 
 ```ts
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
 
 export function Recording() {
   // Held while this component is alive, released when it is disposed.
@@ -54,6 +54,6 @@ On the web, and in a test with no fake `KeepAwake.SOURCE`, `hold()` still update
 
 ## Reference
 
-`KeepAwake` is exported from `@solid-native/expo/solid/keep-awake`.
+`KeepAwake` is exported from `@solidnative/expo/solid/keep-awake`.
 
 <!-- api: KeepAwake -->

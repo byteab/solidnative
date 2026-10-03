@@ -14,10 +14,10 @@ import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
-const { transformNativeCss } = require('@solid-native/metro/solid-css.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
+const { transformNativeCss } = require('@solidnative/metro/solid-css.cjs');
 
-import { expoFonts, FontRegistry, loadFonts, registrationsFor } from '@solid-native/expo/fonts';
+import { expoFonts, FontRegistry, loadFonts, registrationsFor } from '@solidnative/expo/fonts';
 
 /** Fakes `require`, the same seam `optional()` reaches through on a device or in Node. */
 function withExpoFont<T>(module: unknown | null, run: () => T): T {

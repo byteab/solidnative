@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, type Accessor } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   createObserved,
   createServiceToken,
@@ -8,7 +8,7 @@ import {
   ServiceScope,
   useService,
   type ObservedSource,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 
 const sourceToken = createServiceToken<ObservedSource<number>>('sample source', () => {
   throw new Error('The sample source must be provided.');

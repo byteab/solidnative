@@ -45,7 +45,7 @@ export function calmLoadingBanner(banner: LoadingBanner, now: () => number = Dat
   };
 }
 
-const calmed = Symbol.for('@solid-native/platform/dev-loading-view/calmed');
+const calmed = Symbol.for('@solidnative/platform/dev-loading-view/calmed');
 
 /**
  * Calm React Native's own banner, once per VM however many roots mount. Dev only, and required

@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.published.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "jsxImportSource": "@solid-native/platform/solid",
+    "jsxImportSource": "@solidnative/platform/solid",
     // The gesture and animation libraries are not installed here: tests import them by name, as
     // an app does, and get the stand-ins the register resolves them to. This types them the same.
     "paths": {

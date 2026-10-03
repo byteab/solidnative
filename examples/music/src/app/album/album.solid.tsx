@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { For, Show } from '@solid-native/platform/solid';
-import { NativeHeader, useRoute } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { For, Show } from '@solidnative/platform/solid';
+import { NativeHeader, useRoute } from '@solidnative/router/solid';
 import { album, tracksOf } from '../catalogue/catalogue.solid.ts';
 import { TrackRow } from '../library/track-row.solid.tsx';
 import { Playback } from '../player/playback.solid.ts';

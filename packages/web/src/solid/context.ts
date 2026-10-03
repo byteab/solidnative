@@ -1,5 +1,5 @@
 import { createComponent, createContext, getOwner, useContext } from 'solid-js';
-import type { HostEngine, HostNode } from '@solid-native/fabric';
+import type { HostEngine, HostNode } from '@solidnative/fabric';
 import type { BrowserEngine } from '../browser-engine.ts';
 import type { BrowserNode } from '../dom-node.ts';
 

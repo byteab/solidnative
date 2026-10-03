@@ -12,7 +12,7 @@ import { mountSolid } from './css-solid-harness.ts';
 import { globalRows, globalStyled } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 let mounted: ReturnType<typeof mountSolid> | undefined;
 afterEach(() => mounted?.root.dispose());
@@ -131,7 +131,7 @@ describe('the global sheet', () => {
 });
 
 /**
- * `ios:` and `android:` from `@solid-native/tailwind` compile to `.platform-ios <rule>`: they match
+ * `ios:` and `android:` from `@solidnative/tailwind` compile to `.platform-ios <rule>`: they match
  * beneath a class naming the platform. `createNativeRoot` puts that class on the root itself, so a
  * platform variant works in a new app with nothing to set up - otherwise the app would have to know
  * to add it, and one that did not would get variants that silently did nothing.

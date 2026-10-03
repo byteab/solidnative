@@ -2,7 +2,7 @@
  * The entry points an app writes, checked against every package's `exports` map and resolved by
  * Metro's own resolver.
  *
- * `@solid-native/expo/battery` is a file at `src/solid/battery.ts`, and the only thing connecting
+ * `@solidnative/expo/battery` is a file at `src/solid/battery.ts`, and the only thing connecting
  * the two is the `exports` map in the package's `package.json`. Nothing else in the suite would
  * notice if that stopped working: TypeScript resolves it, Node resolves it, and the failure would
  * appear for the first time on a device, as a red screen from the bundler.
@@ -74,9 +74,9 @@ describe('every package', () => {
   it('is found, so the checks below are not vacuous', () => {
     const names = PACKAGES.map(({ manifest }) => manifest.name);
     for (const name of [
-      '@solid-native/platform',
-      '@solid-native/components',
-      '@solid-native/expo',
+      '@solidnative/platform',
+      '@solidnative/components',
+      '@solidnative/expo',
     ]) {
       assert.ok(names.includes(name), name);
     }
@@ -221,10 +221,10 @@ const resolved = (specifier: string, platform = 'ios') =>
 describe('the entry points Metro has to resolve', () => {
   it('maps a bare package, and its ./solid alias, to its Solid entry', () => {
     for (const name of ['expo', 'components', 'device', 'router', 'platform', 'icons']) {
-      assert.equal(resolved(`@solid-native/${name}`), `packages/${name}/src/solid.ts`, name);
-      assert.equal(resolved(`@solid-native/${name}/solid`), `packages/${name}/src/solid.ts`, name);
+      assert.equal(resolved(`@solidnative/${name}`), `packages/${name}/src/solid.ts`, name);
+      assert.equal(resolved(`@solidnative/${name}/solid`), `packages/${name}/src/solid.ts`, name);
     }
-    assert.equal(resolved('@solid-native/fabric'), 'packages/fabric/src/index.ts');
+    assert.equal(resolved('@solidnative/fabric'), 'packages/fabric/src/index.ts');
   });
 
   it('maps every per-module Expo entry point into src/solid, which is where the file is', () => {
@@ -237,7 +237,7 @@ describe('the entry points Metro has to resolve', () => {
       .map((subpath) => subpath.slice('./solid/'.length));
     assert.ok(modules.length >= 30, `${modules.length} modules`);
     for (const name of modules) {
-      for (const specifier of [`@solid-native/expo/${name}`, `@solid-native/expo/solid/${name}`]) {
+      for (const specifier of [`@solidnative/expo/${name}`, `@solidnative/expo/solid/${name}`]) {
         assert.equal(resolved(specifier), `packages/expo/src/solid/${name}.ts`, specifier);
       }
     }
@@ -245,7 +245,7 @@ describe('the entry points Metro has to resolve', () => {
     // The three that reach an optional peer, and so stay out of the barrel.
     for (const name of ['animations', 'gestures', 'reanimated']) {
       assert.equal(
-        resolved(`@solid-native/components/${name}`),
+        resolved(`@solidnative/components/${name}`),
         `packages/components/src/solid/${name}.ts`,
       );
     }
@@ -255,8 +255,8 @@ describe('the entry points Metro has to resolve', () => {
     // One import in an app, two graphs: React Native's on a device, a React-free one in a
     // browser, which could not load React Native's Flow source if it tried.
     for (const specifier of [
-      '@solid-native/components/animations',
-      '@solid-native/components/solid/animations',
+      '@solidnative/components/animations',
+      '@solidnative/components/solid/animations',
     ]) {
       assert.equal(resolved(specifier), 'packages/components/src/solid/animations.ts');
       assert.equal(resolved(specifier, 'web'), 'packages/components/src/solid/animations-web.ts');
@@ -265,35 +265,35 @@ describe('the entry points Metro has to resolve', () => {
     assert.equal(
       path.relative(
         root,
-        realpathSync(createRequire(from).resolve('@solid-native/components/animations')),
+        realpathSync(createRequire(from).resolve('@solidnative/components/animations')),
       ),
       'packages/components/src/solid/animations.ts',
     );
   });
 
   it('fails a specifier that maps to nothing', () => {
-    assert.throws(() => resolved('@solid-native/expo/nope'));
+    assert.throws(() => resolved('@solidnative/expo/nope'));
     // A file that exists but is not an entry point: the map is the whole public surface.
-    assert.throws(() => resolved('@solid-native/expo/observed'));
-    assert.throws(() => resolved('@solid-native/expo/solid/observed'));
+    assert.throws(() => resolved('@solidnative/expo/observed'));
+    assert.throws(() => resolved('@solidnative/expo/solid/observed'));
   });
 
   it('warns rather than refuses when a path reaches past the map, unlike Node', async () => {
     // Worth knowing which way each tool errs. Metro logs and falls back to file-based
-    // resolution, so `@solid-native/expo/src/solid/battery.ts` would quietly work on a device;
+    // resolution, so `@solidnative/expo/src/solid/battery.ts` would quietly work on a device;
     // Node and TypeScript both refuse it outright. The strict check therefore happens at
     // typecheck and test time, which is the right way round - but it does mean Metro alone
     // would never tell you an app was reaching past the entry points.
     const warnings: string[] = [];
     const lenient = { ...context(from), unstable_logWarning: (m: string) => warnings.push(m) };
-    const past = resolve(lenient, '@solid-native/expo/src/solid/battery.ts', 'ios');
+    const past = resolve(lenient, '@solidnative/expo/src/solid/battery.ts', 'ios');
 
     assert.match(path.relative(root, past.filePath), /packages\/expo\/src\/solid\/battery\.ts$/);
     assert.equal(warnings.length, 1, 'it says so, at least');
 
     // Held in a variable because TypeScript refuses the specifier outright - writing it literally
     // fails `tsc` with TS2307, which is the third tool agreeing.
-    const reachingPast = '@solid-native/expo/src/solid/battery.ts';
+    const reachingPast = '@solidnative/expo/src/solid/battery.ts';
     await assert.rejects(
       () => import(reachingPast),
       { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' },

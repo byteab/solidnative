@@ -2,7 +2,7 @@
  * The documentation site's build.
  *
  * The site's own pages are Solid DOM and the components the site is about are Solid universal
- * components rendered by the browser host; `solidNativeWeb()` from `@solid-native/web/solid/vite`
+ * components rendered by the browser host; `solidNativeWeb()` from `@solidnative/web/solid/vite`
  * compiles both (see `packages/web/solid-vite.mjs`).
  *
  * `markdown()` turns `.md` into a module the app can render, `source()` hands a component's own
@@ -12,12 +12,12 @@
  * reading each app's Solid files out of `examples/`.
  *
  * The course's preview compiles the learner's TSX in the browser with Babel and Solid's JSX
- * transform. Both come from `@solid-native/metro`'s own dependencies, resolved the way
+ * transform. Both come from `@solidnative/metro`'s own dependencies, resolved the way
  * `solidNativeWeb()` loads its tooling, so the site adds no compiler of its own. `path` and
  * `assert` are the two Node built-ins Babel reaches for; they get small local stand-ins.
  */
 import tailwindcss from '@tailwindcss/vite';
-import { solidNativeWeb } from '@solid-native/web/solid/vite';
+import { solidNativeWeb } from '@solidnative/web/solid/vite';
 import { defineConfig, type Plugin } from 'vite';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
@@ -35,7 +35,7 @@ const workspaceRoot = path.resolve(dirname, '../..');
 const dist = path.resolve(dirname, 'dist');
 const tooling = createRequire(
   createRequire(path.join(dirname, 'package.json')).resolve(
-    '@solid-native/metro/solid-browser.cjs',
+    '@solidnative/metro/solid-browser.cjs',
   ),
 );
 const preview = path.resolve(dirname, 'src/learn/preview');

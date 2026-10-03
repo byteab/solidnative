@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, ScrollView } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, ScrollView } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { CssDemo } from './css-demo.solid.tsx';
 import { page } from '../screen-styles.ts';
 

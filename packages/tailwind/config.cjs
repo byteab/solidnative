@@ -28,7 +28,7 @@ const {
   writeFileSync,
 } = require('node:fs');
 const path = require('node:path');
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 const { flattenTailwind } = require('./flatten.cjs');
 
 /** Where the generated module goes if the app does not say. */
@@ -64,7 +64,7 @@ function withTailwind(config, options) {
   // `globalStyles` takes. `.js` -> `.d.ts`, `.mjs` -> `.d.mts`, `.cjs` -> `.d.cts`.
   writeFileSync(
     output.replace(/\.([cm]?)js$/, '.d.$1ts'),
-    "declare const sheet: import('@solid-native/fabric').StyleSheet;\nexport default sheet;\n",
+    "declare const sheet: import('@solidnative/fabric').StyleSheet;\nexport default sheet;\n",
   );
   if (options.watch ?? watchesByDefault()) watch(input, css, output, projectRoot);
 

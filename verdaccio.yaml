@@ -8,7 +8,7 @@ uplinks:
   npmjs:
     url: https://registry.npmjs.org/
 packages:
-  '@solid-native/*':
+  '@solidnative/*':
     access: $all
     publish: $authenticated
     # So `scripts/verify-publish.mjs` can replace the `0.0.0` an earlier run left here.

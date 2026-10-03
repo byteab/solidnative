@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { beforeEach, test } from 'node:test';
 import { createRoot, createSignal } from 'solid-js';
-import { Store } from '@solid-native/expo/solid/store';
-import type { Network } from '@solid-native/expo/solid/network';
+import { Store } from '@solidnative/expo/solid/store';
+import type { Network } from '@solidnative/expo/solid/network';
 import type { NoteWrite, NotesApi } from '../src/app/api/notes-api.solid.ts';
 import type { Note } from '../src/app/data/note.ts';
 import type { NotesDatabase } from '../src/app/data/notes-database.solid.ts';

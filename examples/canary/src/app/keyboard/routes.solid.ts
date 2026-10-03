@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** Real original keyboard paths, for later complete app composition. */
 export const keyboardRoutes: readonly NativeRoute[] = [

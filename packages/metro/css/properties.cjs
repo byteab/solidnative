@@ -695,7 +695,7 @@ function rotation({ x, y, z, angle: amount }, context) {
 /**
  * The keys `translate`, `rotate` and `scale` compile to. Not the CSS names, and not anything a
  * native prop could be called, because the engine takes them out of the props and folds them
- * into `transform` before a commit. `@solid-native/fabric`'s engine reads the same three names.
+ * into `transform` before a commit. `@solidnative/fabric`'s engine reads the same three names.
  */
 const INDIVIDUAL_TRANSFORMS = {
   translate: '__translate',

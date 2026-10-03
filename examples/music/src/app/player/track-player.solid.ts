@@ -1,6 +1,6 @@
 import { createSignal, type Accessor } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
-import { audioPlayer, type PlayerState } from '@solid-native/expo/solid/player';
+import { createServiceToken } from '@solidnative/device/solid';
+import { audioPlayer, type PlayerState } from '@solidnative/expo/solid/player';
 
 /** The slice of `audioPlayer()`'s player that `Playback` actually drives. */
 export interface TrackPlayer {

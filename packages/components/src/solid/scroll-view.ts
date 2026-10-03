@@ -1,5 +1,5 @@
 import { children, createRenderEffect, mergeProps, onCleanup, untrack } from 'solid-js';
-import { nativePlatform, type HostNode } from '@solid-native/fabric';
+import { nativePlatform, type HostNode } from '@solidnative/fabric';
 import {
   insertHostChildren,
   onHostCleanup,
@@ -7,7 +7,7 @@ import {
   useHostEngine,
   useHostAdapter,
   type HostChild,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 import type { Insets, LayoutEvent, Point, Rect, ScrollEvent, Size } from '../events.ts';
 import { dismissKeyboardOnTap, type KeyboardShouldPersistTaps } from '../keyboard-taps.ts';
 import { StickyHeaders } from '../sticky-headers.ts';

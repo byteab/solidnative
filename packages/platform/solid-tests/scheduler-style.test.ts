@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { batch, createSignal } from 'solid-js';
-import type { EngineNode, StyleRule, StyleSheet } from '@solid-native/fabric';
+import type { EngineNode, StyleRule, StyleSheet } from '@solidnative/fabric';
 import {
   createElement,
   createNativeRoot,

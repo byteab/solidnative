@@ -8,7 +8,7 @@
  */
 declare module 'virtual:solid-native/api' {
   import type { ApiEntry } from '../build/api.ts';
-  /** Every declaration, keyed `@solid-native/components#Switch`. */
+  /** Every declaration, keyed `@solidnative/components#Switch`. */
   export const API: Record<string, ApiEntry>;
   export default API;
 }
@@ -41,6 +41,6 @@ declare module 'virtual:solid-native/example-sources' {
 
 /** A universal component's stylesheet, compiled at build time; see `solidNativeWeb()`. */
 declare module '*.native.css' {
-  const sheet: import('@solid-native/fabric').StyleSheet;
+  const sheet: import('@solidnative/fabric').StyleSheet;
   export default sheet;
 }

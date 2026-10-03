@@ -24,7 +24,7 @@ import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 const colorOf = (value: string): unknown =>
   compileCss(`view { color: ${value} }`).rules[0].declarations['color'];

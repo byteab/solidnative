@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text, View } from '@solid-native/components';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text, View } from '@solidnative/components';
 
 /** A full-width button inside a view, counting its presses. */
 export function createActive() {

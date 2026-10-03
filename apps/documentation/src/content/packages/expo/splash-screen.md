@@ -16,7 +16,7 @@ npx expo install expo-splash-screen
 ```
 
 ```ts
-import { splashScreen } from '@solid-native/expo/solid/splash-screen';
+import { splashScreen } from '@solidnative/expo/solid/splash-screen';
 ```
 
 ## The smallest useful example
@@ -25,8 +25,8 @@ Hold at module scope, before anything runs; hide after the first real frame:
 
 ```ts
 import { AppRegistry } from 'react-native';
-import { splashScreen } from '@solid-native/expo/solid/splash-screen';
-import { loadFonts } from '@solid-native/expo/solid/fonts';
+import { splashScreen } from '@solidnative/expo/solid/splash-screen';
+import { loadFonts } from '@solidnative/expo/solid/fonts';
 import globalStyles from './global-styles.native.css';
 
 // At module scope, before anything renders.

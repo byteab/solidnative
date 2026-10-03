@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 import { createStatusShellFixture } from './g4-status-shell-fixture.tsx';
 

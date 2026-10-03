@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot, createSignal } from 'solid-js';
-import { provideService } from '@solid-native/device/solid';
-import { Network, type NetworkStatus } from '@solid-native/expo/solid/network';
-import { Store, Storage, type NativeStore } from '@solid-native/expo/solid/store';
+import { provideService } from '@solidnative/device/solid';
+import { Network, type NetworkStatus } from '@solidnative/expo/solid/network';
+import { Store, Storage, type NativeStore } from '@solidnative/expo/solid/store';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';
 import { createFieldNotes, type FieldNotes } from '../src/app/offline/field-notes.solid.ts';

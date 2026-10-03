@@ -9,7 +9,7 @@ summary: A common shape for Android's runtime permissions, granted outright on i
 to `{ status, granted, canAskAgain }`, with `status` one of `granted`, `denied` or `undetermined`.
 
 ```ts
-import { androidPermission } from '@solid-native/device/solid';
+import { androidPermission } from '@solidnative/device/solid';
 
 const [check, request] = androidPermission('android.permission.CAMERA');
 

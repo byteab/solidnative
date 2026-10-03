@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { Engine, registerPlatformComponents, type StyleSheet } from '@solid-native/fabric';
+import { Engine, registerPlatformComponents, type StyleSheet } from '@solidnative/fabric';
 import { createFakeFabric } from '../../../packages/platform/solid-tests/fake-fabric.ts';
 import globalStyles from '../src/app/global-styles.native.css';
 import toastStyles from '../src/app/overlays/toast-host.native.css';
@@ -13,8 +13,8 @@ import { canaryStyles } from '../src/app/global-styles.solid.ts';
 import { assertNativeSheets } from './native-sheets.ts';
 
 const require = createRequire(import.meta.url);
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
-const { isSolidReloadSource } = require('@solid-native/metro/solid-transform.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
+const { isSolidReloadSource } = require('@solidnative/metro/solid-transform.cjs');
 const canary = fileURLToPath(new URL('../', import.meta.url));
 
 test('actual project screens, the global palette and ToastHost compile on both native platforms', () => {
@@ -36,7 +36,7 @@ test('actual Tailwind CLI scans native TSX and merges utilities after global app
     const filename = path.join(directory, 'Probe.solid.tsx');
     writeFileSync(
       filename,
-      '/** @jsxImportSource @solid-native/platform/solid */\nexport const Probe = () => <view class="p-[23px] opacity-50" />;',
+      '/** @jsxImportSource @solidnative/platform/solid */\nexport const Probe = () => <view class="p-[23px] opacity-50" />;',
     );
     const source = readFileSync(path.join(canary, 'src/tailwind.css'), 'utf8')
       .replace(

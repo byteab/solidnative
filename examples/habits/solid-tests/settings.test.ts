@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { Notifications, type NativeNotifications } from '@solid-native/expo/solid/notifications';
+import { provideService } from '@solidnative/device/solid';
+import { Notifications, type NativeNotifications } from '@solidnative/expo/solid/notifications';
 import { bootHabits } from './habits-harness.ts';
 
 /** The slice of expo-notifications this screen reaches, recording what it was asked to do. */

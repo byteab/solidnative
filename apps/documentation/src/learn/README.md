@@ -13,7 +13,7 @@ editor and it runs beside them in a phone-shaped preview, compiled in the browse
 | 4   | State and components   | `createSignal`, `createMemo`; `<Pressable>`; `HabitRow` with props and callbacks.                         |
 | 5   | Tailwind and platforms | Tailwind with the native preset; `pt-safe`, `active:`, `ios:`, `android:`, `dark:`.                       |
 | 6   | A form for new habits  | `<TextInput>` bound to a signal: native blur, `maxLength`, the return key.                                |
-| 7   | Testing                | `@solid-native/testing` with Vitest: `render`, `screen`, `userEvent.press`, `vi.fn`; what needs a device. |
+| 7   | Testing                | `@solidnative/testing` with Vitest: `render`, `screen`, `userEvent.press`, `vi.fn`; what needs a device. |
 
 Each lesson starts where the one before it ended.
 
@@ -58,7 +58,7 @@ end-to-end tests check the opaque origin and that a message from any other windo
 
 - `preview/program.ts` compiles each file (TypeScript and Solid's JSX) in the browser, adds a
   guard in every loop, and links the files.
-- `preview/phone.ts` mounts the app with `@solid-native/web` and keeps the last good one on screen.
+- `preview/phone.ts` mounts the app with `@solidnative/web` and keeps the last good one on screen.
 - `preview/tailwind.ts` runs Tailwind's compiler over the files with the native preset;
   `preview/native-css.ts` runs the native CSS compiler on lightningcss's WebAssembly build.
 - The WebAssembly is 3.8 MB compressed, so it downloads only when something needs it: a check
@@ -68,7 +68,7 @@ end-to-end tests check the opaque origin and that a message from any other windo
   `lessons.test.ts`, so a check that forgets it fails in CI. Of the lessons now, 2, 3 and 5 have a
   first-step check that reads styles; the rest open without the download.
 - `preview/test-runner.ts` runs the learner's tests and the lesson's checks with
-  `@solid-native/testing`, against the fake Fabric.
+  `@solidnative/testing`, against the fake Fabric.
 - `preview/xray.ts` labels each element with the native view it becomes.
 
 ## Checking a deploy

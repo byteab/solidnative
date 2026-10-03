@@ -19,7 +19,7 @@ npx expo install expo-background-task expo-task-manager
 ```
 
 ```ts
-import { BackgroundTask } from '@solid-native/expo/solid/background-task';
+import { BackgroundTask } from '@solidnative/expo/solid/background-task';
 ```
 
 ## Defining the task
@@ -34,7 +34,7 @@ at the top level of that module, beside the registration, without components or 
 // src/main.solid.ts
 import { AppRegistry } from 'react-native';
 import * as TaskManager from 'expo-task-manager';
-import { BackgroundTaskResult } from '@solid-native/expo/solid/background-task';
+import { BackgroundTaskResult } from '@solidnative/expo/solid/background-task';
 
 TaskManager.defineTask('sync', async () => {
   try {
@@ -50,7 +50,7 @@ AppRegistry.registerRunnable('main', ({ rootTag }) => {
 });
 ```
 
-The `@solid-native/*` packages have no native side effects on import, so the task can share plain
+The `@solidnative/*` packages have no native side effects on import, so the task can share plain
 modules (a storage wrapper, an API client) with the app, as long as they do not need
 `useService()`.
 
@@ -59,9 +59,9 @@ modules (a storage wrapper, an API client) with the app, as long as they do not 
 Register the task from any component:
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { BackgroundTask, BackgroundTaskStatus } from '@solid-native/expo/solid/background-task';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { BackgroundTask, BackgroundTaskStatus } from '@solidnative/expo/solid/background-task';
 
 export function SyncSettings() {
   const tasks = useService(BackgroundTask);
@@ -107,6 +107,6 @@ On the web, and in a test with no fake (`provideService(BackgroundTask.SOURCE, (
 
 ## Reference
 
-`BackgroundTask` is exported from `@solid-native/expo/solid/background-task`.
+`BackgroundTask` is exported from `@solidnative/expo/solid/background-task`.
 
 <!-- api: BackgroundTask -->

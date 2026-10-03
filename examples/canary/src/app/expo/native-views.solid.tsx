@@ -1,20 +1,20 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import { ScrollView, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+import { ScrollView, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   ExpoGlass,
   ExpoGlassContainer,
   ExpoSymbol,
   liquidGlassAvailable,
-} from '@solid-native/expo/solid';
+} from '@solidnative/expo/solid';
 import {
   AppleAuthenticationScope,
   AppleSignIn,
   AppleSignInButton,
-} from '@solid-native/expo/solid/apple-sign-in';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/expo/solid/apple-sign-in';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './native-views.native.css';
 

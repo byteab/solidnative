@@ -2,8 +2,8 @@
  * The site's one stylesheet: the Tailwind build every live example runs on, plus the chrome
  * around it.
  *
- * Every live example on this site is a real `@solid-native/components` Solid component rendered
- * through `@solid-native/web/solid`, so it needs the same Tailwind preset and the same React Native
+ * Every live example on this site is a real `@solidnative/components` Solid component rendered
+ * through `@solidnative/web/solid`, so it needs the same Tailwind preset and the same React Native
  * layout reset an app would give it. An example styled differently from an app would be a
  * picture of a different framework.
  *
@@ -13,7 +13,7 @@
  */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/web.css';
+@import '@solidnative/tailwind/web.css';
 
 /*
  * Preflight, which a plain React Native tree does not need and this page does.
@@ -30,7 +30,7 @@
  * platform made.
  */
 @import 'tailwindcss/preflight.css' layer(base);
-@import '@solid-native/web/reset.css' layer(base);
+@import '@solidnative/web/reset.css' layer(base);
 
 /*
  * The landing page's own sheet, in the main bundle rather than the landing route's chunk: the

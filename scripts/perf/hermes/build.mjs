@@ -12,8 +12,8 @@ const require = createRequire(resolve(repo, 'packages/platform/package.json'));
 const { rolldown } = await import(
   resolve(repo, 'node_modules/.pnpm/rolldown@1.2.11/node_modules/rolldown/dist/index.mjs')
 );
-const { createSolidRuntime } = require('@solid-native/metro/solid-runtime.cjs');
-const { isSolidSource, transformSolid } = require('@solid-native/metro/solid-transform.cjs');
+const { createSolidRuntime } = require('@solidnative/metro/solid-runtime.cjs');
+const { isSolidSource, transformSolid } = require('@solidnative/metro/solid-transform.cjs');
 const runtime = createSolidRuntime(resolve(repo, 'packages/platform'));
 const appRequire = createRequire(resolve(repo, 'examples/canary/package.json'));
 const [entry, out] = process.argv.slice(2);
@@ -28,7 +28,7 @@ const bundle = await rolldown({
         if (/^react-native/.test(id)) return '\0rn-stub';
         const client = runtime.resolve(id);
         if (client) return client;
-        if (/^@solid-native\//.test(id)) {
+        if (/^@solidnative\//.test(id)) {
           try {
             return appRequire.resolve(id);
           } catch {

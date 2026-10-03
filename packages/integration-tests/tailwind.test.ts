@@ -17,10 +17,10 @@ import { fileURLToPath } from 'node:url';
 import type { StyleSheet } from '../fabric/src/css.ts';
 
 const require = createRequire(import.meta.url);
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(
     source: string,
     context?: string,

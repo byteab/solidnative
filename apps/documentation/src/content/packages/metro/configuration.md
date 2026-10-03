@@ -8,14 +8,14 @@ summary: What withSolidNative wires up, how .native.css imports compile, and how
 ```js
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
 
 module.exports = withSolidNative(getDefaultConfig(__dirname));
 ```
 
 ```js
 // babel.config.js
-const { isSolidFile } = require('@solid-native/metro/solid-babel.cjs');
+const { isSolidFile } = require('@solidnative/metro/solid-babel.cjs');
 
 const preset = require.resolve('expo/internal/babel-preset');
 
@@ -57,10 +57,10 @@ so no extra dependency is needed.
 The transformer compiles a `.tsx` or `.jsx` file as native Solid when either:
 
 - its name ends in `.solid.tsx` or `.solid.jsx`, or
-- its leading comments contain `@jsxImportSource @solid-native/platform/solid`.
+- its leading comments contain `@jsxImportSource @solidnative/platform/solid`.
 
 Only leading comments count, and `node_modules` is never compiled this way. A match goes through
-`babel-preset-solid` with `generate: 'universal'` and `moduleName: '@solid-native/platform/solid'`,
+`babel-preset-solid` with `generate: 'universal'` and `moduleName: '@solidnative/platform/solid'`,
 stripping TypeScript in the same pass with source positions intact. Other files stay Expo's.
 
 A `.solid.ts` or `.solid.js` file is not compiled by Solid but opts into the clean reload (below).
@@ -74,9 +74,9 @@ page compiled with `generate: 'dom'` for a browser or an Expo DOM component. See
 A `.native.css` import compiles to the stylesheet data the engine reads:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './card.native.css';
 
 export function Card() {

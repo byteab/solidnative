@@ -5,7 +5,7 @@ summary: Solid services over Expo's native modules - battery, haptics, storage a
 
 # Expo
 
-`@solid-native/expo` puts Expo's native modules behind Solid services: accessors instead of hooks,
+`@solidnative/expo` puts Expo's native modules behind Solid services: accessors instead of hooks,
 `useService()` instead of a React `use*()` call. Use it for anything Expo already wraps - device
 state, haptics, notifications, storage, sensors, media, location, sign-in, the on-device language
 model, SwiftUI and Jetpack Compose controls - instead of writing your own wrapper. It is optional:
@@ -14,15 +14,15 @@ nothing else in the framework depends on it.
 ## The smallest thing that works
 
 Every wrapped module is an optional peer dependency, so the package brings no native code of its
-own. Install the module you want, import its entry point (`@solid-native/expo/solid/<module>`),
+own. Install the module you want, import its entry point (`@solidnative/expo/solid/<module>`),
 and resolve the service inside a [`ServiceScope`](/packages/device):
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Battery } from '@solid-native/expo/solid/battery';
-import { Show } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Battery } from '@solidnative/expo/solid/battery';
+import { Show } from '@solidnative/platform/solid';
 
 export function Status() {
   const battery = useService(Battery);
@@ -36,7 +36,7 @@ export function Status() {
 
 A service is created on first resolve and cleaned up with its scope. The views and controls -
 `ExpoImage`, `ExpoSymbol`, `ExpoGlass`, `SegmentedControl` and the Expo UI components - come from
-`@solid-native/expo/solid` itself. Install the Expo dependencies of every entry point you import:
+`@solidnative/expo/solid` itself. Install the Expo dependencies of every entry point you import:
 runtime fallbacks do not stop Metro reporting an unresolved package. See
 [Using a module](/packages/expo/using-a-module) for details.
 

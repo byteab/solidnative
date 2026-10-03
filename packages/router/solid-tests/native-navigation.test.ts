@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { matchRoutePath, parseRouteLocation } from '../src/solid/route-match.ts';
 import { createNavigationFixture } from './navigation-fixture.tsx';
 import {

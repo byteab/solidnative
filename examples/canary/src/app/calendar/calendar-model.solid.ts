@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 /** A day as `YYYY-MM-DD`, which sorts and compares as the date it is. */
 export type Day = string;

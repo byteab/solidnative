@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { SafeAreaView, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { SecureStorage } from '@solid-native/expo/solid/store';
-import { For } from '@solid-native/platform/solid';
+import { SafeAreaView, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { SecureStorage } from '@solidnative/expo/solid/store';
+import { For } from '@solidnative/platform/solid';
 
 interface Toggle {
   (): boolean;

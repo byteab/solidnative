@@ -16,7 +16,7 @@ import { describe, it } from 'node:test';
 import { Flame } from 'lucide-static';
 
 const require = createRequire(import.meta.url);
-const { inlineIcons } = require('@solid-native/metro/inline-icons.cjs') as {
+const { inlineIcons } = require('@solidnative/metro/inline-icons.cjs') as {
   inlineIcons(src: string, filename: string): string;
 };
 

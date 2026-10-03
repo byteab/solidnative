@@ -16,15 +16,15 @@ npx expo install expo-file-system
 ```
 
 ```ts
-import { FileSystem } from '@solid-native/expo/solid/file-system';
+import { FileSystem } from '@solidnative/expo/solid/file-system';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { Pressable, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { FileSystem } from '@solid-native/expo/solid/file-system';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { FileSystem } from '@solidnative/expo/solid/file-system';
 
 export function Notes() {
   const files = useService(FileSystem);
@@ -76,6 +76,6 @@ supplies a `NativeFiles` fake with `provideService(FileSystem.SOURCE, () => fake
 
 ## Reference
 
-`FileSystem` is exported from `@solid-native/expo/solid/file-system`.
+`FileSystem` is exported from `@solidnative/expo/solid/file-system`.
 
 <!-- api: FileSystem -->

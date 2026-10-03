@@ -8,14 +8,14 @@ summary: What createNativeRoot() takes, what the root it returns can do, and wha
 ```ts
 // src/main.solid.ts
 import { AppRegistry, Image, Platform, processColor } from 'react-native';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   conditionSources,
   currentConditions,
   deviceTokens,
   watchConditions,
-} from '@solid-native/device/solid';
-import { getFabricUIManager, registerPlatformComponents } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import { getFabricUIManager, registerPlatformComponents } from '@solidnative/fabric';
 import { App } from './app/app.solid.tsx';
 
 registerPlatformComponents(Platform.OS);
@@ -89,14 +89,14 @@ responsive layout stay at mount time and grown text clips. Pass the same `source
 ## Services
 
 The root provides no services. Device services (`ColorScheme`, `StatusBar`) are tokens from
-`@solid-native/device/solid`, resolved with `useService` under the app's own `ServiceScope` - see
+`@solidnative/device/solid`, resolved with `useService` under the app's own `ServiceScope` - see
 [Device](/packages/device). Ordinary Solid context works across the tree (one owner).
 
 ## Telling native from the web
 
-`nativePlatform()` from `@solid-native/fabric` returns `'ios'` or `'android'` on a device. For
+`nativePlatform()` from `@solidnative/fabric` returns `'ios'` or `'android'` on a device. For
 styling, put `platform-${nativePlatform()}` on your outermost view and use the `ios:`/`android:`
-Tailwind variants; on the web, `@solid-native/web/solid` adds `platform-web` to its root. See
+Tailwind variants; on the web, `@solidnative/web/solid` adds `platform-web` to its root. See
 [Variants](/packages/tailwind/variants).
 
 ## Development

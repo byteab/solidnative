@@ -1,14 +1,14 @@
 /*
- * @jsxImportSource @solid-native/platform/solid
+ * @jsxImportSource @solidnative/platform/solid
  *
  * One of the landing page's three hero apps: a dark banking home screen. Glows are radial
  * gradients, the card a linear one, the icons native SVG - all Tailwind classes, all real views.
  * Photographed on the iOS simulator and the Android emulator; see the landing README.
  */
-import { Text, View } from '@solid-native/components/solid';
-import { useStatusBar } from '@solid-native/device/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { For } from '@solid-native/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { useStatusBar } from '@solidnative/device/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { For } from '@solidnative/platform/solid';
 import { lucideSvg, type IconName } from '../icon.data.ts';
 
 const TABS: readonly IconName[] = ['house', 'credit-card', 'chart-pie', 'user'];

@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { View, type NativeRef } from '@solid-native/components/solid';
-import { useHostAdapter, withNativeStyles } from '@solid-native/platform/solid';
-import type { NativeSyntheticEvent } from '@solid-native/fabric';
+import { View, type NativeRef } from '@solidnative/components/solid';
+import { useHostAdapter, withNativeStyles } from '@solidnative/platform/solid';
+import type { NativeSyntheticEvent } from '@solidnative/fabric';
 import sheet from './slider.native.css';
 
 const pageX = (event: NativeSyntheticEvent<{ pageX?: number }>) => event.nativeEvent?.pageX ?? 0;

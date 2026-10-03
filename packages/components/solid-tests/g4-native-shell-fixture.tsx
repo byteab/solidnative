@@ -1,15 +1,15 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   ServiceScope,
   SafeArea,
   provideService,
   useService,
   type SafeAreaMetrics,
-} from '@solid-native/device/solid';
-import type { StyleSheet } from '@solid-native/fabric';
-import { View, Text } from '@solid-native/components/solid';
+} from '@solidnative/device/solid';
+import type { StyleSheet } from '@solidnative/fabric';
+import { View, Text } from '@solidnative/components/solid';
 import { SafeAreaProvider } from '../src/solid/safe-area-provider.ts';
 import { SafeAreaView, type SafeAreaEdges } from '../src/solid/safe-area-view.ts';
 import { ScrollView, type ScrollViewRef, type ScrollEvent } from '../src/solid/scroll-view.ts';

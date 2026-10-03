@@ -27,7 +27,7 @@ describe('the generated app', () => {
 
   it('keeps nothing in files/ beyond the template copies and AGENTS.md', () => {
     // An app's test register is generated (`testRegister`), never copied: a stale copy here would
-    // drift from `@solid-native/testing/register` unnoticed.
+    // drift from `@solidnative/testing/register` unnoticed.
     const files = readdirSync(path.join(import.meta.dirname, 'files'), { recursive: true })
       .map(String)
       .filter((name) => /\.[a-z]+$/.test(name));
@@ -53,7 +53,7 @@ describe('the generated app', () => {
 
   it("resolves the workspace base's path aliases in a register of its own when there are", () => {
     const register = native.testRegister('../../tsconfig.base.json');
-    assert.match(register, /^import '@solid-native\/testing\/register';$/m);
+    assert.match(register, /^import '@solidnative\/testing\/register';$/m);
     assert.match(
       register,
       /const base = new URL\("\.\.\/\.\.\/tsconfig\.base\.json", import\.meta\.url\);/,
@@ -91,7 +91,7 @@ describe('the generated app', () => {
     assert.deepEqual(config.compilerOptions.lib, ['DOM', 'ESNext']);
     assert.equal(config.compilerOptions.allowImportingTsExtensions, true);
     assert.equal(config.compilerOptions.noEmit, true);
-    assert.equal(config.compilerOptions.jsxImportSource, '@solid-native/platform/solid');
+    assert.equal(config.compilerOptions.jsxImportSource, '@solidnative/platform/solid');
   });
 
   it("installs the template's dependencies, at the template's versions", () => {
@@ -109,8 +109,8 @@ describe('the generated app', () => {
 
   it('pins the framework packages to its own version, since they are released together', () => {
     const { version } = require('./package.json');
-    assert.equal(native.dependencies['@solid-native/components'], version);
-    assert.equal(native.dependencies['@solid-native/platform'], version);
+    assert.equal(native.dependencies['@solidnative/components'], version);
+    assert.equal(native.dependencies['@solidnative/platform'], version);
   });
 
   it("names app.json for the project without its scope, keeping the template's settings", () => {
@@ -132,7 +132,7 @@ describe('the generated app', () => {
 
 describe('conflicts', () => {
   it("says nothing about the workspace's own pins of the framework packages", () => {
-    const workspace = { dependencies: { '@solid-native/platform': '0.0.1' } };
+    const workspace = { dependencies: { '@solidnative/platform': '0.0.1' } };
     assert.deepEqual(native.conflicts(workspace), []);
   });
 

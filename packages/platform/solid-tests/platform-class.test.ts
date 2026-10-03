@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createHostElement, createNativeRoot, spreadHostProps } from '@solid-native/platform/solid';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { createHostElement, createNativeRoot, spreadHostProps } from '@solidnative/platform/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import { createFakeFabric, type FakeNode } from './fake-fabric.ts';
 
 const flatten = (nodes: readonly FakeNode[]): FakeNode[] =>

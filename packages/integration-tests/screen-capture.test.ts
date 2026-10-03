@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { ScreenCapture, type NativeScreenCapture } from '@solid-native/expo/screen-capture';
+import { ScreenCapture, type NativeScreenCapture } from '@solidnative/expo/screen-capture';
 import { disposeServices, ownedService, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
 import {
   Accessibility,
@@ -15,16 +15,16 @@ import {
   Volume2,
   Wifi,
 } from 'lucide-static';
-import { Pressable, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { For, Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { For, Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeSearchBar,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { GROUPS, Settings, search, type SettingRow } from './settings-model.solid.ts';
 import sheet from './settings-page.native.css';
 export const SETTINGS_ICONS = {

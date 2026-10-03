@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/device",
+  "name": "@solidnative/device",
   "version": "0.1.1",
   "description": "Solid device services for native iOS and Android: keyboard, screen, color scheme, app state, accessibility, hardware back and deep links.",
   "keywords": [
@@ -17,7 +17,7 @@
   "type": "module",
   "main": "src/solid.ts",
   "dependencies": {
-    "@solid-native/fabric": "workspace:*"
+    "@solidnative/fabric": "workspace:*"
   },
   "peerDependencies": {
     "react-native": ">=0.86.0",
@@ -55,7 +55,7 @@
   ],
   "devDependencies": {
     "solid-js": "1.9.15",
-    "@solid-native/platform": "workspace:*"
+    "@solidnative/platform": "workspace:*"
   },
   "exports": {
     ".": "./src/solid.ts",

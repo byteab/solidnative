@@ -1,6 +1,6 @@
 /**
  * What a test gets for the gesture handler's and Reanimated's internal modules that
- * `@solid-native/components/gestures` and `/reanimated` require by path: the register resolves each of
+ * `@solidnative/components/gestures` and `/reanimated` require by path: the register resolves each of
  * those paths here. Node cannot load their React Native source, and there is no UI thread anyway.
  *
  * - A gesture attached to a view is kept by the view's tag, for `gestureOf`.
@@ -11,7 +11,7 @@
  *
  * State lives on `globalThis` so the copy `require` loads and the copy `import` loads agree.
  */
-import type { EngineNode } from '@solid-native/fabric';
+import type { EngineNode } from '@solidnative/fabric';
 
 interface Registration {
   readonly worklet: (event: never) => void;

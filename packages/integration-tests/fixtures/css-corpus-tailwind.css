@@ -7,7 +7,7 @@
  */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css' source(none);
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 
 @source inline("{,-}{p,px,py,pt,pr,pb,pl,m,mx,my,mt,mr,mb,ml,gap,gap-x,gap-y,inset,inset-x,top,left,w,h,size,min-w,max-w,min-h,translate-x,translate-y}-{0,0.5,1,2,3,4,6,8,12,16,px,full,1/2}");
 @source inline("{bg,text,border,ring,outline,shadow,decoration,accent,fill,from,via,to}-{red,blue,slate,emerald,amber}-{50,500,950}{,/50}");

@@ -1,13 +1,13 @@
 import { createComponent, createContext, createMemo, useContext, type Accessor } from 'solid-js';
-import { claimHost, type HostNode } from '@solid-native/fabric';
+import { claimHost, type HostNode } from '@solidnative/fabric';
 import {
   createHostElement,
   insertHostChildren,
   spreadHostProps,
   useHostEngine,
   type HostChild,
-} from '@solid-native/platform/solid';
-import { createNativeRef, hostProps, type ViewProps } from '@solid-native/components/solid';
+} from '@solidnative/platform/solid';
+import { createNativeRef, hostProps, type ViewProps } from '@solidnative/components/solid';
 import { parseSvg, type SvgNode } from '../parse-svg.ts';
 import { registerSvgComponents } from '../svg-elements.ts';
 import { SVG_ELEMENTS, nativeProps, styleAttributes, viewBoxProps } from '../svg-props.ts';

@@ -1,18 +1,18 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal } from 'solid-js';
 import { Cloud, CloudOff, Plus, RefreshCw } from 'lucide-static';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { ColorScheme, useService } from '@solid-native/device/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { For, Show } from '@solid-native/platform/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { ColorScheme, useService } from '@solidnative/device/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { For, Show } from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   NativeSearchBar,
   NativeStackOutlet,
   useNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { matchesQuery } from '../data/note.ts';
 import { Notes, type SyncStatus } from '../sync/notes.solid.ts';
 import { NoteRow } from './note-row.solid.tsx';

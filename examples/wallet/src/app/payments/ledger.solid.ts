@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 /** One line on the statement. Amounts are whole pence, so sums never drift. */
 export interface Payment {

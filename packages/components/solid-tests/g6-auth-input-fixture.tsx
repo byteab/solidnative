@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text, TextInput, View } from '@solid-native/components/solid';
-import type { ScrollViewProps, TextInputProps } from '@solid-native/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text, TextInput, View } from '@solidnative/components/solid';
+import type { ScrollViewProps, TextInputProps } from '@solidnative/components/solid';
 
 export function autofillFixture() {
   const [autoComplete, setAutoComplete] = createSignal<string>();

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { registerHooks } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { isNativeCss, transformNativeCss } from '@solid-native/metro/solid-css.cjs';
+import { isNativeCss, transformNativeCss } from '@solidnative/metro/solid-css.cjs';
 
 // This hook adds only stylesheet data; compiled-register owns TSX and the canonical Solid graph.
 registerHooks({

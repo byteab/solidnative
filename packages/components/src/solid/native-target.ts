@@ -1,5 +1,5 @@
-import { Engine, type EngineNode, type HostNode, type HostEngine } from '@solid-native/fabric';
-import { setNativeStyleHost } from '@solid-native/platform/solid';
+import { Engine, type EngineNode, type HostNode, type HostEngine } from '@solidnative/fabric';
+import { setNativeStyleHost } from '@solidnative/platform/solid';
 
 /** Native stylesheet defaults sit below the caller's classes and inline styles. */
 export function touchableStyleHost(engine: HostEngine, node: HostNode): boolean {

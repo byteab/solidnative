@@ -6,7 +6,7 @@ import {
   useService,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { FileSystem, type NativeFile } from '../src/solid/file-system.ts';
 import {
   Sensor,

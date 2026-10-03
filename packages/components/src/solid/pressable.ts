@@ -1,11 +1,11 @@
 import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
 import {
   insertHostChildren,
   onHostCleanup,
   spreadHostProps,
   useHostEngine,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 import { createNativeRef } from './ref.ts';
 import { hostProps, primitiveNode } from './host-props.ts';
 import type { Insets, TouchEvent } from '../events.ts';

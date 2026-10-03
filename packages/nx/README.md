@@ -1,6 +1,6 @@
-# @solid-native/nx
+# @solidnative/nx
 
-Nx generators for native SolidJS apps: `nx add @solid-native/nx`, and an app generator that adds an
+Nx generators for native SolidJS apps: `nx add @solidnative/nx`, and an app generator that adds an
 Expo app project to the workspace, rendering Solid components as native views and able to import the
 workspace's libraries.
 
@@ -9,8 +9,8 @@ Alpha: APIs may change before 1.0.
 ## Install
 
 ```sh
-nx add @solid-native/nx
-nx g @solid-native/nx:app apps/mobile
+nx add @solidnative/nx
+nx g @solidnative/nx:app apps/mobile
 ```
 
 `nx add` adds `@nx/expo` at the workspace's Nx version and registers its plugin, which infers the

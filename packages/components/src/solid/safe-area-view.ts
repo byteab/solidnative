@@ -1,5 +1,5 @@
-import type { HostNode } from '@solid-native/fabric';
-import { insertHostChildren, spreadHostProps } from '@solid-native/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps } from '@solidnative/platform/solid';
 import { registerSafeAreaComponents, type SafeAreaEdge, type SafeAreaEdges } from '../safe-area.ts';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

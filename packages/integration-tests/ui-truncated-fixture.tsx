@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text } from '@solid-native/components';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text } from '@solidnative/components';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './ui-truncated.native.css';
 
 export function Truncated() {

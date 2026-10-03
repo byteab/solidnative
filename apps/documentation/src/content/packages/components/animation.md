@@ -34,9 +34,9 @@ describes. (`TouchableOpacity`'s press fade uses the same native transition cloc
 ```
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './pulsing-dot.native.css';
 
 export function PulsingDot() {
@@ -50,15 +50,15 @@ above.
 
 ## AnimatedStyle
 
-`AnimatedStyle`, from `@solid-native/components/solid/animations`, drives React Native's
+`AnimatedStyle`, from `@solidnative/components/solid/animations`, drives React Native's
 `Animated` graph directly (`Animated.Value`, `timing`, `spring`, interpolation), which is not React.
 Import `Animated` and `Easing` from the same path and pass `AnimatedStyle` an accessor for a style
 built from `Animated` nodes; it returns a ref binding for the view:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { Animated, AnimatedStyle } from '@solid-native/components/solid/animations';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { Animated, AnimatedStyle } from '@solidnative/components/solid/animations';
 
 export function FadeIn() {
   const opacity = new Animated.Value(0);
@@ -81,23 +81,23 @@ transitions.
 
 ## Reanimated worklets
 
-`WorkletStyle` and `WorkletScroll`, from `@solid-native/components/solid/reanimated`, compute styles
+`WorkletStyle` and `WorkletScroll`, from `@solidnative/components/solid/reanimated`, compute styles
 every frame off the JavaScript thread: a value following a gesture, a header shrinking on scroll.
 `sharedValue` creates a value both runtimes see; `workletStyle` computes a style from shared values,
 bound with `WorkletStyle`; `workletScroll` runs on every scroll frame, bound with `WorkletScroll`. A
 shared value written by one and read by the other never touches the JavaScript thread:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { ScrollView, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { ScrollView, View } from '@solidnative/components/solid';
 import {
   sharedValue,
   workletScroll,
   workletStyle,
   WorkletScroll,
   WorkletStyle,
-} from '@solid-native/components/solid/reanimated';
-import type { HostChild } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid/reanimated';
+import type { HostChild } from '@solidnative/platform/solid';
 
 export function ParallaxHeader(props: { children?: HostChild }) {
   const offset = sharedValue(0);

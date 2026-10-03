@@ -1,5 +1,5 @@
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Storage, type StoredSignal } from '@solid-native/expo/solid/store';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Storage, type StoredSignal } from '@solidnative/expo/solid/store';
 
 declare const __DEV__: boolean | undefined;
 

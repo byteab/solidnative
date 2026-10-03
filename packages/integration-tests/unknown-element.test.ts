@@ -8,8 +8,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine, markComponentHost } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, markComponentHost } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { mountSolid } from './css-solid-harness.ts';
 import { typo } from './css-solid-fixtures.tsx';
 

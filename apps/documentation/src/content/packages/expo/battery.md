@@ -14,16 +14,16 @@ npx expo install expo-battery
 ```
 
 ```ts
-import { Battery } from '@solid-native/expo/solid/battery';
+import { Battery } from '@solidnative/expo/solid/battery';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
-import { Battery } from '@solid-native/expo/solid/battery';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Battery } from '@solidnative/expo/solid/battery';
 
 export function Status() {
   const battery = useService(Battery);
@@ -59,7 +59,7 @@ On the web, and in a test with no fake source, `level` reads `1`, `known` is `fa
 
 ## Reference
 
-`Battery` is exported from `@solid-native/expo/solid/battery`. A test replaces the native module by
+`Battery` is exported from `@solidnative/expo/solid/battery`. A test replaces the native module by
 providing `Battery.SOURCE` (`level`, `state` and `saving` observed sources, each may be `null`) in
 a `ServiceScope`.
 

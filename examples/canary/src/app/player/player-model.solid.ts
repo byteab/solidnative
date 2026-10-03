@@ -7,8 +7,8 @@ import {
   untrack,
   type Accessor,
 } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { audioPlayer, type PlayerState } from '@solid-native/expo/solid/player';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { audioPlayer, type PlayerState } from '@solidnative/expo/solid/player';
 
 export interface Track {
   readonly id: string;

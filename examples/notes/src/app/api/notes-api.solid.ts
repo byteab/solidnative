@@ -1,4 +1,4 @@
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 import type { Note } from '../data/note.ts';
 import { SEED_NOTES } from '../data/seed-notes.ts';
 

@@ -1,6 +1,6 @@
 import { createRoot, getOwner, onCleanup, runWithOwner, type Owner } from 'solid-js';
-import { withServiceScope, type ServiceBinding } from '@solid-native/device';
-import type { HostNode } from '@solid-native/fabric';
+import { withServiceScope, type ServiceBinding } from '@solidnative/device';
+import type { HostNode } from '@solidnative/fabric';
 import { BrowserEngine } from '../browser-engine.ts';
 import type { BrowserNode } from '../dom-node.ts';
 import { ISLAND_RESET_CSS, RESET_CSS } from '../reset-css.ts';

@@ -10,8 +10,8 @@ Native views have no bare text nodes: every character on screen must sit inside 
 `<View>Hello</View>` compiles and renders nothing.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text, View } from '@solidnative/components/solid';
 
 export function Greeting(props: { name?: string }) {
   return (

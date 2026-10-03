@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import {
   Pressable,
@@ -6,7 +6,7 @@ import {
   Text,
   View,
   type ScrollViewRef,
-} from '@solid-native/components/solid';
+} from '@solidnative/components/solid';
 import {
   Dialogs,
   LayoutAnimation,
@@ -15,17 +15,17 @@ import {
   Vibration,
   SCREEN_IN_FRONT,
   useService,
-} from '@solid-native/device/solid';
-import { For } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
-import { Battery } from '@solid-native/expo/solid/battery';
-import { Brightness } from '@solid-native/expo/solid/brightness';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import { Locale } from '@solid-native/expo/solid/locale';
-import { Network } from '@solid-native/expo/solid/network';
-import { DeviceOrientation } from '@solid-native/expo/solid/orientation';
-import { Accelerometer } from '@solid-native/expo/solid/sensors';
-import { SecureStorage, Storage } from '@solid-native/expo/solid/store';
+} from '@solidnative/device/solid';
+import { For } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
+import { Battery } from '@solidnative/expo/solid/battery';
+import { Brightness } from '@solidnative/expo/solid/brightness';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import { Locale } from '@solidnative/expo/solid/locale';
+import { Network } from '@solidnative/expo/solid/network';
+import { DeviceOrientation } from '@solidnative/expo/solid/orientation';
+import { Accelerometer } from '@solidnative/expo/solid/sensors';
+import { SecureStorage, Storage } from '@solidnative/expo/solid/store';
 import { page } from '../screen-styles.ts';
 export function VerifyPage() {
   const battery = useService(Battery),

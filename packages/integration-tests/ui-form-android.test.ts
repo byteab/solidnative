@@ -4,10 +4,10 @@
  */
 import assert from 'node:assert/strict';
 import { after, describe, it } from 'node:test';
-import { registerPlatformComponents } from '@solid-native/fabric';
-import { registerExpoUiViews } from '@solid-native/expo';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createFakeFabric, type FakeFabricNode as FakeNode } from '@solid-native/testing';
+import { registerPlatformComponents } from '@solidnative/fabric';
+import { registerExpoUiViews } from '@solidnative/expo';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createFakeFabric, type FakeFabricNode as FakeNode } from '@solidnative/testing';
 import { expoUiFormFixture } from './expo-ui-form-fixture.tsx';
 
 const flatten = (nodes: readonly FakeNode[]): FakeNode[] =>

@@ -7,7 +7,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Splash, type NativeSplashScreen } from '@solid-native/expo/splash-screen';
+import { Splash, type NativeSplashScreen } from '@solidnative/expo/splash-screen';
 
 function recorder() {
   const calls: string[] = [];

@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot, getOwner, runWithOwner, type Owner } from 'solid-js';
-import { provideService, useService, withServiceScope } from '@solid-native/device/solid';
-import { AppState, appStateSource, type AppStatus } from '@solid-native/device/solid';
-import { Direction, directionSource, type LayoutDirection } from '@solid-native/device/solid';
+import { provideService, useService, withServiceScope } from '@solidnative/device/solid';
+import { AppState, appStateSource, type AppStatus } from '@solidnative/device/solid';
+import { Direction, directionSource, type LayoutDirection } from '@solidnative/device/solid';
 import { deferred, scope, service } from './g7-device-utils.ts';
 
 test('app state is lazy and stays app-owned when first requested by a transient scope', () => {

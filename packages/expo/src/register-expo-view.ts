@@ -14,7 +14,7 @@
  * No components here on purpose: this is a registration, and the views it registers are ordinary
  * native elements in JSX.
  */
-import { registerViewName } from '@solid-native/fabric';
+import { registerViewName } from '@solidnative/fabric';
 
 /**
  * What Expo installs on the global when the app starts. Only the app identifier matters here;

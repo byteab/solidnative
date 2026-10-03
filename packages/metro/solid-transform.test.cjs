@@ -13,9 +13,9 @@ const { solidCompilerFingerprint } = require('./solid-cache.cjs');
 
 const projectRoot = path.resolve(__dirname, '../platform');
 const filename = path.join(projectRoot, 'solid-tests/probe.solid.tsx');
-const source = `/** @jsxImportSource @solid-native/platform/solid */
+const source = `/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import type { EngineNode } from '@solid-native/fabric';
+import type { EngineNode } from '@solidnative/fabric';
 type Count = number;
 export const [count, setCount] = createSignal<Count>(0);
 export function Probe() {
@@ -57,7 +57,7 @@ function namedString(ast, value) {
 
 test('universal compiler emits plain ESM custom helpers, native maps and preserved worklet directives', () => {
   const result = transformSolid(source, filename, { platform: 'ios' });
-  assert.match(result.code, /from "@solid-native\/platform\/solid"/);
+  assert.match(result.code, /from "@solidnative\/platform\/solid"/);
   assert.doesNotMatch(result.code, /solid-js\/web|React|import type|type Count|: number|<view/);
   assert.match(result.code, /['"]worklet['"]/);
   assert.match(result.code, /export function drive/);
@@ -74,7 +74,7 @@ test('only explicit author JSX opts in; React, Flow, dependencies and pragma-lik
   assert.equal(isSolidSource(source, '/app/Screen.tsx'), true);
   assert.equal(isSolidSource('<view />', '/app/Screen.solid.tsx'), true);
   assert.equal(
-    isSolidSource('// @jsxImportSource @solid-native/platform/solid\n<view />', '/app/Screen.jsx'),
+    isSolidSource('// @jsxImportSource @solidnative/platform/solid\n<view />', '/app/Screen.jsx'),
     true,
   );
   for (const file of [
@@ -87,14 +87,14 @@ test('only explicit author JSX opts in; React, Flow, dependencies and pragma-lik
   assert.equal(isSolidSource('export const x = <View />;', '/app/Screen.tsx'), false);
   assert.equal(
     isSolidSource(
-      'const marker = "/* @jsxImportSource @solid-native/platform/solid */";',
+      'const marker = "/* @jsxImportSource @solidnative/platform/solid */";',
       '/app/Screen.tsx',
     ),
     false,
   );
   assert.equal(
     isSolidSource(
-      '/** @jsxImportSource @solid-native/platform/solid-extra */\n<view />',
+      '/** @jsxImportSource @solidnative/platform/solid-extra */\n<view />',
       '/app/Screen.tsx',
     ),
     false,
@@ -116,7 +116,7 @@ test('actual Expo delegation retains authored TSX locations and applies downstre
   assert.equal(marker.loc.start.line, 7);
   assert.equal(marker.loc.start.column, source.split('\n')[6].indexOf("'authored-marker'"));
   assert.equal(marker.loc.filename, filename);
-  assert.match(generated(result.ast), /@solid-native\/platform\/solid/);
+  assert.match(generated(result.ast), /@solidnative\/platform\/solid/);
   assert.doesNotMatch(generated(result.ast), /solid-js\/web|react\/jsx-runtime/);
 });
 
@@ -147,7 +147,7 @@ test('actual Expo receives untouched React JSX and React Native Flow; web Solid 
     /cannot target web/,
   );
   const bad =
-    '/** @jsxImportSource @solid-native/platform/solid */\nexport const Broken = () => <view>';
+    '/** @jsxImportSource @solidnative/platform/solid */\nexport const Broken = () => <view>';
   assert.throws(
     () => transformer.transform({ src: bad, filename, options }),
     (error) => error.loc?.line === 2,
@@ -290,8 +290,8 @@ export const Star = () => <svg-icon data={FakeStar} label="star-marker" />;`;
 test('plain View and Text lower to intrinsics; anything the components act on stays one', () => {
   const lowered = (jsx, platform = 'ios', extra = {}) =>
     transformSolid(
-      `/** @jsxImportSource @solid-native/platform/solid */
-import { View, Text as Label } from '@solid-native/components/solid';
+      `/** @jsxImportSource @solidnative/platform/solid */
+import { View, Text as Label } from '@solidnative/components/solid';
 export const A = (p) => ${jsx};`,
       'lower.tsx',
       { platform, ...extra },

@@ -1,6 +1,6 @@
-import { Screen, useService } from '@solid-native/device/solid';
-import { claimHost, type HostNode } from '@solid-native/fabric';
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
+import { Screen, useService } from '@solidnative/device/solid';
+import { claimHost, type HostNode } from '@solidnative/fabric';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
 import { registerScreenComponents } from './screens.ts';
 
 export interface FullWindowOverlayProps {

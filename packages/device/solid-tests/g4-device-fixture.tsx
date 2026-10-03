@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   ColorScheme,
   SafeArea,
@@ -13,7 +13,7 @@ import {
   type ColorSchemeSource,
   type SafeAreaSource,
   type StatusBarSource,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 
 export function deviceFixture(
   colors: ColorSchemeSource,

@@ -8,11 +8,11 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createFakeFabric, type FakeFabric } from '@solid-native/testing';
-import { registerExpoViews } from '@solid-native/expo';
-import { registerExpoMap, type MapViewFunctions } from '@solid-native/expo/map-view';
+import { Engine } from '@solidnative/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createFakeFabric, type FakeFabric } from '@solidnative/testing';
+import { registerExpoViews } from '@solidnative/expo';
+import { registerExpoMap, type MapViewFunctions } from '@solidnative/expo/map-view';
 import { expoMapFixture } from './expo-map-fixture.tsx';
 
 describe('the map view', () => {

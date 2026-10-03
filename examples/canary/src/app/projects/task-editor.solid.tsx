@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { batch, createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import {
   Pressable,
   SafeAreaProvider,
@@ -11,9 +11,9 @@ import {
   TextInput,
   View,
   type TextInputRef,
-} from '@solid-native/components/solid';
-import { Dialogs, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { useNavigation, useNativeDismissGuard, useRoute } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { Dialogs, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { useNavigation, useNativeDismissGuard, useRoute } from '@solidnative/router/solid';
 import { ProjectStore } from './project-data.solid.ts';
 import sheet from './task-editor.native.css';
 

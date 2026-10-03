@@ -1,6 +1,6 @@
 import { createRenderer } from 'solid-js/universal';
 import { getOwner, runWithOwner } from 'solid-js';
-import type { ResponderHandlers } from '@solid-native/fabric';
+import type { ResponderHandlers } from '@solidnative/fabric';
 import type { BrowserNode } from '../dom-node.ts';
 import { contextOf, currentBrowser } from './context.ts';
 import { stampStyle } from './styles.ts';

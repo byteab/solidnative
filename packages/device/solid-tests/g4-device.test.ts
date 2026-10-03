@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { batch, createRenderEffect, createRoot, createSignal, untrack } from 'solid-js';
-import { mountNative } from '@solid-native/platform/solid';
+import { mountNative } from '@solidnative/platform/solid';
 import {
   ColorScheme,
   SafeArea,
@@ -18,7 +18,7 @@ import {
   type Scheme,
   type SafeAreaMetrics,
   type StatusBarSource,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
 import { deviceFixture } from './g4-device-fixture.tsx';
 

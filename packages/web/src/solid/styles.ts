@@ -1,5 +1,5 @@
 import { createComponent, createContext, useContext } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import type { BrowserNode } from '../dom-node.ts';
 import { contextOf, currentBrowser } from './context.ts';
 

@@ -14,11 +14,11 @@ compiler, goes to `render()` as `engineOptions.globalStyles`, passed on to `crea
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen } from '@solid-native/testing';
+import { cleanup, render, screen } from '@solidnative/testing';
 import { Badge } from './badge.solid.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 afterEach(cleanup);
 

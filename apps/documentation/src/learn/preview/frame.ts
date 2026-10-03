@@ -3,8 +3,8 @@
  * and tested. It is a frame of its own so that Tailwind's browser build, the platform and dark
  * classes and the learner's code cannot reach the lesson page around it.
  *
- * Two renderers live here. The phone mounts the app with the browser host, `@solid-native/web/solid`,
- * which is what `@solid-native/platform/solid` resolves to in this build. The checks, the learner's
+ * Two renderers live here. The phone mounts the app with the browser host, `@solidnative/web/solid`,
+ * which is what `@solidnative/platform/solid` resolves to in this build. The checks, the learner's
  * tests and the engine's development notes render it with the native renderer over a fake Fabric,
  * from `native-entry.ts`, loaded through `?learn-native` the first time one is needed. Each
  * compiles the learner's files against its own packages.
@@ -13,11 +13,11 @@
  */
 import * as solid from 'solid-js';
 import * as store from 'solid-js/store';
-import * as components from '@solid-native/components/solid';
-import * as device from '@solid-native/device/solid';
-import { registerPlatformComponents } from '@solid-native/fabric';
-import * as browserHost from '@solid-native/platform/solid';
-import type { BrowserComponent } from '@solid-native/web/solid';
+import * as components from '@solidnative/components/solid';
+import * as device from '@solidnative/device/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
+import * as browserHost from '@solidnative/platform/solid';
+import type { BrowserComponent } from '@solidnative/web/solid';
 import type { FromPreview, Platform, ToPreview } from '../protocol.ts';
 import { browserSheet, type BrowserSheet } from './browser-css.ts';
 import { compileNativeCss, compileNativeTailwind } from './native-css.ts';
@@ -37,7 +37,7 @@ registerPlatformComponents(platform);
 const ENGINE = /^\[solid-native\]\s*/;
 
 /**
- * `@solid-native/device` asks `require('react-native')` for each capability, and takes "no
+ * `@solidnative/device` asks `require('react-native')` for each capability, and takes "no
  * `require`" or `null` to mean "not on a device". A production build can leave a `require`
  * behind anyway, the bundler's stand-in that throws when called and defers to a global one if
  * there is one; this is one, and it answers React Native with nothing, the off-device answer. The
@@ -52,9 +52,9 @@ const ENGINE = /^\[solid-native\]\s*/;
 const PHONE_LIBRARIES: Readonly<Record<string, unknown>> = {
   'solid-js': solid,
   'solid-js/store': store,
-  '@solid-native/platform/solid': browserHost,
-  '@solid-native/components/solid': components,
-  '@solid-native/device/solid': device,
+  '@solidnative/platform/solid': browserHost,
+  '@solidnative/components/solid': components,
+  '@solidnative/device/solid': device,
 };
 
 let native: Promise<Native> | undefined;

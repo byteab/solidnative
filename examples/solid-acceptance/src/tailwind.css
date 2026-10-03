@@ -10,6 +10,6 @@
  */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css' source(none);
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 @source './app';
 @source not './app/**/*.test.ts';

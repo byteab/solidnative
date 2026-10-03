@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 export const shopRoutes: readonly NativeRoute[] = [
   { path: 'shop', lazy: () => import('./shop-page.solid.tsx').then((m) => m.ShopPage) },
   {

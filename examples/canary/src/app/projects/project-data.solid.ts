@@ -1,5 +1,5 @@
 import { batch, createMemo, createSignal, onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 
 export interface Project {
   readonly id: string;

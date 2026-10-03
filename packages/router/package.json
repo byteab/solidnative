@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/router",
+  "name": "@solidnative/router",
   "version": "0.1.1",
   "description": "Solid router over native navigation: stack and tab outlets, native headers, links and react-native-screens presentation.",
   "keywords": [
@@ -17,9 +17,9 @@
   "type": "module",
   "main": "src/solid.ts",
   "dependencies": {
-    "@solid-native/device": "workspace:*",
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/platform": "workspace:*"
+    "@solidnative/device": "workspace:*",
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/platform": "workspace:*"
   },
   "peerDependencies": {
     "react-native-screens": "^4.26.0",

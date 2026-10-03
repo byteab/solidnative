@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   Pressable,
@@ -6,8 +6,8 @@ import {
   ScrollView,
   Text,
   TextInput,
-} from '@solid-native/components/solid';
-import { Keyboard, useService } from '@solid-native/device/solid';
+} from '@solidnative/components/solid';
+import { Keyboard, useService } from '@solidnative/device/solid';
 import { Unread } from './unread.solid.ts';
 import { page } from '../screen-styles.ts';
 

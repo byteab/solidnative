@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { ExpoGlass, ExpoGlassContainer, ExpoSymbol } from '@solid-native/expo';
-import { AppleSignInButton } from '@solid-native/expo/apple-sign-in';
+import { ExpoGlass, ExpoGlassContainer, ExpoSymbol } from '@solidnative/expo';
+import { AppleSignInButton } from '@solidnative/expo/apple-sign-in';
 
 /** Liquid Glass, SF Symbols and the Sign in with Apple button, as an app's screens use them. */
 export function expoViewsFixture() {

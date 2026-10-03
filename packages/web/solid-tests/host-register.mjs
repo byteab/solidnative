@@ -2,13 +2,13 @@ import 'jsdom';
 import { readFileSync } from 'node:fs';
 import { registerHooks } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { createSolidRuntime } from '@solid-native/metro/solid-runtime.cjs';
-import { isSolidSource } from '@solid-native/metro/solid-transform.cjs';
-import { transformSolidBrowser, compileBrowserCss } from '@solid-native/metro/solid-browser.cjs';
+import { createSolidRuntime } from '@solidnative/metro/solid-runtime.cjs';
+import { isSolidSource } from '@solidnative/metro/solid-transform.cjs';
+import { transformSolidBrowser, compileBrowserCss } from '@solidnative/metro/solid-browser.cjs';
 const runtime = createSolidRuntime(fileURLToPath(new URL('../', import.meta.url)));
 registerHooks({
   resolve(specifier, context, next) {
-    if (specifier === '@solid-native/platform/solid')
+    if (specifier === '@solidnative/platform/solid')
       return { url: new URL('../src/solid/index.ts', import.meta.url).href, shortCircuit: true };
     if (/^(?:react(?:\/|$)|react-native(?:\/|$)|solid-js\/web)/.test(specifier))
       throw new Error(`Browser universal host imported an unrelated renderer: ${specifier}`);

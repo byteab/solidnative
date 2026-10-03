@@ -11,7 +11,7 @@ test('new Expo entries execute without React or any optional native package', as
   });
   try {
     for (const name of ['file-system', 'sensors', 'apple-sign-in', 'expo-ui-components']) {
-      const value = await import(`@solid-native/expo/solid/${name}`);
+      const value = await import(`@solidnative/expo/solid/${name}`);
       assert.ok(Object.keys(value).length);
     }
   } finally {

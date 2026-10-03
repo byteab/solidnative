@@ -13,8 +13,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 
 /** A root, a wrapper, and an input inside the wrapper - the shape an overlay removes. */
 function scene() {

@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   nativeState,
@@ -22,10 +22,10 @@ import {
   UiTextField,
   UiToggle,
   UiVStack,
-} from '@solid-native/expo/solid';
-import { Pressable, ScrollView, Text } from '@solid-native/components/solid';
-import { For } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/expo/solid';
+import { Pressable, ScrollView, Text } from '@solidnative/components/solid';
+import { For } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { Example, Section } from '../example.solid.tsx';
 import { page } from '../screen-styles.ts';
 

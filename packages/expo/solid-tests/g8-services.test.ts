@@ -6,19 +6,19 @@ import {
   useService,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device/solid';
-import { Battery, type BatteryState } from '@solid-native/expo/solid/battery';
-import { Network, type NetworkStatus } from '@solid-native/expo/solid/network';
-import { Clipboard } from '@solid-native/expo/solid/clipboard';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { Brightness } from '@solid-native/expo/solid/brightness';
-import { DeviceOrientation, type OrientationLock } from '@solid-native/expo/solid/orientation';
-import { KeepAwake } from '@solid-native/expo/solid/keep-awake';
-import { Locale } from '@solid-native/expo/solid/locale';
-import { Browser } from '@solid-native/expo/solid/browser';
-import { Crypto, CryptoDigestAlgorithm } from '@solid-native/expo/solid/crypto';
-import { Store, Storage, SecureStorage } from '@solid-native/expo/solid/store';
-import { Permission, nativeState, type PermissionResponse } from '@solid-native/expo/solid';
+} from '@solidnative/device/solid';
+import { Battery, type BatteryState } from '@solidnative/expo/solid/battery';
+import { Network, type NetworkStatus } from '@solidnative/expo/solid/network';
+import { Clipboard } from '@solidnative/expo/solid/clipboard';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { Brightness } from '@solidnative/expo/solid/brightness';
+import { DeviceOrientation, type OrientationLock } from '@solidnative/expo/solid/orientation';
+import { KeepAwake } from '@solidnative/expo/solid/keep-awake';
+import { Locale } from '@solidnative/expo/solid/locale';
+import { Browser } from '@solidnative/expo/solid/browser';
+import { Crypto, CryptoDigestAlgorithm } from '@solidnative/expo/solid/crypto';
+import { Store, Storage, SecureStorage } from '@solidnative/expo/solid/store';
+import { Permission, nativeState, type PermissionResponse } from '@solidnative/expo/solid';
 
 const disposers: (() => void)[] = [];
 afterEach(() => {

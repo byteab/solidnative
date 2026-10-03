@@ -1,7 +1,7 @@
 import type { NativeSQLiteDatabase, SQLiteOpenOptions } from './g11-features-database-types.ts';
 export type * from './g11-features-database-types.ts';
 import { getOwner, onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import { expoModule } from '../native.ts';
 import { silence } from './owned.ts';
 

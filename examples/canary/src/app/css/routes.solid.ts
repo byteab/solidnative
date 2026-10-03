@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 export const styleRoutes: readonly NativeRoute[] = [
   { path: 'text', lazy: () => import('./text.solid.tsx').then((m) => m.TextNesting) },

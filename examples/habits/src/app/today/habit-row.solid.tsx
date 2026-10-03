@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import type { Habit } from '../data/habits.solid.ts';
 import sheet from './habit-row.native.css';
 

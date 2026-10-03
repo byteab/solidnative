@@ -1,6 +1,6 @@
 import { createRenderEffect, untrack } from 'solid-js';
 import { createRenderer } from 'solid-js/universal';
-import { claimHost, type EngineNode } from '@solid-native/fabric';
+import { claimHost, type EngineNode } from '@solidnative/fabric';
 import {
   currentRoot,
   DROPPED,

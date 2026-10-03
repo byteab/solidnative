@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from '@solid-native/testing';
+import { render, screen, userEvent } from '@solidnative/testing';
 import { describe, expect, it, vi } from 'vitest';
 import { App } from './app';
 import { HabitRow } from './habit-row';

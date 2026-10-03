@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { ErrorBoundary, Index, Match, Suspense, Switch } from '@solid-native/platform/solid';
+import { ErrorBoundary, Index, Match, Suspense, Switch } from '@solidnative/platform/solid';
 
 /** Solid's remaining control flow, with host children and accessor children, like Show. */
 export function NativeControlFlowTypes() {

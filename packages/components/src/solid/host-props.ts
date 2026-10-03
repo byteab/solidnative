@@ -1,6 +1,6 @@
 import { $PROXY } from 'solid-js';
-import { claimHost, type HostNode } from '@solid-native/fabric';
-import { createHostElement } from '@solid-native/platform/solid';
+import { claimHost, type HostNode } from '@solidnative/fabric';
+import { createHostElement } from '@solidnative/platform/solid';
 import type { AccessibilityState, ViewProps } from './types.ts';
 
 type Defaults = {

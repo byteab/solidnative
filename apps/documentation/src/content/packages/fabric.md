@@ -5,11 +5,11 @@ summary: The retained tree, native view mapping and CSS engine underneath every 
 
 # Fabric
 
-`@solid-native/fabric` is the framework-agnostic engine: a retained node tree, a commit step that
+`@solidnative/fabric` is the framework-agnostic engine: a retained node tree, a commit step that
 makes one call into Fabric, and a CSS engine with a real cascade. No UI framework, no DOM.
 
-You rarely import it directly. [`@solid-native/platform/solid`'s
-renderer](/packages/platform/renderer) drives it and `@solid-native/components/solid` builds on it.
+You rarely import it directly. [`@solidnative/platform/solid`'s
+renderer](/packages/platform/renderer) drives it and `@solidnative/components/solid` builds on it.
 The exceptions: the entry file's `getFabricUIManager()` and `registerPlatformComponents()`,
 `nativePlatform()` for per-platform answers, `registerViewName()` for a third-party Fabric
 component without bindings, and the `FabricUIManager` type a test's fake implements.

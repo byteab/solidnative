@@ -1,5 +1,5 @@
 /*
- * @jsxImportSource @solid-native/platform/solid
+ * @jsxImportSource @solidnative/platform/solid
  *
  * The CSS engine, shown with ordinary component CSS: layered gradients, a
  * descendant selector reaching `<Text>`, an attribute selector for the chosen plan, `:active`
@@ -8,8 +8,8 @@
  * DOM and no stylesheet at runtime.
  */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './plans.native.css';
 
 const PERKS = ['Unlimited projects', 'Sync across every device', 'Priority support'];

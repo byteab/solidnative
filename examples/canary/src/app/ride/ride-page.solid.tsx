@@ -1,10 +1,10 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Show, setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
-import { MapView, type MapMarker, type MapPolyline } from '@solid-native/expo/solid/map-view';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show, setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
+import { MapView, type MapMarker, type MapPolyline } from '@solidnative/expo/solid/map-view';
 import { PICKUP, Trip, drivers, formatFare, fare } from './ride-model.solid.ts';
 import sheet from './ride-page.native.css';
 

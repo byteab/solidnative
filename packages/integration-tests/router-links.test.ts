@@ -5,7 +5,7 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { followLink, type NativeNavigation } from '@solid-native/router';
+import { followLink, type NativeNavigation } from '@solidnative/router';
 
 /**
  * Just the part of a navigation `followLink` reads. Solid's navigation takes the whole ancestry

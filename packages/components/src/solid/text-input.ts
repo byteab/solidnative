@@ -1,7 +1,7 @@
 import { createRenderEffect, createSignal } from 'solid-js';
-import type { HostNode, NativeSyntheticEvent } from '@solid-native/fabric';
-import { Keyboard, useService, withServiceScope } from '@solid-native/device/solid';
-import { onHostCleanup, spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
+import { Keyboard, useService, withServiceScope } from '@solidnative/device/solid';
+import { onHostCleanup, spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { createControlled, FORM_KEYS, formProps } from './controlled.ts';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { commitTask, createNativeRef } from './ref.ts';

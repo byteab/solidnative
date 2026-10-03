@@ -1,4 +1,4 @@
-# @solid-native/fabric
+# @solidnative/fabric
 
 The framework-agnostic engine underneath solid-native's Solid renderer: a retained view tree, a commit
 step into React Native's Fabric, and a CSS engine with a real cascade. No UI-framework import
@@ -8,11 +8,11 @@ Alpha: APIs may change before 1.0.
 
 ## Install
 
-Most apps never depend on this directly; `@solid-native/platform` and `@solid-native/components` pull it
+Most apps never depend on this directly; `@solidnative/platform` and `@solidnative/components` pull it
 in. Install it explicitly only to call `nativePlatform()` or `registerViewName()` yourself:
 
 ```sh
-npm install @solid-native/fabric
+npm install @solidnative/fabric
 ```
 
 ## Example
@@ -20,7 +20,7 @@ npm install @solid-native/fabric
 Registering a third-party Fabric component that ships no solid-native bindings of its own:
 
 ```ts
-import { registerViewName } from '@solid-native/fabric';
+import { registerViewName } from '@solidnative/fabric';
 
 registerViewName('rns-screen', 'RNSScreen');
 ```
@@ -28,7 +28,7 @@ registerViewName('rns-screen', 'RNSScreen');
 Reading the platform in a component that needs to answer differently per platform:
 
 ```ts
-import { nativePlatform } from '@solid-native/fabric';
+import { nativePlatform } from '@solidnative/fabric';
 
 const platform = nativePlatform(); // 'ios' | 'android'
 ```
@@ -39,8 +39,8 @@ const platform = nativePlatform(); // 'ios' | 'android'
 - `registerViewName()` / `registerPlatformComponents()` - map element and third-party component
   names onto Fabric's native components.
 - `nativePlatform()` - the current platform, without importing `react-native`'s `Platform`.
-- The CSS engine that `@solid-native/metro` compiles component styles for, and that
-  `@solid-native/tailwind` compiles utility classes for.
+- The CSS engine that `@solidnative/metro` compiles component styles for, and that
+  `@solidnative/tailwind` compiles utility classes for.
 
 ## Docs
 

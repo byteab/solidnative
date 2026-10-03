@@ -5,7 +5,7 @@ summary: A Tailwind v4 preset for native, plus the variants a touch device needs
 
 # Tailwind
 
-`@solid-native/tailwind` makes `<View class="flex-1 bg-blue-500 p-4">` work with no interop layer:
+`@solidnative/tailwind` makes `<View class="flex-1 bg-blue-500 p-4">` work with no interop layer:
 [Fabric](/packages/fabric/css-engine) has a real cascade, and Tailwind's CSS goes through the same
 compiler as your component styles. The package adds a build step that reduces Tailwind's browser
 output to what native can express, and a preset with platform variants, safe-area and hairline
@@ -14,14 +14,14 @@ utilities, and touch meanings for `hover:` and `focus-visible:`.
 ## Setup
 
 ```sh
-npm install @solid-native/tailwind tailwindcss @tailwindcss/cli
+npm install @solidnative/tailwind tailwindcss @tailwindcss/cli
 ```
 
 ```css
 /* src/styles.css */
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
-@import '@solid-native/tailwind/native.css';
+@import '@solidnative/tailwind/native.css';
 ```
 
 Import `theme.css` and `utilities.css`, not plain `tailwindcss`, which adds preflight - a browser
@@ -30,8 +30,8 @@ reset of `html`, `::before` and `-webkit-*` that means nothing on a phone.
 ```js
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro/solid-config.cjs');
-const { withTailwind } = require('@solid-native/tailwind/config.cjs');
+const { withSolidNative } = require('@solidnative/metro/solid-config.cjs');
+const { withTailwind } = require('@solidnative/tailwind/config.cjs');
 
 module.exports = withTailwind(withSolidNative(getDefaultConfig(__dirname)), {
   input: './src/styles.css',
@@ -123,13 +123,13 @@ Tailwind 3.4.1+ uses the same package. Its preset lives in `tailwind.config.js`,
 `preset.cjs`:
 
 ```sh
-npm install @solid-native/tailwind tailwindcss@3
+npm install @solidnative/tailwind tailwindcss@3
 ```
 
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@solid-native/tailwind/preset.cjs')],
+  presets: [require('@solidnative/tailwind/preset.cjs')],
   content: ['./src/**/*.{ts,tsx}'],
 };
 ```

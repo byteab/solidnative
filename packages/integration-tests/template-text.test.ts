@@ -18,7 +18,7 @@ const template = (file: string) => readFileSync(templatePath(file), 'utf8');
 describe('the template', () => {
   it('names only components its packages export, from the entry that exports them', async () => {
     const text = template('AGENTS.md');
-    const listed = /imported from `(@solid-native\/[a-z/-]+)`: ((?:`\w+`,?\s*(?:and\s*)?)+)/.exec(
+    const listed = /imported from `(@solidnative\/[a-z/-]+)`: ((?:`\w+`,?\s*(?:and\s*)?)+)/.exec(
       text,
     );
     assert.ok(listed, 'AGENTS.md lists the native components and their entry');
@@ -33,16 +33,16 @@ describe('the template', () => {
   it('names only exports its packages have, from the entry that exports them', async () => {
     // [name, entry, what it is]: a component or function, or an object such as `screen`.
     const claims: [name: string, entry: string, kind: 'function' | 'object'][] = [
-      ['Show', '@solid-native/platform/solid', 'function'],
-      ['For', '@solid-native/platform/solid', 'function'],
-      ['Index', '@solid-native/platform/solid', 'function'],
-      ['ErrorBoundary', '@solid-native/platform/solid', 'function'],
-      ['withNativeStyles', '@solid-native/platform/solid', 'function'],
-      ['createNativeNavigation', '@solid-native/router/solid', 'function'],
-      ['NativeStackOutlet', '@solid-native/router/solid', 'function'],
-      ['render', '@solid-native/testing', 'function'],
-      ['screen', '@solid-native/testing', 'object'],
-      ['userEvent', '@solid-native/testing', 'object'],
+      ['Show', '@solidnative/platform/solid', 'function'],
+      ['For', '@solidnative/platform/solid', 'function'],
+      ['Index', '@solidnative/platform/solid', 'function'],
+      ['ErrorBoundary', '@solidnative/platform/solid', 'function'],
+      ['withNativeStyles', '@solidnative/platform/solid', 'function'],
+      ['createNativeNavigation', '@solidnative/router/solid', 'function'],
+      ['NativeStackOutlet', '@solidnative/router/solid', 'function'],
+      ['render', '@solidnative/testing', 'function'],
+      ['screen', '@solidnative/testing', 'object'],
+      ['userEvent', '@solidnative/testing', 'object'],
     ];
     const text = template('AGENTS.md');
     for (const [name, entry, kind] of claims) {

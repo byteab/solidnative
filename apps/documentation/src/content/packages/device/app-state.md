@@ -9,10 +9,10 @@ summary: Whether the app is in front of the user, for anything that should stop 
 notification shade.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect } from 'solid-js';
-import { View } from '@solid-native/components/solid';
-import { AppState, useService } from '@solid-native/device/solid';
+import { View } from '@solidnative/components/solid';
+import { AppState, useService } from '@solidnative/device/solid';
 
 export function VideoPlayer(props: { onPause: () => void }) {
   const appState = useService(AppState);

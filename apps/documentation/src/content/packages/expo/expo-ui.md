@@ -16,23 +16,23 @@ npx expo install @expo/ui
 ```
 
 ```ts
-import { registerExpoUiViews, UiHost, UiMenu, UiButton } from '@solid-native/expo/solid';
+import { registerExpoUiViews, UiHost, UiMenu, UiButton } from '@solidnative/expo/solid';
 ```
 
-The components are also on their own entry point, `@solid-native/expo/solid/expo-ui-components`.
+The components are also on their own entry point, `@solidnative/expo/solid/expo-ui-components`.
 
 ## The smallest thing that works
 
 ```ts
 import { Platform } from 'react-native';
-import { registerExpoUiViews } from '@solid-native/expo/solid';
+import { registerExpoUiViews } from '@solidnative/expo/solid';
 
 registerExpoUiViews(Platform.OS); // once, before the app mounts
 ```
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { UiHost, UiSlider } from '@solid-native/expo/solid';
+import { UiHost, UiSlider } from '@solidnative/expo/solid';
 
 export function Volume() {
   const [volume, setVolume] = createSignal(0.5);
@@ -125,7 +125,7 @@ Solid owner (a component body); it is released when that owner is disposed:
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { nativeState, UiHost, UiTextField } from '@solid-native/expo/solid';
+import { nativeState, UiHost, UiTextField } from '@solidnative/expo/solid';
 
 export function NameField() {
   const name = nativeState('');

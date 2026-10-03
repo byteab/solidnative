@@ -13,8 +13,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { Engine, type WindowFrame } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type WindowFrame } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 
 const scene = () => {
   const fabric = createFakeFabric();

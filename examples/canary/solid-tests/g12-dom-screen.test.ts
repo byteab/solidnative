@@ -1,8 +1,8 @@
 import './g12-dom-register.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { DomComponent } from '@solid-native/expo/solid/dom-component';
+import { provideService } from '@solidnative/device/solid';
+import { DomComponent } from '@solidnative/expo/solid/dom-component';
 import { consumerFixture } from './consumer-fixture.tsx';
 import { bootConsumer } from './consumer-harness.ts';
 const { domComponentRoutes } = await import('../src/app/dom-components/routes.solid.ts');

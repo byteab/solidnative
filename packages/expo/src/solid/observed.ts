@@ -1,4 +1,4 @@
-import type { ObservedSource } from '@solid-native/device/solid';
+import type { ObservedSource } from '@solidnative/device/solid';
 export type Observed<T> = ObservedSource<T>;
 export function observedFrom<T>(
   current: () => T | PromiseLike<T>,

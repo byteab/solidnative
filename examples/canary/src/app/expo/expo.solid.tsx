@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { ExpoImage, type ExpoImageSource } from '@solid-native/expo/solid';
-import { Clipboard } from '@solid-native/expo/solid/clipboard';
-import { FileSystem } from '@solid-native/expo/solid/file-system';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { useHostEngine, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { ExpoImage, type ExpoImageSource } from '@solidnative/expo/solid';
+import { Clipboard } from '@solidnative/expo/solid/clipboard';
+import { FileSystem } from '@solidnative/expo/solid/file-system';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { useHostEngine, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './expo.native.css';
 const localAsset = require('../../../assets/local.png');

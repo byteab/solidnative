@@ -1,6 +1,6 @@
 import { createComponent, createContext, useContext } from 'solid-js';
-import type { HostChild } from '@solid-native/platform/solid';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostChild } from '@solidnative/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
 import type { NativeNavigation, NativeRouteProps } from './native-navigation.ts';
 import type { RouteMatch } from './route-match.ts';
 

@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For, Show } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For, Show } from '@solidnative/platform/solid';
 
 export function NativeTypes() {
   return (

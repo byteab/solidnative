@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
 import { Pin } from 'lucide-static';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
 import { excerpt, type Note } from '../data/note.ts';
 
 const DAY = 1000 * 60 * 60 * 24;

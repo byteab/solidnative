@@ -9,13 +9,13 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { registerExpoUiViews } from '@solid-native/expo';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { registerExpoUiViews } from '@solidnative/expo';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import {
   createFakeFabric,
   type FakeFabric,
   type FakeFabricNode as FakeNode,
-} from '@solid-native/testing';
+} from '@solidnative/testing';
 import { ExpoUiDisabled, ExpoUiHosts, expoUiFormFixture } from './expo-ui-form-fixture.tsx';
 
 const flatten = (nodes: readonly FakeNode[]): FakeNode[] =>

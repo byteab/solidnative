@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/template",
+  "name": "@solidnative/template",
   "version": "0.1.1",
   "description": "A SolidJS app rendering real native views. Use with create-expo-app --template.",
   "license": "MIT",
@@ -9,14 +9,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node --import @solid-native/testing/register --test \"src/**/*.test.ts\""
+    "test": "node --import @solidnative/testing/register --test \"src/**/*.test.ts\""
   },
   "dependencies": {
-    "@solid-native/components": "workspace:*",
-    "@solid-native/device": "workspace:*",
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/metro": "workspace:*",
-    "@solid-native/platform": "workspace:*",
+    "@solidnative/components": "workspace:*",
+    "@solidnative/device": "workspace:*",
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/metro": "workspace:*",
+    "@solidnative/platform": "workspace:*",
     "expo": "~57.0.20",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
-    "@solid-native/testing": "workspace:*",
+    "@solidnative/testing": "workspace:*",
     "@types/node": "^26.6.3",
     "@types/react": "~19.2.2",
     "typescript": "~6.0.3"

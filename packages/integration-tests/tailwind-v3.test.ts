@@ -14,22 +14,22 @@ import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
-import { Engine, type StyleSheet } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type StyleSheet } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { committedProps } from './tailwind-cli.ts';
 
 const require = createRequire(import.meta.url);
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(css: string, context: string, options: object): StyleSheet;
 };
 
 /** Tailwind 3's CLI output for exactly these classes, through the preset as the setup guide says. */
 function build(classes: string, app: object = {}): string {
   const dir = mkdtempSync(join(tmpdir(), 'tailwind-v3-'));
-  const preset = require.resolve('@solid-native/tailwind/preset.cjs');
+  const preset = require.resolve('@solidnative/tailwind/preset.cjs');
   const config = { ...app, content: [{ raw: classes }] };
   writeFileSync(
     join(dir, 'tailwind.config.js'),

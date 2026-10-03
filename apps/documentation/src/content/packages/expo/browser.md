@@ -15,15 +15,15 @@ npx expo install expo-web-browser
 ```
 
 ```ts
-import { Browser } from '@solid-native/expo/solid/browser';
+import { Browser } from '@solidnative/expo/solid/browser';
 ```
 
 ## The smallest thing that works
 
 ```tsx
-import { Pressable, Text } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Browser } from '@solid-native/expo/solid/browser';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Browser } from '@solidnative/expo/solid/browser';
 
 export function SignIn() {
   const browser = useService(Browser);
@@ -104,6 +104,6 @@ resolves to null. A test supplies a `NativeBrowser` with
 
 ## Reference
 
-`Browser` is exported from `@solid-native/expo/solid/browser`.
+`Browser` is exported from `@solidnative/expo/solid/browser`.
 
 <!-- api: Browser -->

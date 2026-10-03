@@ -1,4 +1,4 @@
-# @solid-native/device
+# @solidnative/device
 
 The host: the device, the operating system, and the user's settings, as Solid services.
 
@@ -7,14 +7,14 @@ Alpha: APIs may change before 1.0.
 ## Install
 
 ```sh
-npm install @solid-native/device solid-js react-native
+npm install @solidnative/device solid-js react-native
 ```
 
 ## Example
 
 ```tsx
 import { createMemo } from 'solid-js';
-import { Accessibility, Keyboard, Screen, useService } from '@solid-native/device';
+import { Accessibility, Keyboard, Screen, useService } from '@solidnative/device';
 
 export function useComposer() {
   const keyboard = useService(Keyboard);
@@ -57,7 +57,7 @@ a `ServiceScope`, so the code under test stays real.
 ## Off a device
 
 `react-native` is required lazily, inside each source, because React Native ships its JavaScript as
-Flow and a static import would make this package - and `@solid-native/components`, which imports
+Flow and a static import would make this package - and `@solidnative/components`, which imports
 it - unloadable in Node. Off a device the require finds nothing and every capability is inert: the
 keyboard is never visible, the screen is zero by zero, a back handler is never called. That is the
 same behavior as not providing the token that used to stand here, and it is what lets the test

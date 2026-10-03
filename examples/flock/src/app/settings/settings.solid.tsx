@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Switch, Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Switch, Text, View } from '@solidnative/components/solid';
 import {
   UiColorPicker,
   UiForm,
@@ -12,10 +12,10 @@ import {
   UiStepper,
   UiText,
   UiToggle,
-} from '@solid-native/expo/solid';
-import { nativePlatform } from '@solid-native/fabric';
-import { For, Show } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/expo/solid';
+import { nativePlatform } from '@solidnative/fabric';
+import { For, Show } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import {
   accent,
   audience,

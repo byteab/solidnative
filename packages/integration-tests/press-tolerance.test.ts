@@ -8,7 +8,7 @@
  */
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
-import { cleanup, fireEvent, render, screen } from '@solid-native/testing';
+import { cleanup, fireEvent, render, screen } from '@solidnative/testing';
 import { createActive, createPressOptions } from './ui-press-fixture.tsx';
 
 describe('press tolerance', () => {

@@ -10,8 +10,8 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { nativeState as ownedNativeState } from '@solid-native/expo';
-import { withServiceScope } from '@solid-native/device/solid';
+import { nativeState as ownedNativeState } from '@solidnative/expo';
+import { withServiceScope } from '@solidnative/device/solid';
 import { disposeServices, owned, servicesWith } from './expo-service.ts';
 
 /** `nativeState` under a fresh owner and service scope, resolving its default source. */

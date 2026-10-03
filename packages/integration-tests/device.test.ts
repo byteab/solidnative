@@ -34,7 +34,7 @@ import {
   watchConditions,
   withServiceScope,
   type ServiceToken,
-} from '@solid-native/device';
+} from '@solidnative/device';
 
 /** A service over a fake device: each source token overridden in a service scope of its own. */
 function build<T>(

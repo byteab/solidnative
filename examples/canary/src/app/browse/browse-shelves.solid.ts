@@ -1,4 +1,4 @@
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 
 export interface Album {
   readonly id: string;

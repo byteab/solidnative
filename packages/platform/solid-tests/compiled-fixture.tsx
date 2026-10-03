@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { For, Show, onNativeCleanup } from '@solid-native/platform/solid';
-import type { EngineNode } from '@solid-native/fabric';
+import { For, Show, onNativeCleanup } from '@solidnative/platform/solid';
+import type { EngineNode } from '@solidnative/fabric';
 
 export function createFixture() {
   const [count, setCount] = createSignal(0);

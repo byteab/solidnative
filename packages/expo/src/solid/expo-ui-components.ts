@@ -7,9 +7,9 @@ import {
   untrack,
   type Accessor,
 } from 'solid-js';
-import { nativePlatform, type HostNode, type NativeSyntheticEvent } from '@solid-native/fabric';
-import type { ViewProps } from '@solid-native/components/solid';
-import { useHostAdapter } from '@solid-native/platform/solid';
+import { nativePlatform, type HostNode, type NativeSyntheticEvent } from '@solidnative/fabric';
+import type { ViewProps } from '@solidnative/components/solid';
+import { useHostAdapter } from '@solidnative/platform/solid';
 import type { NativeState } from './native-state.ts';
 import { nativeView, viewProps } from './view.ts';
 

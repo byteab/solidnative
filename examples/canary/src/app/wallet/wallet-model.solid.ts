@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
+import { createServiceToken } from '@solidnative/device/solid';
 
 export type Currency = 'GBP' | 'EUR' | 'USD' | 'JPY';
 export type Category = 'food' | 'transport' | 'shopping' | 'bills' | 'income';

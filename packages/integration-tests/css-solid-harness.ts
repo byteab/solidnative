@@ -2,9 +2,9 @@
  * Mounts a Solid fixture onto the fake Fabric, the way an app's root does, for the CSS suites that
  * need a component tree rather than hand-built engine nodes.
  */
-import { createNativeRoot } from '@solid-native/platform/solid';
-import type { EngineOptions } from '@solid-native/fabric';
-import { createClock, createFakeFabric, type FakeFabricNode } from '@solid-native/testing';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import type { EngineOptions } from '@solidnative/fabric';
+import { createClock, createFakeFabric, type FakeFabricNode } from '@solidnative/testing';
 
 export type FakeNode = FakeFabricNode;
 

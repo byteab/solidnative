@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   ActivityIndicator,
@@ -11,9 +11,9 @@ import {
   TextInput,
   View,
   type TextInputRef,
-} from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function ComponentsPage() {

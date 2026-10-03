@@ -18,7 +18,7 @@ npx expo install expo-video expo-audio
 ```
 
 ```ts
-import { videoPlayer, audioPlayer } from '@solid-native/expo/solid/player';
+import { videoPlayer, audioPlayer } from '@solidnative/expo/solid/player';
 ```
 
 Install only the one an app needs.
@@ -26,8 +26,8 @@ Install only the one an app needs.
 ## The smallest useful example
 
 ```tsx
-import { Pressable, Text } from '@solid-native/components/solid';
-import { audioPlayer } from '@solid-native/expo/solid/player';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { audioPlayer } from '@solidnative/expo/solid/player';
 
 export function Clip() {
   const player = audioPlayer(require('./assets/clip.mp3'), { timeUpdate: 0.5 });
@@ -82,12 +82,12 @@ decoder, its audio session and, on iOS, the now-playing controls.
 
 ## The `<expo-video>` view
 
-`ExpoVideo` from `@solid-native/expo/solid` shows a video player. It registers `expo-video`'s
+`ExpoVideo` from `@solidnative/expo/solid` shows a video player. It registers `expo-video`'s
 `VideoView` on first use and takes `player.native` as its `player`, passing the native view the
 player's shared-object id as `VideoView` does:
 
 ```tsx
-import { ExpoVideo } from '@solid-native/expo/solid';
+import { ExpoVideo } from '@solidnative/expo/solid';
 
 <ExpoVideo
   class="aspect-video w-full"
@@ -108,7 +108,7 @@ Audio has no view: `expo-audio` plays through the device's audio session.
 
 `provideService(videoPlayer.SOURCE, () => ({ create }))` or
 `provideService(audioPlayer.SOURCE, () => ({ create }))`, inside a `ServiceScope` from
-`@solid-native/device/solid`, supplies a fake player factory.
+`@solidnative/device/solid`, supplies a fake player factory.
 
 ## Without the module installed
 

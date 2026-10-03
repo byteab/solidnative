@@ -11,8 +11,8 @@ test('icons load only plain SVG data machinery and canonical Solid host', async 
   });
   try {
     for (const module of [
-      await import('@solid-native/icons'),
-      await import('@solid-native/icons/solid'),
+      await import('@solidnative/icons'),
+      await import('@solidnative/icons/solid'),
     ]) {
       assert.equal(typeof module.Icon, 'function');
       assert.equal(typeof module.IconProvider, 'function');

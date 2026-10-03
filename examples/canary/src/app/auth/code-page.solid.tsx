@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text, TextInput } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text, TextInput } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { Session } from './session.solid.ts';
 
 export function CodePage() {

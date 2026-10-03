@@ -5,14 +5,14 @@ summary: A Solid route table driving a real native stack, native tabs and a nati
 
 # Router
 
-`@solid-native/router/solid` routes native screens, not URLs. Routes are a plain array that the
+`@solidnative/router/solid` routes native screens, not URLs. Routes are a plain array that the
 outlets render into `react-native-screens`, so a push is a real native transition with the
 platform's animation and swipe-back over a real `UINavigationController`/`Fragment`.
 
 ## Setting it up
 
 ```sh
-npm install @solid-native/router
+npm install @solidnative/router
 npx expo install react-native-screens
 ```
 
@@ -25,7 +25,7 @@ screen), and may add `guard`, `resolve`, `data`, `presentation`, `redirectTo` an
 
 ```ts
 // src/app/app.routes.ts
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 export const routes: readonly NativeRoute[] = [
   { path: '', lazy: () => import('./home/home.solid.tsx').then((m) => m.Home) },
@@ -41,18 +41,18 @@ A route component receives `{ route, navigation }`: `route.params` holds the `:i
 
 `createNativeNavigation(routes)` creates the navigation state and must run inside a Solid owner
 (a component). `NativeStackOutlet` renders it as a native stack, and `bindNativeNavigation`
-connects it to `@solid-native/device`'s `DeepLinks` and `HardwareBack` so Android's back button
+connects it to `@solidnative/device`'s `DeepLinks` and `HardwareBack` so Android's back button
 and incoming links drive the stack:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { SafeAreaProvider } from '@solid-native/components/solid';
-import { DeepLinks, HardwareBack, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { SafeAreaProvider } from '@solidnative/components/solid';
+import { DeepLinks, HardwareBack, useService } from '@solidnative/device/solid';
 import {
   bindNativeNavigation,
   createNativeNavigation,
   NativeStackOutlet,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { routes } from './app.routes.ts';
 
 export function App() {

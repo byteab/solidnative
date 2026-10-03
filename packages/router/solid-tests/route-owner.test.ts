@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot, onCleanup } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { createRetainedStack, createRouteOwner } from '@solid-native/router/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { createRetainedStack, createRouteOwner } from '@solidnative/router/solid';
 import { createRouteFixture } from './compiled-fixture.tsx';
 import {
   createClock,

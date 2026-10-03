@@ -6,7 +6,7 @@ interface ReloadState {
   pending: boolean;
   roots: Set<ReloadRoot>;
 }
-const reloadKey = Symbol.for('@solid-native/platform/solid/dev-reload/v1');
+const reloadKey = Symbol.for('@solidnative/platform/solid/dev-reload/v1');
 
 function state(): ReloadState {
   const host = globalThis as typeof globalThis & { [reloadKey]?: ReloadState };

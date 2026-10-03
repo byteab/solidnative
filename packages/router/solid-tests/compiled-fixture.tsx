@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   createComponent,
   catchError,
@@ -11,14 +11,14 @@ import {
   useContext,
   type Owner,
 } from 'solid-js';
-import { afterHostCommit, onHostCleanup, type HostChild } from '@solid-native/platform/solid';
+import { afterHostCommit, onHostCleanup, type HostChild } from '@solidnative/platform/solid';
 import {
   createRetainedStack,
   createRouteOwner,
   type RetainedStack,
   type RouteOwner,
-} from '@solid-native/router/solid';
-import type { HostNode } from '@solid-native/fabric';
+} from '@solidnative/router/solid';
+import type { HostNode } from '@solidnative/fabric';
 
 const RouteContext = createContext('missing');
 

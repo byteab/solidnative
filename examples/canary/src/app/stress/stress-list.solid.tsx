@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import {
   Image,
@@ -7,11 +7,11 @@ import {
   TextInput,
   View,
   VirtualList,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Engine } from '@solid-native/fabric';
-import { afterHostCommit, useHostEngine, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Engine } from '@solidnative/fabric';
+import { afterHostCommit, useHostEngine, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { FrameMonitor, stressRows, type StressRow } from './stress-rows.solid.ts';
 import sheet from './stress-list.native.css';
 const round = (value: number) => Math.round(value * 10) / 10;

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, fireEvent, userEvent } from '@solid-native/testing';
+import { cleanup, fireEvent, userEvent } from '@solidnative/testing';
 import { startApp } from '../start-app.ts';
 
 afterEach(cleanup);

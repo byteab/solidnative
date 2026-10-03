@@ -1,17 +1,17 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import { cancelAnimation, interpolate, withRepeat, withTiming } from 'react-native-reanimated';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
 import {
   WorkletScroll,
   WorkletStyle,
   sharedValue,
   workletScroll,
   workletStyle,
-} from '@solid-native/components/solid/reanimated';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid/reanimated';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function WorkletsPage() {

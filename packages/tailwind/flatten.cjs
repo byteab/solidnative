@@ -15,7 +15,7 @@
  * if it does arrive, by dropping what it cannot express, but the warnings are noise nobody needs.
  */
 const { transform, Features } = require('lightningcss');
-const { markUnitless } = require('@solid-native/metro/css/compile.cjs');
+const { markUnitless } = require('@solidnative/metro/css/compile.cjs');
 
 /** `@layer a, b;` - the statement that orders layers, which is meaningless once they are gone. */
 const LAYER_STATEMENT = /@layer\s+[^;{]+;/g;

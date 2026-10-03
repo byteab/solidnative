@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text, View } from '@solidnative/components/solid';
 
 /** Two pressables, one inside the other, each logging its own press. */
 export function nestedPress() {

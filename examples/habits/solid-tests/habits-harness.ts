@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import {
   ColorScheme,
   Dialogs,
   provideService,
   type ServiceBinding,
-} from '@solid-native/device/solid';
-import { Database, type SQLiteDatabase } from '@solid-native/expo/solid/database';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import type { NativeNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { Database, type SQLiteDatabase } from '@solidnative/expo/solid/database';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import type { NativeNavigation } from '@solidnative/router/solid';
 import {
   createClock,
   createFakeFabric,

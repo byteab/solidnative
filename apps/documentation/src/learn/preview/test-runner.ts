@@ -1,15 +1,15 @@
 /**
  * The learner's tests and the lesson's checks, run against the fake Fabric.
  *
- * `render()` from `@solid-native/testing` is a real `createNativeRoot()` onto a `createFakeFabric()`,
+ * `render()` from `@solidnative/testing` is a real `createNativeRoot()` onto a `createFakeFabric()`,
  * exactly as under Node: nothing here reads the phone's DOM. A test file is compiled like any other file,
  * with `vitest` answered by `vitest-api.ts`, so a test written here reads as it would in an app.
  *
  * In the preview this module is loaded through `?learn-native` (see `build/learn-native.ts` and
- * `native-entry.ts`), so `@solid-native/platform/solid` here is the native renderer, not the browser
+ * `native-entry.ts`), so `@solidnative/platform/solid` here is the native renderer, not the browser
  * host the phone renders with.
  */
-import { cleanup } from '@solid-native/testing';
+import { cleanup } from '@solidnative/testing';
 import * as checkApi from '../check.ts';
 import type { Check, CheckContext, TestOutcome } from '../check.ts';
 import { createProgram, locate, ProblemError } from './program.ts';
@@ -17,7 +17,7 @@ import { collectTests, type RegisteredTest } from './vitest-api.ts';
 
 /** What a run that reads styles adds: the app's CSS, compiled as a device build would. */
 export interface NativeStyles {
-  /** Packages in place of the plain ones: `@solid-native/testing` rendering with Tailwind's sheet. */
+  /** Packages in place of the plain ones: `@solidnative/testing` rendering with Tailwind's sheet. */
   readonly libraries: Readonly<Record<string, unknown>>;
   /** Each `.native.css` file's compiled sheet, by name. */
   readonly sheets: Readonly<Record<string, unknown>>;

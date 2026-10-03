@@ -17,7 +17,7 @@ export interface DocSample {
   lang: 'ts' | 'tsx';
   /**
    * A browser page rather than a native screen: a DOM component (`@jsxImportSource solid-js`) or
-   * code on `@solid-native/web`/`solid-js/web`. Checked with the DOM lib; everything else without it.
+   * code on `@solidnative/web`/`solid-js/web`. Checked with the DOM lib; everything else without it.
    */
   dom: boolean;
   /** Why this block is skipped, or undefined if it should be typechecked. */
@@ -65,7 +65,7 @@ export function structuralSkipReason(code: string): string | undefined {
   return undefined;
 }
 
-const DOM_SAMPLE = /@jsxImportSource solid-js\b|from '(solid-js\/web|@solid-native\/web[^']*)'/;
+const DOM_SAMPLE = /@jsxImportSource solid-js\b|from '(solid-js\/web|@solidnative\/web[^']*)'/;
 
 /** Every ```ts/```tsx fenced block in every docs markdown file, in file order. */
 export function extractDocSamples(): DocSample[] {

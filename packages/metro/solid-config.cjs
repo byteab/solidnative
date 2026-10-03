@@ -2,7 +2,7 @@
  * Explicit opt-in during migration:
  * withSolidNative(getDefaultConfig(__dirname))
  *
- * Author .tsx/.jsx files use a leading @jsxImportSource @solid-native/platform/solid comment,
+ * Author .tsx/.jsx files use a leading @jsxImportSource @solidnative/platform/solid comment,
  * or a .solid.tsx/.solid.jsx suffix. React/Flow dependencies remain Expo-owned.
  * Non-JSX .solid.ts/.solid.js author helpers opt into clean reload with Expo-owned syntax.
  * The initial native slice selects production Solid client modules in every mode.

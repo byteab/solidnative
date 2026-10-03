@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSignal } from 'solid-js';
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { Icon, IconProvider } from '@solid-native/icons/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { Icon, IconProvider } from '@solidnative/icons/solid';
 import { createFakeFabric } from '../../platform/solid-tests/fake-fabric.ts';
-import type { NativeRef } from '@solid-native/components/solid';
+import type { NativeRef } from '@solidnative/components/solid';
 const path =
   '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M0 0L2 2"/></svg>';
 const circle = '<svg viewBox="1 2 16 18"><circle cx="8" cy="8" r="4" /></svg>';

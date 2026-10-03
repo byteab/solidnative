@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { bindFormField, createForm, TextInput, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { bindFormField, createForm, TextInput, View } from '@solidnative/components/solid';
 
 export function NewHabit() {
   const form = createForm({ name: '' });

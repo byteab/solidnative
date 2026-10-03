@@ -1,5 +1,5 @@
-import type { HostNode, NativeSyntheticEvent, WindowFrame } from '@solid-native/fabric';
-import type { HostChild } from '@solid-native/platform/solid';
+import type { HostNode, NativeSyntheticEvent, WindowFrame } from '@solidnative/fabric';
+import type { HostChild } from '@solidnative/platform/solid';
 import type {
   Insets,
   LayoutEvent,

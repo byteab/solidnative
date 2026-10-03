@@ -1,5 +1,5 @@
 import { batch } from 'solid-js';
-import type { Engine, EngineNode, FabricUIManager } from '@solid-native/fabric';
+import type { Engine, EngineNode, FabricUIManager } from '@solidnative/fabric';
 
 type Handler =
   NonNullable<FabricUIManager['registerEventHandler']> extends (handler: infer T) => void

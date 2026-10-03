@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { createNativeRoot } from '@solid-native/platform/solid';
+import { createNativeRoot } from '@solidnative/platform/solid';
 import { createFixture } from './compiled-fixture.tsx';
 import { createFakeFabric, createClock } from './fake-fabric.ts';
 
@@ -13,8 +13,8 @@ for (const entry of ['./solid', './solid/jsx-runtime']) {
     );
 }
 
-assert.match(import.meta.resolve('@solid-native/platform/solid'), /\/platform\/dist\/solid\.js$/);
-assert.match(import.meta.resolve('@solid-native/fabric'), /\/fabric\/dist\/index\.js$/);
+assert.match(import.meta.resolve('@solidnative/platform/solid'), /\/platform\/dist\/solid\.js$/);
+assert.match(import.meta.resolve('@solidnative/fabric'), /\/fabric\/dist\/index\.js$/);
 const fabric = createFakeFabric();
 const clock = createClock();
 const fixture = createFixture();

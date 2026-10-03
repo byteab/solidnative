@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot } from 'solid-js';
-import { createObserved } from '@solid-native/device/solid';
+import { createObserved } from '@solidnative/device/solid';
 
 test('observed source rejects stale reads and retained callbacks after owner disposal', async () => {
   let resolve!: (value: number) => void;

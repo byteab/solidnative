@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import { createStore, reconcile, unwrap } from 'solid-js/store';
-import { For } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components/solid';
+import { For } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
 import { STEPS, initial, styles } from '../../../examples/canary/src/bench/rows.ts';
 
 /** The canary SolidBench tree and steps without device instrumentation or timers. */

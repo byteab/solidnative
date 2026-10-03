@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { onCleanup } from 'solid-js';
 import {
   ColorScheme,
@@ -7,13 +7,13 @@ import {
   provideService,
   useService,
   useStatusBar,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   NativeStackOutlet,
   NativeHeader,
   type NativeNavigation,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { SafeAreaProvider } from '../../components/src/solid/safe-area-provider.ts';
 
 export function createStatusShellFixture(applied: (style: string) => void) {

@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   createForm,
   bindFormField,
@@ -9,9 +9,9 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function FormsPage() {

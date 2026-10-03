@@ -8,9 +8,9 @@ summary: The insets `SafeArea` reports, and how `<SafeAreaProvider>` feeds them 
 `SafeArea` reports the edge insets taken by the notch, system bars, home indicator and cutouts.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { SafeArea, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { SafeArea, useService } from '@solidnative/device/solid';
 
 export function FloatingButton(props: { onPress: () => void }) {
   const safeArea = useService(SafeArea);
@@ -22,7 +22,7 @@ export function FloatingButton(props: { onPress: () => void }) {
 }
 ```
 
-Insets are reported by `<SafeAreaProvider>` (in `@solid-native/components`) one frame after mount.
+Insets are reported by `<SafeAreaProvider>` (in `@solidnative/components`) one frame after mount.
 The first provider feeds the scope's `SafeArea`; nested ones, or `reportInsets={false}`, create a
 local one with `createSafeArea()`.
 

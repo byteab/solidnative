@@ -17,15 +17,15 @@ npx expo install expo-haptics
 ```
 
 ```ts
-import { Haptics } from '@solid-native/expo/solid/haptics';
+import { Haptics } from '@solidnative/expo/solid/haptics';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
 
 export function SaveButton() {
   const haptics = useService(Haptics);
@@ -63,7 +63,7 @@ is `false`.
 
 ## Reference
 
-`Haptics` is exported from `@solid-native/expo/solid/haptics`, with the `ImpactStyle` and
+`Haptics` is exported from `@solidnative/expo/solid/haptics`, with the `ImpactStyle` and
 `NotificationType` types.
 
 <!-- api: Haptics -->

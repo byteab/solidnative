@@ -23,14 +23,14 @@ import { tailwindCss } from './preview/tailwind.ts';
 import { runChecks, runTestFile, type RunnerOptions } from './preview/test-runner.ts';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss: (
     css: string,
     context: string,
     options?: { onUnsupported?: (message: string) => void },
   ) => object;
 };
-const { flattenTailwind } = require('@solid-native/tailwind/flatten.cjs') as {
+const { flattenTailwind } = require('@solidnative/tailwind/flatten.cjs') as {
   flattenTailwind: (css: string) => string;
 };
 

@@ -1,5 +1,5 @@
 /*
- * @jsxImportSource @solid-native/platform/solid
+ * @jsxImportSource @solidnative/platform/solid
  *
  * One of the landing page's three hero apps: a fitness summary. The activity rings are bordered
  * circles, each arc three or two of its four sides, turned so the gap sits where a ring ends. The
@@ -7,10 +7,10 @@
  * rotated views with round joints. Photographed on the iOS simulator and the Android emulator;
  * see the landing README.
  */
-import { Text, View } from '@solid-native/components/solid';
-import { useStatusBar } from '@solid-native/device/solid';
-import { Icon } from '@solid-native/icons/solid';
-import { For } from '@solid-native/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { useStatusBar } from '@solidnative/device/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { For } from '@solidnative/platform/solid';
 import { lucideSvg, type IconName } from '../icon.data.ts';
 
 /** The run, in the map's own coordinates: 362 wide, 300 tall. */

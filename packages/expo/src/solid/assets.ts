@@ -6,7 +6,7 @@ import {
   untrack,
   type Accessor,
 } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
+import { useService } from '@solidnative/device/solid';
 import { expoModule } from '../native.ts';
 import { sourcedService } from './owned.ts';
 

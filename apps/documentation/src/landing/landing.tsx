@@ -17,7 +17,7 @@
 import { For, Show, createSignal, onCleanup, onMount } from 'solid-js';
 import { html as planSource } from '../examples/plans.native.css?excerpt';
 import { html as settingsSource } from '../examples/settings.solid.tsx?excerpt';
-import { html as testSource } from '@solid-native/template/src/app/app.test.ts?source';
+import { html as testSource } from '@solidnative/template/src/app/app.test.ts?source';
 import { applySeo } from '../seo.ts';
 import { GITHUB_REPO, SITE_NAME } from '../site.ts';
 import { LandingCode } from './code-sheet.tsx';
@@ -110,7 +110,7 @@ const HOT_CODE = `<span class="hot-dim">&lt;View class="screen"&gt;</span>
 
 const TAILWIND_SETUP = `<span>@import 'tailwindcss/theme.css';</span>
 <span>@import 'tailwindcss/utilities.css';</span>
-<span class="is-ours">@import '@solid-native/tailwind/native.css';</span>`;
+<span class="is-ours">@import '@solidnative/tailwind/native.css';</span>`;
 
 /** A contents entry's number: 01, 02 and so on. */
 const number = (index: number) => String(index + 1).padStart(2, '0');
@@ -479,7 +479,7 @@ export function Home() {
                 </div>
                 <div class="lg:pt-9">
                   <p class="landing-prose">
-                    <code>@solid-native/testing</code> renders a component in Node, against a fake
+                    <code>@solidnative/testing</code> renders a component in Node, against a fake
                     native layer. Find it by role or text, press it, and read back what changed.
                   </p>
                   <p class="landing-prose mt-4">

@@ -2,7 +2,7 @@
   "extends": "../../../tsconfig.published.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "jsxImportSource": "@solid-native/platform/solid"
+    "jsxImportSource": "@solidnative/platform/solid"
   },
   "include": [
     "../src/solid.ts",

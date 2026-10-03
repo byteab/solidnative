@@ -3,7 +3,7 @@
  * scope of its own, inside a Solid root that is never disposed (each test builds a fresh one).
  */
 import { createRoot } from 'solid-js';
-import { provideService, withServiceScope, type ServiceToken } from '@solid-native/device';
+import { provideService, withServiceScope, type ServiceToken } from '@solidnative/device';
 
 /** A service, built with its platform source replaced. */
 export function serviceWith<S, T>(token: ServiceToken<S>, source: NoInfer<S>, make: () => T): T {

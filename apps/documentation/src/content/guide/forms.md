@@ -7,7 +7,7 @@ summary: createForm over native controls, validated and submitted, with no adapt
 
 ## The forms API
 
-`@solid-native/components/solid` exports `createForm`, `bindFormField`, the validators
+`@solidnative/components/solid` exports `createForm`, `bindFormField`, the validators
 `formRequired`, `formMinLength`, `formMaxLength`, `formPattern` and `formEmail`, and the
 `FormSchema` type. `<TextInput>` and `<Switch>` take `value`, `onValueChange`, `disabled`,
 `invalid`, `touched` and `onTouched`, which is what `bindFormField(field)` returns to spread.
@@ -18,7 +18,7 @@ summary: createForm over native controls, validated and submitted, with no adapt
 `validate`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   bindFormField,
   createForm,
@@ -28,8 +28,8 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
 
 export function SignUp() {
   const form = createForm(
@@ -102,7 +102,7 @@ text-input[data-invalid][data-touched] {
 resolves `true` when it completed:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   bindFormField,
@@ -114,8 +114,8 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { Match, Show, Switch as Choose } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { Match, Show, Switch as Choose } from '@solidnative/platform/solid';
 
 /** Stands in for your own API call. Resolves false for a name that is already taken. */
 async function createAccount(data: { name: string; subscribed: boolean }): Promise<boolean> {

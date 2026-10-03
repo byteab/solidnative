@@ -14,7 +14,7 @@ import {
   ImageEditor,
   SaveFormat,
   type NativeImageEditor,
-} from '@solid-native/expo/image-editor';
+} from '@solidnative/expo/image-editor';
 import { disposeServices, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

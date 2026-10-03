@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   ServiceScope,
@@ -7,9 +7,9 @@ import {
   LayoutAnimation,
   provideService,
   type KeyboardMetrics,
-} from '@solid-native/device/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
-import type { StyleSheet } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
+import type { StyleSheet } from '@solidnative/fabric';
 import { View, Text } from '../src/solid/primitive.ts';
 import { Image } from '../src/solid/image.ts';
 import { ImageBackground } from '../src/solid/image-background.ts';

@@ -4,8 +4,8 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { ORIGIN, Sensor, type Vector } from '@solid-native/expo/sensors';
-import { Locale } from '@solid-native/expo/locale';
+import { ORIGIN, Sensor, type Vector } from '@solidnative/expo/sensors';
+import { Locale } from '@solidnative/expo/locale';
 import { disposeServices, owned, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

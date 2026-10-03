@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   Accessibility,
   ColorScheme,
@@ -7,8 +7,8 @@ import {
   StatusBar,
   provideService,
   useService,
-} from '@solid-native/device/solid';
-import { createNativeNavigation, type NativeNavigation } from '@solid-native/router/solid';
+} from '@solidnative/device/solid';
+import { createNativeNavigation, type NativeNavigation } from '@solidnative/router/solid';
 import { App } from '../src/app/app.solid.tsx';
 import { CanaryProviders } from '../src/app/app.config.solid.tsx';
 import { Home } from '../src/app/home/home.solid.tsx';

@@ -15,7 +15,7 @@
  * A library still has to be installed for its element to commit as anything. This is the
  * JavaScript half; an element whose native side is missing commits as `UnimplementedNativeView`.
  */
-import { registerViewName } from '@solid-native/fabric';
+import { registerViewName } from '@solidnative/fabric';
 
 /** Element name -> the Fabric component name, and the props its React wrapper would default. */
 export const NATIVE_VIEWS: Readonly<Record<string, [string, Record<string, unknown>?]>> = {

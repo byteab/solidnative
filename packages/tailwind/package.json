@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/tailwind",
+  "name": "@solidnative/tailwind",
   "version": "0.1.1",
   "description": "Tailwind CSS preset for solid-native (Solid): Tailwind 4 on native and web, Tailwind 3 on native.",
   "keywords": [
@@ -17,7 +17,7 @@
   "type": "commonjs",
   "main": "flatten.cjs",
   "dependencies": {
-    "@solid-native/metro": "workspace:*",
+    "@solidnative/metro": "workspace:*",
     "lightningcss": "^1.30.2"
   },
   "nx": {
@@ -32,7 +32,7 @@
     "url": "https://github.com/byteab/solid-native/issues"
   },
   "peerDependencies": {
-    "@solid-native/metro": "workspace:*",
+    "@solidnative/metro": "workspace:*",
     "@tailwindcss/cli": "^4.3.3",
     "tailwindcss": "^3.4.1 || ^4.3.3"
   },

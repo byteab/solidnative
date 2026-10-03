@@ -1,5 +1,5 @@
 import { getOwner, onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import { optional } from '../native.ts';
 export interface RawState {
   readonly __expo_shared_object_id__?: number;

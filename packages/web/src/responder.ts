@@ -35,7 +35,7 @@
  * something inside that scroll view is mid-press will cancel the press on the web and not on
  * native. Narrow, and named here rather than found by a user later.
  */
-import { SyntheticEvent, type ResponderEvent, type ResponderHandlers } from '@solid-native/fabric';
+import { SyntheticEvent, type ResponderEvent, type ResponderHandlers } from '@solidnative/fabric';
 import { type BrowserNode, pathTo } from './dom-node.ts';
 
 export class ResponderSystem {

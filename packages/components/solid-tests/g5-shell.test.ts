@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot, type HostChild } from '@solid-native/platform/solid';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { createNativeRoot, type HostChild } from '@solidnative/platform/solid';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import { indicatorFixture, keyboardProviderFixture } from './g5-shell-fixture.tsx';
 import {
   createFakeFabric,

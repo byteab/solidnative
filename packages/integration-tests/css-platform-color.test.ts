@@ -12,12 +12,12 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { registerPlatformComponents } from '@solid-native/fabric';
+import { registerPlatformComponents } from '@solidnative/fabric';
 import { mountSolid } from './css-solid-harness.ts';
 import { platformColorHost } from './css-solid-fixtures.tsx';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 let mounted: ReturnType<typeof mountSolid> | undefined;
 afterEach(() => mounted?.root.dispose());

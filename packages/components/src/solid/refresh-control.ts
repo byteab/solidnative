@@ -1,6 +1,6 @@
 import { createRenderEffect, untrack } from 'solid-js';
-import { nativePlatform, type HostNode } from '@solid-native/fabric';
-import { spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import { nativePlatform, type HostNode } from '@solidnative/fabric';
+import { spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { primitiveNode, hostProps } from './primitive.ts';
 import { commitTask, createNativeRef } from './ref.ts';
 import type { ViewProps } from './types.ts';

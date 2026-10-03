@@ -64,7 +64,7 @@ describe("the offline guide's worked example, extracted and compiled for real", 
     );
     const markdown = readFileSync(guidePath, 'utf8');
     // Inside this package, not the system tmp directory: Node resolves a bare specifier
-    // ('solid-js', '@solid-native/expo/solid/database', ...) by walking up from the importing file
+    // ('solid-js', '@solidnative/expo/solid/database', ...) by walking up from the importing file
     // looking for node_modules, which a directory outside the workspace has none of.
     const here = fileURLToPath(new URL('.', import.meta.url));
     directory = mkdtempSync(path.join(here, '.offline-guide-'));

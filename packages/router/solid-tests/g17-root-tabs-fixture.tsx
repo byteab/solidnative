@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { ServiceScope } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { ServiceScope } from '@solidnative/device/solid';
 import {
   createNativeNavigation,
   type NativeNavigation,

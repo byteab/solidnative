@@ -12,9 +12,9 @@ import {
   type HostNode,
   type ScrollDrive,
   type ScrollRange,
-} from '@solid-native/fabric';
-import { Keyboard, SafeArea, SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { insertHostChildren, spreadHostProps, useHostAdapter } from '@solid-native/platform/solid';
+} from '@solidnative/fabric';
+import { Keyboard, SafeArea, SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { insertHostChildren, spreadHostProps, useHostAdapter } from '@solidnative/platform/solid';
 import { KEYBOARD_CONTROLLER } from './keyboard-controller.ts';
 import { hostProps, primitiveNode, View } from './primitive.ts';
 import { createNativeRef } from './ref.ts';

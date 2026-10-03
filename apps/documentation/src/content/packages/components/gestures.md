@@ -13,11 +13,11 @@ and pans that cooperate with scroll views possible. Build a gesture with the lib
 API and attach it with `NativeGesture`, which takes an accessor and returns a ref binding:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { Gesture } from 'react-native-gesture-handler';
-import { View } from '@solid-native/components/solid';
-import { NativeGesture } from '@solid-native/components/solid/gestures';
-import { WorkletStyle, sharedValue, workletStyle } from '@solid-native/components/solid/reanimated';
+import { View } from '@solidnative/components/solid';
+import { NativeGesture } from '@solidnative/components/solid/gestures';
+import { WorkletStyle, sharedValue, workletStyle } from '@solidnative/components/solid/reanimated';
 
 export function Draggable() {
   const x = sharedValue(0);
@@ -65,7 +65,7 @@ already running keeps its old Babel setup and serves files without worklets.
 Wrap the whole app in one `GestureRoot`, as `GestureHandlerRootView` in React Native:
 
 ```tsx
-import { GestureRoot } from '@solid-native/components/solid/gestures';
+import { GestureRoot } from '@solidnative/components/solid/gestures';
 
 <GestureRoot>
   <NativeStackOutlet navigation={navigation} />
@@ -74,16 +74,16 @@ import { GestureRoot } from '@solid-native/components/solid/gestures';
 
 On Android it is `RNGestureHandlerRootView`, a view group that intercepts touches first; on iOS
 recognizers attach to the target view, so it renders a plain view. The
-`@solid-native/components/solid/gestures` version also initializes the library's Fabric support; the
+`@solidnative/components/solid/gestures` version also initializes the library's Fabric support; the
 main entry's `GestureRoot` only renders the view.
 
 ## Imports come from their own file
 
 `Gesture`, `Animated` and Reanimated import React Native's uncompiled source, which Node cannot
 parse, so the bindings with backends wired in live on subpaths the tested main entry does not load:
-`@solid-native/components/solid/gestures`, `@solid-native/components/solid/animations` and
-`@solid-native/components/solid/reanimated` (see [animation](/packages/components/animation)). The
-main entry, `@solid-native/components/solid`, exports `NativeGesture`, `AnimatedStyle`,
+`@solidnative/components/solid/gestures`, `@solidnative/components/solid/animations` and
+`@solidnative/components/solid/reanimated` (see [animation](/packages/components/animation)). The
+main entry, `@solidnative/components/solid`, exports `NativeGesture`, `AnimatedStyle`,
 `WorkletStyle` and `WorkletScroll` taking the backend as a second argument.
 
 ## A gesture inside a scroll view that moves the same way
@@ -115,7 +115,7 @@ Without `failOffsetX` the pager waits for a pan that never fails, and does not p
 ## Testing a component with gestures
 
 Under Node there is no recogniser, so a test calls the gesture's callbacks directly.
-`@solid-native/testing/register` stubs `react-native-gesture-handler` and Reanimated, so
+`@solidnative/testing/register` stubs `react-native-gesture-handler` and Reanimated, so
 `NativeGesture` screens render as on a device. `gestureOf(node)` returns a view's gesture, or with a
 kind such as `'Pan'`, that gesture inside a composed one:
 
@@ -123,9 +123,9 @@ kind such as `'Pan'`, that gesture inside a composed one:
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
 import { Gesture } from 'react-native-gesture-handler';
-import { View } from '@solid-native/components/solid';
-import { NativeGesture } from '@solid-native/components/solid/gestures';
-import { cleanup, gestureOf, render, screen } from '@solid-native/testing';
+import { View } from '@solidnative/components/solid';
+import { NativeGesture } from '@solidnative/components/solid/gestures';
+import { cleanup, gestureOf, render, screen } from '@solidnative/testing';
 
 afterEach(cleanup);
 

@@ -1,5 +1,5 @@
 import { batch, createMemo, createSignal, onCleanup } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
+import { createServiceToken, useService } from '@solidnative/device/solid';
 import { Runs, type Run } from '../data/runs.solid.ts';
 import { LocationSourceSetting } from '../settings/location-source-setting.solid.ts';
 import { paceSecondsPerKm, totalDistanceMeters, type TimedPoint } from './geo.ts';

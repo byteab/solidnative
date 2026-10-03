@@ -47,7 +47,7 @@ function nativeModulesUsedBy(pkg: string): Set<string> {
 
 describe('native modules', () => {
   for (const pkg of ['components', 'router', 'icons']) {
-    it(`@solid-native/${pkg} declares every module whose views it renders`, () => {
+    it(`@solidnative/${pkg} declares every module whose views it renders`, () => {
       const peers = manifest(`packages/${pkg}`).peerDependencies ?? {};
       for (const module of nativeModulesUsedBy(pkg)) {
         assert.ok(module in peers, `${module} is rendered but not a peer`);

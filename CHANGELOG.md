@@ -2,13 +2,13 @@
 
 ### ⚠️ Breaking changes
 
-- ng-native is now **solid-native**. The packages move from `@ng-native/*` to `@solid-native/*`
-  (`@solid-native/platform`, `@solid-native/router`, ...), so update imports, `package.json`
+- ng-native is now **solid-native**. The packages move from `@ng-native/*` to `@solidnative/*`
+  (`@solidnative/platform`, `@solidnative/router`, ...), so update imports, `package.json`
   dependencies and Babel/Metro config requires to the new scope. Diagnostics are prefixed
   `[solid-native]`, generated files live in `.solid-native/`, and the example apps' bundle ids are
   `dev.solidnative.*`. The `@ng-native/*` packages already on npm are left as they are.
   solid-native builds on [ng-native](https://github.com/ng-native/ng-native) by Ashley Hunter.
-- `@solid-native/icons` draws [Lucide](https://lucide.dev) icons from `lucide-static` instead of the
+- `@solidnative/icons` draws [Lucide](https://lucide.dev) icons from `lucide-static` instead of the
   Angular `@ng-icons/*` sets: `import { Flame } from 'lucide-static'` and pass it to `Icon`, which
   Metro still inlines at build time. `strokeWidth` replaces the icon's own `stroke-width`.
 - solid-native renders Solid, and the Angular renderer is removed. Components are Solid functions
@@ -16,9 +16,9 @@
   styled with scoped `.native.css` sheets; each package's root export is its Solid entry, with the
   `./solid*` subpaths kept as aliases. `@angular/*` is no longer a dependency of anything published.
   The Angular CLI schematics (`ng add`, `ng generate`) are retired with it: create an app with
-  `create-expo-app --template @solid-native/template`, or add one to an Nx workspace with
-  `nx add @solid-native/nx`. The template and the Nx generator test with `@solid-native/testing`'s
-  `render`, `screen` and `userEvent`, compiled for Node by `@solid-native/testing/register`.
+  `create-expo-app --template @solidnative/template`, or add one to an Nx workspace with
+  `nx add @solidnative/nx`. The template and the Nx generator test with `@solidnative/testing`'s
+  `render`, `screen` and `userEvent`, compiled for Node by `@solidnative/testing/register`.
 
 ## 0.1.1 (2026-09-29)
 

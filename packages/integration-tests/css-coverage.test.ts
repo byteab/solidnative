@@ -11,7 +11,7 @@ import { describe, it } from 'node:test';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { compileCss } = require('@solid-native/metro/css/compile.cjs');
+const { compileCss } = require('@solidnative/metro/css/compile.cjs');
 
 const declarationsOf = (css: string): Record<string, unknown> =>
   compileCss(`view { ${css} }`).rules[0].declarations;

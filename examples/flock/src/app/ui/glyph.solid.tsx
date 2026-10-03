@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   BadgeCheck,
   Bell,
@@ -18,9 +18,9 @@ import {
   UserPlus,
   X,
 } from 'lucide-static';
-import { nativePlatform } from '@solid-native/fabric';
-import { ExpoSymbol } from '@solid-native/expo/solid';
-import { Icon } from '@solid-native/icons/solid';
+import { nativePlatform } from '@solidnative/fabric';
+import { ExpoSymbol } from '@solidnative/expo/solid';
+import { Icon } from '@solidnative/icons/solid';
 
 const filled = (svg: string) => svg.replace('fill="none"', 'fill="currentColor"');
 

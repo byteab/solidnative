@@ -1,6 +1,6 @@
 import { createMemo, createSignal } from 'solid-js';
-import { createServiceToken } from '@solid-native/device/solid';
-import { database, type Migration, type SQLiteDatabase } from '@solid-native/expo/solid/database';
+import { createServiceToken } from '@solidnative/device/solid';
+import { database, type Migration, type SQLiteDatabase } from '@solidnative/expo/solid/database';
 
 export interface Habit {
   readonly id: string;

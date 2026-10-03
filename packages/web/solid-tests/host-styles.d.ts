@@ -3,7 +3,7 @@ declare module '*.native.css' {
   export default sheet;
 }
 declare module '*/styles.css';
-declare module '@solid-native/metro/solid-browser.cjs' {
+declare module '@solidnative/metro/solid-browser.cjs' {
   export function compileBrowserCss(
     source: string,
     filename: string,

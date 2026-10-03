@@ -1,5 +1,5 @@
 /**
- * `nx g @solid-native/nx:app apps/mobile`: a native Solid app as a project of this workspace.
+ * `nx g @solidnative/nx:app apps/mobile`: a native Solid app as a project of this workspace.
  *
  * The app is an Expo project, built by Metro. `@nx/expo`'s plugin, which `init` registers, infers
  * its Expo targets from the files written here; `project.json` adds the two it cannot infer:

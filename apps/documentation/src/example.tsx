@@ -2,13 +2,13 @@
 /**
  * A live example, and the reason this site is built the way it is.
  *
- * A component built from `@solid-native/components/solid` cannot be put in an ordinary Solid DOM
+ * A component built from `@solidnative/components/solid` cannot be put in an ordinary Solid DOM
  * page. It renders native elements - `<view>`, `<text>`, `<scroll-view>` - through a universal
  * renderer that commits them to a host, plus a `HostEngine` for anything that measures itself.
  * Solid's DOM renderer supplies neither, so the same component that draws a button on a phone
  * would draw nothing here.
  *
- * `Island` from `@solid-native/web/solid` gives each example exactly that: an element of its own,
+ * `Island` from `@solidnative/web/solid` gives each example exactly that: an element of its own,
  * `<solid-native-island>`, that becomes the root of a small, separate universal tree drawn by the
  * browser host, owned by this page so it is disposed with it. The page around it stays a
  * document, and the two never share a renderer.
@@ -17,7 +17,7 @@
  * otherwise through `height`.
  */
 import { createResource, createSignal, For, Show } from 'solid-js';
-import { Island, type BrowserComponent } from '@solid-native/web/solid';
+import { Island, type BrowserComponent } from '@solidnative/web/solid';
 import { Icon, type IconName } from './icon.tsx';
 
 /** What `examples.ts` resolves a name to: the component, and the text that produced it. */

@@ -1,7 +1,7 @@
 /**
  * The API reference, read out of the source rather than written beside it.
  *
- * Every package publishes its Solid surface from one entry, `src/solid.ts` (and `@solid-native/web`
+ * Every package publishes its Solid surface from one entry, `src/solid.ts` (and `@solidnative/web`
  * from `src/solid/index.ts`), plus the `./solid/<module>` subpaths a package keeps off its root so
  * that importing one Expo module does not make an app install the rest. This walks what those
  * entries export, with a TypeScript program and its type checker, and the docs render what it
@@ -38,11 +38,11 @@ export interface ApiMethod {
 export interface ApiEntry {
   readonly name: string;
   readonly kind: 'component' | 'function' | 'class' | 'value';
-  /** `@solid-native/components`. */
+  /** `@solidnative/components`. */
   readonly package: string;
   /** The declaration's file, relative to the workspace. */
   readonly file: string;
-  /** Where an app imports it from: `@solid-native/components/solid`, `@solid-native/expo/solid/battery`. */
+  /** Where an app imports it from: `@solidnative/components/solid`, `@solidnative/expo/solid/battery`. */
   readonly importPath: string;
   readonly doc?: string;
   /** A function's signature, or a plain value's type. */
@@ -64,7 +64,7 @@ const FLAGS =
 
 /**
  * Every Solid entry of one package: `[importPath, file]`, its root entry first. A package with no
- * `./solid` subpath (`@solid-native/testing`, whose root entry is already the Solid one) is read
+ * `./solid` subpath (`@solidnative/testing`, whose root entry is already the Solid one) is read
  * from `.`.
  */
 function entriesOf(packageDir: string, name: string): [string, string][] {
@@ -82,7 +82,7 @@ function entriesOf(packageDir: string, name: string): [string, string][] {
         !PLUMBING.test(entry[0]),
     )
     .sort(([a], [b]) => (a === './solid' ? -1 : b === './solid' ? 1 : 0))
-    .map(([key, file]) => [`@solid-native/${name}${key.slice(1)}`, path.join(packageDir, file)]);
+    .map(([key, file]) => [`@solidnative/${name}${key.slice(1)}`, path.join(packageDir, file)]);
 }
 
 function docOf(symbol: ts.Symbol, checker: ts.TypeChecker): string | undefined {
@@ -231,7 +231,7 @@ function entryOf(
 }
 
 /**
- * Every Solid export of every documented package, keyed `@solid-native/components#Switch`.
+ * Every Solid export of every documented package, keyed `@solidnative/components#Switch`.
  *
  * Keyed by package and name because a name is not unique across the workspace: the platform's
  * control-flow `Switch` and the components' native `Switch` are both real. A page usually writes
@@ -264,9 +264,9 @@ export function extractApi(workspaceRoot: string): Record<string, ApiEntry> {
     const module = source && checker.getSymbolAtLocation(source);
     if (!module) continue;
     for (const exported of checker.getExportsOfModule(module)) {
-      const key = `@solid-native/${name}#${exported.getName()}`;
+      const key = `@solidnative/${name}#${exported.getName()}`;
       if (out[key]) continue;
-      const entry = entryOf(exported, checker, workspaceRoot, `@solid-native/${name}`, importPath);
+      const entry = entryOf(exported, checker, workspaceRoot, `@solidnative/${name}`, importPath);
       if (entry) out[key] = entry;
     }
   }
@@ -274,7 +274,7 @@ export function extractApi(workspaceRoot: string): Record<string, ApiEntry> {
 }
 
 /**
- * One entry, by `Button` or by `@solid-native/components#Switch`.
+ * One entry, by `Button` or by `@solidnative/components#Switch`.
  *
  * An ambiguous bare name throws rather than picking one, naming the candidates: a page that
  * silently documented the wrong `Switch` is the failure this whole file exists to avoid.

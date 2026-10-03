@@ -9,8 +9,8 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { Engine, type NativeSyntheticEvent } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type NativeSyntheticEvent } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { mountSolid } from './css-solid-harness.ts';
 import { propagation } from './css-solid-fixtures.tsx';
 

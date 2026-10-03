@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Image, Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Image, Text, View } from '@solidnative/components/solid';
 import type { Album } from '../catalogue/catalogue.solid.ts';
 
 /** One album, in the library's horizontal row: artwork, title and artist. */

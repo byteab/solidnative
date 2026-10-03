@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { registerHooks } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { createSolidRuntime } from '@solid-native/metro/solid-runtime.cjs';
-import { isSolidSource, transformSolid } from '@solid-native/metro/solid-transform.cjs';
+import { createSolidRuntime } from '@solidnative/metro/solid-runtime.cjs';
+import { isSolidSource, transformSolid } from '@solidnative/metro/solid-transform.cjs';
 
 /** Synchronous Node 24 hook: no worker thread or export conditions required. */
 export function registerCompiled({ dist = false } = {}) {
@@ -13,9 +13,9 @@ export function registerCompiled({ dist = false } = {}) {
       if (client) return { url: pathToFileURL(client).href, shortCircuit: true };
       if (specifier === 'solid-js/web' || specifier.startsWith('solid-js/web/'))
         throw new Error('DOM Solid is excluded from the native compiled fixture.');
-      if (dist && specifier === '@solid-native/platform/solid')
+      if (dist && specifier === '@solidnative/platform/solid')
         return { url: new URL('../dist/solid.js', import.meta.url).href, shortCircuit: true };
-      if (dist && specifier === '@solid-native/fabric')
+      if (dist && specifier === '@solidnative/fabric')
         return {
           url: new URL('../../fabric/dist/index.js', import.meta.url).href,
           shortCircuit: true,

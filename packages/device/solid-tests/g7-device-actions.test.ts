@@ -9,7 +9,7 @@ import {
   LayoutAnimation,
   androidPermission,
   androidPermissionOf,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 import { deferred, scope, service } from './g7-device-utils.ts';
 
 test('sharing reports actual completion, contains source failures, and never opens empty content', async () => {

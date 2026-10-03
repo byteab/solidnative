@@ -14,7 +14,7 @@
  * `document.createElement` inside a projected template is not this package's to assume against),
  * and a walk over `children` wants exactly the nodes the renderer put here, in order.
  */
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 
 export type BrowserNodeKind = 'element' | 'text' | 'anchor';
 

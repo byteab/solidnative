@@ -22,24 +22,24 @@ Turn the capability on in `app.json`, which adds the entitlement:
 ```
 
 ```ts
-import { AppleSignIn, AppleSignInButton } from '@solid-native/expo/solid/apple-sign-in';
+import { AppleSignIn, AppleSignInButton } from '@solidnative/expo/solid/apple-sign-in';
 ```
 
 `AppleSignInButton` registers its native view (`registerExpoViews('apple-sign-in-button')`, from
-`@solid-native/expo/solid`) on first render, so no startup step is needed. An app that registers
+`@solidnative/expo/solid`) on first render, so no startup step is needed. An app that registers
 its Expo views in one place can list it there too.
 
 ## The smallest thing that works
 
 ```tsx
 import { createSignal, onMount } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
+import { useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
 import {
   AppleAuthenticationScope,
   AppleSignIn,
   AppleSignInButton,
-} from '@solid-native/expo/solid/apple-sign-in';
+} from '@solidnative/expo/solid/apple-sign-in';
 
 export function SignIn() {
   const apple = useService(AppleSignIn);
@@ -115,6 +115,6 @@ false, `signIn()`, `refresh()`, `signOut()` and `credentialState()` resolve to n
 
 ## Reference
 
-`AppleSignIn` and `AppleSignInButton` are exported from `@solid-native/expo/solid/apple-sign-in`.
+`AppleSignIn` and `AppleSignInButton` are exported from `@solidnative/expo/solid/apple-sign-in`.
 
 <!-- api: AppleSignIn -->

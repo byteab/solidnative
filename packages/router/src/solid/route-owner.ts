@@ -1,10 +1,10 @@
 import { createRoot, getOwner, onCleanup, type Owner } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import {
   createHostElement,
   insertHostChildren,
   type HostChild,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 
 export interface RouteOwnerOptions {
   readonly onError?: (error: unknown) => void;

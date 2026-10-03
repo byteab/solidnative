@@ -4,7 +4,7 @@
  */
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { cleanup, fireEvent, render, screen } from '@solid-native/testing';
+import { cleanup, fireEvent, render, screen } from '@solidnative/testing';
 import { createPressTiming } from './ui-press-fixture.tsx';
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

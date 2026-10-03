@@ -19,15 +19,15 @@ npx expo install expo-screen-orientation
 ```
 
 ```ts
-import { DeviceOrientation } from '@solid-native/expo/solid/orientation';
+import { DeviceOrientation } from '@solidnative/expo/solid/orientation';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { DeviceOrientation } from '@solid-native/expo/solid/orientation';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { DeviceOrientation } from '@solidnative/expo/solid/orientation';
 
 export function Player() {
   const orientation = useService(DeviceOrientation);
@@ -60,7 +60,7 @@ On the web, and in a test with no fake `DeviceOrientation.SOURCE`, `orientation`
 
 ## Reference
 
-`DeviceOrientation` is exported from `@solid-native/expo/solid/orientation`, with the `Orientation`
+`DeviceOrientation` is exported from `@solidnative/expo/solid/orientation`, with the `Orientation`
 and `OrientationLock` types.
 
 <!-- api: DeviceOrientation -->

@@ -5,33 +5,33 @@ summary: Install the Expo module, import its service by entry point, read it wit
 
 # Using a module
 
-`@solid-native/expo` pulls in no native code. Install each Expo module your app uses alongside it:
+`@solidnative/expo` pulls in no native code. Install each Expo module your app uses alongside it:
 
 ```sh
-npm install @solid-native/expo
+npm install @solidnative/expo
 npm install expo-battery   # only if you use Battery
 ```
 
 ## One entry point per module
 
-**Most services have their own entry point** (`@solid-native/expo/solid/battery`,
-`@solid-native/expo/solid/haptics`, ...) instead of the package root, so importing haptics never
+**Most services have their own entry point** (`@solidnative/expo/solid/battery`,
+`@solidnative/expo/solid/haptics`, ...) instead of the package root, so importing haptics never
 pulls in the video player:
 
 ```ts
-import { Battery } from '@solid-native/expo/solid/battery';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { Storage, SecureStorage } from '@solid-native/expo/solid/store';
+import { Battery } from '@solidnative/expo/solid/battery';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { Storage, SecureStorage } from '@solidnative/expo/solid/store';
 ```
 
 Each name is both a type and a service token, so `useService(Clipboard)` and `clipboard: Clipboard`
-both work. `useService` comes from `@solid-native/device/solid` and runs wherever a Solid owner is
+both work. `useService` comes from `@solidnative/device/solid` and runs wherever a Solid owner is
 active:
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { Battery } from '@solid-native/expo/solid/battery';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { Battery } from '@solidnative/expo/solid/battery';
 
 export function Charge() {
   const battery = useService(Battery);
@@ -45,8 +45,8 @@ lives (and releases its native listeners and claims) with the nearest `ServiceSc
 storybook swaps the native side by providing a fake source:
 
 ```tsx
-import { ServiceScope, provideService } from '@solid-native/device/solid';
-import { Battery } from '@solid-native/expo/solid/battery';
+import { ServiceScope, provideService } from '@solidnative/device/solid';
+import { Battery } from '@solidnative/expo/solid/battery';
 import { Charge } from './charge';
 
 export function LowBatteryPreview() {
@@ -83,7 +83,7 @@ then rebuild the app ("npx expo run:ios", or a new EAS build): a development bui
 contain only the native modules they were built with.
 ```
 
-`MissingModuleError` is exported from `@solid-native/expo/solid` with a `module` property naming the
+`MissingModuleError` is exported from `@solidnative/expo/solid` with a `module` property naming the
 package, for apps that catch it. The same import has `expoModule` and `optional`, the helpers every
 service uses to reach its module, for wrapping a module of your own.
 
@@ -98,7 +98,7 @@ wherever its module is missing, because an empty identifier or hash looks right 
 
 ## What is on the bare import
 
-Exports not bound to one optional module live on `@solid-native/expo/solid` itself:
+Exports not bound to one optional module live on `@solidnative/expo/solid` itself:
 [`Permission`](/packages/expo/permissions); `registerExpoView`, `registerExpoViews`,
 `registerNativeViews`, `registerExpoUiViews` and `registerExpoMap` (see
 [Native views](/packages/expo/native-views) and [Expo UI](/packages/expo/expo-ui)); the views

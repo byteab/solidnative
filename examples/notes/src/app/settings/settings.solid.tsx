@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { Dialogs, useService } from '@solid-native/device/solid';
+import { Dialogs, useService } from '@solidnative/device/solid';
 import {
   Pressable,
   SafeAreaView,
@@ -8,8 +8,8 @@ import {
   Switch,
   Text,
   View,
-} from '@solid-native/components/solid';
-import { Show } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { Show } from '@solidnative/platform/solid';
 import { Notes } from '../sync/notes.solid.ts';
 
 export function formatLastSynced(timestamp: number | null): string {

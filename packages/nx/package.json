@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/nx",
+  "name": "@solidnative/nx",
   "version": "0.1.1",
   "description": "Nx generators for native SolidJS apps: nx add, and an Expo app project whose targets run it.",
   "keywords": [

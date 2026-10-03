@@ -16,7 +16,7 @@ The tab bar (`src/app/tabs.solid.tsx`) is a real `UITabBarController` on iOS and
 Android. Playback itself is split into two services: `src/app/player/queue.solid.ts` (track order -
 next, previous, shuffle, repeat) and `src/app/player/playback.solid.ts` (pointing a real player at
 whatever the queue is on). `src/app/player/track-player.solid.ts` is the seam between them: the
-production path wraps `audioPlayer()` from `@solid-native/expo/solid/player`, and the tests provide a
+production path wraps `audioPlayer()` from `@solidnative/expo/solid/player`, and the tests provide a
 fake instead, since `expo-audio` is never loaded in Node.
 
 ## Run it

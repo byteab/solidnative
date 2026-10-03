@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createRenderEffect, createSignal, onCleanup } from 'solid-js';
 import {
   Modal,
@@ -7,20 +7,20 @@ import {
   Text,
   View,
   type NativeRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   Show,
   useHostAdapter,
   withNativeStyles,
   type NativeChild,
-} from '@solid-native/platform/solid';
+} from '@solidnative/platform/solid';
 import {
   NativeHeader,
   NativeHeaderItem,
   useNavigation,
   useRoute,
-} from '@solid-native/router/solid';
+} from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import sheet from './regressions.native.css';
 export function Regressions() {

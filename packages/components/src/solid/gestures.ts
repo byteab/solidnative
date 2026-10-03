@@ -25,7 +25,7 @@ export { type GestureSpec, type GestureTarget } from './animation-bindings.ts';
  * Not for laziness: a static import would put these TypeScript sources into our own type-checking
  * program, where they fail against settings of ours they were never written for
  * (`verbatimModuleSyntax`, `erasableSyntaxOnly`). `require` asks Metro for the module and leaves
- * the compiler out of it, which is the same trade `@solid-native/device` makes for React Native.
+ * the compiler out of it, which is the same trade `@solidnative/device` makes for React Native.
  */
 const { attachHandlers } =
   require('react-native-gesture-handler/src/handlers/gestures/GestureDetector/attachHandlers.ts') as {

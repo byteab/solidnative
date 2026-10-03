@@ -15,7 +15,7 @@ npx expo install expo-font
 ```
 
 ```ts
-import { loadFonts } from '@solid-native/expo/solid/fonts';
+import { loadFonts } from '@solidnative/expo/solid/fonts';
 ```
 
 Unlike most services here, this uses `expo-font`'s JavaScript rather than its native module, which
@@ -38,7 +38,7 @@ A face is declared in CSS, collected at build time, and registered before the ap
 ```
 
 ```ts
-import { loadFonts } from '@solid-native/expo/solid/fonts';
+import { loadFonts } from '@solidnative/expo/solid/fonts';
 import globalStyles from './global-styles.native.css';
 
 await loadFonts(globalStyles);
@@ -62,10 +62,10 @@ React Native. A face with a `style` is likewise registered as `<family>-<style>`
 `useService(Fonts)` reports what is registered:
 
 ```tsx
-import { For } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Fonts } from '@solid-native/expo/solid/fonts';
+import { For } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Fonts } from '@solidnative/expo/solid/fonts';
 
 export function FamilyPicker() {
   const fonts = useService(Fonts);

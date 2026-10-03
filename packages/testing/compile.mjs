@@ -1,8 +1,8 @@
 /**
- * What `@solid-native/testing/register` and `@solid-native/testing/vitest` share: compiling a module the
- * way Metro compiles it for a device, with `@solid-native/metro`'s own Solid and CSS transforms.
+ * What `@solidnative/testing/register` and `@solidnative/testing/vitest` share: compiling a module the
+ * way Metro compiles it for a device, with `@solidnative/metro`'s own Solid and CSS transforms.
  *
- * - Solid TSX (`.solid.tsx`, or the `@jsxImportSource @solid-native/platform/solid` pragma) through
+ * - Solid TSX (`.solid.tsx`, or the `@jsxImportSource @solidnative/platform/solid` pragma) through
  *   the universal native JSX transform.
  * - `.native.css` into stylesheet data.
  * - `solid-js` to its client build, which Node's own `node`/`worker` conditions would otherwise
@@ -10,7 +10,7 @@
  * - `require('./logo.png')` and the other asset requires to `{ testUri }`, as React Native's Jest
  *   preset does: a test has no Metro asset registry, and an ES module no `require`.
  * - The native gesture and animation libraries, whose React Native source Node cannot load, to the
- *   stand-ins in `src/` (`STAND_INS`), including the internals `@solid-native/components/gestures` and
+ *   stand-ins in `src/` (`STAND_INS`), including the internals `@solidnative/components/gestures` and
  *   `/reanimated` `require` by path, which become imports.
  *
  * The platform the stylesheets compile for is `SOLID_NATIVE_PLATFORM` (`ios` by default); `render()`'s
@@ -19,9 +19,9 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createSolidRuntime } from '@solid-native/metro/solid-runtime.cjs';
-import { isSolidSource, transformSolid } from '@solid-native/metro/solid-transform.cjs';
-import { isNativeCss, transformNativeCss } from '@solid-native/metro/solid-css.cjs';
+import { createSolidRuntime } from '@solidnative/metro/solid-runtime.cjs';
+import { isSolidSource, transformSolid } from '@solidnative/metro/solid-transform.cjs';
+import { isNativeCss, transformNativeCss } from '@solidnative/metro/solid-css.cjs';
 
 export { isNativeCss };
 

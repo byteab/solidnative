@@ -8,10 +8,10 @@ summary: The screen reader, reduced motion, bold text and font scale settings `A
 `Accessibility` reports the user's system accessibility settings.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { Accessibility, useService } from '@solid-native/device/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { Accessibility, useService } from '@solidnative/device/solid';
 
 export function SearchResults() {
   const accessibility = useService(Accessibility);

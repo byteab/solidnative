@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import {
   KeyboardAvoidingView,
   Pressable,
   ScrollView,
   Text,
   TextInput,
-} from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 import {
   useService,
@@ -17,7 +17,7 @@ import {
   Screen,
   SafeArea,
   DeepLinks,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 
 export function DevicePage() {
   const accessibility = useService(Accessibility);

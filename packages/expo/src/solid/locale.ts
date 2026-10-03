@@ -1,5 +1,5 @@
 import { createMemo, type Accessor } from 'solid-js';
-import { createObserved } from '@solid-native/device/solid';
+import { createObserved } from '@solidnative/device/solid';
 import { expoModule, optional } from '../native.ts';
 import { sourcedService } from './owned.ts';
 export interface LocaleLike {

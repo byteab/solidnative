@@ -1,9 +1,9 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
-import { Show } from '@solid-native/platform/solid';
-import { Pressable, ScrollView, Text, TextInput } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+import { Show } from '@solidnative/platform/solid';
+import { Pressable, ScrollView, Text, TextInput } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { Session } from './session.solid.ts';
 
 /** The actual email/password step, with explicit controlled validation and owned async work. */

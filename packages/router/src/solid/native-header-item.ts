@@ -1,5 +1,5 @@
-import { useHostAdapter, type HostChild } from '@solid-native/platform/solid';
-import type { HostNode } from '@solid-native/fabric';
+import { useHostAdapter, type HostChild } from '@solidnative/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
 
 export type HeaderItemType = 'back' | 'left' | 'center' | 'title' | 'right' | 'searchBar';
 export interface NativeHeaderItemProps {

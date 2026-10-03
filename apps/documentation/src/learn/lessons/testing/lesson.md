@@ -3,7 +3,7 @@ title: Testing
 ---
 
 The tracker works, and you have been checking that by looking at it. A test checks it for you,
-every time anything changes. `@solid-native/testing` mounts the real native renderer, components,
+every time anything changes. `@solidnative/testing` mounts the real native renderer, components,
 style engine and touch handling onto a fake Fabric, an in-memory stand-in for React Native's
 renderer. Queries read the native tree that was committed and the props each view was given. The
 fake does not run Yoga layout, draw pixels, open a keyboard or run a platform's accessibility
@@ -41,7 +41,7 @@ that the habits are gone.
 press goes through:
 
 ```ts
-import { render, screen, userEvent } from '@solid-native/testing';
+import { render, screen, userEvent } from '@solidnative/testing';
 
 it('ticks a habit off when it is pressed', async () => {
   render(App);
@@ -73,7 +73,7 @@ describe('HabitRow', () => {
 ```
 
 These run unchanged in an app. An app generated from the template already has Vitest and the
-`solidNative()` plugin from `@solid-native/testing/vitest`, and `npm test` runs them. For an existing app,
+`solidNative()` plugin from `@solidnative/testing/vitest`, and `npm test` runs them. For an existing app,
 installing the packages is not enough on its own: [Setup](/packages/testing/setup) covers the
 config. What the fake cannot show, such as scrolling, the keyboard and what a screen reader says,
 needs the app on a device, and [End-to-end tests](/packages/testing/end-to-end) drive it there.

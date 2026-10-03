@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createRoot } from 'solid-js';
-import { provideService, ServiceScope, useService } from '@solid-native/device/solid';
-import { Database, type SQLiteDatabase } from '@solid-native/expo/solid/database';
+import { provideService, ServiceScope, useService } from '@solidnative/device/solid';
+import { Database, type SQLiteDatabase } from '@solidnative/expo/solid/database';
 import {
   calendarGrid,
   completionRate,

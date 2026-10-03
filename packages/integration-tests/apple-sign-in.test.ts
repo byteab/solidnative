@@ -15,7 +15,7 @@ import {
   AppleAuthenticationScope,
   AppleSignIn,
   type NativeAppleAuthentication,
-} from '@solid-native/expo/apple-sign-in';
+} from '@solidnative/expo/apple-sign-in';
 import { disposeServices, ownedService, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

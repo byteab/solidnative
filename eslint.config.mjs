@@ -41,7 +41,7 @@ export default tseslint.config(
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          // Off: `@solid-native/metro` and `@solid-native/tailwind` ship as the JavaScript they are
+          // Off: `@solidnative/metro` and `@solidnative/tailwind` ship as the JavaScript they are
           // written in and have nothing to build, so a built package requiring them is correct.
           enforceBuildableLibDependency: false,
           allow: [],
@@ -173,7 +173,7 @@ export default tseslint.config(
       'packages/integration-tests/native-props.test.ts',
       'packages/integration-tests/native-state.test.ts',
       'packages/integration-tests/web-parity.test.ts',
-      // `@solid-native/web` is `layer:ui` and rightly cannot import `@solid-native/components` from its
+      // `@solidnative/web` is `layer:ui` and rightly cannot import `@solidnative/components` from its
       // own source. Its tests are a different matter: proving the seam holds means mounting real
       // components through it, and the browser tests compile the separate DOM page with the real
       // Metro DOM compiler.
@@ -187,7 +187,7 @@ export default tseslint.config(
       // The Vite preset an app's build config imports: build tooling shipped beside the package,
       // which no file under `src` imports.
       'packages/web/solid-vite.mjs',
-      // The other way round: `@solid-native/testing`'s own tests import the package by its name,
+      // The other way round: `@solidnative/testing`'s own tests import the package by its name,
       // not by relative path, because they stand in for an app's tests and an app has no other
       // way in. A relative import would bypass the `exports` map those tests exist to prove.
       'packages/testing/src/**/*.test.{ts,tsx}',

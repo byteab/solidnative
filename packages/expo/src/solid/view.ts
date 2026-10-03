@@ -1,10 +1,10 @@
-import { claimHost, type HostNode } from '@solid-native/fabric';
+import { claimHost, type HostNode } from '@solidnative/fabric';
 import {
   createHostElement,
   insertHostChildren,
   spreadHostProps,
-} from '@solid-native/platform/solid';
-import { createNativeRef, hostProps, type ViewProps } from '@solid-native/components/solid';
+} from '@solidnative/platform/solid';
+import { createNativeRef, hostProps, type ViewProps } from '@solidnative/components/solid';
 
 export function viewProps(props: ViewProps, omit: readonly string[] = []): Record<string, unknown> {
   return hostProps(props, {}, omit);

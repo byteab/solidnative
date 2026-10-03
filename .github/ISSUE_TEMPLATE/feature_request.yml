@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest something for an @solid-native/* package
+description: Suggest something for an @solidnative/* package
 labels: [enhancement]
 body:
   - type: markdown
@@ -12,8 +12,8 @@ body:
     id: package
     attributes:
       label: Package
-      description: Which @solid-native/* package this is about, if you know, e.g. @solid-native/router
-      placeholder: '@solid-native/router'
+      description: Which @solidnative/* package this is about, if you know, e.g. @solidnative/router
+      placeholder: '@solidnative/router'
 
   - type: textarea
     id: problem

@@ -16,15 +16,15 @@ npx expo install expo-asset
 ```
 
 ```ts
-import { assets } from '@solid-native/expo/solid/assets';
+import { assets } from '@solidnative/expo/solid/assets';
 ```
 
 ## The smallest useful example
 
 ```tsx
-import { Show } from '@solid-native/platform/solid';
-import { Image, View } from '@solid-native/components/solid';
-import { assets } from '@solid-native/expo/solid/assets';
+import { Show } from '@solidnative/platform/solid';
+import { Image, View } from '@solidnative/components/solid';
+import { assets } from '@solidnative/expo/solid/assets';
 
 export function Hero() {
   const hero = assets(() => [require('./hero.png')]);

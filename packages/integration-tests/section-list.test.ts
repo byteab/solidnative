@@ -14,7 +14,7 @@ import {
   type HostEngine,
   type HostNode,
   type ScrollRange,
-} from '@solid-native/fabric';
+} from '@solidnative/fabric';
 // An internal the components entry points do not export (see eslint.config.mjs's allowlist).
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { StickyHeaders } from '../components/src/sticky-headers.ts';

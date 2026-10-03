@@ -34,7 +34,7 @@ export const LINKS = {
 } as const;
 
 /** The whole setup, as `guide/getting-started.md` gives it. */
-export const CREATE_COMMAND = 'npx create-expo-app@latest my-app --template @solid-native/template';
+export const CREATE_COMMAND = 'npx create-expo-app@latest my-app --template @solidnative/template';
 
 /** The versions the alpha is built and verified against: `template/package.json` and the workspace's pins. */
 export const STATUS = {

@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal, onCleanup } from 'solid-js';
 import { createStore, reconcile, unwrap } from 'solid-js/store';
-import { For } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components/solid';
+import { For } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
 import { beginPhase, report, saveReport } from './fabric-instrument.ts';
 import { STEPS, STEP_MS, initial, styles } from './rows.ts';
 

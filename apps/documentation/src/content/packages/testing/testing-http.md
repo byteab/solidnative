@@ -5,13 +5,13 @@ summary: Answering a fetch from the test instead of the network, with node:test'
 
 # Testing network requests
 
-Continues from [Writing a test](/packages/testing/writing-a-test). `@solid-native/testing` has no
+Continues from [Writing a test](/packages/testing/writing-a-test). `@solidnative/testing` has no
 request mocking; Node does. Replace `fetch` for the test's duration with `t.mock.method`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createResource } from 'solid-js';
-import { Text } from '@solid-native/components/solid';
+import { Text } from '@solidnative/components/solid';
 
 export function Profile() {
   const [me] = createResource(() =>
@@ -24,7 +24,7 @@ export function Profile() {
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen } from '@solid-native/testing';
+import { cleanup, render, screen } from '@solidnative/testing';
 import { Profile } from './profile.solid.tsx';
 
 afterEach(cleanup);

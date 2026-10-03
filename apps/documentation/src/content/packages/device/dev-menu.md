@@ -9,9 +9,9 @@ summary: Adding switches to the shake menu in development, gone entirely in a re
 builds have no shake menu, so the calls can stay.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { DevMenu, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { DevMenu, useService } from '@solidnative/device/solid';
 
 export function Root() {
   const devMenu = useService(DevMenu);

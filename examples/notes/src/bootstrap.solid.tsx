@@ -1,13 +1,13 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { createNativeRoot, type NativeRootOptions } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { createNativeRoot, type NativeRootOptions } from '@solidnative/platform/solid';
 import {
   conditionSources,
   currentConditions,
   deviceTokens,
   watchConditions,
   type ConditionSources,
-} from '@solid-native/device/solid';
-import type { StyleSheet } from '@solid-native/fabric';
+} from '@solidnative/device/solid';
+import type { StyleSheet } from '@solidnative/fabric';
 import { NotesApplication, type NotesApplicationOptions } from './app/app.config.solid.tsx';
 
 export interface NotesMountOptions extends NativeRootOptions, NotesApplicationOptions {

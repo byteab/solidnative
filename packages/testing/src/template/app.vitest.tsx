@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
-// The template's app test again, under Vitest through `@solid-native/testing/vitest`.
+/** @jsxImportSource @solidnative/platform/solid */
+// The template's app test again, under Vitest through `@solidnative/testing/vitest`.
 import { afterEach, expect, test } from 'vitest';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);

@@ -20,17 +20,17 @@ npx expo install expo-image-manipulator
 ```
 
 ```ts
-import { ImageEditor, SaveFormat, FlipType } from '@solid-native/expo/solid/image-editor';
+import { ImageEditor, SaveFormat, FlipType } from '@solidnative/expo/solid/image-editor';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createSignal } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { ImagePicker } from '@solid-native/expo/solid/image-picker';
-import { ImageEditor, SaveFormat } from '@solid-native/expo/solid/image-editor';
+import { useService } from '@solidnative/device/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { ImagePicker } from '@solidnative/expo/solid/image-picker';
+import { ImageEditor, SaveFormat } from '@solidnative/expo/solid/image-editor';
 
 export function Avatar() {
   const picker = useService(ImagePicker);
@@ -89,6 +89,6 @@ On the web, and in a test with no fake (`provideService(ImageEditor.SOURCE, () =
 
 ## Reference
 
-`ImageEditor` is exported from `@solid-native/expo/solid/image-editor`.
+`ImageEditor` is exported from `@solidnative/expo/solid/image-editor`.
 
 <!-- api: ImageEditor -->

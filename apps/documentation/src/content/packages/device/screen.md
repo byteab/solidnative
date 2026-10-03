@@ -8,9 +8,9 @@ summary: The window `Screen` tracks, the physical display, orientation, and the 
 `Screen` tracks the window, physical display and orientation.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text } from '@solid-native/components/solid';
-import { Screen, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text } from '@solidnative/components/solid';
+import { Screen, useService } from '@solidnative/device/solid';
 
 export function Frame() {
   const screen = useService(Screen);
@@ -28,9 +28,9 @@ export function Frame() {
 `compact` is whether the window is narrow enough to want the phone tree rather than the tablet one:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Screen, useService } from '@solid-native/device/solid';
-import { Show } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Screen, useService } from '@solidnative/device/solid';
+import { Show } from '@solidnative/platform/solid';
 import { SidebarLayout, TabBarLayout } from './layouts.solid.tsx';
 
 export function Shell() {

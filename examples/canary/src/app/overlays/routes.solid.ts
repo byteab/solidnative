@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 export const overlayRoutes: readonly NativeRoute[] = [
   { path: 'overlays', lazy: () => import('./overlays-page.solid.tsx').then((m) => m.OverlaysPage) },
   {

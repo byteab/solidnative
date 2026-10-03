@@ -8,9 +8,9 @@ summary: Which way round the world is, for the TypeScript the cascade cannot dec
 `Direction` reports the locale's layout direction.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { View } from '@solid-native/components/solid';
-import { Direction, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View } from '@solidnative/components/solid';
+import { Direction, useService } from '@solidnative/device/solid';
 
 export function Drawer() {
   const direction = useService(Direction);

@@ -1,4 +1,4 @@
 declare module '*.native.css' {
-  const sheet: import('@solid-native/fabric').StyleSheet;
+  const sheet: import('@solidnative/fabric').StyleSheet;
   export default sheet;
 }

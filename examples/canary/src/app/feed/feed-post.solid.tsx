@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo, createRenderEffect, createSignal } from 'solid-js';
 import {
   Image,
@@ -7,9 +7,9 @@ import {
   Text,
   View,
   type ScrollViewRef,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
 import type { Post, PostImage } from './feed-backend.solid.ts';
 import gallerySheet from './feed-gallery.native.css';
 import sheet from './feed-post.native.css';

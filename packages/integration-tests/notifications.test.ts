@@ -15,7 +15,7 @@ import {
   Notifications,
   TriggerType,
   type NativeNotifications,
-} from '@solid-native/expo/notifications';
+} from '@solidnative/expo/notifications';
 import { disposeServices, ownedService, serviceWith } from './expo-service.ts';
 
 afterEach(disposeServices);

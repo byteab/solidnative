@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/web",
+  "name": "@solidnative/web",
   "version": "0.1.1",
   "description": "A browser host for solid-native: the same Solid components, rendered into the DOM instead of native views.",
   "keywords": [
@@ -75,9 +75,9 @@
     }
   },
   "dependencies": {
-    "@solid-native/device": "workspace:*",
-    "@solid-native/fabric": "workspace:*",
-    "@solid-native/metro": "workspace:*"
+    "@solidnative/device": "workspace:*",
+    "@solidnative/fabric": "workspace:*",
+    "@solidnative/metro": "workspace:*"
   },
   "peerDependencies": {
     "solid-js": "^1.9.15",
@@ -89,9 +89,9 @@
     }
   },
   "devDependencies": {
-    "@solid-native/components": "workspace:*",
-    "@solid-native/icons": "workspace:*",
-    "@solid-native/tailwind": "workspace:*",
+    "@solidnative/components": "workspace:*",
+    "@solidnative/icons": "workspace:*",
+    "@solidnative/tailwind": "workspace:*",
     "@tailwindcss/vite": "^4.3.3",
     "@types/jsdom": "^27.0.0",
     "jsdom": "^27.0.0",

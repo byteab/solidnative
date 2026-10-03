@@ -28,10 +28,10 @@ test('all public Solid Expo subpaths remain lazy and independent of framework/na
       'crypto',
       'browser',
     ]) {
-      const module = await import(`@solid-native/expo/solid/${name}`);
+      const module = await import(`@solidnative/expo/solid/${name}`);
       assert.ok(Object.keys(module).length);
     }
-    const root = await import('@solid-native/expo/solid');
+    const root = await import('@solidnative/expo/solid');
     assert.equal(typeof root.Permission, 'function');
   } finally {
     hook.deregister();

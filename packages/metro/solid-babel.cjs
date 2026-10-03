@@ -6,7 +6,7 @@ const { isSolidDomSource, isSolidDomComponent } = require('./solid-dom.cjs');
 /**
  * Expo's development transformer always enables React Refresh. Disable it for native Solid:
  *
- * const { isSolidFile } = require('@solid-native/metro/solid-babel.cjs');
+ * const { isSolidFile } = require('@solidnative/metro/solid-babel.cjs');
  * module.exports = {
  *   presets: ['babel-preset-expo'],
  *   overrides: [{
@@ -24,7 +24,7 @@ const { isSolidDomSource, isSolidDomComponent } = require('./solid-dom.cjs');
 // Left to React Refresh, a capitalised export like `Switch` registers as a React component and an
 // edit hot-swaps it into a tree that does not exist, instead of reaching the clean reload.
 const SOLID_IMPORT =
-  /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\(\s*)['"](?:solid-js(?:\/[^'"]*)?|@solid-native\/[^'"/]+\/solid(?:\/[^'"]*)?)['"]/;
+  /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\(\s*)['"](?:solid-js(?:\/[^'"]*)?|@solidnative\/[^'"/]+\/solid(?:\/[^'"]*)?)['"]/;
 
 // The toolkit's own package sources (this workspace's `packages/*/src`) hold no React code, and a
 // plain helper there (a gesture builder, the CSS engine) imports neither marker above. Installed

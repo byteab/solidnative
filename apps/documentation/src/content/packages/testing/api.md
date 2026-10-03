@@ -1,6 +1,6 @@
 ---
 title: API reference
-summary: Everything @solid-native/testing exports - render, renderWith, screen, the queries, fireEvent, userEvent, waitFor, the fake Fabric and clock - and its register and Vitest entry points.
+summary: Everything @solidnative/testing exports - render, renderWith, screen, the queries, fireEvent, userEvent, waitFor, the fake Fabric and clock - and its register and Vitest entry points.
 ---
 
 # API reference

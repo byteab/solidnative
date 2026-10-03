@@ -4,12 +4,12 @@
  *
  * The distinction matters more than it looks. React Native ships its JavaScript as Flow, which
  * Node cannot parse, so a static `import ... from 'react-native'` anywhere in this package would
- * make the package unimportable by the test suite - and by `@solid-native/components`, which
+ * make the package unimportable by the test suite - and by `@solidnative/components`, which
  * the suite imports constantly. A call inside a factory is only ever executed on a device, where
  * `react-native` is the most ordinary import there is.
  *
  * ponytail: a `require` in a codebase that otherwise has none. The alternative is the shape
- * `@solid-native/expo` uses - a file per service outside `src`, importing the module and
+ * `@solidnative/expo` uses - a file per service outside `src`, importing the module and
  * declaring the service - which is right there because Expo's packages are optional peer
  * dependencies an app may not have installed. React Native is not optional, so the seam buys
  * nothing but files.

@@ -1,7 +1,7 @@
 /**
  * The device capabilities, answered by the browser.
  *
- * `@solid-native/device` reaches React Native for these, and its factories all fall back to
+ * `@solidnative/device` reaches React Native for these, and its factories all fall back to
  * doing nothing off a device - which is what makes that package importable by a test suite, and
  * what made it quietly wrong here. Nothing was provided in place of the fallbacks, so on the web
  * `Screen` reported a window of **zero by zero**, permanently.
@@ -21,7 +21,7 @@ import type {
   LayoutDirection,
   ScreenSource,
   Sizes,
-} from '@solid-native/device';
+} from '@solidnative/device';
 
 /**
  * `Screen`, from the browser's own viewport.

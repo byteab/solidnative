@@ -1,8 +1,8 @@
-// The template's own app test (`template/src/app/app.test.ts`), on `@solid-native/testing`: the same
+// The template's own app test (`template/src/app/app.test.ts`), on `@solidnative/testing`: the same
 // claim, with the fake Fabric, the press and the settling done by the package.
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);

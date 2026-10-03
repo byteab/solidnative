@@ -1,5 +1,5 @@
-import type { HostNode } from '@solid-native/fabric';
-import { insertHostChildren, spreadHostProps, useHostEngine } from '@solid-native/platform/solid';
+import type { HostNode } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { hostProps, primitiveNode } from './primitive.ts';
 import { createNativeRef } from './ref.ts';
 import { installPressBehavior, PRESS_KEYS } from './pressable.ts';

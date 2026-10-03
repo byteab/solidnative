@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 
 /** Every tab is a stack of its own, so a post or a profile pushes inside the tab it came from. */
 const detail: NativeRoute[] = [

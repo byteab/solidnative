@@ -10,14 +10,14 @@ solid-native is in alpha. If you hit a bug, please [open an issue](https://githu
 ## Create the app
 
 ```sh
-npx create-expo-app@latest my-app --template @solid-native/template
+npx create-expo-app@latest my-app --template @solidnative/template
 cd my-app
 npx expo start
 ```
 
 The template installs `solid-js` and the framework packages, with Metro and Babel configured. For
 an existing Expo app, see [Adding it to an existing app](/guide/manual-setup); in an Nx workspace,
-run `nx add @solid-native/nx` then `nx g @solid-native/nx:app apps/mobile` (see [Nx](/packages/nx)).
+run `nx add @solidnative/nx` then `nx g @solidnative/nx:app apps/mobile` (see [Nx](/packages/nx)).
 
 Scan the QR code with [Expo Go](https://expo.dev/go), or press `i` or `a` for a simulator. `<View>`
 becomes a `UIView` on iOS or an `android.view.View` on Android, with no React in the render path.
@@ -26,13 +26,13 @@ The template targets iOS and Android only: ignore the `npm run web` hint `create
 ## Edit `app.solid.tsx` and check the counter
 
 The template's `src/app/app.solid.tsx` imports native components from
-`@solid-native/components/solid`:
+`@solidnative/components/solid`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, SafeAreaView, Text, View } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+import { Pressable, SafeAreaView, Text, View } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './app.native.css';
 
 export function App() {
@@ -77,7 +77,7 @@ Edit the `title` text and save to see it on the device; the button increments `c
 catch most first mistakes:
 
 - **A file with JSX is a `.solid.tsx` file**, or starts with the
-  `/** @jsxImportSource @solid-native/platform/solid */` comment. Without either, Metro compiles it
+  `/** @jsxImportSource @solidnative/platform/solid */` comment. Without either, Metro compiles it
   as React and nothing it renders reaches the screen.
 - **Text only renders inside `<Text>`.** There is no `<div>`, `<span>` or `onClick`; events are
   native props such as `onPress`.
@@ -91,13 +91,13 @@ npm test
 ```
 
 `app.test.ts` runs in Node's test runner (Node 24) without a simulator.
-`@solid-native/testing/register` compiles JSX and `.native.css` as Metro does, and `render()` mounts
+`@solidnative/testing/register` compiles JSX and `.native.css` as Metro does, and `render()` mounts
 over a fake Fabric that records what native would receive.
 
 ```ts
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { cleanup, render, screen, userEvent } from '@solid-native/testing';
+import { cleanup, render, screen, userEvent } from '@solidnative/testing';
 import { App } from './app.solid.tsx';
 
 afterEach(cleanup);
@@ -120,9 +120,9 @@ test('counts taps', async () => {
 (see [setting up Tailwind](/packages/tailwind)):
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text } from '@solid-native/components/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
 
 export function WifiToggle() {
   const [wifi, setWifi] = createSignal(true);

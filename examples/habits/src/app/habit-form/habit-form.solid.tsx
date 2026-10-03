@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
 import {
   bindFormField,
@@ -11,11 +11,11 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { Haptics } from '@solid-native/expo/solid/haptics';
-import { For, Show } from '@solid-native/platform/solid';
-import { useNavigation, useRoute } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { Haptics } from '@solidnative/expo/solid/haptics';
+import { For, Show } from '@solidnative/platform/solid';
+import { useNavigation, useRoute } from '@solidnative/router/solid';
 import { Habits } from '../data/habits.solid.ts';
 
 const REMINDER_TIMES = ['07:00', '08:00', '09:00', '12:00', '18:00', '21:00'];

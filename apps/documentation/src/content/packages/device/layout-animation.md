@@ -8,11 +8,11 @@ summary: Animating a layout change - a list insertion, a row leaving - which CSS
 `LayoutAnimation` animates the next layout change instead of snapping to it.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { Pressable, Text, View } from '@solid-native/components/solid';
-import { LayoutAnimation, useService } from '@solid-native/device/solid';
-import { For } from '@solid-native/platform/solid';
+import { Pressable, Text, View } from '@solidnative/components/solid';
+import { LayoutAnimation, useService } from '@solidnative/device/solid';
+import { For } from '@solidnative/platform/solid';
 
 export function TodoList() {
   const layout = useService(LayoutAnimation);

@@ -4,7 +4,7 @@
  */
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
-import type { EngineNode } from '@solid-native/fabric';
+import type { EngineNode } from '@solidnative/fabric';
 import { mountSolid } from './css-solid-harness.ts';
 import { scaleList } from './css-solid-fixtures.tsx';
 

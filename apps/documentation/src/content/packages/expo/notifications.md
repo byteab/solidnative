@@ -14,7 +14,7 @@ The accessors separate a notification _arriving_ while the app is in front from 
 one - a navigation instruction that must not be missed, including the one that launched the app
 before anything was listening. A test provides a fake module with
 `provideService(Notifications.SOURCE, () => fake)` inside a `ServiceScope` (both from
-`@solid-native/device/solid`).
+`@solidnative/device/solid`).
 
 ## Install
 
@@ -23,16 +23,16 @@ npx expo install expo-notifications
 ```
 
 ```ts
-import { Notifications } from '@solid-native/expo/solid/notifications';
+import { Notifications } from '@solidnative/expo/solid/notifications';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createEffect } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { useNavigation } from '@solid-native/router/solid';
-import { Notifications } from '@solid-native/expo/solid/notifications';
+import { useService } from '@solidnative/device/solid';
+import { useNavigation } from '@solidnative/router/solid';
+import { Notifications } from '@solidnative/expo/solid/notifications';
 
 /** Rendered once inside the root route, so it has navigation. */
 export function NotificationRouting() {
@@ -113,8 +113,8 @@ missing FCM config means an Android token that silently never arrives.
 `getExpoPushToken()` asks the notification permission for you:
 
 ```tsx
-import { useService } from '@solid-native/device/solid';
-import { Notifications } from '@solid-native/expo/solid/notifications';
+import { useService } from '@solidnative/device/solid';
+import { Notifications } from '@solidnative/expo/solid/notifications';
 
 export function PushSetup() {
   const notifications = useService(Notifications);
@@ -252,7 +252,7 @@ Each method is the module's function of the same purpose, with its own arguments
 loading the module, so scheduling code runs in a test:
 
 ```ts
-import { Notifications, TriggerType } from '@solid-native/expo/solid/notifications';
+import { Notifications, TriggerType } from '@solidnative/expo/solid/notifications';
 
 const notifications = useService(Notifications); // in a component
 await notifications.schedule({
@@ -318,7 +318,7 @@ AppRegistry.registerRunnable('main', ({ rootTag }) => {
 ```
 
 The entry module has no service scope, so it registers with the module's `registerTaskAsync`; from
-inside the app, `notifications.registerTask(name)` does the same. `@solid-native/*` imports have no
+inside the app, `notifications.registerTask(name)` does the same. `@solidnative/*` imports have no
 native side effects, so the task can share plain modules (a storage wrapper, an API client) that do
 not need `useService()`. Remote pushes need APNs/FCM credentials and a development build; Expo Go
 cannot receive them on Android.
@@ -333,6 +333,6 @@ with notifications is the module and this service.
 
 ## Reference
 
-`Notifications` is exported from `@solid-native/expo/solid/notifications`.
+`Notifications` is exported from `@solidnative/expo/solid/notifications`.
 
 <!-- api: Notifications -->

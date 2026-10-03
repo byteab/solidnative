@@ -1,12 +1,12 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createSignal } from 'solid-js';
-import { ServiceScope } from '@solid-native/device';
+import { ServiceScope } from '@solidnative/device';
 import {
   createNativeNavigation,
   NativeStackOutlet,
   useNativeDismissGuard,
   type NativeNavigation,
-} from '@solid-native/router';
+} from '@solidnative/router';
 
 /** A home page and an editor that refuses a swipe-down while dirty, and counts the attempts. */
 export function createDismissFixture() {

@@ -1,4 +1,4 @@
-import { render, screen, settle, userEvent } from '@solid-native/testing';
+import { render, screen, settle, userEvent } from '@solidnative/testing';
 import { expect, vi } from 'vitest';
 import { check, parentOf } from '../../check.ts';
 import { App } from './solution/app.tsx';

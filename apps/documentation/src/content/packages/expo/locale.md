@@ -16,16 +16,16 @@ npx expo install expo-localization
 ```
 
 ```ts
-import { Locale } from '@solid-native/expo/solid/locale';
+import { Locale } from '@solidnative/expo/solid/locale';
 ```
 
 ## The smallest useful example
 
 ```tsx
 import { createMemo } from 'solid-js';
-import { useService } from '@solid-native/device/solid';
-import { Text } from '@solid-native/components/solid';
-import { Locale } from '@solid-native/expo/solid/locale';
+import { useService } from '@solidnative/device/solid';
+import { Text } from '@solidnative/components/solid';
+import { Locale } from '@solidnative/expo/solid/locale';
 
 export function Today() {
   const locale = useService(Locale);
@@ -63,7 +63,7 @@ On the web, and in a test with no fake `Locale.SOURCE`, `locales` and `calendars
 
 ## Reference
 
-`Locale` is exported from `@solid-native/expo/solid/locale`, with the `LocaleLike` and `CalendarLike`
+`Locale` is exported from `@solidnative/expo/solid/locale`, with the `LocaleLike` and `CalendarLike`
 types.
 
 <!-- api: Locale -->

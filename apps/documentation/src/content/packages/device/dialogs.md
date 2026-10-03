@@ -8,9 +8,9 @@ summary: The platform's own alert, confirmation, prompt, action sheet and toast,
 `Dialogs` wraps the platform's alert, confirmation, prompt, action sheet and toast as promises.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Dialogs, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Dialogs, useService } from '@solidnative/device/solid';
 
 export function NoteRow(props: { onDelete: () => void }) {
   const dialogs = useService(Dialogs);

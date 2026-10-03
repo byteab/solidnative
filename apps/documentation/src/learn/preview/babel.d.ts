@@ -1,6 +1,6 @@
 /**
  * The little of Babel's API the preview's compiler uses. The packages ship no types of their own
- * and the site installs none: they come from `@solid-native/metro`'s dependencies (see
+ * and the site installs none: they come from `@solidnative/metro`'s dependencies (see
  * `vite.config.ts`).
  */
 declare module '@babel/core' {

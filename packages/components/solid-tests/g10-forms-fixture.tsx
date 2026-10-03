@@ -1,5 +1,5 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { For, Show } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For, Show } from '@solidnative/platform/solid';
 import { TextInput } from '../src/solid/text-input.ts';
 import { Switch } from '../src/solid/switch.ts';
 import { View, Text } from '../src/solid/primitive.ts';

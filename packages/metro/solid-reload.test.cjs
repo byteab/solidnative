@@ -92,12 +92,12 @@ function runtime(runtimePath) {
   context.global = context;
   vm.runInContext(fs.readFileSync(runtimePath, 'utf8'), context, { filename: runtimePath });
   const deps = {
-    '@solid-native/metro/solid-reload-runtime.cjs': { registerModule },
-    '@solid-native/platform/solid/dev-reload': registry,
+    '@solidnative/metro/solid-reload-runtime.cjs': { registerModule },
+    '@solidnative/platform/solid/dev-reload': registry,
     'react-native': { DevSettings: { reload: () => events.push('native reload') } },
     'author-dependency': {},
     './demo.ttf': 42,
-    '@solid-native/platform/solid': { createElement: () => ({}) },
+    '@solidnative/platform/solid': { createElement: () => ({}) },
   };
   const ids = new Map();
   let nextId = 100;
@@ -322,7 +322,7 @@ test('helpers delegate syntax to Expo in release/web and React/dependency source
     ['Plain.ts', 'export const value: number = 1;', 'ios', true],
     [
       'Plain.ts',
-      '/** @jsxImportSource @solid-native/platform/solid */ export const value = 1;',
+      '/** @jsxImportSource @solidnative/platform/solid */ export const value = 1;',
       'ios',
       true,
     ],
@@ -364,7 +364,7 @@ test('a plain .ts module importing Solid keeps React Refresh off; a React one ke
   );
   assert.doesNotMatch(solid.output[0].data.code, /\$RefreshReg\$|\$RefreshSig\$/);
   const scoped = await compile(
-    "import { useNative } from '@solid-native/device/solid';\nexport function Service() { return useNative(); }",
+    "import { useNative } from '@solidnative/device/solid';\nexport function Service() { return useNative(); }",
     true,
     true,
     { filename: 'service.ts' },

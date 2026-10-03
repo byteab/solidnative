@@ -18,7 +18,7 @@
  * on. The one visible difference that makes: an animation's first frame is its start, at the value
  * it starts from, where React Native's first frame is already one frame in.
  */
-import { interpolate as mix, tween } from '@solid-native/fabric';
+import { interpolate as mix, tween } from '@solidnative/fabric';
 import type { AnimatedPropsHandle, AnimationBackend } from './solid/animation-types.ts';
 import { Easing, type EasingFunction } from './easing.ts';
 

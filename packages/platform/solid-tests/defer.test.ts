@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import type { EngineNode } from '@solid-native/fabric';
+import type { EngineNode } from '@solidnative/fabric';
 import { createElement, createNativeRoot, Defer, insert, useHostAdapter } from '../src/solid.ts';
 import { createClock, createFakeFabric, type FakeNode } from './fake-fabric.ts';
 

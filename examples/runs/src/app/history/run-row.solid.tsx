@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { Footprints } from 'lucide-static';
-import { Icon } from '@solid-native/icons/solid';
-import { Text, View } from '@solid-native/components/solid';
-import { setNativeStyleHost, withNativeStyles } from '@solid-native/platform/solid';
+import { Icon } from '@solidnative/icons/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { setNativeStyleHost, withNativeStyles } from '@solidnative/platform/solid';
 import type { Run } from '../data/runs.solid.ts';
 import {
   convertDistance,

@@ -8,13 +8,13 @@ summary: How Solid's universal renderer turns JSX into retained native nodes, an
 ## From JSX to engine calls
 
 Metro compiles each Solid file with `generate: 'universal'` and
-`moduleName: '@solid-native/platform/solid'`, so compiled code calls this package's
+`moduleName: '@solidnative/platform/solid'`, so compiled code calls this package's
 `createElement`, `insert`, `setProp` and friends. No virtual DOM: each call goes to Fabric's
 `Engine`, a retained tree diffed against what native last saw.
 
-A file opts in with a leading `/** @jsxImportSource @solid-native/platform/solid */` comment or a
+A file opts in with a leading `/** @jsxImportSource @solidnative/platform/solid */` comment or a
 `.solid.tsx` suffix. `view` and `text` are the only raw intrinsics; `Pressable`, `TextInput`,
-`ScrollView` etc. come from `@solid-native/components/solid`, built on the host adapter
+`ScrollView` etc. come from `@solidnative/components/solid`, built on the host adapter
 (`createHostElement`, `spreadHostProps`, `insertHostChildren`) so they also render in a browser.
 
 ## Which stylesheet a node gets
@@ -59,13 +59,13 @@ A removed node is destroyed at the next commit unless re-inserted meanwhile, so 
 ## Control flow
 
 `For`, `Index`, `Show`, `Switch`, `Match`, `ErrorBoundary`, `Suspense` and `SuspenseList` are
-Solid's own, re-exported from `@solid-native/platform/solid` and typed for native children; import
+Solid's own, re-exported from `@solidnative/platform/solid` and typed for native children; import
 them from here in native files.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { For, Show } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { For, Show } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
 
 export function Reviews(props: { reviews: readonly string[] }) {
   return (
@@ -85,9 +85,9 @@ children a frame later. Use it for what the first frame can skip: content below 
 an unselected tab's body.
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Defer, For } from '@solid-native/platform/solid';
-import { Text, View } from '@solid-native/components/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Defer, For } from '@solidnative/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
 
 export function Product(props: { name: string; reviews: readonly string[] }) {
   return (

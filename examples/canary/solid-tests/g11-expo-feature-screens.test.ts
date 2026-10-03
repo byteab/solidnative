@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { provideService } from '@solid-native/device/solid';
-import { MapView, registerExpoMap } from '@solid-native/expo/solid/map-view';
-import { LanguageModel } from '@solid-native/expo/solid/language-model';
+import { provideService } from '@solidnative/device/solid';
+import { MapView, registerExpoMap } from '@solidnative/expo/solid/map-view';
+import { LanguageModel } from '@solidnative/expo/solid/language-model';
 import { MapsPage } from '../src/app/expo/maps.solid.tsx';
 import { LanguageModelPage } from '../src/app/expo/language-model.solid.tsx';
 import { consumerFixture } from './consumer-fixture.tsx';

@@ -3,7 +3,7 @@
  *
  * Copied from Lucide (ISC licence, https://lucide.dev) rather than depended on, and
  * only the icons in use: the chrome draws them through `icon.tsx`, and the live examples hand
- * `lucideSvg()` to `@solid-native/icons/solid`'s `Icon`. Framework-free, so a universal component can
+ * `lucideSvg()` to `@solidnative/icons/solid`'s `Icon`. Framework-free, so a universal component can
  * import it without pulling the page's DOM renderer into its graph.
  */
 export const LUCIDE = {

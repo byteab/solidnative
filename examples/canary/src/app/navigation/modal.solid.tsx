@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Modal, Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Modal, Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
 import { createSignal } from 'solid-js';
 import styles from './modal.native.css';
 

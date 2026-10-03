@@ -1,5 +1,5 @@
 {
-  "name": "@solid-native/platform",
+  "name": "@solidnative/platform",
   "version": "0.1.1",
   "description": "solid-native's Solid renderer: mounts a Solid application onto React Native's Fabric.",
   "keywords": [
@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@solid-native/fabric": "workspace:*"
+    "@solidnative/fabric": "workspace:*"
   },
   "peerDependencies": {
     "solid-js": "^1.9.15"
@@ -79,7 +79,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@solid-native/metro": "workspace:*",
+    "@solidnative/metro": "workspace:*",
     "solid-js": "1.9.15"
   }
 }

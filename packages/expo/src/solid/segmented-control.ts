@@ -1,5 +1,5 @@
-import type { ViewProps } from '@solid-native/components/solid';
-import type { NativeSyntheticEvent, HostNode } from '@solid-native/fabric';
+import type { ViewProps } from '@solidnative/components/solid';
+import type { NativeSyntheticEvent, HostNode } from '@solidnative/fabric';
 import { registerNativeViews } from '../community-views.ts';
 import { nativeView } from './view.ts';
 export interface SegmentedControlFont {

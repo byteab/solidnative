@@ -27,7 +27,7 @@ explains why). Outside a component `database()` opens `expo-sqlite` directly; in
 
 ```ts
 // notes-db.ts
-import { database } from '@solid-native/expo/solid/database';
+import { database } from '@solidnative/expo/solid/database';
 
 export const notesDb = database('notes.db', [
   {
@@ -52,8 +52,8 @@ the last pitfall for why every `notesDb` call has its own `try`/`catch`.
 ```ts
 // notes.ts
 import { createEffect, createSignal } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Network } from '@solid-native/expo/solid/network';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Network } from '@solidnative/expo/solid/network';
 import { notesDb } from './notes-db.ts';
 
 export interface Note {
@@ -234,12 +234,12 @@ The [Notes example](/examples/notes) adds a sync-status pill and a toggle to dis
 component needs no offline logic:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 // note-feed.solid.tsx
 import { createSignal } from 'solid-js';
-import { Pressable, Text, TextInput, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, Show } from '@solid-native/platform/solid';
+import { Pressable, Text, TextInput, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, Show } from '@solidnative/platform/solid';
 import { Notes } from './notes.ts';
 
 export function NoteFeed() {
@@ -270,7 +270,7 @@ export function NoteFeed() {
 }
 ```
 
-`useService` resolves `Notes` in the nearest `ServiceScope` (from `@solid-native/device/solid`);
+`useService` resolves `Notes` in the nearest `ServiceScope` (from `@solidnative/device/solid`);
 a test can override `Network` there with `provideService(Network, ...)`.
 
 ## One place for request-wide behaviour

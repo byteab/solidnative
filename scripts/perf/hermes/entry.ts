@@ -1,8 +1,8 @@
 // The canary bench's Solid tree and steps on the headless Hermes runner, against a stub Fabric
 // that only builds the handles the engine keeps (no native work, so the time is the renderer's).
 // args: [mode, iterations]  mode: solid (store) | signals | raw | engine
-import { createNativeRoot } from '@solid-native/platform/solid';
-import { Engine } from '@solid-native/fabric';
+import { createNativeRoot } from '@solidnative/platform/solid';
+import { Engine } from '@solidnative/fabric';
 // React Native's own colour parser, as its processColor runs it on iOS.
 import normalizeColor from '../../../node_modules/.pnpm/@react-native+normalize-colors@0.86.3/node_modules/@react-native/normalize-colors/index.js';
 function processColor(color: unknown): unknown {

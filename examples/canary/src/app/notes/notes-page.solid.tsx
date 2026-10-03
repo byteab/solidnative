@@ -1,8 +1,8 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { useService } from '@solid-native/device/solid';
-import { For, withNativeStyles } from '@solid-native/platform/solid';
-import { NativeHeader, useNavigation } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { useService } from '@solidnative/device/solid';
+import { For, withNativeStyles } from '@solidnative/platform/solid';
+import { NativeHeader, useNavigation } from '@solidnative/router/solid';
 import { Notes, inline, type Note } from './notes-model.solid.ts';
 import sheet from './notes-page.native.css';
 const WHEN = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short' });

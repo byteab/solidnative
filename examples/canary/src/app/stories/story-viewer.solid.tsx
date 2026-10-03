@@ -1,15 +1,15 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
-import { Pressable, Text, TextInput, View } from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
+import { Pressable, Text, TextInput, View } from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
 import {
   For,
   useHostAdapter,
   setNativeStyleHost,
   withNativeStyles,
-} from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
+} from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
 import { Gesture } from 'react-native-gesture-handler';
 import { Viewer } from './stories-model.solid.ts';
 export const SLIDE_MS = 5000;

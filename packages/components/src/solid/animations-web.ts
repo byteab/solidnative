@@ -1,7 +1,7 @@
 /**
  * `animations.ts`, for a browser build.
  *
- * A web bundler resolves `@solid-native/components/animations` (and `./solid/animations`) here,
+ * A web bundler resolves `@solidnative/components/animations` (and `./solid/animations`) here,
  * through the `browser` condition in this package's `exports`; Metro, on a device, never sets that
  * condition and gets the native file. The names are the same on both sides, so a component that
  * imports `AnimatedStyle`, `Animated` and `Easing` from there is one component on both platforms.

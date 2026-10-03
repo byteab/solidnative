@@ -1,11 +1,11 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
 import { Gesture } from 'react-native-gesture-handler';
-import { Pressable, ScrollView, Text, View } from '@solid-native/components/solid';
-import { GestureRoot, NativeGesture } from '@solid-native/components/solid/gestures';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { For, Show, withNativeStyles } from '@solid-native/platform/solid';
-import { FullWindowOverlay, NativeHeader } from '@solid-native/router/solid';
+import { Pressable, ScrollView, Text, View } from '@solidnative/components/solid';
+import { GestureRoot, NativeGesture } from '@solidnative/components/solid/gestures';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { For, Show, withNativeStyles } from '@solidnative/platform/solid';
+import { FullWindowOverlay, NativeHeader } from '@solidnative/router/solid';
 import { KanbanCard, type Hold } from './kanban-card.solid.tsx';
 import {
   Board,

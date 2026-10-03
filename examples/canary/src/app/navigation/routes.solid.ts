@@ -1,4 +1,4 @@
-import type { NativeRoute } from '@solid-native/router/solid';
+import type { NativeRoute } from '@solidnative/router/solid';
 /** Actual original route companions, composed into the full app after all routes migrate. */
 export const navigationRoutes: readonly NativeRoute[] = [
   {

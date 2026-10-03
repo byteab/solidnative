@@ -16,16 +16,16 @@ npx expo install expo-camera
 ```
 
 ```ts
-import { Camera, type CameraRef } from '@solid-native/expo/solid/camera';
+import { Camera, type CameraRef } from '@solidnative/expo/solid/camera';
 ```
 
 ## The smallest thing that works
 
 ```tsx
-import { Show } from '@solid-native/platform/solid';
-import { Pressable, Text } from '@solid-native/components/solid';
-import { Permission, registerExpoViews } from '@solid-native/expo/solid';
-import { Camera, type CameraRef } from '@solid-native/expo/solid/camera';
+import { Show } from '@solidnative/platform/solid';
+import { Pressable, Text } from '@solidnative/components/solid';
+import { Permission, registerExpoViews } from '@solidnative/expo/solid';
+import { Camera, type CameraRef } from '@solidnative/expo/solid/camera';
 import * as ExpoCamera from 'expo-camera';
 
 registerExpoViews('expo-camera'); // once, before the app mounts
@@ -74,7 +74,7 @@ user to Settings instead of retrying.
 ## Registering the view
 
 `Camera` does not register the `expo-camera` view, and it is not registered by default. Call
-`registerExpoViews('expo-camera')` (from `@solid-native/expo/solid`) once at startup, before the
+`registerExpoViews('expo-camera')` (from `@solidnative/expo/solid`) once at startup, before the
 first commit that renders a `Camera`. It registers as the module's _default_ view, Fabric name
 `ViewManagerAdapter_ExpoCamera` with no view name suffix, since it is the module's only view.
 
@@ -132,6 +132,6 @@ in a `ServiceScope`.
 
 ## Reference
 
-`Camera` is exported from `@solid-native/expo/solid/camera`.
+`Camera` is exported from `@solidnative/expo/solid/camera`.
 
 <!-- api: Camera -->

@@ -1,6 +1,6 @@
-/** @jsxImportSource @solid-native/platform/solid */
-import { View, Text, ScrollView } from '@solid-native/components/solid';
-import { NativeHeader } from '@solid-native/router/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { View, Text, ScrollView } from '@solidnative/components/solid';
+import { NativeHeader } from '@solidnative/router/solid';
 import { page } from '../screen-styles.ts';
 
 export function TailwindPage() {

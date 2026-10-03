@@ -1,7 +1,7 @@
 import { batch, createEffect, createMemo, createSignal, onCleanup, untrack } from 'solid-js';
-import { createServiceToken, useService } from '@solid-native/device/solid';
-import { Network } from '@solid-native/expo/solid/network';
-import { Storage } from '@solid-native/expo/solid/store';
+import { createServiceToken, useService } from '@solidnative/device/solid';
+import { Network } from '@solidnative/expo/solid/network';
+import { Storage } from '@solidnative/expo/solid/store';
 import { NotesServer, type Change, type ServerNote } from './notes-server.solid.ts';
 
 export interface Note {

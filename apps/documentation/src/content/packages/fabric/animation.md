@@ -6,7 +6,7 @@ summary: How transitions, Presence enter/leave classes and @keyframes actually r
 # Animation and transitions
 
 React Native has no CSS animation engine, so the engine provides three mechanisms: `transition`,
-`Presence`'s enter and leave classes from `@solid-native/components/solid` (built on the other
+`Presence`'s enter and leave classes from `@solidnative/components/solid` (built on the other
 two), and `@keyframes`/`animation`, played independently of transitions.
 
 ## Transitions
@@ -24,9 +24,9 @@ does not interpolate, because the compiler emits `rgb()`; write `rgb()` to anima
 classes with a `transition` or `animation`:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Presence, Text } from '@solid-native/components/solid';
-import { withNativeStyles } from '@solid-native/platform/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Presence, Text } from '@solidnative/components/solid';
+import { withNativeStyles } from '@solidnative/platform/solid';
 import sheet from './toast.native.css';
 
 export function Toast(props: { open: boolean; message: string }) {

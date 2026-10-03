@@ -5,16 +5,16 @@ summary: Reactive Solid services for screen size, color scheme, safe areas and t
 
 # Device
 
-`@solid-native/device/solid` holds services describing the device and OS. Every value is a Solid
+`@solidnative/device/solid` holds services describing the device and OS. Every value is a Solid
 accessor, tracked like any signal.
 
 Each service is a token that `useService()` resolves inside a `ServiceScope` near the app root;
 unresolved tokens are never constructed:
 
 ```tsx
-/** @jsxImportSource @solid-native/platform/solid */
-import { Text } from '@solid-native/components/solid';
-import { ColorScheme, ServiceScope, useService } from '@solid-native/device/solid';
+/** @jsxImportSource @solidnative/platform/solid */
+import { Text } from '@solidnative/components/solid';
+import { ColorScheme, ServiceScope, useService } from '@solidnative/device/solid';
 
 function Header() {
   const scheme = useService(ColorScheme);

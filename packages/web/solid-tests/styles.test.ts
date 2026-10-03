@@ -6,8 +6,8 @@
  */
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { compileBrowserCss } from '@solid-native/metro/solid-browser.cjs';
-import { Text } from '@solid-native/components/solid';
+import { compileBrowserCss } from '@solidnative/metro/solid-browser.cjs';
+import { Text } from '@solidnative/components/solid';
 import type { BrowserNode } from '../src/dom-node.ts';
 import { createElement, setProp } from '../src/solid/index.ts';
 import { boot } from './boot.ts';

@@ -1,19 +1,19 @@
-# @solid-native/metro
+# @solidnative/metro
 
 The build-time half of solid-native: a Metro config preset and Babel transformer that compiles Solid
 JSX for the native host, turns each `.native.css` file into the rule set
-[`@solid-native/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric)
+[`@solidnative/fabric`](https://github.com/byteab/solid-native/blob/main/packages/fabric)
 reads at runtime, inlines the `lucide-static` icons a file imports, and reloads cleanly on edits.
 
 Alpha: APIs may change before 1.0.
 
 ## Install
 
-Most apps start from `npx create-expo-app@latest my-app --template @solid-native/template`, which
+Most apps start from `npx create-expo-app@latest my-app --template @solidnative/template`, which
 already has this wired into `metro.config.js`. Otherwise:
 
 ```sh
-npm install @solid-native/metro
+npm install @solidnative/metro
 npm install expo
 ```
 
@@ -22,12 +22,12 @@ npm install expo
 ```js
 // metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
-const { withSolidNative } = require('@solid-native/metro');
+const { withSolidNative } = require('@solidnative/metro');
 
 module.exports = withSolidNative(getDefaultConfig(__dirname));
 ```
 
-No options in the common case. In a monorepo where the `@solid-native/*` packages live outside the
+No options in the common case. In a monorepo where the `@solidnative/*` packages live outside the
 app's own `node_modules`, pass `{ workspaceRoot }`:
 
 ```js
@@ -44,9 +44,9 @@ module.exports = withSolidNative(getDefaultConfig(__dirname), {
 - `./solid-transformer.cjs`, `./solid-worker.cjs` - the Babel transformer and transform worker the
   preset wires in; `./solid-transform.cjs`, `./solid-css.cjs`, `./solid-runtime.cjs` - the
   compile stages, also used by test registers.
-- `./css/*.cjs` - the build-time CSS compiler, also used by `@solid-native/tailwind`.
+- `./css/*.cjs` - the build-time CSS compiler, also used by `@solidnative/tailwind`.
 - `./inline-icons.cjs` - the build-time `lucide-static` import inliner.
-- `./solid-lower.cjs` - compiles a `<View>` or `<Text>` from `@solid-native/components` whose
+- `./solid-lower.cjs` - compiles a `<View>` or `<Text>` from `@solidnative/components` whose
   props the component would forward unchanged (no spread, `ref`, alias, `aria-*`, press callback
   or `disabled`) to the `<view>` / `<text>` it renders, which mounts a third faster.
   A lowered element's children compile as any intrinsic's do, so a child `{f()}` hands `f` itself

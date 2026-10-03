@@ -1,4 +1,4 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { onCleanup } from 'solid-js';
 import {
   createForm,
@@ -11,10 +11,10 @@ import {
   Text,
   TextInput,
   View,
-} from '@solid-native/components/solid';
-import { SCREEN_IN_FRONT, useService } from '@solid-native/device/solid';
-import { Show, withNativeStyles } from '@solid-native/platform/solid';
-import { useNavigation } from '@solid-native/router/solid';
+} from '@solidnative/components/solid';
+import { SCREEN_IN_FRONT, useService } from '@solidnative/device/solid';
+import { Show, withNativeStyles } from '@solidnative/platform/solid';
+import { useNavigation } from '@solidnative/router/solid';
 import { NoteDrafts } from './note-drafts.solid.ts';
 import styles from './note-sheet.native.css';
 

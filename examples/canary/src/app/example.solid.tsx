@@ -1,7 +1,7 @@
-/** @jsxImportSource @solid-native/platform/solid */
+/** @jsxImportSource @solidnative/platform/solid */
 import { createMemo } from 'solid-js';
-import { Text, View } from '@solid-native/components/solid';
-import { Show, withNativeStyles, type HostChild } from '@solid-native/platform/solid';
+import { Text, View } from '@solidnative/components/solid';
+import { Show, withNativeStyles, type HostChild } from '@solidnative/platform/solid';
 import sheet from './example.native.css';
 
 const prose = (value: string) => value.replace(/\s+/g, ' ').trim();

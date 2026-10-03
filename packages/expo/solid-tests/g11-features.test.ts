@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
 import { createRoot, createComputed, untrack } from 'solid-js';
-import { provideService, useService, withServiceScope } from '@solid-native/device/solid';
+import { provideService, useService, withServiceScope } from '@solidnative/device/solid';
 import { Database, database, type NativeDatabase } from '../src/solid/database.ts';
 import {
   watchPlayer,

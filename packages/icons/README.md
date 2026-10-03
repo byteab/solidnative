@@ -1,4 +1,4 @@
-# @solid-native/icons
+# @solidnative/icons
 
 Renders SVG icon strings - such as the [`lucide-static`](https://lucide.dev/guide/packages/lucide-static)
 set - as real native shapes from Solid, through `Icon` and react-native-svg, instead of the
@@ -9,17 +9,17 @@ Alpha: APIs may change before 1.0.
 ## Install
 
 ```sh
-npm install @solid-native/icons solid-js react-native-svg
+npm install @solidnative/icons solid-js react-native-svg
 npm install lucide-static   # or any package of SVG strings
 ```
 
-`lucide-static` exports each icon as a string of SVG markup. `@solid-native/metro` inlines the
+`lucide-static` exports each icon as a string of SVG markup. `@solidnative/metro` inlines the
 named imports a file makes from it at build time, so only the icons an app uses reach its bundle.
 
 ## Example
 
 ```tsx
-import { Icon, IconProvider } from '@solid-native/icons';
+import { Icon, IconProvider } from '@solidnative/icons';
 import { BookOpen } from 'lucide-static';
 
 export function Reading() {

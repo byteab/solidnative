@@ -8,7 +8,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createRoot } from 'solid-js';
-import { bindNativeNavigation, type NativeNavigation } from '@solid-native/router';
+import { bindNativeNavigation, type NativeNavigation } from '@solidnative/router';
 
 /** Just the part of a navigation the binding reads, recording every path it pushes. */
 function fakeNavigation(url = '/') {

@@ -1,6 +1,6 @@
-# @solid-native/web
+# @solidnative/web
 
-A browser host for solid-native: the same Solid `@solid-native/components`, rendered into the DOM instead
+A browser host for solid-native: the same Solid `@solidnative/components`, rendered into the DOM instead
 of native views. It implements the `HostEngine` seam the Fabric engine implements, so a `View`, a
 `Pressable` or a `TextInput` behaves the same way in a browser as it does on a phone - which is what
 the documentation site's live examples and this project's browser tests run on.
@@ -10,7 +10,7 @@ Alpha: APIs may change before 1.0.
 ## Install
 
 ```sh
-npm install solid-js @solid-native/components @solid-native/web
+npm install solid-js @solidnative/components @solidnative/web
 npm install --save-dev vite typescript
 ```
 
@@ -20,7 +20,7 @@ rather than bundling them:
 
 ```ts
 // vite.config.ts
-import { solidNativeWeb } from '@solid-native/web/vite';
+import { solidNativeWeb } from '@solidnative/web/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -33,7 +33,7 @@ export default defineConfig({
 Mounting a component into a page:
 
 ```ts
-import { mount } from '@solid-native/web';
+import { mount } from '@solidnative/web';
 import { App } from './app.solid.tsx';
 
 const app = mount(document.getElementById('app')!, App, { inputs: { title: 'Hello' } });
@@ -48,12 +48,12 @@ Inside a Solid DOM page you already have, place a shared component with `Island`
 page's owner shares its services and context, and disposes the island with it:
 
 ```tsx
-import { Island } from '@solid-native/web';
+import { Island } from '@solidnative/web';
 
 <Island component={Wallet} inputs={{ accountId, onPaid }} />;
 ```
 
-`@solid-native/web/web-view` mounts a Solid DOM component in the page a native web view loaded, and
+`@solidnative/web/web-view` mounts a Solid DOM component in the page a native web view loaded, and
 talks to the app across the bridge.
 
 ## Docs

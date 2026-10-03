@@ -10,7 +10,7 @@ import {
   withServiceScope,
   type ServiceBinding,
   type ServiceToken,
-} from '@solid-native/device/solid';
+} from '@solidnative/device/solid';
 
 const disposers: (() => void)[] = [];
 

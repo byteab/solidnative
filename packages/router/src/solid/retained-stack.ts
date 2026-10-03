@@ -1,5 +1,5 @@
 import { batch, createSignal, getOwner, onCleanup, type Accessor } from 'solid-js';
-import type { HostNode } from '@solid-native/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import { observeRouteDisposal, type RouteOwner, type RouteOwnerOptions } from './route-owner.ts';
 
 export interface StackTransition {

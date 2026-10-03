@@ -10,15 +10,15 @@
 import assert from 'node:assert/strict';
 import { before, describe, it } from 'node:test';
 import { createRequire } from 'node:module';
-import { Engine, type StyleSheet } from '@solid-native/fabric';
-import { createFakeFabric } from '@solid-native/testing';
+import { Engine, type StyleSheet } from '@solidnative/fabric';
+import { createFakeFabric } from '@solidnative/testing';
 import { build, committedProps } from './tailwind-cli.ts';
 
 const require = createRequire(import.meta.url);
-const { flattenTailwind } = require('@solid-native/tailwind') as {
+const { flattenTailwind } = require('@solidnative/tailwind') as {
   flattenTailwind(css: string): string;
 };
-const { compileCss } = require('@solid-native/metro/css/compile.cjs') as {
+const { compileCss } = require('@solidnative/metro/css/compile.cjs') as {
   compileCss(css: string, context: string, options: object): StyleSheet;
 };
 
