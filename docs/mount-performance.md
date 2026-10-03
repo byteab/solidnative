@@ -75,8 +75,12 @@ Tailwind is set aside for now; these target inline-styled views.
    most of their work was the copying, which a node still needs once. The table above includes it.
 2. **Done: static props at build time** (above).
 3. **Done, not kept: batched removals** (above).
-4. **Clear on device.** Renderer clear is 13.8 ms on iOS but 2.7 ms headless, where GC runs
-   before each phase. Profile on device before changing teardown.
+4. **Clear on device, profiled.** Not GC: Hermes counts no collection during it. Of a 13 ms iOS
+   clear, the synchronous `setRows([])` is 9-13 ms, engine removals 1 ms, flush and commit 2.5 ms.
+   Runs vary 3.5-13.6 ms with every part scaling together, removals and commit included, so the
+   spread is the CPU after the bench's 400 ms idle, not a slow path. What is left is Solid's
+   teardown of each row's owner (`cleanNode`), then `createSelector`'s per-row cleanup and the
+   platform's `drop`: item 5 is the one to work on.
 5. **`createSelector`.** Allocates a `Set`, a map entry and a closure per row, ~10% of the bench's
    mount. A lighter platform selector, or Solid 2.0's core.
 6. **Android small updates.** Fabric time on label1 and swap is 2-3x React's for the same change:
