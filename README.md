@@ -13,12 +13,16 @@ Angular, to SolidJS. See [where it came from](#from-ng-native).
 > solid-native is an experiment, built to explore running Solid on React Native's architecture. It
 > is not production ready: expect gaps, rough edges and breaking changes.
 
+The packages are not published to npm yet, so run it from this repo:
+
 ```sh
-npx create-expo-app@latest my-app --template @solid-native/template
-cd my-app && npx expo start
+git clone https://github.com/byteab/solid-native.git && cd solid-native
+corepack enable && pnpm install
+pnpm --filter canary start
 ```
 
-Scan the QR code with Expo Go, or press `i` or `a` for a simulator.
+Scan the QR code with Expo Go, or press `i` or `a` for a simulator. Swap `canary` for any app in
+[examples](examples).
 
 ## A component
 
