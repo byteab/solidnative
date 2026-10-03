@@ -60,6 +60,10 @@ Class-styled rows are 36 ms, against 12 ms for inline styles with no sheet.
 ## Tried and not kept
 
 - **One cleanup per owner instead of a closure per node** (`ownNode`): 0.09 MB less, no faster.
+- **Batched removals for replace.** O(1) removal (order ignored) bounds the gain at 0.84 ms of a
+  13.5 ms headless replace. Hermes's native `splice` is the fast way to shift: a JS loop costs
+  +4.6 ms, `copyWithin` +5.7 ms. Deferring the shift needs every reader of `children` to see it,
+  and a getter on `children` costs +0.4 ms on mount and +0.7 ms on replace by itself.
 - **A C++ commit path:** measured earlier ([performance.md](performance.md)); at most ~2 ms of a
   61 ms mount.
 
@@ -70,8 +74,7 @@ Tailwind is set aside for now; these target inline-styled views.
 1. **Done: engine fast path** (`plainProps`). Smaller than the ~18% the merge steps cost, because
    most of their work was the copying, which a node still needs once. The table above includes it.
 2. **Done: static props at build time** (above).
-3. **Replace is O(n²).** Universal removes old rows from the front, one `splice` each (5.5% of
-   replace). Batch the removals in the engine, with every reader of `children` seeing the batch.
+3. **Done, not kept: batched removals** (above).
 4. **Clear on device.** Renderer clear is 13.8 ms on iOS but 2.7 ms headless, where GC runs
    before each phase. Profile on device before changing teardown.
 5. **`createSelector`.** Allocates a `Set`, a map entry and a closure per row, ~10% of the bench's
