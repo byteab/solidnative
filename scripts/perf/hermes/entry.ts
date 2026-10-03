@@ -1,6 +1,7 @@
 // The canary bench's Solid tree and steps on the headless Hermes runner, against a stub Fabric
 // that only builds the handles the engine keeps (no native work, so the time is the renderer's).
-// args: [mode, iterations]  mode: solid (store) | signals | raw | engine
+// args: [mode, iterations]  mode: solid (store) | signals | raw | engine | twinline | twclass
+//   twinline: the signals bench under a global Tailwind sheet; twclass: its rows styled by class
 import { createNativeRoot } from '@solidnative/platform/solid';
 import { Engine } from '@solidnative/fabric';
 // React Native's own colour parser, as its processColor runs it on iOS.
@@ -15,6 +16,7 @@ const engineOptions = { processColor };
 import { createBench } from '../node/bench-fixture.solid.tsx';
 import { createSignalsBench } from './signals-fixture.solid.tsx';
 import { createRawSignalsBench } from './raw-signals-fixture.solid.tsx';
+import { createTailwindBench, sheet } from './tailwind-fixture.solid.tsx';
 import { RawBench } from '../node/raw-fixture.solid.tsx';
 import { STEPS, initial, styles } from '../../../examples/canary/src/bench/rows.ts';
 
@@ -67,7 +69,8 @@ function clock() {
 const mode = args[0] ?? 'solid';
 const iterations = Number(args[1] ?? 15);
 const phases =
-  (mode === 'solid' || mode === 'signals' || mode === 'rawsignals') && args[2] !== 'mount'
+  (mode === 'solid' || mode === 'signals' || mode === 'rawsignals' || mode.startsWith('tw')) &&
+  args[2] !== 'mount'
     ? STEPS.map((s) => s.name)
     : ['mount'];
 const res: Record<string, { ms: number[]; mb: number[] }> = {};
@@ -91,7 +94,9 @@ for (let i = 0; i < iterations; i++) {
     fabric: stubFabric() as never,
     clock: c as never,
     rootTag: 1,
-    engineOptions,
+    engineOptions: mode.startsWith('tw')
+      ? { ...engineOptions, globalStyles: sheet }
+      : engineOptions,
   });
   if (mode === 'engine') {
     // The same tree fed to the engine directly: no Solid, no platform.
@@ -123,11 +128,13 @@ for (let i = 0; i < iterations; i++) {
     continue;
   }
   const bench =
-    mode === 'signals'
+    mode === 'signals' || mode === 'twinline'
       ? createSignalsBench()
-      : mode === 'rawsignals'
-        ? createRawSignalsBench()
-        : createBench();
+      : mode === 'twclass'
+        ? createTailwindBench()
+        : mode === 'rawsignals'
+          ? createRawSignalsBench()
+          : createBench();
   measure('mount', () => root.render(() => bench.Bench()));
   for (const s of phases.slice(1))
     measure(s, () => {
