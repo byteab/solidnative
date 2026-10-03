@@ -54,6 +54,8 @@ every side.
 - Slimmer node objects, passing styles through uncopied, `textContent` for `<Text>{expr}</Text>`,
   hoisting literal style objects: flat or worse on Hermes.
 
+Later work on mount, with React measured in the same session: [mount-performance.md](mount-performance.md).
+
 ## Running it
 
 The harness is in `scripts/perf/`.
