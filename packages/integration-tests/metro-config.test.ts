@@ -159,10 +159,20 @@ describe('the Metro preset', () => {
     }
   });
 
-  it("puts the worklets Babel plugin's package in Metro's cache key, so installing it starts afresh", () => {
+  it("puts the worklets Babel plugin's package in Metro's cache key, so installing it starts afresh", (t) => {
     // babel-preset-expo adds the plugin only when it resolves, and Metro's key knew nothing of
     // that, so files transformed before the install kept their worklets untransformed.
     const root = appRoot('solidnative-worklets-');
+    // Nx runs tasks with NODE_PATH set to pnpm's hoisted node_modules, where the workspace's own
+    // worklets lives, so a bare app would find it. Resolve as an app outside the workspace would.
+    const Module = require('node:module') as { _initPaths(): void };
+    const nodePath = process.env['NODE_PATH'];
+    delete process.env['NODE_PATH'];
+    Module._initPaths();
+    t.after(() => {
+      if (nodePath !== undefined) process.env['NODE_PATH'] = nodePath;
+      Module._initPaths();
+    });
     try {
       const key = () => withSolidNative(base(root)).transformer.cacheVersion!;
       const before = key();

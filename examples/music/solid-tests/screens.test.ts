@@ -111,7 +111,9 @@ for (const platform of ['ios', 'android'] as const) {
     // Fake Fabric clones a node on every prop update, so it is looked up each time.
     const slider = () => h.nodes().find((node) => node.instanceHandle.name === 'ui-slider')!;
     assert.equal(slider().props['accessibilityLabel'], 'Seek');
-    h.fabric.emit(slider(), 'topValueChanged', { value: 0.5 });
+    h.fabric.emit(slider(), platform === 'android' ? 'topValueChange' : 'topValueChanged', {
+      value: 0.5,
+    });
     await h.idle();
     assert.equal(h.calls.at(-1), 'seek 4');
     assert.ok(h.texts(now()).includes('0:04'));

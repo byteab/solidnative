@@ -123,6 +123,15 @@ packages' source; component files name their JSX source by pragma:
 ```
 
 `allowImportingTsExtensions` is required: the packages import their own files as `./x.ts`.
+`vite/client` types every `.css` import as a string, so give `.native.css` its own type in
+`src/native-styles.d.ts`:
+
+```ts
+declare module '*.native.css' {
+  const sheet: import('@solidnative/fabric').StyleSheet;
+  export default sheet;
+}
+```
 
 ### With Tailwind
 

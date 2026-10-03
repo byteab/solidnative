@@ -358,6 +358,11 @@ import './styles.css';
 
 mount(document.getElementById('root')!, App);
 `,
+  'src/native-styles.d.ts': `declare module '*.native.css' {
+  const sheet: import('@solidnative/fabric').StyleSheet;
+  export default sheet;
+}
+`,
   'src/app.native.css': `.card {
   margin: 24px;
   padding: 16px;

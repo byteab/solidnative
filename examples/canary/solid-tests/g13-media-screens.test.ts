@@ -140,7 +140,9 @@ for (const platform of ['ios', 'android'] as const) {
     );
     const slider = h.nodes().find((n) => n.instanceHandle.name === 'ui-slider')!;
     assert.ok(slider);
-    h.fabric.emit(slider, 'topValueChanged', { value: 0.4 });
+    h.fabric.emit(slider, platform === 'android' ? 'topValueChange' : 'topValueChanged', {
+      value: 0.4,
+    });
     h.clock.flushMicrotasks();
     assert.equal(fake.calls.at(-1), 'volume 0.4');
     await nav.push('/cover');

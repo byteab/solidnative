@@ -129,9 +129,15 @@ for (const platform of ['ios', 'android'] as const) {
     assert.deepEqual(asked, ['dark', null]);
     const sliders = h.nodes().filter((node) => node.instanceHandle.name === 'ui-slider');
     assert.equal(sliders.length, 2);
-    h.fabric.emit(sliders[0]!, 'topValueChanged', { value: 0.75 });
-    h.fabric.emit(sliders[0]!, 'topValueChanged', { value: 0.6 });
-    h.fabric.emit(sliders[1]!, 'topValueChanged', { value: 6 });
+    h.fabric.emit(sliders[0]!, platform === 'android' ? 'topValueChange' : 'topValueChanged', {
+      value: 0.75,
+    });
+    h.fabric.emit(sliders[0]!, platform === 'android' ? 'topValueChange' : 'topValueChanged', {
+      value: 0.6,
+    });
+    h.fabric.emit(sliders[1]!, platform === 'android' ? 'topValueChange' : 'topValueChanged', {
+      value: 6,
+    });
     h.fabric.emit(label(h, 'Bold Text')!, 'topChange', { value: true });
     h.clock.flushMicrotasks();
     assert.equal(classes(h, 'preview')[0]!.props['fontSize'], 24);
