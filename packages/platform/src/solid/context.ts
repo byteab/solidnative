@@ -48,6 +48,8 @@ export interface RootContext {
   release(lifetime: NodeLifetime): void;
   /** The owner a node was made under is gone: release it, or its native handles once detached. */
   drop(node: EngineNode): void;
+  /** Dispose an owner whose nodes are leaving the tree once the commit removing them is out. */
+  retire(dispose: () => void): void;
   report(error: unknown, source: string): void;
 }
 
@@ -75,6 +77,12 @@ export function currentRoot(duringTeardown = false): RootContext {
   if (!root || (root.disposed && !duringTeardown))
     throw new Error('Native elements require an active native root owner.');
   return root;
+}
+
+/** The root the running owner renders into, if it renders into a live one. */
+export function activeRoot(): RootContext | undefined {
+  const root = useContext(context);
+  return root && !root.disposed ? root : undefined;
 }
 
 /**

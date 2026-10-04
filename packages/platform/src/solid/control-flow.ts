@@ -1,6 +1,5 @@
 import {
   ErrorBoundary as SolidErrorBoundary,
-  For as SolidFor,
   Index as SolidIndex,
   Match as SolidMatch,
   Show as SolidShow,
@@ -14,12 +13,11 @@ import {
 import { useHostAdapter } from './host-context.ts';
 import type { NativeChild } from './root.ts';
 
-/** Solid's control flow is host-independent; only its default DOM return types need adapting. */
-export const For = SolidFor as unknown as <T extends readonly unknown[]>(props: {
-  each: T | undefined | null | false;
-  fallback?: NativeChild;
-  children: (item: T[number], index: Accessor<number>) => NativeChild;
-}) => NativeChild;
+/**
+ * Solid's control flow is host-independent; only its default DOM return types need adapting. `For`
+ * is the platform's own, which disposes removed rows after the commit (`for.ts`).
+ */
+export { For } from './for.ts';
 
 export const Index = SolidIndex as unknown as <T extends readonly unknown[]>(props: {
   each: T | undefined | null | false;

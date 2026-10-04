@@ -64,6 +64,8 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
   const released: NodeLifetime[] = [];
   /** Nodes without a lifetime whose owner was disposed, awaiting the next commit. */
   const dropped: EngineNode[] = [];
+  /** Owners whose nodes left the tree, disposed once the commit removing them is out. */
+  let retired: (() => void)[] = [];
   function releaseTree(node: EngineNode): void {
     engine.destroyNode(node);
     // Indexed: a for-of over each node's children goes through the iterator protocol.
@@ -125,26 +127,48 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
     lifetime.prev = lifetime.next = null;
   }
 
+  /** Let go of what disposed owners left: detached lifetimes and dropped subtrees. */
+  function releaseDetached(): void {
+    // Indexed, so a lifetime released by a cleanup that runs here is visited in this pass too.
+    for (let i = 0; i < released.length; i++) {
+      const lifetime = released[i]!;
+      lifetime.queued = false;
+      if (!attached(lifetime.node, engine)) destroy(lifetime);
+    }
+    released.length = 0;
+    // A dropped node at the top of a detached subtree takes the subtree's native handles with it;
+    // one still in a tree is either in use or under such a top.
+    for (let i = 0; i < dropped.length; i++) {
+      const node = dropped[i]!;
+      if (node.parent !== null || node.hostData !== DROPPED) continue;
+      node.hostData = DEAD;
+      releaseTree(node);
+    }
+    dropped.length = 0;
+  }
+
+  /** Dispose the retired owners, then release what they dropped, in the same flush. */
+  function disposeRetired(): void {
+    while (retired.length) {
+      const batch = retired;
+      retired = [];
+      for (let i = 0; i < batch.length; i++) {
+        try {
+          batch[i]!();
+        } catch (error) {
+          report(error, 'owner cleanup');
+        }
+      }
+    }
+    releaseDetached();
+  }
+
   const scheduler = createNativeScheduler(engine, {
     clock: options.clock,
     report,
-    beforeCommit() {
-      // Indexed, so a lifetime released by a cleanup that runs here is visited in this pass too.
-      for (let i = 0; i < released.length; i++) {
-        const lifetime = released[i]!;
-        lifetime.queued = false;
-        if (!attached(lifetime.node, engine)) destroy(lifetime);
-      }
-      released.length = 0;
-      // A dropped node at the top of a detached subtree takes the subtree's native handles with it;
-      // one still in a tree is either in use or under such a top.
-      for (let i = 0; i < dropped.length; i++) {
-        const node = dropped[i]!;
-        if (node.parent !== null || node.hostData !== DROPPED) continue;
-        node.hostData = DEAD;
-        releaseTree(node);
-      }
-      dropped.length = 0;
+    beforeCommit: releaseDetached,
+    afterCommit() {
+      if (retired.length) disposeRetired();
     },
   });
   const context: RootContext = {
@@ -164,6 +188,11 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
       node.hostData = DROPPED;
       dropped.push(node);
       if (!disposed) scheduler.schedule();
+    },
+    retire(dispose) {
+      if (disposed) return dispose();
+      // The removal that retired it has already asked for a flush; the first asks again in case.
+      if (retired.push(dispose) === 1) scheduler.schedule();
     },
     release(lifetime) {
       lifetime.released = true;
@@ -234,6 +263,9 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
       } catch (error) {
         report(error, 'owner cleanup');
       }
+      // Rows removed before the last commit went out are still waiting; their nodes are already
+      // out of the tree collected above.
+      disposeRetired();
       while (nodes) destroy(nodes);
       released.length = 0;
       dropped.length = 0;

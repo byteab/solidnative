@@ -10,6 +10,8 @@ interface SchedulerOptions {
   readonly clock?: NativeClock;
   readonly report: (error: unknown, source: string) => void;
   readonly beforeCommit: () => void;
+  /** Runs once a flush has committed, or found nothing to commit. */
+  readonly afterCommit: () => void;
 }
 
 const defaultClock: NativeClock = {
@@ -93,6 +95,7 @@ export function createNativeScheduler(engine: Engine, options: SchedulerOptions)
       options.beforeCommit();
       if (!disposed) {
         committed = engine.commit();
+        options.afterCommit();
         succeeded = true;
         // A clean tree is already committed: barriers need no empty completeRoot call.
         runCallbacks(pending);

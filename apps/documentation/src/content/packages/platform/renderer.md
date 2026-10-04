@@ -58,9 +58,12 @@ A removed node is destroyed at the next commit unless re-inserted meanwhile, so 
 
 ## Control flow
 
-`For`, `Index`, `Show`, `Switch`, `Match`, `ErrorBoundary`, `Suspense` and `SuspenseList` are
-Solid's own, re-exported from `@solidnative/platform/solid` and typed for native children; import
-them from here in native files.
+`Index`, `Show`, `Switch`, `Match`, `ErrorBoundary`, `Suspense` and `SuspenseList` are Solid's
+own, re-exported from `@solidnative/platform/solid` and typed for native children; import them from
+here in native files. `For` is the platform's own and behaves as Solid's, except that a removed
+row is disposed after the commit that takes it off screen, as React runs unmount effects after its
+commit: its `onCleanup`s run then, not inside the write that removed it. Until then its
+computations no longer run, so a row that looks itself up in the list it left does not fail.
 
 ```tsx
 /** @jsxImportSource @solidnative/platform/solid */

@@ -161,8 +161,9 @@ test('compiled universal TSX drives native signals, stores, responders, keyed ow
   assert.equal(clock.frames.size, 0);
 });
 
-test('native control-flow exports retain Solid identity and all bare modules resolve to one production root', () => {
-  assert.equal(For, SolidFor);
+test('native control-flow exports retain Solid identity but For, and all bare modules resolve to one production root', () => {
+  // The platform's For disposes removed rows after the commit (for.ts).
+  assert.notEqual(For, SolidFor);
   assert.equal(Show, SolidShow);
   const signal = import.meta.resolve('solid-js');
   assert.match(signal, /\/dist\/solid\.js$/);
