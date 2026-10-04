@@ -271,16 +271,62 @@ are (`retireRoute` in the router), so a pop's commit is not held up by the page'
 that never showed (a cancelled push, a failed presentation) is still torn down at once. Checked by
 the router's tests and on the Android emulator (push, basket edits, pop), not benchmarked.
 
-What is left is one young-generation collection: Solid's first remount on iOS spends 2.2 ms in GC
-against React's 0.9, because almost everything Solid allocates for a page lives as long as the page,
-where much of React's allocation is garbage by the end of the render. The second remount, with no
-collection in it, is faster than React's. Fewer surviving objects per node is the lever: the
-engine's node (some 36 fields) is the largest, and a `style={styles.x}` member expression still
-compiles to a render effect per element, which a compiler that resolved module-level style objects
-could make a build-time static.
+### Garbage collection on a page, measured
+
+The 0.8 ms left on the first remount was not the page's survivors. With the bench run for six
+push/pop cycles (interleaved, iOS 10-12 rounds, Android 8-10), that collection is the app's first:
+Solid's mount has none, so the first remount promotes everything alive since boot (2.2 ms); React
+pays its first in mount. Later iOS collections cost 1.0-1.2 ms against React's 0.6-0.9, and Solid
+collects every second remount where React collects in three of four.
+
+On Android a Solid collection cost 4-6 ms against React's 1.2-1.6 (2 collections, 11.5 ms over the
+run, against React's 4 and 4.7 ms on twice the allocation). A native profile (root simpleperf, the
+unstripped `libhermesvm.so` from the Gradle cache) put 62% of that young-generation pause in
+`finalizeYoungGenObjects`, `deleteShared(NativeState)` and `~ShadowNodeWrapper`: a destroyed
+node's Fabric handle died young, so its finalizer, and with it the native node's teardown, ran inside
+the pause on the JavaScript thread. React's handles outlive a collection and are finalized by the
+old generation's sweep on the collector's thread (`~ShadowNodeWrapper` 0.02% of React's JavaScript
+thread, 1.50% of Solid's). Evacuation, what the survivor count drives, was about equal.
+
+**Kept: destroyed handles wait for a collection** (`Engine.graveyard`, `EngineOptions.collections`,
+Hermes's `js_numGCs` by default). The engine holds each destroyed node's handle until the count
+changes, so it is promoted and dies in the old generation. Young-gen work on the JavaScript thread
+went from 122 samples to 66 (React 75). Final branch against React and the session's start, ms:
+
+| page bench, GC per collection | iOS React | iOS before | iOS now | Android React | Android before | Android now |
+| ----------------------------- | --------- | ---------- | ------- | ------------- | -------------- | ----------- |
+| first remount (boot's GC)     | 0.9       | 2.2        | 1.8     | 0 (in mount)  | 0              | 0           |
+| later collections             | 0.8-0.9   | 1.2        | 0.8     | 1.1-1.2       | 2.1-3.3        | 1.0-1.7     |
+| GC over the whole run         | 4.4       | 4.6        | 3.4     | 2.9           | 5.4            | 2.7         |
+
+With it, Solid's total time per phase beats React's in every phase of the iOS run, and its JS-thread
+GC on Android is below React's.
+
+**Also fixed: a popped page was retained.** `applyUntracked` kept the last node and value it set in
+module variables, and through a ScrollView's handlers that held the whole popped page (490 nodes)
+until the next spread write. Headless, 5 nodes now remain after a pop. It did not change GC time.
+
+Both were checked by hand on the iOS simulator (shop, product push, size, basket add and remove to
+empty, two more push/pops, back), with no errors logged.
+
+**Tried and not kept** (side branch `perf/mount-survivors`, no device gain):
+
+- Forget a render effect whose first run read no signal (122 of 612 computations per page): iOS
+  within noise. A text node made in an `insert` keeps its computation alive through `hostData`.
+- One cleanup per owner for the nodes it makes, not a closure per node: more survivors headless
+  (an array per owner), not fewer.
+- Responder handlers on the node rather than in a `WeakMap`: within noise.
+- Engine nodes as a sized object literal: a no-op. Hermes sizes class-field storage once (344
+  bytes for 36 fields); only `this.x =` assignments in a constructor grow it (624).
+
+**The list.** G does not move the 1000-row bench. In this session iOS mount was level (renderer
+13.6 vs React 13.4 ms, total 49.4 vs 50.8). Android mount is 1.5 ms behind (14.7 vs 13.2): 0.5 ms
+GC, 1.2 ms other renderer work, total level (70.8 vs 70.5).
 
 ## Measuring
 
 - Headless Hermes: `scripts/perf/hermes/ab.sh` modes `signals`, `twinline` (signals bench under a
-  global Tailwind sheet) and `twclass` (rows styled by class).
+  global Tailwind sheet), `twclass` (rows styled by class) and `screen` (the page bench). Run it
+  from its own directory (the host's rpath is relative). It runs no young-generation collection in
+  a phase and its Fabric handles have no finalizers, so GC questions need a device.
 - Device: `scripts/perf/build.sh`, then `ab-ios.sh` / `ab-android.sh`, on a Release canary.
