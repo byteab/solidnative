@@ -190,7 +190,9 @@ passive-effect unmounts after its commit. Headless, time to commit: clear 2.86 -
   it, unless a new row or route is set up first: then every retired owner is disposed before it
   (`settler`). Deferred without that, an immutable refetch ran each new row before the old row's
   cleanup, so a registry keyed by id lost the ids (found in review). Only pure removals (clear,
-  remove, pop) stay deferred; replace disposes before creating, as Solid does.
+  remove, pop) stay deferred; replace disposes before creating, as Solid does. Measured against
+  deferring everything: replace renderer 23.3 -> 25.7 ms on iOS, 16.9 -> 19.1 on Android; clear
+  unchanged (3.4 and 1.4).
 - Next: the same for `Index`, `Show`/`Switch` branches and a router pop; disposal in idle slices
   (`requestIdleCallback`, ~2 ms each) so 2000 rows' teardown cannot delay the next frame's input.
 

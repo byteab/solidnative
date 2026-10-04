@@ -167,20 +167,42 @@ Solid 1.9, Expo SDK 57 and React Native 0.86 with the New Architecture, on Node 
 
 ## Performance
 
-On the js-framework-benchmark operations (1000 rows, Release, Hermes), measured against React
-Native's own renderer on the same screen:
+Measured against React Native's own renderer drawing the same screen, in Release builds on Hermes
+(iPhone 17 Pro simulator, Android emulator). Each number is the median time in milliseconds from
+the start of the step to the moment Fabric has the finished tree: JavaScript, garbage collection
+and Fabric's native commit together. Launches of the two apps alternate, 12 rounds on iOS and 10
+on Android. Lower is better.
 
-| phase, total ms | iOS React | iOS Solid | Android React | Android Solid |
-| --------------- | --------- | --------- | ------------- | ------------- |
-| mount           | 61.4      | 64.3      | 72.8          | 75.3          |
-| append          | 75.1      | 69.1      | 68.2          | 59.0          |
-| update10th      | 19.5      | 6.9       | 14.1          | 6.3           |
-| select          | 17.8      | 6.9       | 17.8          | 4.5           |
-| clear           | 7.0       | 12.0      | 5.5           | 8.0           |
+**A list of 1000 rows** (the js-framework-benchmark operations):
 
-Updates run in about a third of React's time; creating and disposing large lists is close to it.
-The numbers, what made them and what was tried and dropped are in
-[docs/performance.md](docs/performance.md).
+| step                  | iOS React | iOS Solid | Android React | Android Solid |
+| --------------------- | --------: | --------: | ------------: | ------------: |
+| create 1000 rows      |      52.1 |      52.5 |          74.3 |          71.4 |
+| replace all 1000 rows |      56.1 |      63.7 |          61.6 |          62.7 |
+| update every 10th row |      19.4 |       8.4 |          17.6 |           7.8 |
+| select a row          |      17.1 |       5.0 |          17.8 |           4.5 |
+| change one label      |      20.5 |       5.0 |          14.6 |           5.3 |
+| swap two rows         |      21.2 |       6.8 |          23.9 |          13.5 |
+| remove one row        |      14.7 |       6.0 |          16.7 |           8.9 |
+| append 1000 rows      |      76.7 |      67.1 |          70.8 |          56.7 |
+| clear 2000 rows       |       6.1 |       4.9 |           6.0 |           6.2 |
+
+**A page pushed and popped** (40 cards, each a pressable with an avatar, two lines of text and a
+button, as navigation mounts a screen):
+
+| step              | iOS React | iOS Solid | Android React | Android Solid |
+| ----------------- | --------: | --------: | ------------: | ------------: |
+| first mount       |      13.0 |      10.9 |          16.1 |          12.4 |
+| pop               |       0.6 |       0.7 |           0.8 |           1.0 |
+| push again        |      11.7 |      11.1 |          11.5 |           9.0 |
+| pop again         |       0.7 |       1.0 |           0.8 |           0.9 |
+| push a third time |       8.9 |       8.9 |          10.2 |           8.8 |
+
+Updates take between a quarter and a little over half of React's time. A page mounts and pushes
+as fast as React or faster, and pops within 0.3 ms of it. Creating and clearing a large list is
+level with React; replacing every row of one is slower (7.6 ms on iOS, 1.1 ms on Android). How these were measured, what made them and what was tried
+and dropped are in [docs/performance.md](docs/performance.md) and
+[docs/mount-performance.md](docs/mount-performance.md).
 
 ## From ng-native
 
