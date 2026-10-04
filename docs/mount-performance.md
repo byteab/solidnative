@@ -266,6 +266,11 @@ allocation 2.67 -> 1.07 MB.
    only when read; the props carry only what is set; the owner's cleanup replaces a per-node
    native lifetime. Headless mount -9%, allocation -20%.
 
+A popped screen's owner is now disposed after the commit that removes its screen, as `For`'s rows
+are (`retireRoute` in the router), so a pop's commit is not held up by the page's teardown; a route
+that never showed (a cancelled push, a failed presentation) is still torn down at once. Checked by
+the router's tests and on the Android emulator (push, basket edits, pop), not benchmarked.
+
 What is left is one young-generation collection: Solid's first remount on iOS spends 2.2 ms in GC
 against React's 0.9, because almost everything Solid allocates for a page lives as long as the page,
 where much of React's allocation is garbage by the end of the render. The second remount, with no
