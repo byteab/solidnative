@@ -1,13 +1,8 @@
-import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import type { HostNode } from '@solidnative/fabric';
-import {
-  insertHostChildren,
-  onHostCleanup,
-  spreadHostProps,
-  useHostEngine,
-} from '@solidnative/platform/solid';
+import { createMemo, createRenderEffect, createSignal, onCleanup, type Signal } from 'solid-js';
+import type { HostNode, ResponderHandlers } from '@solidnative/fabric';
+import { insertHostChildren, spreadHostProps, useHostEngine } from '@solidnative/platform/solid';
 import { createNativeRef } from './ref.ts';
-import { hostProps, primitiveNode } from './host-props.ts';
+import { definedHostProps, primitiveNode } from './host-props.ts';
 import type { Insets, TouchEvent } from '../events.ts';
 import type {
   AndroidRipple,
@@ -46,193 +41,255 @@ function point(event: TouchEvent) {
   const touch = native.touches?.[0];
   return { x: native.pageX ?? touch?.pageX ?? 0, y: native.pageY ?? touch?.pageY ?? 0 };
 }
-/** Responder arbitration, not a synthetic topPress listener. */
+type PressProps = PressBehaviorProps &
+  Pick<ViewProps, 'hitSlop'> & { android_ripple?: AndroidRipple };
+type Engine = ReturnType<typeof useHostEngine>;
 const always = () => true;
-export function installPressBehavior(
-  node: HostNode,
-  props: PressBehaviorProps & Pick<ViewProps, 'hitSlop'> & { android_ripple?: AndroidRipple },
-  enabled: () => boolean = always,
-) {
-  const engine = useHostEngine();
-  const isEnabled = enabled === always ? always : createMemo(enabled);
-  const [pressed, setPressed] = createSignal(false);
-  const [hovered, setHovered] = createSignal(false);
-  let origin: { x: number; y: number } | undefined;
-  let size: { width: number; height: number } | undefined;
-  let cancelled = false;
-  let longPressed = false;
-  let pressedAt = 0;
-  let lastEvent: TouchEvent | undefined;
-  let pressIn: ReturnType<typeof setTimeout> | undefined;
-  let pressOut: ReturnType<typeof setTimeout> | undefined;
-  let longPress: ReturnType<typeof setTimeout> | undefined;
-  const clearTimers = () => {
-    clearTimeout(pressIn);
-    clearTimeout(pressOut);
-    clearTimeout(longPress);
-    pressIn = pressOut = longPress = undefined;
-  };
-  const activate = (event: TouchEvent) => {
-    pressIn = undefined;
-    if (props.disabled || cancelled) return;
-    pressedAt = Date.now();
-    setPressed(true);
+
+/**
+ * One pressable's gesture state, and the responder handlers that drive it as its methods: the
+ * engine calls them on this object, so a button holds one object rather than a closure apiece.
+ * `pressed` and `hovered` become signals only once something reads them (`state`); a button that
+ * styles itself the same way pressed or not keeps them as plain fields.
+ */
+class PressBehavior {
+  origin: { x: number; y: number } | undefined;
+  size: { width: number; height: number } | undefined;
+  cancelled = false;
+  longPressed = false;
+  pressedAt = 0;
+  lastEvent: TouchEvent | undefined;
+  pressIn: ReturnType<typeof setTimeout> | undefined;
+  pressOut: ReturnType<typeof setTimeout> | undefined;
+  longPress: ReturnType<typeof setTimeout> | undefined;
+  /** Removes the responder, while one is registered. */
+  stopResponder: (() => void) | null = null;
+  /** Removes the hover listeners, once something has read `hovered`. */
+  stopHover: (() => void) | null = null;
+  pressedValue = false;
+  hoveredValue = false;
+  pressedSignal: Signal<boolean> | null = null;
+  hoveredSignal: Signal<boolean> | null = null;
+  readonly node: HostNode;
+  readonly props: PressProps;
+  readonly engine: Engine;
+  readonly isEnabled: () => boolean;
+
+  constructor(node: HostNode, props: PressProps, engine: Engine, isEnabled: () => boolean) {
+    this.node = node;
+    this.props = props;
+    this.engine = engine;
+    this.isEnabled = isEnabled;
+  }
+
+  setPressed(value: boolean): void {
+    this.pressedValue = value;
+    this.pressedSignal?.[1](value);
+  }
+
+  setHovered(value: boolean): void {
+    this.hoveredValue = value;
+    this.hoveredSignal?.[1](value);
+  }
+
+  state(): PressableState {
+    const pressed = (this.pressedSignal ??= createSignal(this.pressedValue))[0]();
+    const behavior = this;
+    return {
+      pressed,
+      get hovered() {
+        behavior.watchHover();
+        return (behavior.hoveredSignal ??= createSignal(behavior.hoveredValue))[0]();
+      },
+    };
+  }
+
+  watchHover(): void {
+    if (this.stopHover || !this.isEnabled()) return;
+    const enter = this.engine.setEventListener(this.node, 'topPointerEnter', () => {
+      if (this.isEnabled()) this.setHovered(true);
+    });
+    const leave = this.engine.setEventListener(this.node, 'topPointerLeave', () =>
+      this.setHovered(false),
+    );
+    this.stopHover = () => {
+      enter();
+      leave();
+    };
+  }
+
+  /** Everything a registration holds: the responder, hover, timers and the pressed state. */
+  release(): void {
+    const stopResponder = this.stopResponder,
+      stopHover = this.stopHover;
+    this.stopResponder = this.stopHover = null;
+    stopResponder?.();
+    stopHover?.();
+    this.clearTimers();
+    this.setPressed(false);
+    this.setHovered(false);
+  }
+
+  clearTimers(): void {
+    clearTimeout(this.pressIn);
+    clearTimeout(this.pressOut);
+    clearTimeout(this.longPress);
+    this.pressIn = this.pressOut = this.longPress = undefined;
+  }
+
+  activate(event: TouchEvent): void {
+    this.pressIn = undefined;
+    const props = this.props;
+    if (props.disabled || this.cancelled) return;
+    this.pressedAt = Date.now();
+    this.setPressed(true);
     props.onPressIn?.(event);
     if (props.onLongPress)
-      longPress = setTimeout(
+      this.longPress = setTimeout(
         () => {
-          longPress = undefined;
-          if (props.disabled || cancelled) return;
-          longPressed = true;
+          this.longPress = undefined;
+          if (props.disabled || this.cancelled) return;
+          this.longPressed = true;
           props.onLongPress?.(event);
         },
         Math.max(0, props.delayLongPress ?? 500),
       );
-  };
-  const deactivate = (event: TouchEvent, immediate = false) => {
-    clearTimeout(pressIn);
-    clearTimeout(longPress);
-    clearTimeout(pressOut);
-    pressIn = longPress = undefined;
-    if (!pressed()) return;
+  }
+
+  deactivate(event: TouchEvent, immediate = false): void {
+    clearTimeout(this.pressIn);
+    clearTimeout(this.longPress);
+    clearTimeout(this.pressOut);
+    this.pressIn = this.longPress = undefined;
+    if (!this.pressedValue) return;
+    const props = this.props;
     const out = () => {
-      pressOut = undefined;
-      setPressed(false);
+      this.pressOut = undefined;
+      this.setPressed(false);
       props.onPressOut?.(event);
     };
     const delay = immediate
       ? 0
       : Math.max(
           props.delayPressOut ?? 0,
-          (props.minPressDuration ?? 130) - (Date.now() - pressedAt),
+          (props.minPressDuration ?? 130) - (Date.now() - this.pressedAt),
         );
-    if (delay > 0) pressOut = setTimeout(out, delay);
+    if (delay > 0) this.pressOut = setTimeout(out, delay);
     else out();
-  };
-  const inside = (event: TouchEvent) => {
+  }
+
+  inside(event: TouchEvent): boolean {
+    const origin = this.origin;
     if (!origin) return false;
     const current = point(event),
       dx = current.x - origin.x,
       dy = current.y - origin.y;
+    const size = this.size;
     if (!size) return Math.hypot(dx, dy) <= 15;
-    const slop = insets(props.hitSlop, { top: 0, left: 0, right: 0, bottom: 0 });
-    const keep = insets(props.pressRetentionOffset, RETAIN);
+    const slop = insets(this.props.hitSlop, { top: 0, left: 0, right: 0, bottom: 0 });
+    const keep = insets(this.props.pressRetentionOffset, RETAIN);
     return (
       Math.abs(dx) <= size.width + (dx < 0 ? slop.left + keep.left : slop.right + keep.right) &&
       Math.abs(dy) <= size.height + (dy < 0 ? slop.top + keep.top : slop.bottom + keep.bottom)
     );
-  };
-  const ripplePressed = (value: boolean) => {
-    if (props.android_ripple) engine.dispatchCommand(node, 'setPressed', [value]);
-  };
-  const terminate = (event: TouchEvent) => {
-    cancelled = true;
-    origin = undefined;
-    deactivate(event);
-  };
-  let stopListeners = () => {};
-  // Hover is listened for once something reads it: most pressables never do, and each listener
-  // has native track the pointer over the view.
-  let stopHover = () => {};
-  let hoverWatched = false;
-  const watchHover = () => {
-    if (hoverWatched || !isEnabled()) return;
-    hoverWatched = true;
-    const enter = engine.setEventListener(node, 'topPointerEnter', () => {
-      if (isEnabled()) setHovered(true);
+  }
+
+  ripplePressed(value: boolean): void {
+    if (this.props.android_ripple) this.engine.dispatchCommand(this.node, 'setPressed', [value]);
+  }
+
+  terminate(event: TouchEvent): void {
+    this.cancelled = true;
+    this.origin = undefined;
+    this.deactivate(event);
+  }
+
+  onStartShouldSetResponder(): boolean {
+    return this.isEnabled() && !this.props.disabled;
+  }
+
+  onResponderGrant(event: TouchEvent): void {
+    this.clearTimers();
+    this.lastEvent = event;
+    const origin = (this.origin = point(event));
+    // Measured when a press starts, as React Native's Pressability does, rather than kept current
+    // with a layout listener that has native report every layout of every button.
+    this.size = undefined;
+    this.engine.measure(this.node, (frame) => {
+      this.size = { width: frame.width, height: frame.height };
     });
-    const leave = engine.setEventListener(node, 'topPointerLeave', () => setHovered(false));
-    stopHover = () => {
-      hoverWatched = false;
-      stopHover = () => {};
-      enter();
-      leave();
-    };
-  };
+    this.cancelled = false;
+    this.longPressed = false;
+    const props = this.props;
+    if (props.android_ripple) {
+      this.engine.dispatchCommand(this.node, 'hotspotUpdate', [origin.x, origin.y]);
+      this.ripplePressed(true);
+    }
+    if ((props.delayPressIn ?? 0) > 0)
+      this.pressIn = setTimeout(() => this.activate(event), props.delayPressIn);
+    else this.activate(event);
+  }
+
+  onResponderMove(event: TouchEvent): void {
+    this.lastEvent = event;
+    if (!this.cancelled && !this.inside(event)) this.terminate(event);
+  }
+
+  onResponderRelease(event: TouchEvent): void {
+    this.lastEvent = event;
+    this.origin = undefined;
+    this.ripplePressed(false);
+    const props = this.props;
+    if (this.cancelled || props.disabled) {
+      this.deactivate(event);
+      return;
+    }
+    if (this.pressIn) {
+      clearTimeout(this.pressIn);
+      this.activate(event);
+    }
+    const suppress = this.longPressed;
+    this.deactivate(event);
+    if (!suppress) props.onPress?.(event);
+  }
+
+  onResponderTerminate(event: TouchEvent): void {
+    this.ripplePressed(false);
+    this.terminate(event);
+  }
+
+  onResponderTerminationRequest(): boolean {
+    return this.props.cancelable ?? true;
+  }
+}
+
+/** Responder arbitration, not a synthetic topPress listener. */
+export function installPressBehavior(
+  node: HostNode,
+  props: PressProps,
+  enabled: () => boolean = always,
+): () => PressableState {
+  const isEnabled = enabled === always ? always : createMemo(enabled);
+  const behavior = new PressBehavior(node, props, useHostEngine(), isEnabled);
+  const release = () => behavior.release();
   createRenderEffect(() => {
     if (!isEnabled()) return;
-    const stops = [
-      engine.setResponder(node, {
-        onStartShouldSetResponder: () => isEnabled() && !props.disabled,
-        onResponderGrant: (event) => {
-          clearTimers();
-          lastEvent = event;
-          origin = point(event);
-          // Measured when a press starts, as React Native's Pressability does, rather than kept
-          // current with a layout listener that has native report every layout of every button.
-          size = undefined;
-          engine.measure(node, (frame) => {
-            size = { width: frame.width, height: frame.height };
-          });
-          cancelled = false;
-          longPressed = false;
-          if (props.android_ripple) {
-            engine.dispatchCommand(node, 'hotspotUpdate', [origin.x, origin.y]);
-            ripplePressed(true);
-          }
-          if ((props.delayPressIn ?? 0) > 0)
-            pressIn = setTimeout(() => activate(event), props.delayPressIn);
-          else activate(event);
-        },
-        onResponderMove: (event) => {
-          lastEvent = event;
-          if (!cancelled && !inside(event)) terminate(event);
-        },
-        onResponderRelease: (event) => {
-          lastEvent = event;
-          origin = undefined;
-          ripplePressed(false);
-          if (cancelled || props.disabled) {
-            deactivate(event);
-            return;
-          }
-          if (pressIn) {
-            clearTimeout(pressIn);
-            activate(event);
-          }
-          const suppress = longPressed;
-          deactivate(event);
-          if (!suppress) props.onPress?.(event);
-        },
-        onResponderTerminate: (event) => {
-          ripplePressed(false);
-          terminate(event);
-        },
-        onResponderTerminationRequest: () => props.cancelable ?? true,
-      }),
-    ];
-    let active = true;
-    stopListeners = () => {
-      if (!active) return;
-      active = false;
-      for (const stop of stops) stop();
-      stopHover();
-      clearTimers();
-      setPressed(false);
-      setHovered(false);
-    };
-    onCleanup(stopListeners);
+    behavior.stopResponder = behavior.engine.setResponder(
+      node,
+      behavior as unknown as ResponderHandlers,
+    );
+    onCleanup(release);
   });
   createRenderEffect(() => {
-    if ((!isEnabled() || props.disabled) && lastEvent) {
-      cancelled = true;
-      deactivate(lastEvent, true);
+    if ((!isEnabled() || props.disabled) && behavior.lastEvent) {
+      behavior.cancelled = true;
+      behavior.deactivate(behavior.lastEvent, true);
     }
   });
-  // Unregistered with the owner, so a Text that gains and drops onPress does not pile these up.
-  onCleanup(
-    onHostCleanup(node, () => {
-      clearTimers();
-      stopListeners();
-    }),
-  );
-  return (): PressableState => ({
-    pressed: pressed(),
-    get hovered() {
-      watchHover();
-      return hovered();
-    },
-  });
+  // The node lives exactly as long as this owner (a component's, or a Text's press memo), so the
+  // owner's cleanup is the node's: no native-lifetime registration per button.
+  onCleanup(release);
+  return () => behavior.state();
 }
 /**
  * The `RippleAndroid` drawable Android's `ReactDrawableHelper` reads. `color` goes through the
@@ -267,17 +324,21 @@ export function Pressable(props: PressableProps): HostNode {
   spreadHostProps(
     node,
     () => {
+      // Only what is set: the spread removes what goes away, and would otherwise visit every
+      // mapped key a button leaves undefined on every pass.
+      const host = definedHostProps(
+        props,
+        { accessible: true, focusable: true, disabled: props.disabled },
+        PRESSABLE_OMIT,
+      );
+      const drawn = ripple();
+      if (drawn)
+        host[
+          props.android_ripple!.foreground ? 'nativeForegroundAndroid' : 'nativeBackgroundAndroid'
+        ] = drawn;
       const style = props.style;
-      return {
-        ...hostProps(
-          props,
-          { accessible: true, focusable: true, disabled: props.disabled },
-          PRESSABLE_OMIT,
-        ),
-        nativeBackgroundAndroid: props.android_ripple?.foreground ? undefined : ripple(),
-        nativeForegroundAndroid: props.android_ripple?.foreground ? ripple() : undefined,
-        style: typeof style === 'function' ? style(state()) : style,
-      };
+      host['style'] = typeof style === 'function' ? style(state()) : style;
+      return host;
     },
     true,
   );
