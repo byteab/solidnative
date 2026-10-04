@@ -125,6 +125,10 @@ export const routes: readonly NativeRoute[] = [
 `pop(count)` removes that many. The innermost front stack answers; each resolves false and does
 nothing when there is nothing to pop to.
 
+A popped screen's page is torn down once the native transition has finished and the commit that
+removes its screen has gone out, so that commit is not held up by the teardown; its `onCleanup`s
+run then. Its effects no longer run from the moment it is removed.
+
 ## Deep links into nested screens
 
 `bindNativeNavigation`'s `parentOf` names the page a deep link belongs under, recursively, so a
