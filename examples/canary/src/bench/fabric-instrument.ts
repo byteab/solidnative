@@ -23,7 +23,19 @@ export function restoreFabric(): void {
   instrument()?.restore();
 }
 
+/**
+ * How long every side spins the CPU before a phase. After the 400 ms between steps a core has
+ * cooled, and how much a renderer's own work warms it before Fabric is reached is the renderer's
+ * size, not its speed: React's 17 ms of reconciling a small update ran its Fabric calls warm and
+ * Solid's 2 ms did not. The same spin first for both measures the step instead.
+ */
+const WARM_MS = 15;
+
 export function beginPhase(name: string): void {
+  const end = performance.now() + WARM_MS;
+  while (performance.now() < end) {
+    // spinning
+  }
   instrument()?.begin(name);
 }
 

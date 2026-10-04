@@ -3,10 +3,11 @@
 Branch `perf/mount-styles`, October 2026. Goal: Solid mounting as fast as React, or faster. Builds on
 [performance.md](performance.md), which has the harness and earlier work.
 
-**Verdict.** On mount, Solid's total time is now level with React's (2% behind on iOS, 2% ahead on
-Android), with renderer JavaScript 2 ms behind. It wins on append and on every update phase, and still loses on replace (iOS) and
-clear. The rest of the gap is this project's renderer layers (the platform's style handling and the
-engine's prop merge and CSS cascade), not Solid.
+**Verdict.** On mount, Solid's total time is level with React's (iOS 52.9 vs 52.8 ms, Android 2%
+behind), with renderer JavaScript 2 ms behind. It wins on append and on every update phase, and
+still loses on replace's renderer time (iOS) and on clear. The rest of the gap is this project's
+renderer layers (the platform's style handling and the engine's prop merge and CSS cascade), not
+Solid.
 
 ## Where mount time goes
 
@@ -21,16 +22,22 @@ Headless Hermes profile, signals bench, 1000 rows, no CSS sheet:
 
 ## Against React, after this work
 
-Device, Release, interleaved launches, 10 rounds each. Renderer JavaScript ms (total ms):
+Device, Release, interleaved launches, 10 rounds each, both sides spinning the CPU 15 ms before
+every phase (`beginPhase`). Renderer JavaScript ms (total ms):
 
 | phase      | iOS React   | iOS Solid       | Android React | Android Solid   |
 | ---------- | ----------- | --------------- | ------------- | --------------- |
-| mount      | 14.2 (51.2) | 16.0 (52.3)     | 14.1 (71.0)   | 16.3 (69.6)     |
-| replace    | 28.2 (76.4) | 38.0 (78.4)     | 14.9 (65.1)   | 21.1 (64.5)     |
-| update10th | 15.4 (20.9) | **3.2 (9.5)**   | 13.6 (20.9)   | **1.8 (10.2)**  |
-| select     | 21.7 (25.3) | **2.7 (10.1)**  | 19.2 (23.0)   | **1.0 (5.3)**   |
-| append     | 45.5 (86.7) | **34.5 (77.3)** | 34.2 (81.8)   | **22.9 (64.7)** |
-| clear      | 7.4 (10.2)  | 15.1 (16.7)     | 1.6 (6.9)     | 5.6 (10.5)      |
+| mount      | 13.6 (52.8) | 15.6 (52.9)     | 13.1 (73.3)   | 15.6 (74.8)     |
+| replace    | 23.3 (68.0) | 29.5 (67.6)     | 14.2 (60.0)   | 18.5 (62.7)     |
+| update10th | 13.6 (19.1) | **1.3 (8.3)**   | 12.5 (19.1)   | **1.4 (8.4)**   |
+| select     | 15.8 (18.0) | **1.3 (4.5)**   | 17.2 (20.6)   | **1.0 (5.6)**   |
+| append     | 36.8 (76.2) | **27.4 (68.6)** | 37.8 (81.2)   | **22.8 (62.7)** |
+| clear      | 4.4 (6.0)   | 8.4 (9.5)       | 1.3 (5.7)     | 4.4 (8.9)       |
+
+Without the spin, a step after the 400 ms idle reached Fabric on a cooled core unless the
+renderer's own work had warmed it, which favoured React on small updates (item 6 below). With it,
+React's renderer time drops 2-6 ms on iOS updates and replace (28.2 -> 23.3); Solid's replace drops
+38.0 -> 29.5. Android label1 still lands in a slow moment 1.6 s in (item 7).
 
 ## What worked
 
