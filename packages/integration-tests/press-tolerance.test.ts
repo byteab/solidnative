@@ -23,12 +23,11 @@ describe('press tolerance', () => {
       pageY: y,
     });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     const active = createActive();
     state = active.state;
-    render(active.Active);
-    // A wide, short control, as a full-width button is.
-    await fireEvent(btn(), 'topLayout', { layout: { x: 0, y: 0, width: 360, height: 48 } });
+    // A wide, short control, as a full-width button is: what native measures when a press starts.
+    render(active.Active).fabric.frames.set('View', { x: 0, y: 0, width: 360, height: 48 });
   });
 
   const presses = () => state.presses;
@@ -78,11 +77,10 @@ describe('press retention is not symmetric', () => {
     });
   const presses = () => state.presses;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     const active = createActive();
     state = active.state;
-    render(active.Active);
-    await fireEvent(btn(), 'topLayout', { layout: { x: 0, y: 0, width: 360, height: 48 } });
+    render(active.Active).fabric.frames.set('View', { x: 0, y: 0, width: 360, height: 48 });
   });
 
   it('keeps a press that drifts 72pt downwards on a 48pt control', async () => {
@@ -106,15 +104,12 @@ describe('pressables configured the less usual ways', () => {
   let counts: Record<string, number>;
   let result: ReturnType<typeof render>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     const options = createPressOptions();
     counts = options.counts;
     result = render(options.PressOptions);
-    for (const id of ['wide', 'left', 'below']) {
-      await fireEvent(screen.getByTestId(id), 'topLayout', {
-        layout: { x: 0, y: 0, width: 360, height: 48 },
-      });
-    }
+    // What native measures for each control when a press on it starts.
+    result.fabric.frames.set('View', { x: 0, y: 0, width: 360, height: 48 });
   });
 
   const drag = async (id: string, dx: number, dy: number) => {

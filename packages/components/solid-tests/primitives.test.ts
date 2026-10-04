@@ -94,7 +94,7 @@ test('press cancellation uses fallback distance, measured retention, native canc
   touch('button', 'topTouchMove', 100);
   touch('button', 'topTouchEnd', 100);
   assert.deepEqual(fixture.calls, ['in', 'out']);
-  fabric.emit(find('button'), 'topLayout', { layout: { x: 0, y: 0, width: 100, height: 40 } });
+  fabric.sizes.set(find('button').tag, { width: 100, height: 40 });
   touch('button', 'topTouchStart');
   touch('button', 'topTouchMove', 80);
   touch('button', 'topTouchEnd', 80);
@@ -172,19 +172,40 @@ test('child getters are evaluated once and plain labels acquire press resources 
   assert.deepEqual(fixture.counts, { mount: 1, cleanup: 0, press: 0 });
   fixture.setPressable(true);
   clock.flushMicrotasks();
-  assert.equal(find().props['onLayout'], true);
+  assert.equal(find().props['isPressable'], true);
+  assert.equal(find().props['onLayout'], undefined, 'a press is measured when it starts');
   touch('topTouchStart');
   touch('topTouchEnd');
   clock.flushMicrotasks();
   assert.equal(fixture.counts.press, 1);
   fixture.setPressable(false);
   clock.flushMicrotasks();
-  assert.equal(find().instanceHandle.listeners?.get('topLayout')?.size, 0);
   touch('topTouchStart');
   touch('topTouchEnd');
   assert.equal(fixture.counts.press, 1);
   root.dispose();
   assert.equal(fixture.counts.cleanup, 1);
+});
+
+test('a Pressable listens for hover only once its state is read for it', () => {
+  const fabric = createFakeFabric();
+  const root = createNativeRoot({ fabric, clock: createClock(), rootTag: 1 });
+  let hoveredStyle: unknown;
+  root.render(() => [
+    Pressable({ testID: 'plain', onPress: () => {} }),
+    Pressable({
+      testID: 'hover',
+      style: (state) => (hoveredStyle = state.hovered ? { opacity: 0.5 } : { opacity: 1 }),
+    }),
+  ]);
+  const byId = (id: string) => flatten(fabric.roots.get(1)!).find((n) => n.props['testID'] === id)!;
+  assert.equal(byId('plain').instanceHandle.listeners?.get('topPointerEnter'), undefined);
+  assert.equal(byId('hover').instanceHandle.listeners?.get('topPointerEnter')?.size, 1);
+  fabric.emit(byId('hover'), 'topPointerEnter');
+  assert.deepEqual(hoveredStyle, { opacity: 0.5 });
+  fabric.emit(byId('hover'), 'topPointerLeave');
+  assert.deepEqual(hoveredStyle, { opacity: 1 });
+  root.dispose();
 });
 
 test('Pressable and TouchableOpacity build their children and style once', () => {
@@ -256,9 +277,10 @@ test('a plain Text creates no press machinery until a press callback arrives', (
   assert.equal(node().instanceHandle.listeners?.get('topLayout'), undefined);
   fixture.gainPress();
   clock.flushMicrotasks();
-  // The press machinery: its enabled memo, the responder effect and the disable effect.
-  assert.equal(fixture.computations(), plain + 3);
+  // The press machinery: the responder effect and the disable effect.
+  assert.equal(fixture.computations(), plain + 2);
   assert.equal(node().props['isPressable'], true);
+  assert.equal(node().props['onLayout'], undefined, 'a press is measured when it starts');
   touch('topTouchStart');
   touch('topTouchEnd');
   clock.flushMicrotasks();
@@ -266,7 +288,6 @@ test('a plain Text creates no press machinery until a press callback arrives', (
   fixture.dropPress();
   clock.flushMicrotasks();
   assert.equal(fixture.computations(), plain);
-  assert.equal(node().instanceHandle.listeners?.get('topLayout')?.size, 0);
   touch('topTouchStart');
   touch('topTouchEnd');
   assert.equal(fixture.counts.press, 1);

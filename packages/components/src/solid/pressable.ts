@@ -1,5 +1,5 @@
 import { createMemo, createRenderEffect, createSignal, onCleanup } from 'solid-js';
-import type { HostNode, NativeSyntheticEvent } from '@solidnative/fabric';
+import type { HostNode } from '@solidnative/fabric';
 import {
   insertHostChildren,
   onHostCleanup,
@@ -47,13 +47,14 @@ function point(event: TouchEvent) {
   return { x: native.pageX ?? touch?.pageX ?? 0, y: native.pageY ?? touch?.pageY ?? 0 };
 }
 /** Responder arbitration, not a synthetic topPress listener. */
+const always = () => true;
 export function installPressBehavior(
   node: HostNode,
   props: PressBehaviorProps & Pick<ViewProps, 'hitSlop'> & { android_ripple?: AndroidRipple },
-  enabled = () => true,
+  enabled: () => boolean = always,
 ) {
   const engine = useHostEngine();
-  const isEnabled = createMemo(enabled);
+  const isEnabled = enabled === always ? always : createMemo(enabled);
   const [pressed, setPressed] = createSignal(false);
   const [hovered, setHovered] = createSignal(false);
   let origin: { x: number; y: number } | undefined;
@@ -130,6 +131,24 @@ export function installPressBehavior(
     deactivate(event);
   };
   let stopListeners = () => {};
+  // Hover is listened for once something reads it: most pressables never do, and each listener
+  // has native track the pointer over the view.
+  let stopHover = () => {};
+  let hoverWatched = false;
+  const watchHover = () => {
+    if (hoverWatched || !isEnabled()) return;
+    hoverWatched = true;
+    const enter = engine.setEventListener(node, 'topPointerEnter', () => {
+      if (isEnabled()) setHovered(true);
+    });
+    const leave = engine.setEventListener(node, 'topPointerLeave', () => setHovered(false));
+    stopHover = () => {
+      hoverWatched = false;
+      stopHover = () => {};
+      enter();
+      leave();
+    };
+  };
   createRenderEffect(() => {
     if (!isEnabled()) return;
     const stops = [
@@ -139,6 +158,12 @@ export function installPressBehavior(
           clearTimers();
           lastEvent = event;
           origin = point(event);
+          // Measured when a press starts, as React Native's Pressability does, rather than kept
+          // current with a layout listener that has native report every layout of every button.
+          size = undefined;
+          engine.measure(node, (frame) => {
+            size = { width: frame.width, height: frame.height };
+          });
           cancelled = false;
           longPressed = false;
           if (props.android_ripple) {
@@ -175,20 +200,13 @@ export function installPressBehavior(
         },
         onResponderTerminationRequest: () => props.cancelable ?? true,
       }),
-      engine.setEventListener(node, 'topLayout', (event) => {
-        size = (event as NativeSyntheticEvent<{ layout?: { width: number; height: number } }>)
-          .nativeEvent.layout;
-      }),
-      engine.setEventListener(node, 'topPointerEnter', () => {
-        if (isEnabled()) setHovered(true);
-      }),
-      engine.setEventListener(node, 'topPointerLeave', () => setHovered(false)),
     ];
     let active = true;
     stopListeners = () => {
       if (!active) return;
       active = false;
       for (const stop of stops) stop();
+      stopHover();
       clearTimers();
       setPressed(false);
       setHovered(false);
@@ -208,7 +226,13 @@ export function installPressBehavior(
       stopListeners();
     }),
   );
-  return (): PressableState => ({ pressed: pressed(), hovered: hovered() });
+  return (): PressableState => ({
+    pressed: pressed(),
+    get hovered() {
+      watchHover();
+      return hovered();
+    },
+  });
 }
 /**
  * The `RippleAndroid` drawable Android's `ReactDrawableHelper` reads. `color` goes through the
@@ -229,9 +253,17 @@ export function Pressable(props: PressableProps): HostNode {
   const node = primitiveNode('pressable');
   const engine = useHostEngine();
   const state = installPressBehavior(node, props);
-  const ripple = createMemo(
-    () => props.android_ripple && rippleDrawable(engine, props.android_ripple),
-  );
+  // The drawable for the ripple as written, kept while the same ripple object is passed.
+  let lastRipple: AndroidRipple | undefined;
+  let drawable: ReturnType<typeof rippleDrawable> | undefined;
+  const ripple = () => {
+    const value = props.android_ripple;
+    if (value !== lastRipple) {
+      lastRipple = value;
+      drawable = value && rippleDrawable(engine, value);
+    }
+    return drawable;
+  };
   spreadHostProps(
     node,
     () => {

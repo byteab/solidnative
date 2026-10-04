@@ -15,6 +15,8 @@ export function createFakeFabric() {
   const roots = new Map<number, FakeNode[]>();
   const parents = new Map<number, number>();
   const responderCalls: { node: FakeNode; active: boolean }[] = [];
+  /** What `measureInWindow` answers, by tag; an unlisted view is not measured. */
+  const sizes = new Map<number, { width: number; height: number }>();
   let commits = 0;
   // Distinct dispatchers registered: every root re-claims the slot with the same one (D039).
   const eventHandlers = new Set<unknown>();
@@ -36,6 +38,7 @@ export function createFakeFabric() {
   const fabric = {
     roots,
     responderCalls,
+    sizes,
     get commits() {
       return commits;
     },
@@ -83,6 +86,13 @@ export function createFakeFabric() {
     registerEventHandler(callback: (target: unknown, type: string, event: unknown) => void) {
       eventHandlers.add(callback);
       handler = callback;
+    },
+    measureInWindow(
+      node: FabricNode,
+      callback: (x: number, y: number, width: number, height: number) => void,
+    ) {
+      const size = sizes.get((node as FakeNode).tag);
+      if (size) callback(0, 0, size.width, size.height);
     },
     setIsJSResponder(node: FabricNode, active: boolean) {
       responderCalls.push({ node: node as FakeNode, active });
