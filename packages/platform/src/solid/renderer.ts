@@ -149,6 +149,8 @@ function applyUntracked(node: EngineNode, key: string, value: unknown): void {
   pendingKey = key;
   pendingValue = value;
   untrack(applyPending);
+  // Not kept past the call: the last node and value would hold a popped page alive.
+  pendingNode = pendingValue = undefined as never;
 }
 
 function universalSpread<T>(node: EngineNode, accessor: (() => T) | T): void {

@@ -1247,6 +1247,14 @@ function applyIntrinsicSize(props: Record<string, unknown>, size: IntrinsicSize)
   }
 }
 
+/** Hermes's count of collections so far, or null where there is no Hermes to ask. */
+const gcCount: (() => number) | null = (() => {
+  const stats = (
+    globalThis as { HermesInternal?: { getInstrumentedStats?: () => { js_numGCs?: number } } }
+  ).HermesInternal?.getInstrumentedStats;
+  return stats ? () => stats().js_numGCs ?? 0 : null;
+})();
+
 const now = (): number => globalThis.performance?.now?.() ?? Date.now();
 
 function sameHandles(a: readonly FabricNode[], b: readonly FabricNode[]): boolean {
@@ -1695,6 +1703,9 @@ export class Engine implements HostEngine {
    * is a slow leak on any screen that churns views.
    */
   destroyNode(node: EngineNode): void {
+    if (node.committed !== null && gcCount !== null) {
+      if (this.graveyard.push(node.committed.handle) === 1) this.graveyardGcs = gcCount();
+    }
     node.committed = null;
     // Most nodes hold nothing else: a release of a thousand rows should not ask each of three sets.
     if (
@@ -1889,7 +1900,16 @@ export class Engine implements HostEngine {
    * offset, text cursor and keyboard focus. That is a correctness requirement, not an
    * optimisation.
    */
+  /**
+   * Handles of destroyed nodes, held until a collection has passed. A handle that dies young is
+   * finalized inside the young-generation pause, on this thread, and its finalizer tears down the
+   * native node; one promoted first is finalized by the old generation's background sweep.
+   */
+  private graveyard: FabricNode[] = [];
+  private graveyardGcs = 0;
+
   commit(): boolean {
+    if (this.graveyard.length !== 0 && gcCount!() !== this.graveyardGcs) this.graveyard = [];
     if (this.removedSinceCommit) this.releaseDetached();
     // The root is never reconciled itself, so it has no `committed` record and `isClean` would
     // always say dirty. Ask the flags directly, or every flush the host runs ends in a
