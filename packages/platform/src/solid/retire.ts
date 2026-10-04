@@ -38,6 +38,18 @@ const disposeNow: Retire = (_owner, dispose) => dispose();
  * runs unmount effects after its commit, so that commit is not held up by the teardown
  * (`docs/mount-performance.md`). Outside a native root, at once.
  */
+/**
+ * What to call before setting up anything new where retired owners may still be waiting: their
+ * cleanups run first, as Solid runs a removed row's before it creates the row replacing it. A row
+ * keyed by id in a registry would otherwise be added by its replacement and then deleted by the
+ * old row's cleanup. Only removals are deferred to after the commit.
+ */
+export function settler(): () => void {
+  const root = activeRoot();
+  return root ? root.settleRetired : noop;
+}
+const noop = (): void => {};
+
 export function retirer(): Retire {
   const root = activeRoot();
   if (!root) return disposeNow;

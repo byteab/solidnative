@@ -50,6 +50,11 @@ export interface RootContext {
   drop(node: EngineNode): void;
   /** Dispose an owner whose nodes are leaving the tree once the commit removing them is out. */
   retire(dispose: () => void): void;
+  /**
+   * Dispose the owners retired so far now, before something new is set up beside them, so a
+   * replacement never sees its predecessor's cleanups still to come.
+   */
+  settleRetired(): void;
   report(error: unknown, source: string): void;
 }
 

@@ -127,7 +127,8 @@ nothing when there is nothing to pop to.
 
 A popped screen's page is torn down once the native transition has finished and the commit that
 removes its screen has gone out, so that commit is not held up by the teardown; its `onCleanup`s
-run then. Its effects no longer run from the moment it is removed.
+run then, or before any new screen or list row is set up, whichever comes first. Its effects no
+longer run from the moment it is removed.
 
 ## Deep links into nested screens
 

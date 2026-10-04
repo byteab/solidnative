@@ -4,6 +4,7 @@ import {
   createHostElement,
   insertHostChildren,
   retirer,
+  settler,
   type HostChild,
 } from '@solidnative/platform/solid';
 
@@ -141,6 +142,8 @@ export function createRouteOwner(
   unlinkParent = bindParentDisposal(route.dispose);
   let failed = false;
   let failure: unknown;
+  // A route popped in this same update is torn down before its replacement is set up.
+  settler()();
   try {
     createRoot((dispose) => {
       disposeOwner = dispose;

@@ -187,7 +187,10 @@ passive-effect unmounts after its commit. Headless, time to commit: clear 2.86 -
   commit 0.77 ms against the prototype's 0.54, on iOS 3.4 against 2.5. Hanging the row's owner on
   its disposer function instead of a parallel array cost another 0.6 ms on iOS.
 - Semantics: a removed row's `onCleanup`s run after the commit, not inside the write that removed
-  it; `apps/documentation` says so where `For` is described.
+  it, unless a new row or route is set up first: then every retired owner is disposed before it
+  (`settler`). Deferred without that, an immutable refetch ran each new row before the old row's
+  cleanup, so a registry keyed by id lost the ids (found in review). Only pure removals (clear,
+  remove, pop) stay deferred; replace disposes before creating, as Solid does.
 - Next: the same for `Index`, `Show`/`Switch` branches and a router pop; disposal in idle slices
   (`requestIdleCallback`, ~2 ms each) so 2000 rows' teardown cannot delay the next frame's input.
 

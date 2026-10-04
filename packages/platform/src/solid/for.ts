@@ -10,7 +10,7 @@ import {
   type Owner,
   type Setter,
 } from 'solid-js';
-import { retirer } from './retire.ts';
+import { retirer, settler } from './retire.ts';
 import type { NativeChild } from './root.ts';
 
 const FALLBACK: unique symbol = Symbol('fallback');
@@ -19,8 +19,8 @@ const FALLBACK: unique symbol = Symbol('fallback');
  * Solid's `<For>`, except that a removed row's owner is disposed after the commit that takes its
  * nodes off screen rather than before it, as React runs unmount effects after its commit. On a
  * cleared list the teardown of every row's computations and cleanups was most of the time to the
- * commit (`docs/mount-performance.md`). Until then a removed row's effects stay subscribed, so a
- * signal written in that window runs them against nodes that are no longer attached.
+ * commit (`docs/mount-performance.md`). Only a removal waits: before a new row is made, every
+ * retired row's cleanups run (`settler`), so the new row never sees an old one's still to come.
  */
 export function For<T extends readonly unknown[]>(props: {
   each: T | undefined | null | false;
@@ -38,6 +38,7 @@ function mapArray<T, U>(
   fallback: (() => U) | undefined,
 ): () => U[] {
   const retire = retirer();
+  const settle = settler();
   let items: (T | typeof FALLBACK)[] = [],
     mapped: U[] = [],
     disposers: (() => void)[] = [],
@@ -79,6 +80,7 @@ function mapArray<T, U>(
         }
         if (fallback) {
           items = [FALLBACK];
+          settle();
           mapped[0] = createRoot((disposer) => {
             disposers[0] = disposer;
             owners[0] = getOwner();
@@ -88,6 +90,7 @@ function mapArray<T, U>(
         }
       } else if (len === 0) {
         mapped = new Array<U>(newLen);
+        settle();
         for (j = 0; j < newLen; j++) {
           items[j] = newItems[j]!;
           mapped[j] = createRoot(mapper);
@@ -142,7 +145,10 @@ function mapArray<T, U>(
               indexes![j] = tempIndexes[j]!;
               indexes![j]!(j);
             }
-          } else mapped[j] = createRoot(mapper);
+          } else {
+            settle();
+            mapped[j] = createRoot(mapper);
+          }
         }
         mapped = mapped.slice(0, (len = newLen));
         // The rest are retired: a later cleanup of the list must not dispose them a second time.

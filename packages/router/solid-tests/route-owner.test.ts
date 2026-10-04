@@ -340,3 +340,15 @@ test('unowned creation is refused and an empty stack can dispose under a plain S
     assert.equal(stack.disposed, true);
   });
 });
+
+test('a route popped in the same update is torn down before the next one is set up', () => {
+  const { fixture, root } = mount();
+  const a = fixture.routes.get('a')!;
+  const b = fixture.create('b');
+  fixture.stack.complete(fixture.stack.transitionTo([a, b]));
+  fixture.stack.complete(fixture.stack.dismiss()!);
+  assert.deepEqual(fixture.cleanups, [], 'a pop alone waits for the commit');
+  fixture.create('c');
+  assert.deepEqual(fixture.cleanups, ['b'], 'its replacement never sees it still to come');
+  root.dispose();
+});

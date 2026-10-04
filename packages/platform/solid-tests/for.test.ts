@@ -88,6 +88,26 @@ test('For disposes a removed row after the commit that takes it off screen', () 
   root.dispose();
 });
 
+test("a new row runs after the cleanups of the rows it replaces, as Solid's For does", () => {
+  const [items, setItems] = createSignal([{ id: 'a' }, { id: 'b' }]);
+  const registry = new Set<string>();
+  const { root, clock } = mount(items, (item) => {
+    registry.add(item.id);
+    onCleanup(() => registry.delete(item.id));
+    return label(item.id);
+  });
+  // An immutable refetch: the same ids, every row a new object.
+  setItems(items().map((item) => ({ ...item })));
+  clock.flushMicrotasks();
+  assert.deepEqual([...registry], ['a', 'b']);
+  // Cleared, then refilled before the commit has gone out.
+  setItems([]);
+  setItems([{ id: 'a' }]);
+  clock.flushMicrotasks();
+  assert.deepEqual([...registry], ['a']);
+  root.dispose();
+});
+
 test('a retired row releases its native resources in the same flush', () => {
   const [items, setItems] = createSignal([1, 2]);
   const released: number[] = [];

@@ -7,7 +7,7 @@ export {
   type NativeChild,
 } from './solid/root.ts';
 export { onNativeCleanup } from './solid/context.ts';
-export { retirer, type Retire } from './solid/retire.ts';
+export { retirer, settler, type Retire } from './solid/retire.ts';
 export {
   withHostAdapter,
   useHostAdapter,

@@ -147,8 +147,8 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
     dropped.length = 0;
   }
 
-  /** Dispose the retired owners, then release what they dropped, in the same flush. */
-  function disposeRetired(): void {
+  /** Dispose the retired owners. What they drop is released by the flush, once it is detached. */
+  function runRetired(): void {
     while (retired.length) {
       const batch = retired;
       retired = [];
@@ -160,6 +160,11 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
         }
       }
     }
+  }
+
+  /** Dispose the retired owners, then release what they dropped, in the same flush. */
+  function disposeRetired(): void {
+    runRetired();
     releaseDetached();
   }
 
@@ -194,6 +199,7 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
       // The removal that retired it has already asked for a flush; the first asks again in case.
       if (retired.push(dispose) === 1) scheduler.schedule();
     },
+    settleRetired: runRetired,
     release(lifetime) {
       lifetime.released = true;
       if (!lifetime.queued && lifetime.active) {
