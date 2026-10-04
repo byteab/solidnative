@@ -50,6 +50,7 @@ React's renderer time drops 2-6 ms on iOS updates and replace (28.2 -> 23.3); So
 | Keep a node's answer when it matches as before            | `fabric/src/css.ts`            | Tailwind remove 11 -> 1.7 ms, append 30 -> 19 ms              |
 | Merge props in one pass for nodes no CSS reaches          | `fabric/src/engine.ts`         | headless mount -4.7%, replace -3.5%; iOS sim within noise     |
 | Literal props made with the element, compiled at build    | `metro/solid-lower.cjs`        | see below                                                     |
+| Use a style already in native form as it stands           | `platform/src/solid/styles.ts` | headless mount, replace, append -4%; iOS renderer -3 to -7%   |
 
 **Static props at build time.** A lowered View or Text's literal attributes, a literal style
 among them, go into one module-level object, the style flattened and its numbers parsed as the
@@ -106,6 +107,14 @@ Tailwind is set aside for now; these target inline-styled views.
    text, which React creates and Solid clones. The gap follows the clock, not the step: with
    select and label1 swapped, label1 at 1.2 s appends in 1.4 ms (React 1.5) and select at 1.6 s
    takes 5.0 ms, its commit 8.8 instead of 3.7. The instrument now reports `append`.
+8. **iOS replace, split.** Of Solid's renderer replace (timed inside the bench), new-row creation
+   is 8.8 ms, as on mount, old-row teardown 2.0, `insert`'s removals and insertions 1.8, and row
+   data plus the commit the rest. The simulator runs replace in two modes, 20 ms or 31 ms, with
+   every part scaling together; React does too (14 or 23). On Hermes, creation is 43% of replace,
+   commit 28%, insert 11%, teardown 5%, and a sixth of creation is young-generation GC. Each row
+   builds its own style object, so the per-object flatten cache missed on every row and copied
+   and cached each one; a style already in native form is now used as it stands (table above).
+   Android mount -4%, replace and append within noise.
 
 ## Later, for Tailwind
 

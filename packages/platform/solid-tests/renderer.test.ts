@@ -438,3 +438,26 @@ test('an on-prefixed prop that is not a handler is a plain native prop', () => {
   });
   assert.equal(fabric.roots.get(1)![0]!.props['onTintColor'], '#ff0000');
 });
+
+test('a style in native form is used as it stands, and any other is flattened', () => {
+  const fabric = createFakeFabric();
+  const root = createNativeRoot({ fabric, rootTag: 1, clock: createClock() });
+  const native = { opacity: 0.5, marginTop: 4 };
+  let plain!: EngineNode;
+  let written!: EngineNode;
+  root.render(() => {
+    const page = createElement('view');
+    plain = createElement('view');
+    written = createElement('view');
+    setProp(plain, 'style', native);
+    setProp(written, 'style', { 'margin-top': '4px', opacity: 0.5 });
+    insertNode(page, plain);
+    insertNode(page, written);
+    return page;
+  });
+  assert.equal(plain.props['style'], native);
+  assert.deepEqual(written.props['style'], native);
+  const [first, second] = fabric.roots.get(1)![0]!.children;
+  assert.equal(first!.props['marginTop'], 4);
+  assert.equal(second!.props['marginTop'], 4);
+});

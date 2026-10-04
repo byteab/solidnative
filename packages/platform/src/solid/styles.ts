@@ -164,12 +164,15 @@ let irregular = false;
  */
 const styleKeys: Record<string, string | null> = Object.create(null);
 
+function styleName(name: string): string | null {
+  const key = styleKeys[name];
+  if (key !== undefined) return key;
+  const custom = name.charCodeAt(0) === 45 && name.charCodeAt(1) === 45;
+  return (styleKeys[name] = custom ? null : styleKey(name));
+}
+
 function writeStyle(into: Record<string, unknown>, name: string, value: unknown): void {
-  let key = styleKeys[name];
-  if (key === undefined) {
-    const custom = name.charCodeAt(0) === 45 && name.charCodeAt(1) === 45;
-    styleKeys[name] = key = custom ? null : styleKey(name);
-  }
+  const key = styleName(name);
   written++;
   if (key === null || value == null) irregular = true;
   if (key === null) into[name] = value;
@@ -281,6 +284,26 @@ interface Flat {
 const flats = new WeakMap<object, Flat>();
 
 /**
+ * Whether a style object already is what flattening it would write: every name one flattening
+ * keeps, every value a number or a string it keeps. Such an object stands in for its copy, which
+ * nothing mutates either, with no copy and no cache entry: a list's rows each built their own
+ * style object, and copying and caching each one was a tenth of mounting them. Counts `written`
+ * as flattening would; leaves `irregular` false, as a null or custom property is not native form.
+ */
+function nativeForm(source: Record<string, unknown>): boolean {
+  let count = 0;
+  for (const name in source) {
+    const value = source[name];
+    if (typeof value !== 'number' && (typeof value !== 'string' || stringValue(value) !== value))
+      return false;
+    if (styleName(name) !== name) return false;
+    count++;
+  }
+  written = count;
+  return true;
+}
+
+/**
  * Flatten once per style object: a list of rows hands every row the same `styles.label`, and the
  * copy is never mutated (applyPlainStyle and StyleState replace it), so the rows can share it. A
  * store's style is flattened afresh each time, as the store mutates its raw object in place.
@@ -288,6 +311,7 @@ const flats = new WeakMap<object, Flat>();
 function flattenShared(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value) || $RAW in value)
     return flattenStyle(value);
+  if (nativeForm(value as Record<string, unknown>)) return value as Record<string, unknown>;
   const cached = flats.get(value);
   if (cached) {
     written = cached.written;
