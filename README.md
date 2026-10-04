@@ -168,12 +168,34 @@ Solid 1.9, Expo SDK 57 and React Native 0.86 with the New Architecture, on Node 
 ## Performance
 
 Measured against React Native's own renderer drawing the same screen, in Release builds on Hermes
-(iPhone 17 Pro simulator, Android emulator). Each number is the median time in milliseconds from
-the start of the step to the moment Fabric has the finished tree: JavaScript, garbage collection
-and Fabric's native commit together. Launches of the two apps alternate, 12 rounds on iOS and 10
-on Android. Lower is better.
+(iPhone 17 Pro simulator, Android emulator). Launches of the two apps alternate, 12 rounds on iOS
+and 10 on Android, and each number is the median in milliseconds. Lower is better. Two numbers are
+given for each step:
 
-**A list of 1000 rows** (the js-framework-benchmark operations):
+- **JavaScript**: the renderer's own work, garbage collection included. This is where React and
+  Solid differ.
+- **Total**: from the start of the step until Fabric has the finished tree, so JavaScript plus
+  Fabric's native commit, which both pay alike. This is what a frame feels.
+
+### A list of 1000 rows
+
+The js-framework-benchmark operations.
+
+JavaScript:
+
+| step                  | iOS React | iOS Solid | Android React | Android Solid |
+| --------------------- | --------: | --------: | ------------: | ------------: |
+| create 1000 rows      |      13.5 |      15.0 |          13.7 |          15.0 |
+| replace all 1000 rows |      17.6 |      25.7 |          15.8 |          19.1 |
+| update every 10th row |      14.1 |       2.8 |          11.2 |           1.4 |
+| select a row          |      14.9 |       1.4 |          14.3 |           0.9 |
+| change one label      |      18.4 |       0.9 |          10.9 |           0.8 |
+| swap two rows         |      18.4 |       2.6 |          14.4 |           2.3 |
+| remove one row        |      12.5 |       3.1 |          12.7 |           5.3 |
+| append 1000 rows      |      36.7 |      24.2 |          29.2 |          16.6 |
+| clear 2000 rows       |       4.7 |       3.4 |           1.4 |           1.5 |
+
+Total:
 
 | step                  | iOS React | iOS Solid | Android React | Android Solid |
 | --------------------- | --------: | --------: | ------------: | ------------: |
@@ -187,8 +209,22 @@ on Android. Lower is better.
 | append 1000 rows      |      76.7 |      67.1 |          70.8 |          56.7 |
 | clear 2000 rows       |       6.1 |       4.9 |           6.0 |           6.2 |
 
-**A page pushed and popped** (40 cards, each a pressable with an avatar, two lines of text and a
-button, as navigation mounts a screen):
+### A page pushed and popped
+
+40 cards, each a pressable with an avatar, two lines of text and a button, as navigation mounts a
+screen.
+
+JavaScript:
+
+| step              | iOS React | iOS Solid | Android React | Android Solid |
+| ----------------- | --------: | --------: | ------------: | ------------: |
+| first mount       |       4.9 |       3.0 |           6.3 |           3.4 |
+| pop               |       0.5 |       0.6 |           0.3 |           0.5 |
+| push again        |       7.3 |       7.2 |           5.2 |           4.3 |
+| pop again         |       0.6 |       0.8 |           0.4 |           0.5 |
+| push a third time |       5.1 |       5.3 |           5.5 |           4.2 |
+
+Total:
 
 | step              | iOS React | iOS Solid | Android React | Android Solid |
 | ----------------- | --------: | --------: | ------------: | ------------: |
@@ -198,10 +234,14 @@ button, as navigation mounts a screen):
 | pop again         |       0.7 |       1.0 |           0.8 |           0.9 |
 | push a third time |       8.9 |       8.9 |          10.2 |           8.8 |
 
-Updates take between a quarter and a little over half of React's time. A page mounts and pushes
-as fast as React or faster, and pops within 0.3 ms of it. Creating and clearing a large list is
-level with React; replacing every row of one is slower (7.6 ms on iOS, 1.1 ms on Android). How these were measured, what made them and what was tried
-and dropped are in [docs/performance.md](docs/performance.md) and
+An update's JavaScript takes 2 to 20 times less than React's, so its total is mostly Fabric's
+native commit. A page mounts and pushes as fast as React or faster, and pops within 0.3 ms of it.
+Creating and clearing a large list is level with React in total, though creating takes 1.3 to
+1.5 ms more JavaScript; replacing every row of one is slower (7.6 ms total on iOS, 1.1 ms on
+Android). Where a step's JavaScript includes a garbage collection
+depends on what ran before it: on iOS "update every 10th row" paid 1.4 ms of one in this run.
+How these were measured, what made them and what was tried and dropped are in
+[docs/performance.md](docs/performance.md) and
 [docs/mount-performance.md](docs/mount-performance.md).
 
 ## From ng-native
