@@ -168,14 +168,21 @@ Solid 1.9, Expo SDK 57 and React Native 0.86 with the New Architecture, on Node 
 ## Performance
 
 Measured against React Native's own renderer drawing the same screen, in Release builds on Hermes
-(iPhone 17 Pro simulator, Android emulator). Launches of the two apps alternate, 12 rounds on iOS
-and 10 on Android, and each number is the median in milliseconds. Lower is better. Two numbers are
-given for each step:
+(iPhone 17 Pro simulator, Android emulator). Three versions of each screen run:
 
-- **JavaScript**: the renderer's own work, garbage collection included. This is where React and
-  Solid differ.
+- **React**: the obvious way to write it, no memoization.
+- **React Compiler**: written the way React recommends for speed (memoized rows told only whether
+  they are selected, the list in its own component) and compiled by the React Compiler, which is
+  set to fail the build on any component it cannot compile.
+- **Solid**: this project.
+
+Launches of the three apps alternate, 12 rounds on iOS and 10 to 14 on Android, and each number is
+the median in milliseconds. Lower is better. Two numbers are given for each step:
+
+- **JavaScript**: the renderer's own work, garbage collection included. This is where the three
+  differ.
 - **Total**: from the start of the step until Fabric has the finished tree, so JavaScript plus
-  Fabric's native commit, which both pay alike. This is what a frame feels.
+  Fabric's native commit, which all pay alike. This is what a frame feels.
 
 ### A list of 1000 rows
 
@@ -183,31 +190,31 @@ The js-framework-benchmark operations.
 
 JavaScript:
 
-| step                  | iOS React | iOS Solid | Android React | Android Solid |
-| --------------------- | --------: | --------: | ------------: | ------------: |
-| create 1000 rows      |      13.5 |      15.0 |          13.7 |          15.0 |
-| replace all 1000 rows |      17.6 |      25.7 |          15.8 |          19.1 |
-| update every 10th row |      14.1 |       2.8 |          11.2 |           1.4 |
-| select a row          |      14.9 |       1.4 |          14.3 |           0.9 |
-| change one label      |      18.4 |       0.9 |          10.9 |           0.8 |
-| swap two rows         |      18.4 |       2.6 |          14.4 |           2.3 |
-| remove one row        |      12.5 |       3.1 |          12.7 |           5.3 |
-| append 1000 rows      |      36.7 |      24.2 |          29.2 |          16.6 |
-| clear 2000 rows       |       4.7 |       3.4 |           1.4 |           1.5 |
+| step                  | iOS React | iOS React Compiler | iOS Solid | Android React | Android React Compiler | Android Solid |
+| --------------------- | --------: | -----------------: | --------: | ------------: | ---------------------: | ------------: |
+| create 1000 rows      |      13.4 |               16.3 |      14.7 |          14.0 |                   15.4 |          14.3 |
+| replace all 1000 rows |      17.4 |               20.5 |      26.7 |          14.9 |                   15.9 |          17.8 |
+| update every 10th row |      14.1 |                4.6 |       2.6 |          12.2 |                    4.6 |           1.5 |
+| select a row          |      15.8 |                6.4 |       1.4 |          19.1 |                    4.2 |           1.1 |
+| change one label      |      18.6 |                4.2 |       0.9 |          13.7 |                    3.4 |           2.0 |
+| swap two rows         |      18.6 |                4.5 |       2.4 |          18.7 |                    6.5 |           3.4 |
+| remove one row        |      12.7 |                3.2 |       4.4 |          14.9 |                    7.9 |           7.5 |
+| append 1000 rows      |      37.0 |               28.2 |      24.7 |          32.5 |                   28.6 |          21.0 |
+| clear 2000 rows       |       4.7 |                5.2 |       3.4 |           1.5 |                    1.6 |           1.5 |
 
 Total:
 
-| step                  | iOS React | iOS Solid | Android React | Android Solid |
-| --------------------- | --------: | --------: | ------------: | ------------: |
-| create 1000 rows      |      52.1 |      52.5 |          74.3 |          71.4 |
-| replace all 1000 rows |      56.1 |      63.7 |          61.6 |          62.7 |
-| update every 10th row |      19.4 |       8.4 |          17.6 |           7.8 |
-| select a row          |      17.1 |       5.0 |          17.8 |           4.5 |
-| change one label      |      20.5 |       5.0 |          14.6 |           5.3 |
-| swap two rows         |      21.2 |       6.8 |          23.9 |          13.5 |
-| remove one row        |      14.7 |       6.0 |          16.7 |           8.9 |
-| append 1000 rows      |      76.7 |      67.1 |          70.8 |          56.7 |
-| clear 2000 rows       |       6.1 |       4.9 |           6.0 |           6.2 |
+| step                  | iOS React | iOS React Compiler | iOS Solid | Android React | Android React Compiler | Android Solid |
+| --------------------- | --------: | -----------------: | --------: | ------------: | ---------------------: | ------------: |
+| create 1000 rows      |      51.5 |               53.5 |      53.0 |          70.0 |                   73.2 |          68.9 |
+| replace all 1000 rows |      57.3 |               57.2 |      65.0 |          60.1 |                   62.3 |          61.3 |
+| update every 10th row |      19.7 |               10.6 |       8.2 |          19.1 |                   11.6 |           7.9 |
+| select a row          |      18.0 |                9.3 |       4.8 |          22.9 |                    9.5 |           5.5 |
+| change one label      |      21.1 |                8.2 |       4.6 |          18.3 |                    7.9 |          11.5 |
+| swap two rows         |      21.0 |                8.5 |       6.1 |          29.1 |                   23.7 |          20.7 |
+| remove one row        |      14.8 |                5.9 |       6.9 |          20.1 |                   12.9 |          12.0 |
+| append 1000 rows      |      76.2 |               71.9 |      67.0 |          74.1 |                   76.7 |          63.0 |
+| clear 2000 rows       |       6.1 |                6.7 |       4.9 |           5.8 |                    6.1 |           6.1 |
 
 ### A page pushed and popped
 
@@ -216,30 +223,38 @@ screen.
 
 JavaScript:
 
-| step              | iOS React | iOS Solid | Android React | Android Solid |
-| ----------------- | --------: | --------: | ------------: | ------------: |
-| first mount       |       4.9 |       3.0 |           6.3 |           3.4 |
-| pop               |       0.5 |       0.6 |           0.3 |           0.5 |
-| push again        |       7.3 |       7.2 |           5.2 |           4.3 |
-| pop again         |       0.6 |       0.8 |           0.4 |           0.5 |
-| push a third time |       5.1 |       5.3 |           5.5 |           4.2 |
+| step              | iOS React | iOS React Compiler | iOS Solid | Android React | Android React Compiler | Android Solid |
+| ----------------- | --------: | -----------------: | --------: | ------------: | ---------------------: | ------------: |
+| first mount       |       5.0 |                4.9 |       3.0 |           6.1 |                    6.2 |           3.4 |
+| pop               |       0.4 |                0.4 |       0.6 |           0.3 |                    0.3 |           0.6 |
+| push again        |       7.0 |                7.1 |       7.5 |           6.1 |                    6.8 |           4.9 |
+| pop again         |       0.8 |                0.8 |       0.8 |           0.6 |                    0.6 |           0.5 |
+| push a third time |       6.3 |                6.2 |       5.4 |           5.6 |                    5.5 |           8.0 |
 
 Total:
 
-| step              | iOS React | iOS Solid | Android React | Android Solid |
-| ----------------- | --------: | --------: | ------------: | ------------: |
-| first mount       |      13.0 |      10.9 |          16.1 |          12.4 |
-| pop               |       0.6 |       0.7 |           0.8 |           1.0 |
-| push again        |      11.7 |      11.1 |          11.5 |           9.0 |
-| pop again         |       0.7 |       1.0 |           0.8 |           0.9 |
-| push a third time |       8.9 |       8.9 |          10.2 |           8.8 |
+| step              | iOS React | iOS React Compiler | iOS Solid | Android React | Android React Compiler | Android Solid |
+| ----------------- | --------: | -----------------: | --------: | ------------: | ---------------------: | ------------: |
+| first mount       |      13.3 |               12.8 |      10.9 |          16.9 |                   16.7 |          12.1 |
+| pop               |       0.6 |                0.5 |       0.7 |           0.7 |                    0.7 |           1.1 |
+| push again        |      11.4 |               11.6 |      11.4 |          13.4 |                   14.5 |           9.9 |
+| pop again         |       1.0 |                1.0 |       1.0 |           1.4 |                    1.3 |           1.0 |
+| push a third time |      10.7 |               10.6 |       9.2 |          10.6 |                   10.0 |          15.8 |
 
-An update's JavaScript takes 2 to 20 times less than React's, so its total is mostly Fabric's
-native commit. A page mounts and pushes as fast as React or faster, and pops within 0.3 ms of it.
-Creating and clearing a large list is level with React in total, though creating takes 1.3 to
-1.5 ms more JavaScript; replacing every row of one is slower (7.6 ms total on iOS, 1.1 ms on
-Android). Where a step's JavaScript includes a garbage collection
-depends on what ran before it: on iOS "update every 10th row" paid 1.4 ms of one in this run.
+What the numbers say:
+
+- **Updates.** Solid's JavaScript for an update is 2 to 20 times less than plain React's and 1.7
+  to 4.7 times less than compiled React's. The exception is removing one row, where compiled React is
+  faster on iOS (3.2 against 4.4 ms) and level on Android. With JavaScript this small, an update's
+  total is mostly Fabric's native commit.
+- **Mounting.** Creating a large list is level across all three. A page mounts fastest with Solid.
+  The React Compiler does not help a mount, and costs a list about 1.5 to 3 ms of JavaScript.
+- **Replacing every row** of a large list is Solid's weakest step: 2 to 9 ms more JavaScript than
+  either React.
+- **Noise.** Where a garbage collection lands depends on what ran before it, and the Android
+  emulator runs some later steps fast or slow from one run to the next: Solid's third push measured
+  8.0 ms of JavaScript here and 4.2 ms in an earlier run of the same build.
+
 How these were measured, what made them and what was tried and dropped are in
 [docs/performance.md](docs/performance.md) and
 [docs/mount-performance.md](docs/mount-performance.md).

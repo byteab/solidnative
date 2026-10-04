@@ -55,7 +55,14 @@ declare global {
   namespace NodeJS {
     // Declared so Expo can inline it: it rewrites only the dotted `process.env.EXPO_PUBLIC_*`.
     interface ProcessEnv {
-      EXPO_PUBLIC_BENCH?: 'solid' | 'signals' | 'react' | 'react-screen' | 'signals-screen';
+      EXPO_PUBLIC_BENCH?:
+        | 'solid'
+        | 'signals'
+        | 'react'
+        | 'react-screen'
+        | 'react-compiled'
+        | 'react-compiled-screen'
+        | 'signals-screen';
     }
   }
 }
@@ -73,6 +80,16 @@ if (bench) {
 if (bench === 'react') {
   const { ReactBench } = require('./bench/react-bench.ts') as { ReactBench: () => unknown };
   AppRegistry.registerComponent('main', () => ReactBench as never);
+} else if (bench === 'react-compiled') {
+  const { ReactCompiledBench } = require('./bench/react-compiled-bench.tsx') as {
+    ReactCompiledBench: () => unknown;
+  };
+  AppRegistry.registerComponent('main', () => ReactCompiledBench as never);
+} else if (bench === 'react-compiled-screen') {
+  const { ReactCompiledScreenBench } = require('./bench/react-compiled-screen-bench.tsx') as {
+    ReactCompiledScreenBench: () => unknown;
+  };
+  AppRegistry.registerComponent('main', () => ReactCompiledScreenBench as never);
 } else if (bench === 'react-screen') {
   const { ReactScreenBench } = require('./bench/react-screen-bench.ts') as {
     ReactScreenBench: () => unknown;
@@ -102,8 +119,8 @@ if (bench === 'react') {
   });
 } else if (bench) {
   throw new Error(
-    `EXPO_PUBLIC_BENCH=${bench}: the benchmarks are solid, signals, react, react-screen and` +
-      ' signals-screen.',
+    `EXPO_PUBLIC_BENCH=${bench}: the benchmarks are solid, signals, react, react-screen,` +
+      ' react-compiled, react-compiled-screen and signals-screen.',
   );
 } else {
   // Initial conditions, density tokens and the live condition watcher all belong to this root.
