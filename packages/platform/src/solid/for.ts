@@ -10,36 +10,10 @@ import {
   type Owner,
   type Setter,
 } from 'solid-js';
-import { activeRoot } from './context.ts';
+import { retirer } from './retire.ts';
 import type { NativeChild } from './root.ts';
 
 const FALLBACK: unique symbol = Symbol('fallback');
-
-/** Solid's computation, as far as `quiet` reaches into it. */
-interface Computation {
-  fn?: (value: unknown) => unknown;
-  owned: Computation[] | null;
-}
-
-const unchanged = (value: unknown): unknown => value;
-
-/**
- * Stop a removed row's computations from doing anything until it is disposed: one that re-runs
- * hands back the value it has and, reading nothing, unsubscribes itself. A row commonly derives
- * its data from the list it was removed from (`lines().find(...)!`), which would throw if it ran.
- * Solid never runs them, as it disposes the row before they can; this is the cheap half of that
- * disposal, a walk with no unlinking, and the rest waits for the commit. It writes Solid's
- * internal `fn`, which every Solid 1.x computation has.
- */
-function quiet(owner: Owner | null | undefined): void {
-  const owned = (owner as unknown as Computation | null | undefined)?.owned;
-  if (!owned) return;
-  for (let i = 0; i < owned.length; i++) {
-    const computation = owned[i]!;
-    computation.fn = unchanged;
-    if (computation.owned) quiet(computation as unknown as Owner);
-  }
-}
 
 /**
  * Solid's `<For>`, except that a removed row's owner is disposed after the commit that takes its
@@ -63,13 +37,7 @@ function mapArray<T, U>(
   mapFn: (item: T, index: Accessor<number>) => U,
   fallback: (() => U) | undefined,
 ): () => U[] {
-  const root = activeRoot();
-  const retire = root
-    ? (dispose: () => void, owner: Owner | null) => {
-        quiet(owner);
-        root.retire(dispose);
-      }
-    : (dispose: () => void) => dispose();
+  const retire = retirer();
   let items: (T | typeof FALLBACK)[] = [],
     mapped: U[] = [],
     disposers: (() => void)[] = [],
@@ -101,7 +69,7 @@ function mapArray<T, U>(
       };
       if (newLen === 0) {
         if (len !== 0) {
-          for (i = 0; i < len; i++) retire(disposers[i]!, owners[i]!);
+          for (i = 0; i < len; i++) retire(owners[i], disposers[i]!);
           disposers = [];
           owners = [];
           items = [];
@@ -163,7 +131,7 @@ function mapArray<T, U>(
             tempOwners[at] = owners[i]!;
             if (tempIndexes) tempIndexes[at] = indexes![i]!;
             newIndices.set(item, newIndicesNext[at]!);
-          } else retire(disposers[i]!, owners[i]!);
+          } else retire(owners[i], disposers[i]!);
         }
         for (j = start; j < newLen; j++) {
           if (j in temp) {

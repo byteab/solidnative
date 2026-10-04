@@ -1,6 +1,11 @@
 import { createRoot, getOwner, onCleanup, type Owner } from 'solid-js';
 import type { HostNode } from '@solidnative/fabric';
-import { createHostElement, insertHostChildren, type HostChild } from '@solidnative/platform/solid';
+import {
+  createHostElement,
+  insertHostChildren,
+  retirer,
+  type HostChild,
+} from '@solidnative/platform/solid';
 
 export interface RouteOwnerOptions {
   readonly onError?: (error: unknown) => void;
@@ -17,6 +22,17 @@ export interface RouteOwner {
 }
 
 const disposalListeners = new WeakMap<RouteOwner, Set<() => void>>();
+const retirements = new WeakMap<RouteOwner, () => void>();
+
+/**
+ * Internal stack hook: dispose a route that has just been taken off screen, its Solid owner after
+ * the commit that removes it, as React runs unmount effects after its commit (see `retirer`).
+ */
+export function retireRoute(route: RouteOwner): void {
+  const retire = retirements.get(route);
+  if (retire) retire();
+  else route.dispose();
+}
 
 /** Internal stack hook: remove a route from its mounted projection before Solid releases it. */
 export function observeRouteDisposal(route: RouteOwner, callback: () => void): () => void {
@@ -73,6 +89,8 @@ export function createRouteOwner(
   let owner: Owner | null = null;
   let disposeOwner: (() => void) | undefined;
   let disposed = false;
+  /** Set by `retireRoute`: this disposal is a screen leaving, so the teardown can wait. */
+  let retiring = false;
   let unlinkParent = () => {};
   const listeners = new Set<() => void>();
   const route: RouteOwner = {
@@ -86,6 +104,7 @@ export function createRouteOwner(
     dispose() {
       if (disposed) return;
       disposed = true;
+      retirements.delete(route);
       unlinkParent();
       for (const callback of [...listeners]) {
         try {
@@ -96,12 +115,28 @@ export function createRouteOwner(
       }
       listeners.clear();
       disposalListeners.delete(route);
-      if (owner) containCleanup(owner, options);
-      disposeOwner?.();
-      disposeOwner = undefined;
-      owner = null;
+      release(retiring);
     },
   };
+  const retire = retirer();
+  /** The route's Solid owner: torn down now, or after the commit with `later`. */
+  function release(later: boolean): void {
+    const released = owner,
+      disposeReleased = disposeOwner;
+    disposeOwner = undefined;
+    owner = null;
+    if (!disposeReleased) return;
+    const teardown = () => {
+      if (released) containCleanup(released, options);
+      disposeReleased();
+    };
+    if (later) retire(released, teardown);
+    else teardown();
+  }
+  retirements.set(route, () => {
+    retiring = true;
+    route.dispose();
+  });
   disposalListeners.set(route, listeners);
   unlinkParent = bindParentDisposal(route.dispose);
   let failed = false;

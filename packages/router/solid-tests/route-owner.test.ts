@@ -81,8 +81,9 @@ test('pop waits for completion, cancellation restores identity and stale tokens 
   assert.equal(fixture.stack.cancel(pop), false);
   assert.equal(b.disposed, false);
   assert.equal(fixture.stack.complete(popAgain), true);
-  clock.flushMicrotasks();
   assert.equal(b.disposed, true);
+  assert.deepEqual(fixture.cleanups, [], 'a popped screen is torn down after the commit');
+  clock.flushMicrotasks();
   assert.deepEqual(fixture.cleanups, ['b']);
   assert.deepEqual(fixture.resources, ['b']);
   assert.deepEqual(

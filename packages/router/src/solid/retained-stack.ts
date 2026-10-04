@@ -1,6 +1,11 @@
 import { batch, createSignal, getOwner, onCleanup, type Accessor } from 'solid-js';
 import type { HostNode } from '@solidnative/fabric';
-import { observeRouteDisposal, type RouteOwner, type RouteOwnerOptions } from './route-owner.ts';
+import {
+  observeRouteDisposal,
+  retireRoute,
+  type RouteOwner,
+  type RouteOwnerOptions,
+} from './route-owner.ts';
 
 export interface StackTransition {
   readonly id: symbol;
@@ -88,10 +93,11 @@ export function createRetainedStack(
     setRetained(snapshot([...owned.values()]));
   }
 
-  function destroy(route: RouteOwner): void {
+  function destroy(route: RouteOwner, offScreen = false): void {
     forget(route);
     try {
-      route.dispose();
+      if (offScreen) retireRoute(route);
+      else route.dispose();
     } catch (error) {
       try {
         options.onError?.(error);
@@ -174,7 +180,7 @@ export function createRetainedStack(
       batch(() => {
         project(token.to);
         if (!current.retainRemoved)
-          for (const route of token.from) if (!token.to.includes(route)) destroy(route);
+          for (const route of token.from) if (!token.to.includes(route)) destroy(route, true);
       });
       return true;
     },
