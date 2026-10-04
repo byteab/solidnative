@@ -233,6 +233,47 @@ a phase, then `sampledTraceToStreamInDevToolsFormat` to a `.cpuprofile`). It cha
 generation collection to the allocating function, so `createComputation` and `createMemo` lead a
 mount profile on allocation, not work.
 
+## A page, as navigation mounts one
+
+The row bench is a thousand identical rows of plain views. A page an app navigates to is a few
+dozen cards with pressables, nested text and components, and there the picture was different:
+`examples/canary/src/bench/screen.ts` (`EXPO_PUBLIC_BENCH=signals-screen` / `react-screen`) is 40
+cards, each a `Pressable` holding an avatar, two lines of text and a `Pressable` button, mounted,
+hidden (a pop) and shown again (a push). Renderer JavaScript ms, interleaved, iOS 12 rounds and
+Android 10:
+
+| phase    | iOS React | iOS before | iOS now | Android React | Android before | Android now |
+| -------- | --------- | ---------- | ------- | ------------- | -------------- | ----------- |
+| mount    | 4.9       | 6.5        | **3.0** | 6.3           | 6.5            | **3.3**     |
+| unmount  | 0.9       | 1.9        | 0.9     | 0.4           | 1.4            | 0.6         |
+| remount  | 7.2       | 10.8       | 8.0     | 7.0           | 14.4           | **4.9**     |
+| remount2 | 6.3       | 11.8       | **5.5** | 6.4           | 12.2           | 8.0         |
+
+"Before" is the branch with the row work above; the three changes below brought the page from 1.3-2x
+React's time to ahead of it on mount. Headless, the page's mount went 3.63 -> 1.88 ms and its
+allocation 2.67 -> 1.07 MB.
+
+1. **`Pressable` built its children twice.** It read `props.children` once to test for a function
+   and again to use it; compiled children are a getter that builds them on every read, so each
+   card was built twice and both copies kept, and a `Pressable` inside a `Pressable` four times.
+   `TouchableOpacity` had the same. Headless mount -34%, allocation -38%, unmount -45%.
+2. **Press retention is measured when a press starts**, as React Native's Pressability does, rather
+   than with a `topLayout` listener on every pressable that had native report each layout of each
+   button to JavaScript; hover is listened for once something reads it. Listeners per page
+   243 -> 3, memos 164 -> 4; headless mount -13%, allocation -18%.
+3. **One object per pressable.** The gesture's state and the responder handlers are a class whose
+   methods the engine calls, rather than some twenty closures; `pressed`/`hovered` become signals
+   only when read; the props carry only what is set; the owner's cleanup replaces a per-node
+   native lifetime. Headless mount -9%, allocation -20%.
+
+What is left is one young-generation collection: Solid's first remount on iOS spends 2.2 ms in GC
+against React's 0.9, because almost everything Solid allocates for a page lives as long as the page,
+where much of React's allocation is garbage by the end of the render. The second remount, with no
+collection in it, is faster than React's. Fewer surviving objects per node is the lever: the
+engine's node (some 36 fields) is the largest, and a `style={styles.x}` member expression still
+compiles to a render effect per element, which a compiler that resolved module-level style objects
+could make a build-time static.
+
 ## Measuring
 
 - Headless Hermes: `scripts/perf/hermes/ab.sh` modes `signals`, `twinline` (signals bench under a
