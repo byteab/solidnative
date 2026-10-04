@@ -406,3 +406,34 @@ describe('what a commit sends', () => {
     assert.deepEqual([props['width'], props['height'], props['aspectRatio']], [100, undefined, 1]);
   });
 });
+
+describe('handles of destroyed nodes', () => {
+  const buried = (engine: Engine) => (engine as unknown as { graveyard: unknown[] }).graveyard;
+
+  it('holds them until a collection has passed, so they die in the old generation', () => {
+    let collections = 0;
+    const engine = new Engine(createFakeFabric(), 1, { collections: () => collections });
+    const view = engine.createElement('view');
+    engine.appendChild(view, engine.createElement('view'));
+    engine.appendChild(engine.root, view);
+    engine.commit();
+    engine.removeChild(engine.root, view);
+    engine.destroyNode(view);
+    engine.destroyNode(view.children[0]!);
+    engine.commit();
+    assert.equal(buried(engine).length, 2);
+    collections++;
+    engine.commit();
+    assert.equal(buried(engine).length, 0);
+  });
+
+  it('lets them go at once without a count of collections', () => {
+    const engine = new Engine(createFakeFabric(), 1, { collections: null });
+    const view = engine.createElement('view');
+    engine.appendChild(engine.root, view);
+    engine.commit();
+    engine.removeChild(engine.root, view);
+    engine.destroyNode(view);
+    assert.equal(buried(engine).length, 0);
+  });
+});

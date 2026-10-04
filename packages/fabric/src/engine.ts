@@ -996,6 +996,12 @@ export interface EngineOptions {
    * either way it is never rethrown: see `dispatchEvent` for why.
    */
   onError?: (error: unknown, topLevelType: string) => void;
+  /**
+   * How many garbage collections the JavaScript engine has run so far: destroyed nodes' native
+   * handles are held until it changes (see `Engine.graveyard`). Defaults to Hermes's own count;
+   * null, or no Hermes, lets them go at once.
+   */
+  collections?: (() => number) | null;
 }
 
 /**
@@ -1247,13 +1253,14 @@ function applyIntrinsicSize(props: Record<string, unknown>, size: IntrinsicSize)
   }
 }
 
-/** Hermes's count of collections so far, or null where there is no Hermes to ask. */
-const gcCount: (() => number) | null = (() => {
+/** The given count of collections, or by default Hermes's, where there is a Hermes to ask. */
+function collectionCount(given: (() => number) | null | undefined): (() => number) | null {
+  if (given !== undefined) return given;
   const stats = (
     globalThis as { HermesInternal?: { getInstrumentedStats?: () => { js_numGCs?: number } } }
   ).HermesInternal?.getInstrumentedStats;
   return stats ? () => stats().js_numGCs ?? 0 : null;
-})();
+}
 
 const now = (): number => globalThis.performance?.now?.() ?? Date.now();
 
@@ -1346,6 +1353,25 @@ export class Engine implements HostEngine {
   private structuralSheets = false;
   private readonly resolveAssetSource: (value: unknown) => unknown;
 
+  /** See `EngineOptions.collections`. */
+  private readonly collections: (() => number) | null;
+  /**
+   * Handles of destroyed nodes, held until a collection has passed (`buriedAt` is the count when
+   * the first went in). A handle that dies young is finalized inside the young-generation pause, on
+   * this thread, and its finalizer tears its native node down with it; one that was promoted first
+   * is finalized by the old generation's sweep, on the collector's own thread, as React's are.
+   *
+   * ponytail: all are let go at the first commit after a collection, so any buried after it die
+   * young as before; a second generation would hold those over too.
+   */
+  private graveyard: FabricNode[] = [];
+  private buriedAt = 0;
+
+  private bury(handle: FabricNode): void {
+    if (this.collections === null) return;
+    if (this.graveyard.push(handle) === 1) this.buriedAt = this.collections();
+  }
+
   constructor(fabric: FabricUIManager, rootTag: number, options: EngineOptions = {}) {
     this.fabric = fabric;
     this.rootTag = rootTag;
@@ -1360,6 +1386,7 @@ export class Engine implements HostEngine {
     this.now = options.now ?? (() => globalThis.performance?.now?.() ?? Date.now());
     this.onDirty = options.onDirty;
     this.onError = options.onError;
+    this.collections = collectionCount(options.collections);
     this.registerKeyframes(options.globalStyles);
     this.processColor = options.processColor ?? ((value) => value);
     this.resolveAssetSource = options.resolveAssetSource ?? ((value) => value);
@@ -1703,9 +1730,7 @@ export class Engine implements HostEngine {
    * is a slow leak on any screen that churns views.
    */
   destroyNode(node: EngineNode): void {
-    if (node.committed !== null && gcCount !== null) {
-      if (this.graveyard.push(node.committed.handle) === 1) this.graveyardGcs = gcCount();
-    }
+    if (node.committed !== null) this.bury(node.committed.handle);
     node.committed = null;
     // Most nodes hold nothing else: a release of a thousand rows should not ask each of three sets.
     if (
@@ -1900,16 +1925,8 @@ export class Engine implements HostEngine {
    * offset, text cursor and keyboard focus. That is a correctness requirement, not an
    * optimisation.
    */
-  /**
-   * Handles of destroyed nodes, held until a collection has passed. A handle that dies young is
-   * finalized inside the young-generation pause, on this thread, and its finalizer tears down the
-   * native node; one promoted first is finalized by the old generation's background sweep.
-   */
-  private graveyard: FabricNode[] = [];
-  private graveyardGcs = 0;
-
   commit(): boolean {
-    if (this.graveyard.length !== 0 && gcCount!() !== this.graveyardGcs) this.graveyard = [];
+    if (this.graveyard.length !== 0 && this.collections!() !== this.buriedAt) this.graveyard = [];
     if (this.removedSinceCommit) this.releaseDetached();
     // The root is never reconciled itself, so it has no `committed` record and `isClean` would
     // always say dirty. Ask the flags directly, or every flush the host runs ends in a
