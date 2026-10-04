@@ -29,7 +29,7 @@ for r in $(seq "$rounds"); do
     line=
     for _ in $(seq 40); do
       sleep 0.5
-      line=$("$adb" logcat -d -s ReactNativeJS | grep -o '\[bench\] [a-z]* |.*' | tail -1 || true)
+      line=$("$adb" logcat -d -s ReactNativeJS | grep -o '\[bench\] [a-z-]* |.*' | tail -1 || true)
       [ -n "$line" ] && break
     done
     echo "$label $line" | tee -a "$log"

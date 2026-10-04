@@ -46,6 +46,7 @@ const engineOptions = {
  *     examples/canary/src/bench/run.sh solid 5
  *     examples/canary/src/bench/run.sh react 5
  *     examples/canary/src/bench/run.sh signals 5   (Solid with signals and createSelector)
+ *     react-screen / signals-screen: a page of pressable cards mounted, popped and pushed again
  *
  * `require` rather than `import` so neither screen reaches an ordinary bundle, and a literal path
  * because Metro builds its graph from those.
@@ -54,7 +55,7 @@ declare global {
   namespace NodeJS {
     // Declared so Expo can inline it: it rewrites only the dotted `process.env.EXPO_PUBLIC_*`.
     interface ProcessEnv {
-      EXPO_PUBLIC_BENCH?: 'solid' | 'signals' | 'react';
+      EXPO_PUBLIC_BENCH?: 'solid' | 'signals' | 'react' | 'react-screen' | 'signals-screen';
     }
   }
 }
@@ -72,19 +73,29 @@ if (bench) {
 if (bench === 'react') {
   const { ReactBench } = require('./bench/react-bench.ts') as { ReactBench: () => unknown };
   AppRegistry.registerComponent('main', () => ReactBench as never);
-} else if (bench === 'solid' || bench === 'signals') {
+} else if (bench === 'react-screen') {
+  const { ReactScreenBench } = require('./bench/react-screen-bench.ts') as {
+    ReactScreenBench: () => unknown;
+  };
+  AppRegistry.registerComponent('main', () => ReactScreenBench as never);
+} else if (bench === 'solid' || bench === 'signals' || bench === 'signals-screen') {
   const { SolidBench } = require('./bench/solid-bench.solid.tsx') as {
     SolidBench: () => never;
   };
   const { SignalsBench } = require('./bench/signals-bench.solid.tsx') as {
     SignalsBench: () => never;
   };
+  const { ScreenBench } = require('./bench/screen-bench.solid.tsx') as {
+    ScreenBench: () => never;
+  };
   AppRegistry.registerRunnable('main', ({ rootTag }) => {
     const { wrappedFabric } = require('./bench/fabric-instrument.ts') as {
       wrappedFabric(): never;
     };
     // Handed the wrapper directly, where React's renderer had to be caught reading the global.
-    mountNative(bench === 'solid' ? SolidBench : SignalsBench, {
+    const Bench =
+      bench === 'solid' ? SolidBench : bench === 'signals' ? SignalsBench : ScreenBench;
+    mountNative(Bench, {
       fabric: wrappedFabric(),
       rootTag: Number(rootTag),
       engineOptions,
@@ -92,7 +103,8 @@ if (bench === 'react') {
   });
 } else if (bench) {
   throw new Error(
-    `EXPO_PUBLIC_BENCH=${bench}: the benchmark renderers are solid, signals and react.`,
+    `EXPO_PUBLIC_BENCH=${bench}: the benchmarks are solid, signals, react, react-screen and` +
+      ' signals-screen.',
   );
 } else {
   // Initial conditions, density tokens and the live condition watcher all belong to this root.
