@@ -328,6 +328,61 @@ describe('what a commit sends', () => {
     assert.equal(statics.testID, 'row', 'the compiled object is shared, never written');
   });
 
+  it('merges the props of nodes made from one compiled element and one style object once', () => {
+    const fabric = createFakeFabric();
+    const sent: { viewName: string; props: object }[] = [];
+    const createNode = fabric.createNode.bind(fabric);
+    fabric.createNode = (tag, viewName, rootTag, props, instance) => {
+      sent.push({ viewName, props });
+      return createNode(tag, viewName, rootTag, props, instance);
+    };
+    const engine = new Engine(fabric, 1);
+    const statics = { testID: 'label' };
+    const style = { color: 'red', fontSize: 12 };
+    const make = () => {
+      const text = engine.createElement('text', null, statics);
+      engine.setProp(text, 'style', style);
+      engine.appendChild(text, engine.createText('a'));
+      engine.appendChild(engine.root, text);
+      return text;
+    };
+    make();
+    make();
+    engine.commit();
+    const paragraphs = sent.filter((call) => call.viewName === 'Paragraph');
+    assert.equal(paragraphs.length, 2);
+    assert.equal(paragraphs[0]!.props, paragraphs[1]!.props, 'one props object for both');
+    assert.equal(fabric.committed[1]!.props['color'], 'red');
+    assert.equal(fabric.committed[1]!.props['testID'], 'label');
+  });
+
+  it('merges a node again once its style or any other prop differs', () => {
+    const fabric = createFakeFabric();
+    const engine = new Engine(fabric, 1);
+    const statics = { testID: 'row' };
+    const shared = { opacity: 0.5 };
+    const views = [0, 1, 2].map(() => {
+      const view = engine.createElement('view', null, statics);
+      engine.appendChild(engine.root, view);
+      return view;
+    });
+    engine.setProp(views[0]!, 'style', shared);
+    engine.setProp(views[1]!, 'style', { opacity: 0.25 });
+    engine.setProp(views[2]!, 'style', shared);
+    engine.setProp(views[2]!, 'accessibilityLabel', 'third');
+    engine.commit();
+    assert.equal(fabric.committed[0]!.props['opacity'], 0.5);
+    assert.equal(fabric.committed[1]!.props['opacity'], 0.25);
+    assert.equal(fabric.committed[2]!.props['opacity'], 0.5);
+    assert.equal(fabric.committed[2]!.props['accessibilityLabel'], 'third');
+    assert.equal(fabric.committed[0]!.props['accessibilityLabel'], undefined);
+    // A node that shared the props and then changes its style gets its own.
+    engine.setProp(views[0]!, 'style', { opacity: 1 });
+    engine.commit();
+    assert.equal(fabric.committed[0]!.props['opacity'], 1);
+    assert.equal(fabric.committed[2]!.props['opacity'], 0.5);
+  });
+
   it("converts the colours in a registered view's defaults", () => {
     registerViewName('tinted-default-view', 'RCTView', { backgroundColor: 'red' });
     const fabric = createFakeFabric();

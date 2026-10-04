@@ -360,6 +360,12 @@ export interface EngineNode extends HostNode {
   /** Lowercase template spelling, e.g. `view`. Never the native view name. */
   readonly name: string;
   props: Record<string, unknown>;
+  /**
+   * The compiled props the node was created with, while `props` is still those plus at most a
+   * `style`; null once any other prop is written. Nodes made from one compiled element and one
+   * style object share their merged props (`plainProps`).
+   */
+  statics: object | null;
   text: string;
   children: EngineNode[];
   parent: EngineNode | null;
@@ -858,6 +864,8 @@ export function isEngineNode(value: unknown): value is EngineNode {
 
 /** Every node's children until it has one; replaced, never written to. */
 const NO_CHILDREN = Object.freeze([]) as unknown as EngineNode[];
+/** The statics of an element created with none. */
+const NO_STATICS: object = Object.freeze({});
 
 /**
  * A node's position among its siblings: where it last was when that still holds, which it does
@@ -883,6 +891,7 @@ function indexIn(siblings: readonly EngineNode[], node: EngineNode): number {
  */
 class RetainedNode {
   props: Record<string, unknown> = {};
+  statics: object | null = NO_STATICS;
   text = '';
   /** Shared and frozen until the first child arrives: a text run never has one. */
   children: EngineNode[] = NO_CHILDREN;
@@ -1538,6 +1547,7 @@ export class Engine implements HostEngine {
     const node = new RetainedNode('element', name, this);
     node.sheet = sheet;
     if (statics !== undefined) {
+      node.statics = statics;
       const props = node.props;
       for (const key in statics) props[key] = statics[key];
       node.propsDirty = true;
@@ -1723,6 +1733,7 @@ export class Engine implements HostEngine {
   }
 
   setProp(node: EngineNode, key: string, value: unknown): void {
+    if (key !== 'style') node.statics = null;
     if (value === undefined || value === null) {
       // Nothing to remove, so nothing changed. Worth its own branch because it is the common
       // case, not a rare one: a host primitive carries a host binding for every prop React Native
@@ -2049,6 +2060,20 @@ export class Engine implements HostEngine {
       return null;
     }
     const defaults = DEFAULT_PROPS[viewName];
+    // An inline `direction` anywhere makes a paragraph's alignment depend on its ancestors.
+    const statics = this.inlineDirection ? null : node.statics;
+    if (statics !== null) {
+      const last = this.sharedProps.get(statics);
+      if (
+        last &&
+        last.style === style &&
+        last.viewName === viewName &&
+        last.defaults === defaults
+      ) {
+        this.fresh = false;
+        return last.props;
+      }
+    }
     const props: Record<string, unknown> = {};
     this.fresh = false;
     // Defaults are converted along with everything else, as `convertInPlace` converts them.
@@ -2066,8 +2091,28 @@ export class Engine implements HostEngine {
       if (!this.putProp(props, key, style[key], propKind(key))) return null;
     }
     if (viewName === PARAGRAPH) alignText(props, this.directionOf(node, props));
+    // Only props that go to Fabric as they are: `processed` copies the others per node.
+    if (statics !== null && !this.fresh) {
+      this.sharedProps.set(statics, { style, viewName, defaults, props });
+    }
     return props;
   }
+
+  /**
+   * The props `plainProps` last built from each compiled statics object, for the next node made
+   * from it with the same style object: a list of a thousand rows sharing a style merges once.
+   * Never written once built, since Fabric and the commit's diff only read them. Bounded by the
+   * compiled elements in the bundle, one entry each.
+   */
+  private readonly sharedProps = new Map<
+    object,
+    {
+      style: unknown;
+      viewName: string;
+      defaults: Record<string, unknown> | undefined;
+      props: Record<string, unknown>;
+    }
+  >();
 
   /** One key of `plainProps`, converted as `convertInPlace` would; false for an engine key. */
   private putProp(
