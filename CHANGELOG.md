@@ -1,3 +1,9 @@
+## 0.1.3 (2026-10-04)
+
+### 🩹 Fixes
+
+- Mounting is faster: literal props are compiled into each element's creation, props merge in one pass for nodes no CSS reaches, style objects are flattened once, and `Pressable` and `TouchableOpacity` build their children and style once. A popped screen, and a `For` row that is removed, is now disposed after the commit that takes it off screen, and its native handles are released, so a popped page can be garbage-collected.
+
 ## 0.1.2 (2026-10-03)
 
 ### 🩹 Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/icons",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "SVG icon strings, such as lucide-static, rendered as native react-native-svg shapes from Solid.",
   "keywords": [
     "solid",

@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/router",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Solid router over native navigation: stack and tab outlets, native headers, links and react-native-screens presentation.",
   "keywords": [
     "solid",

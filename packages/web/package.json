@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/web",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A browser host for solidnative: the same Solid components, rendered into the DOM instead of native views.",
   "keywords": [
     "solid",

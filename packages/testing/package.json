@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/testing",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Test solidnative Solid components in Node with no simulator: a fake Fabric, Testing Library queries and events, and node:test and Vitest integration.",
   "keywords": [
     "solid",

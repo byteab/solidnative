@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/template",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A SolidJS app rendering real native views. Use with create-expo-app --template.",
   "license": "MIT",
   "main": "src/main.solid.ts",

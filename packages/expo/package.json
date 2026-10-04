@@ -1,6 +1,6 @@
 {
   "name": "@solidnative/expo",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Expo modules as Solid services for solidnative, plus registerExpoView for a module's native view.",
   "keywords": [
     "solid",
