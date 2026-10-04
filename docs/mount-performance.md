@@ -131,9 +131,9 @@ Tailwind is set aside for now; these target inline-styled views.
 
 ## Proposals to reach React, ranked
 
-October 2026, after item 9. Prototyped on a scratch copy and not committed. Device numbers are
-interleaved launches (iOS 12 rounds, Android 10) of React, the branch head and each variant, with
-renderer JavaScript ms.
+October 2026, after item 9. Each prototype is a commit on `perf/mount-proposals`; 1 and 2 are
+now implemented here (below). Device numbers are interleaved launches (iOS 12 rounds, Android 10)
+of React, the branch head and each variant, with renderer JavaScript ms.
 
 | #   | proposal                               | iOS mount, replace, clear | Android mount, replace, clear | status          |
 | --- | -------------------------------------- | ------------------------- | ----------------------------- | --------------- |
@@ -142,11 +142,29 @@ renderer JavaScript ms.
 | 1   | dispose removed rows after the commit  | 15.7, 26.6, **1.8**       | 14.8, 16.6, **1.1**           | measured, take  |
 | 2   | share merged props by (statics, style) | 14.4, 28.0, =             | 15.0, 18.1, =                 | measured, take  |
 | 3   | fold a row's text into its prop effect | 14.9, 27.3, =             | 15.3, 18.3, =                 | measured, maybe |
+|     | 1 + 2                                  | 14.5, 25.9, 2.5           | 15.0, 16.0, 1.1               | measured, take  |
 |     | 1 + 2 + 3                              | 14.4, **25.2**, **2.5**   | 14.8, **15.5**, **1.0**       |                 |
 
 Row 1 is from its own run, against head at 14.5, 28.6, 7.8 (iOS) and 15.2, 18.3, 4.4 (Android);
-mount does not run the code it changes, and is 14.4 in the combined run. With all three, Solid clears faster than React on both platforms (total 3.9 vs 6.3 ms on iOS,
-5.6 vs 6.1 on Android) and replaces within 0.8-2 ms of it. Mount stays 1-1.7 ms behind.
+mount does not run the code it changes, and is 14.4 in the combined run. The 1 + 2 row is from a
+later run (head 14.0, 28.5, 8.3 on iOS; 15.2, 18.5, 4.2 on Android). With all three, Solid clears
+faster than React on both platforms (total 3.9 vs 6.3 ms on iOS, 5.6 vs 6.1 on Android) and
+replaces within 0.8-2 ms of it. Mount stays 1-1.7 ms behind.
+
+**Implemented: 1 and 2.** The platform's `For` (`platform/src/solid/for.ts`) and the engine's
+shared props (`plainProps`), each run against React and head in one session:
+
+| phase   | iOS React | iOS head | iOS 1 + 2 | Android React | Android head | Android 1 + 2 |
+| ------- | --------- | -------- | --------- | ------------- | ------------ | ------------- |
+| mount   | 13.6      | 15.1     | 15.0      | 13.5          | 15.2         | 15.2          |
+| replace | 21.9      | 25.6     | 25.5      | 15.1          | 18.5         | 16.8          |
+| clear   | 2.9       | 6.6      | **2.4**   | 1.3           | 4.2          | 1.4           |
+
+That iOS run caught the simulator in its fast mode for replace (head 25.6, against 28.5-28.9 in the
+other runs); in the previous one the first version of the implementation took replace from 28.9
+to 26.3 ms and clear from 8.4 to 4.1. Select reads 2-4 ms slower on iOS with it, and swap as much
+faster: the collection head takes during swap (gc 3.1-4.4 ms) lands in select instead (2.5-3.6),
+the same work a phase later. Android shows neither.
 
 **1. Dispose removed rows after the commit.** A phase ends at `completeRoot`, and on clear most of
 what comes before it is Solid disposing each row's owner. Headless (Hermes sampling profiler),
@@ -159,11 +177,17 @@ passive-effect unmounts after its commit. Headless, time to commit: clear 2.86 -
 
 - One trap, measured: the disposals run inside the flush, where `schedule()` is a no-op, so the
   nodes they drop waited for the next phase's flush and update10th grew 0.3 ms headless, 0.6 iOS,
-  1.0 Android. The scheduler must flush again when drops are pending after its callbacks (a
-  `pending()` check in `continueWork`); with it update10th is unchanged.
-- Semantics: a removed row's effects stay subscribed until the end of the flush that commits its
-  removal, and its `onCleanup`s run after the commit, not inside the setter. A signal written in
-  that window re-runs the row's effects against detached nodes, harmless for native props.
+  1.0 Android. The implementation has the root dispose retired rows right after `engine.commit()`
+  and release what they dropped in the same flush; update10th is unchanged.
+- A second, found by the canary's tests: a row commonly looks itself up in the list it was removed
+  from (the shop basket's `lines().find(...)!`). Solid disposes the row before its effects can run
+  again; deferred, they ran and threw, and the update failed. So a removed row is quieted at once:
+  each of its computations gets a function that returns the value it has (Solid's internal `fn`),
+  so a re-run does nothing and unsubscribes it. That walk is the price of safety: headless clear to
+  commit 0.77 ms against the prototype's 0.54, on iOS 3.4 against 2.5. Hanging the row's owner on
+  its disposer function instead of a parallel array cost another 0.6 ms on iOS.
+- Semantics: a removed row's `onCleanup`s run after the commit, not inside the write that removed
+  it; `apps/documentation` says so where `For` is described.
 - Next: the same for `Index`, `Show`/`Switch` branches and a router pop; disposal in idle slices
   (`requestIdleCallback`, ~2 ms each) so 2000 rows' teardown cannot delay the next frame's input.
 
