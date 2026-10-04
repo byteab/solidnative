@@ -1,6 +1,7 @@
 // The canary bench's Solid tree and steps on the headless Hermes runner, against a stub Fabric
 // that only builds the handles the engine keeps (no native work, so the time is the renderer's).
-// args: [mode, iterations]  mode: solid (store) | signals | raw | engine | twinline | twclass
+// args: [mode, iterations]  mode: solid (store) | signals | raw | engine | twinline | twclass | screen
+//   screen: the canary's page bench (40 cards), mounted, popped and pushed twice
 //   twinline: the signals bench under a global Tailwind sheet; twclass: its rows styled by class
 import { createNativeRoot } from '@solidnative/platform/solid';
 import { Engine } from '@solidnative/fabric';
@@ -17,6 +18,7 @@ import { createBench } from '../node/bench-fixture.solid.tsx';
 import { createSignalsBench } from './signals-fixture.solid.tsx';
 import { createRawSignalsBench } from './raw-signals-fixture.solid.tsx';
 import { createTailwindBench, sheet } from './tailwind-fixture.solid.tsx';
+import { SCREEN_PHASES, createScreenBench } from './screen-fixture.solid.tsx';
 import { RawBench } from '../node/raw-fixture.solid.tsx';
 import { STEPS, initial, styles } from '../../../examples/canary/src/bench/rows.ts';
 
@@ -25,6 +27,11 @@ declare const print: (...a: unknown[]) => void,
   gcNow: () => void,
   heapAllocated: () => number,
   args: string[];
+
+// Pressable's press timers: never fire in a bench, only cleared on unmount.
+const g = globalThis as { setTimeout?: unknown; clearTimeout?: unknown };
+g.setTimeout ??= () => 0;
+g.clearTimeout ??= () => {};
 
 let calls = 0;
 function stubFabric() {
@@ -72,7 +79,9 @@ const phases =
   (mode === 'solid' || mode === 'signals' || mode === 'rawsignals' || mode.startsWith('tw')) &&
   args[2] !== 'mount'
     ? STEPS.map((s) => s.name)
-    : ['mount'];
+    : mode === 'screen' && args[2] !== 'mount'
+      ? SCREEN_PHASES
+      : ['mount'];
 const res: Record<string, { ms: number[]; mb: number[] }> = {};
 function measure(name: string, fn: () => void) {
   gcNow();
@@ -134,7 +143,9 @@ for (let i = 0; i < iterations; i++) {
         ? createTailwindBench()
         : mode === 'rawsignals'
           ? createRawSignalsBench()
-          : createBench();
+          : mode === 'screen'
+            ? createScreenBench()
+            : createBench();
   measure('mount', () => root.render(() => bench.Bench()));
   for (const s of phases.slice(1))
     measure(s, () => {
