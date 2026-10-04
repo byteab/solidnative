@@ -51,6 +51,7 @@ React's renderer time drops 2-6 ms on iOS updates and replace (28.2 -> 23.3); So
 | Merge props in one pass for nodes no CSS reaches          | `fabric/src/engine.ts`         | headless mount -4.7%, replace -3.5%; iOS sim within noise     |
 | Literal props made with the element, compiled at build    | `metro/solid-lower.cjs`        | see below                                                     |
 | Use a style already in native form as it stands           | `platform/src/solid/styles.ts` | headless mount, replace, append -4%; iOS renderer -3 to -7%   |
+| Literal props on raw `<view>`/`<text>` too, unless spread | `metro/solid-lower.cjs`        | with a literal style per row: headless mount -7%, replace -5% |
 
 **Static props at build time.** A lowered View or Text's literal attributes, a literal style
 among them, go into one module-level object, the style flattened and its numbers parsed as the
@@ -115,6 +116,10 @@ Tailwind is set aside for now; these target inline-styled views.
    builds its own style object, so the per-object flatten cache missed on every row and copied
    and cached each one; a style already in native form is now used as it stands (table above).
    Android mount -4%, replace and append within noise.
+9. **Statics for raw intrinsics.** `<view>` and `<text>` written directly now get the same
+   build-time statics, when no attribute is a spread. Headless, the raw fixture with a literal
+   label style mounts 10.2 -> 9.5 ms, replaces 13.2 -> 12.6, appends 11.2 -> 10.6; with no literal,
+   the output is unchanged. The canary's shop screen renders the same on Android.
 
 ## Later, for Tailwind
 

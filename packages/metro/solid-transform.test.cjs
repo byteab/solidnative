@@ -349,3 +349,22 @@ export const A = (p) => <View testID="row" collapsable={false} hidden hitSlop={{
   assert.match(code, /_el\$2 = _\$createElement\("view"\)/);
   assert.doesNotMatch(code, /\$statics/);
 });
+
+test('raw view and text intrinsics get their literal attributes as statics, unless spread', () => {
+  const compiled = (jsx) =>
+    transformSolid(
+      `/** @jsxImportSource @solidnative/platform/solid */
+export const A = (p) => ${jsx};`,
+      'raw.tsx',
+      { platform: 'ios' },
+    ).code;
+  const code = compiled('<view testID="row" style={{ "margin-top": "4px" }}><text>x</text></view>');
+  assert.match(code, /createElement\("view", _statics\)/);
+  assert.match(code, /marginTop: 4/);
+  assert.match(code, /createElement\("text"\)/);
+  // A spread after a literal would override it once the literal moved ahead of it.
+  const spread = compiled('<view {...p} testID="row" />');
+  assert.match(spread, /mergeProps\(p, \{\s*"testID": "row"/);
+  assert.doesNotMatch(spread, /_statics/);
+  assert.doesNotMatch(compiled('<scroll-view testID="row" />'), /_statics/);
+});

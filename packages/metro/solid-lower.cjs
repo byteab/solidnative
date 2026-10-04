@@ -69,6 +69,17 @@ function lowerable(attributes, keeps) {
   return true;
 }
 
+/**
+ * The intrinsics an app writes directly, which get the same statics as a lowered View or Text.
+ * Only when every attribute is a plain one: a spread applied after the statics would override a
+ * literal written after it.
+ */
+const INTRINSICS = new Set(['view', 'text']);
+
+function plainAttribute(attribute) {
+  return attribute.type === 'JSXAttribute' && attribute.name.type === 'JSXIdentifier';
+}
+
 /** Attributes the platform routes elsewhere than the node's props (`properties.ts`, `styles.ts`). */
 const ROUTED = new Set(['class', 'className', 'classList', 'responder']);
 /** The attribute that carries the statics from the JSX pass to the rewrite after the compiler. */
@@ -215,6 +226,10 @@ module.exports = function lowerPrimitives({ types: t }, options = {}) {
     JSXElement(path) {
       const opening = path.node.openingElement;
       if (opening.name.type !== 'JSXIdentifier') return;
+      if (INTRINSICS.has(opening.name.name)) {
+        if (opening.attributes.every(plainAttribute)) hoistStatics(t, path, opening, this.program);
+        return;
+      }
       const primitive = primitiveOf(path, opening.name.name);
       if (!primitive) return;
       const text = primitive === 'Text';
