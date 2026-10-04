@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createNativeRoot } from '@solidnative/platform/solid';
+import { createElement, createNativeRoot } from '@solidnative/platform/solid';
+import { Pressable } from '../src/solid/pressable.ts';
+import { TouchableOpacity } from '../src/solid/touchable-opacity.ts';
 import {
   primitiveFixture,
   ownershipFixture,
@@ -183,6 +185,27 @@ test('child getters are evaluated once and plain labels acquire press resources 
   assert.equal(fixture.counts.press, 1);
   root.dispose();
   assert.equal(fixture.counts.cleanup, 1);
+});
+
+test('Pressable and TouchableOpacity build their children and style once', () => {
+  for (const Press of [Pressable, TouchableOpacity]) {
+    const reads = { children: 0, style: 0 };
+    const root = createNativeRoot({ fabric: createFakeFabric(), clock: createClock(), rootTag: 1 });
+    root.render(() =>
+      Press({
+        get style() {
+          reads.style++;
+          return { padding: 4 };
+        },
+        get children() {
+          reads.children++;
+          return createElement('view');
+        },
+      }),
+    );
+    assert.deepEqual(reads, { children: 1, style: 1 }, Press.name);
+    root.dispose();
+  }
 });
 
 test('replacing a text press callback during a gesture preserves press state and calls the new handler', () => {

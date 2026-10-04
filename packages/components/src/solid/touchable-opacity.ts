@@ -10,6 +10,8 @@ export interface TouchableOpacityProps extends PressableProps {
   activeOpacity?: number;
 }
 /** The host transition clock preserves the native touchable's asymmetric fade timings. */
+/** What TouchableOpacity handles itself; `style` is read below, once, rather than copied. */
+const TOUCHABLE_OMIT = [...PRESS_KEYS, 'activeOpacity', 'style'];
 export function TouchableOpacity(props: TouchableOpacityProps): HostNode {
   const node = primitiveNode('view');
   const nativeStyles = touchableStyleHost(useHostEngine(), node);
@@ -18,15 +20,17 @@ export function TouchableOpacity(props: TouchableOpacityProps): HostNode {
     node,
     () => {
       const current = state();
+      const style = props.style;
       return {
-        ...hostProps(props, { accessible: true, focusable: true, disabled: props.disabled }, [
-          ...PRESS_KEYS,
-          'activeOpacity',
-        ]),
+        ...hostProps(
+          props,
+          { accessible: true, focusable: true, disabled: props.disabled },
+          TOUCHABLE_OMIT,
+        ),
         classList: { ...props.classList, pressed: current.pressed },
         style: [
           nativeStyles ? undefined : { opacity: 1 },
-          typeof props.style === 'function' ? props.style(current) : props.style,
+          typeof style === 'function' ? style(current) : style,
           {
             $transition: {
               opacity: {
@@ -42,9 +46,11 @@ export function TouchableOpacity(props: TouchableOpacityProps): HostNode {
     },
     true,
   );
-  insertHostChildren(node, () =>
-    typeof props.children === 'function' ? props.children(state()) : props.children,
-  );
+  insertHostChildren(node, () => {
+    // Read once: compiled children are a getter that builds them on every read.
+    const children = props.children;
+    return typeof children === 'function' ? children(state()) : children;
+  });
   props.ref?.(createNativeRef(node));
   return node;
 }

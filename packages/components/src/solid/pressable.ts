@@ -223,6 +223,8 @@ function rippleDrawable(engine: ReturnType<typeof useHostEngine>, ripple: Androi
     rippleRadius: ripple.radius,
   };
 }
+/** What Pressable handles itself; `style` is read below, once, rather than copied and replaced. */
+const PRESSABLE_OMIT = [...PRESS_KEYS, 'android_ripple', 'style'];
 export function Pressable(props: PressableProps): HostNode {
   const node = primitiveNode('pressable');
   const engine = useHostEngine();
@@ -232,20 +234,26 @@ export function Pressable(props: PressableProps): HostNode {
   );
   spreadHostProps(
     node,
-    () => ({
-      ...hostProps(props, { accessible: true, focusable: true, disabled: props.disabled }, [
-        ...PRESS_KEYS,
-        'android_ripple',
-      ]),
-      nativeBackgroundAndroid: props.android_ripple?.foreground ? undefined : ripple(),
-      nativeForegroundAndroid: props.android_ripple?.foreground ? ripple() : undefined,
-      style: typeof props.style === 'function' ? props.style(state()) : props.style,
-    }),
+    () => {
+      const style = props.style;
+      return {
+        ...hostProps(
+          props,
+          { accessible: true, focusable: true, disabled: props.disabled },
+          PRESSABLE_OMIT,
+        ),
+        nativeBackgroundAndroid: props.android_ripple?.foreground ? undefined : ripple(),
+        nativeForegroundAndroid: props.android_ripple?.foreground ? ripple() : undefined,
+        style: typeof style === 'function' ? style(state()) : style,
+      };
+    },
     true,
   );
-  insertHostChildren(node, () =>
-    typeof props.children === 'function' ? props.children(state()) : props.children,
-  );
+  insertHostChildren(node, () => {
+    // Read once: compiled children are a getter that builds them on every read.
+    const children = props.children;
+    return typeof children === 'function' ? children(state()) : children;
+  });
   props.ref?.(createNativeRef(node));
   return node;
 }
