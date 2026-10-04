@@ -186,12 +186,12 @@ function hoistStatics(t, path, opening, program) {
   });
   if (!count) return;
   const id = path.scope.getProgramParent().generateUidIdentifier('statics');
-  const imports = program.get('body').filter((statement) => statement.isImportDeclaration());
-  const declaration = t.variableDeclaration('const', [
-    t.variableDeclarator(id, t.valueToNode(statics)),
-  ]);
-  if (imports.length) imports[imports.length - 1].insertAfter(declaration);
-  else program.unshiftContainer('body', declaration);
+  // First in the module: it holds only literals, and an element evaluated at the top level before
+  // a later import would otherwise read it before it is initialised.
+  program.unshiftContainer(
+    'body',
+    t.variableDeclaration('const', [t.variableDeclarator(id, t.valueToNode(statics))]),
+  );
   opening.attributes.unshift(
     t.jsxAttribute(t.jsxIdentifier(STATICS), t.jsxExpressionContainer(t.cloneNode(id))),
   );

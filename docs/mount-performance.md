@@ -289,8 +289,9 @@ old generation's sweep on the collector's thread (`~ShadowNodeWrapper` 0.02% of 
 thread, 1.50% of Solid's). Evacuation, what the survivor count drives, was about equal.
 
 **Kept: destroyed handles wait for a collection** (`Engine.graveyard`, `EngineOptions.collections`,
-Hermes's `js_numGCs` by default). The engine holds each destroyed node's handle until the count
-changes, so it is promoted and dies in the old generation. Young-gen work on the JavaScript thread
+Hermes's `js_numGCs` by default). The engine holds each destroyed node's handle until the first commit
+after the count changes, so it is promoted and dies in the old generation; a disposed root lets
+its handles go at once. Young-gen work on the JavaScript thread
 went from 122 samples to 66 (React 75). Final branch against React and the session's start, ms:
 
 | page bench, GC per collection | iOS React | iOS before | iOS now | Android React | Android before | Android now |
@@ -319,7 +320,7 @@ empty, two more push/pops, back), with no errors logged.
 - Engine nodes as a sized object literal: a no-op. Hermes sizes class-field storage once (344
   bytes for 36 fields); only `this.x =` assignments in a constructor grow it (624).
 
-**The list.** G does not move the 1000-row bench. In this session iOS mount was level (renderer
+**The list.** Holding handles does not move the 1000-row bench. In this session iOS mount was level (renderer
 13.6 vs React 13.4 ms, total 49.4 vs 50.8). Android mount is 1.5 ms behind (14.7 vs 13.2): 0.5 ms
 GC, 1.2 ms other renderer work, total level (70.8 vs 70.5).
 

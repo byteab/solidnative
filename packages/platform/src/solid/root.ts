@@ -273,6 +273,7 @@ export function createNativeRoot(options: NativeRootOptions): NativeRoot {
       // A node app code still holds would otherwise keep its native shadow node, and through it
       // the subtree's, for as long as it is held.
       for (const node of tree) engine.destroyNode(node);
+      engine.releaseHandles();
     },
   };
   engine.hostData = context;

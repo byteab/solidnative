@@ -1256,10 +1256,11 @@ function applyIntrinsicSize(props: Record<string, unknown>, size: IntrinsicSize)
 /** The given count of collections, or by default Hermes's, where there is a Hermes to ask. */
 function collectionCount(given: (() => number) | null | undefined): (() => number) | null {
   if (given !== undefined) return given;
-  const stats = (
+  const hermes = (
     globalThis as { HermesInternal?: { getInstrumentedStats?: () => { js_numGCs?: number } } }
-  ).HermesInternal?.getInstrumentedStats;
-  return stats ? () => stats().js_numGCs ?? 0 : null;
+  ).HermesInternal;
+  const count = (): number | undefined => hermes?.getInstrumentedStats?.().js_numGCs;
+  return typeof count() === 'number' ? (count as () => number) : null;
 }
 
 const now = (): number => globalThis.performance?.now?.() ?? Date.now();
@@ -1366,6 +1367,11 @@ export class Engine implements HostEngine {
    */
   private graveyard: FabricNode[] = [];
   private buriedAt = 0;
+
+  /** Let go of every held handle now: the root is gone, and no commit will come to do it. */
+  releaseHandles(): void {
+    this.graveyard = [];
+  }
 
   private bury(handle: FabricNode): void {
     if (this.collections === null) return;

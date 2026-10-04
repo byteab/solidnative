@@ -461,3 +461,20 @@ test('a style in native form is used as it stands, and any other is flattened', 
   assert.equal(first!.props['marginTop'], 4);
   assert.equal(second!.props['marginTop'], 4);
 });
+
+test('a disposed root holds none of its native handles for a later collection', () => {
+  const fabric = createFakeFabric();
+  const root = createNativeRoot({
+    fabric,
+    rootTag: 1,
+    clock: createClock(),
+    engineOptions: { collections: () => 0 },
+  });
+  root.render(() => {
+    const view = createElement('view');
+    insertNode(view, createElement('view'));
+    return view;
+  });
+  root.dispose();
+  assert.equal((root.engine as unknown as { graveyard: unknown[] }).graveyard.length, 0);
+});

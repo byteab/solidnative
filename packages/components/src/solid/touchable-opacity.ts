@@ -9,9 +9,9 @@ import { touchableStyleHost } from './native-target.ts';
 export interface TouchableOpacityProps extends PressableProps {
   activeOpacity?: number;
 }
-/** The host transition clock preserves the native touchable's asymmetric fade timings. */
 /** What TouchableOpacity handles itself; `style` is read below, once, rather than copied. */
 const TOUCHABLE_OMIT = [...PRESS_KEYS, 'activeOpacity', 'style'];
+/** The host transition clock preserves the native touchable's asymmetric fade timings. */
 export function TouchableOpacity(props: TouchableOpacityProps): HostNode {
   const node = primitiveNode('view');
   const nativeStyles = touchableStyleHost(useHostEngine(), node);
