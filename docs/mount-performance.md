@@ -89,8 +89,16 @@ Tailwind is set aside for now; these target inline-styled views.
    `appendChild`. Most of the Fabric gap is the CPU, not the calls: React's 17 ms of renderer work
    warms it, Solid reaches Fabric 2 ms after the bench's 400 ms idle. A 15 ms spin before each
    Solid step brings swap's Fabric time to React's (12.7 vs 12.9 ms) and label1's from 7.4 to 5.6
-   (React 3.6). What remains: the same ~1000 `appendChild` calls take 2.5 ms for Solid and 1.0 for
-   React. Next is a native profile (Perfetto) of that call, which JavaScript cannot explain.
+   (React 3.6). What remained: the same ~1000 `appendChild` calls took 2.5 ms for Solid and 1.0
+   for React.
+7. **That `appendChild`, profiled natively: not ours.** A callstack profile of the emulator
+   (simpleperf; Perfetto's sampler lost the freshly forked app) shows the same Fabric code on
+   both sides: each row appended to a new page revision is cloned (`adoptYogaChild` ->
+   `ShadowNode::clone`), because its Yoga node is still owned by the previous page. React pays it
+   too, and passes the same handles in the same order: the call sequences match but for the raw
+   text, which React creates and Solid clones. The gap follows the clock, not the step: with
+   select and label1 swapped, label1 at 1.2 s appends in 1.4 ms (React 1.5) and select at 1.6 s
+   takes 5.0 ms, its commit 8.8 instead of 3.7. The instrument now reports `append`.
 
 ## Later, for Tailwind
 

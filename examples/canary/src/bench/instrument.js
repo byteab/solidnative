@@ -150,6 +150,8 @@
               (phase.times['createNode'] || 0).toFixed(1) +
               ', complete ' +
               (phase.times['completeRoot'] || 0).toFixed(1) +
+              ', append ' +
+              (phase.times['appendChild'] || 0).toFixed(1) +
               ']' +
               ', gc ' +
               phase.gc.toFixed(1) +
