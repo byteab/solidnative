@@ -5,7 +5,8 @@ Branch `perf/mount-styles`, October 2026. Goal: Solid mounting as fast as React,
 
 **Verdict.** On mount, Solid's total time is level with React's (iOS 52.9 vs 52.8 ms, Android 2%
 behind), with renderer JavaScript 2 ms behind. It wins on append and on every update phase, and
-still loses on replace's renderer time (iOS) and on clear. The rest of the gap is this project's
+still loses on replace's renderer time (iOS) and on clear. Ranked proposals that close clear and
+most of replace are at the end. The rest of the gap is this project's
 renderer layers (the platform's style handling and the engine's prop merge and CSS cascade), not
 Solid.
 
@@ -127,6 +128,86 @@ Tailwind is set aside for now; these target inline-styled views.
   selectors becomes a style object in the Metro transform and skips the cascade (NativeWind's
   approach).
 - **Memoize the cascade by class set.** Rows sharing classes cascade once per list.
+
+## Proposals to reach React, ranked
+
+October 2026, after item 9. Prototyped on a scratch copy and not committed. Device numbers are
+interleaved launches (iOS 12 rounds, Android 10) of React, the branch head and each variant, with
+renderer JavaScript ms.
+
+| #   | proposal                               | iOS mount, replace, clear | Android mount, replace, clear | status          |
+| --- | -------------------------------------- | ------------------------- | ----------------------------- | --------------- |
+|     | React                                  | 13.4, 23.2, 3.8-4.9       | 13.1, 14.7, 1.3               |                 |
+|     | head                                   | 14.5, 28.5, 8.0           | 15.1, 19.2, 4.4               |                 |
+| 1   | dispose removed rows after the commit  | 15.7, 26.6, **1.8**       | 14.8, 16.6, **1.1**           | measured, take  |
+| 2   | share merged props by (statics, style) | 14.4, 28.0, =             | 15.0, 18.1, =                 | measured, take  |
+| 3   | fold a row's text into its prop effect | 14.9, 27.3, =             | 15.3, 18.3, =                 | measured, maybe |
+|     | 1 + 2 + 3                              | 14.4, **25.2**, **2.5**   | 14.8, **15.5**, **1.0**       |                 |
+
+Row 1 is from its own run, against head at 14.5, 28.6, 7.8 (iOS) and 15.2, 18.3, 4.4 (Android);
+mount does not run the code it changes, and is 14.4 in the combined run. With all three, Solid clears faster than React on both platforms (total 3.9 vs 6.3 ms on iOS,
+5.6 vs 6.1 on Android) and replaces within 0.8-2 ms of it. Mount stays 1-1.7 ms behind.
+
+**1. Dispose removed rows after the commit.** A phase ends at `completeRoot`, and on clear most of
+what comes before it is Solid disposing each row's owner. Headless (Hermes sampling profiler),
+clear is ~85% `cleanNode` and the cleanups it runs: `createSelector`'s per-row `Map`/`Set`
+deletes 16%, the platform's `drop` 14%; engine removals and the commit under 2%. The prototype is
+Solid's `mapArray` in the platform's `For`, with each removed row's disposer queued and run from
+one `afterCommit` callback: the rows leave the tree and the commit goes out first, as React runs
+passive-effect unmounts after its commit. Headless, time to commit: clear 2.86 -> 0.54 ms, replace
+12.7 -> 11.7; the total work is unchanged. On iOS the UI thread mounts while JavaScript disposes.
+
+- One trap, measured: the disposals run inside the flush, where `schedule()` is a no-op, so the
+  nodes they drop waited for the next phase's flush and update10th grew 0.3 ms headless, 0.6 iOS,
+  1.0 Android. The scheduler must flush again when drops are pending after its callbacks (a
+  `pending()` check in `continueWork`); with it update10th is unchanged.
+- Semantics: a removed row's effects stay subscribed until the end of the flush that commits its
+  removal, and its `onCleanup`s run after the commit, not inside the setter. A signal written in
+  that window re-runs the row's effects against detached nodes, harmless for native props.
+- Next: the same for `Index`, `Show`/`Switch` branches and a router pop; disposal in idle slices
+  (`requestIdleCallback`, ~2 ms each) so 2000 rows' teardown cannot delay the next frame's input.
+
+**2. Share merged props by identity.** `plainProps` builds the same object for every node made
+from the same compiled statics and the same style object. Keep the last result per statics object
+(a node set no other prop) and hand it out when the style matches: no copy, no colour lookup, one
+props object for all of them, which Fabric only reads. Headless mount -5.3% (9.84 vs 10.39 ms),
+replace -3%, append -4.6%, with only the 1000 labels hitting, since the bench gives every row view
+its own style object; with rows sharing `styles.row`, mount -12% (8.91 vs 10.15 ms), replace -9%,
+append -11%. On device the bench's case is within noise. Off when an inline `direction` exists,
+since a paragraph's alignment then depends on its ancestors.
+
+**3. One computation per row.** The compiler emits `insert(text, () => row.label())` as a render
+effect of its own beside the row's prop `effect`. Folded in (the raw text node made with the
+element, its text set from the same effect), a row has one computation, one closure and two fewer
+arrays. Hand-compiled: headless mount -2.6%, 0.54 MB less (-8.5%), clear -6%; device allocation
+7.3 -> 6.7 MB (iOS), 4.7 -> 4.3 (Android), time within noise. The compiler cannot tell text from
+an element in `{expr}`, so it needs a runtime fallback to `insert` for a non-text value: worth it
+for the allocation, not for time.
+
+**Not prototyped, with bounds:**
+
+4. **Garbage collection is a third of the mount gap.** Device GC during mount is 1.7 ms for React
+   and 2.4 for Solid on iOS (1.2 vs 1.8-1.9 on Android) at the same 7.2-7.3 MB: React's mount
+   garbage dies young, Solid's owners, computations and closures survive. Proposal 3's 0.5 MB did
+   not move it measurably; fewer surviving objects per row is the lever (a closure-free owner per
+   node was tried and was flat, above). A larger Hermes young generation is host configuration and
+   helps React equally.
+5. **Create Fabric nodes as the tree is built**, as React's `completeWork` does, instead of in the
+   commit walk. Headless the engine alone is 5.5 of a 10 ms mount, and the walk's own frames
+   (`reconcile`, `reconcileChildren`, `reconcileUnder`, flags) are ~15% of that, so ~0.8 ms at
+   most, less what creation still needs. Conflicts with a cascade that can restyle a node before
+   its first commit, so only for nodes no sheet reaches.
+6. **A C++ command-buffer path** remains the only route to a mount clearly faster than React's,
+   bounded at ~2 ms on iOS and 5.5 on Android ([performance.md](performance.md)), at the cost of
+   a native module in every app.
+7. **A lighter `createSelector`** would cut 16% of clear's disposal, but item 5 found clear no
+   faster without any selector, and with proposal 1 that work is off the commit path anyway.
+
+The headless profiles came from a scratch copy of the Hermes host with the sampling profiler on
+(`RuntimeConfig` `withEnableSampleProfiling(true)`, the root API's `enableSamplingProfiler` around
+a phase, then `sampledTraceToStreamInDevToolsFormat` to a `.cpuprofile`). It charges a young-
+generation collection to the allocating function, so `createComputation` and `createMemo` lead a
+mount profile on allocation, not work.
 
 ## Measuring
 
