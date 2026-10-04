@@ -93,8 +93,7 @@ if (bench === 'react') {
       wrappedFabric(): never;
     };
     // Handed the wrapper directly, where React's renderer had to be caught reading the global.
-    const Bench =
-      bench === 'solid' ? SolidBench : bench === 'signals' ? SignalsBench : ScreenBench;
+    const Bench = bench === 'solid' ? SolidBench : bench === 'signals' ? SignalsBench : ScreenBench;
     mountNative(Bench, {
       fabric: wrappedFabric(),
       rootTag: Number(rootTag),
